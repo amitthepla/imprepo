@@ -1,0 +1,266 @@
+Need a Ruby+Angular2 EXPERT to work from scratch
+Details
+
+If you are not expert in ROR don't apply!
+We already have many low-level developers.
+
+Our company is going to start a new business for house-renting service.
+The project is so complicated and Enterprise level project.
+The back-end should be ROR and front-end should be AngularJS because it is regarded as one of the most promising front-end framework nowadays.
+If you are familiar with Angular2 it is a huge plus!
+Developer should be aware of SASS,Gulp/Grunt,Payment integration, write clean and reusable code and have good eye for design.
+You should be working with our talented designer and be ready for interview with our CTO.
+Please write word “Miami RENTALS” in front of your cover letter so that I can get to know you have read all of our job details.
+
+====================================================================================================================================
+
+Convert Web/Cloud-based App to US from Australia
+Details
+
+We want to convert the Open Food Network website code (open source, based on Ruby on Rails, Spree) to the US.  
+The objective is to enable us to test basic use cases for producers, food hubs, farmers markets and consumers to list register and list their products and to buy products (in the case of the consumer user) as US-based users.  
+
+The code can be found at https://github.com/openfoodfoundation/openfoodnetwork
+
+When maps are resolved, they must go to US locations. 
+
+All units must be US-based (pounds, ounces, miles, etc.); currency as well (dollars), etc.
+
+The project does have some US-oriented copy and other configuration files, but we haven't studied in detail 
+
+The email registration process need to work to enable testing of use cases. You can work with our network manager to implement the email process. 
+
+There are many other changes we want to this software.  This project will enable us to get the components above implemented, and the successful programmer will have the best opportunity to work on future changes.
+
+===========================================================================================================================
+
+Tutor Needed For Ruby [Procedural Ruby, Object Oriented Ruby, Scraping]
+Details
+
+I'm learning web development and I'm looking for a long-term tutor that can assist me with Ruby. 
+The work I do consists of building methods that strictly rely on TDD. You will need to have mastered reading TDD and building out methods. 
+I'm looking to meet once or twice a week for sessions via Google Hangouts. 
+
+I'd like to undergo a test run with candidates to ensure the right person for the job. 
+
+==============================================================================================================================
+
+We need a Web developer + Designer for a new Ruby on Rails project
+Details
+
+We want to create a job platform for a specific niche (you may think of guru.com, upwork.com or freelance.com but to a specific niche). For this, we're looking for a developer or team of developers to bring to life our platform MVP. 
+
+A complete description of the platform will be sent to the proposals that reach the final phase of our selection. But here're a few of the specs we need:
+
+•	Proposal must include offer for Design + Development
+•	Programming language: Ruby (Ruby on Rails) + Javascript
+•	Agile/SCRUM methodology to be used
+•	Trello and Skype will be the tracking and communication tools
+•	Deadline: End of December 2016
+•	Main features:
+    o	   Timeline: with news feeds that we should be able to change in the backoffice
+    o	   4 types of users:
+              •	1 - companies (posting job offers) 
+              •	2 – sub-contractors (applying to and posting jobs; can associate individuals (workers) to their accounts
+              •	3 - individuals (job candidates)
+              •	4 – advertising companies
+              •	5 – Consumables/protect wear companies
+o	Each user will have its own profile page (companies profile will be simpler)
+o	Companies have to be able to post jobs, and candidates must be able to search and apply to chosen jobs
+o	There will be a Q&A part, similar to stackoverflow (we can use a ruby gem for this, to speed up development)
+o	Localization, for easier translation of the site into different languages
+o	Subscription payments (and other revenue sources) should be integrated with Paypal and possibly (still being studied) with another payment's platform
+o	Invoicing should be integrated with specific software, here's their API: https://invoicexpress.com/api/overview 
+
+If the MVP is successful, further collaboration may exist for new features that are already in our minds (for example, mobile app).
+
+Please make sure to include the name of the invoice software to be used, on the first line of your proposal, fur us to know that you read all the information carefully. Proposals without this phrase will be immediately discarded.
+
+Please include also your skype ID. Proposals passing to the second phase of this selection will be interviewed by skype.
+
+We would also like to see your comments on these points:
+- Previous experience with integrating API's into websites
+- Portfolio (if any) of similar projects (size, complexity)
+- Feedback from previous/current customers
+- Preferred way (method/channels + periodicity) of contact during the project
+
+Skills Required:
+- Ruby on Rails
+- Javascript
+- API Integration
+- Web design
+=======================================================================================================
+This Business Proposal represents a combination of strategic startup guidance as well as best practices in user experience design and Web development. 
+
+Based on the requirement, I understand the goal of initial engagement is the building the MVP of a functioning Web application. The web application will be developed from scratch  in Ruby On Rails. The web application will have bootstrap layout with same colour combination to make the website default responsive.
+
+The web application will be developed in RoR. The backend/database will use MySQL. 
+
+
+===========
+
+
+Hi, I would like to tell you that recently worked on the similar requirement(We were having Reference website: upworks.com), but yet to take it to production. So I have enough idea how the whole process works and process flow according to different user level.
+
+Based on the requirement, we tried to breakdown the tasks and put them under Milestones, and here are these
+
+Milestone#1 - 35hrs 
+
+ Configure local server setup
+ Design the database architecture and relation between them
+ Implement Bootstrap for rich and responsive UI design
+ Implement role based login system for different types of users(companies,sub-contractors,individuals,advertising companies,Consumables/protect wear companies).
+ Users can able create/edit their own profiles  
+
+Milestone#2 - 30hrs 
+ 
+   Companies able to post jobs by providing the required inputs
+   Candidates can search the jobs as per their requirement
+   Candidates can apply for the jobs
+   
+Milestone#3 - 30hrs 
+  
+    Setup admin user
+	Admin Dashboard and analytics(Daily Signup, Jobs posted, Candidates applied...etc)
+    Implement localization to switch to different languages
+    Implement payment process using Paypal/Braintree
+ 
+Milestone#4 - 16hrs 
+
+   Deployment of the app
+    
+    
+For invoice generating we can use Quickbooks API or Payday or PayPal gem available.   
+
+
+Here are some details you asked for based on my profile,
+
+- Previous experience with integrating API's into websites
+
+Have good knowledge of integration into Facebook API, Twitter API, LinkedIn API, Google plus API, Google maps API, WePay payment API and so on.
+And also have handsome experience builting own REST APIs
+Good knowledge on  E-commerce, Social Networking Domain, CRM and CMS
+
+- Portfolio (if any) of similar projects (size, complexity)
+
+As I saild, am working on a similar project right now and the app is yet to move to production, so unfurnately I am unable to give you any sort of URLS.
+But in the meeting we can discuss on these stuffs briefly.
+
+- Feedback from previous/current customers
+
+
+- Preferred way (method/channels + periodicity) of contact during the project
+
+
+Technology Stack:
+Ruby 1.8.7/1.9.3/2.X, Rails 2.X/3.X/4.X,Javascript,JQuery, HAML, SASS, HTML5, CSS3, Amazon Web Services(S3, RDS, Cloudfront, Beanstalk...etc), AutoScaling, LoadBalancer, Heroku, Rackspace
+
+
+Skype ID:
+andola.amit
+deepak.rip007
+
+Some popular rails app, I have worked on
+https://www.auditnet.org/
+http://www.dmariearchive.com/
+http://www.leaguer.org/
+http://www.thecollegedriver.com/
+
+
+
+
+
+
+
+
+
+
+==========================================================================================================
+Ruby on Rails developer
+Details
+
+-We are looking for an experienced Ruby on Rails developer that knows the "ins and outs" of Ruby and the Rails ecosystems.
+At ETSZONE you will be doing
+-Designing, developing and delivering next-gen web applications
+-Virtualizing and containerizing applications with Docker.
+-Managing a public/private cloud infrastructure.
+-FInding and working with cool open-source projects.
+
+=====================================================================================================
+
+Rails Developer with in depth experience in web scraping
+Details
+
+Need a full time Rails developer with in depth experience in web scraping to help development of an ongoing web scraping/automation project. 
+Need to have the following skills/experiences:
+Ruby on Rails 4.X
+Rspec
+Watir Webdriver
+Redis
+MongoDB
+DevOps
+Web Scraping
+Postgresql
+Amazon AWS
+DigitalOcean
+Sidekiq
+Linux
+
+Ongoing project: Developer
+
+You will be asked to answer the following questions when submitting a proposal:
+Tell me about your experiences in Ruby on Rails. Also, what's the most complex Rails App that you've built?
+How often do you use Rspec?
+Have you done Webscraping before? What are the most complex sites that you've scraped?
+Have you used Sidekiq, Mongodb, Redis before? Please tell me your experiences.
+Have you used Typhoeus to web scrape before? please tell us your experiences.
+
+=========================================================================================================
+
+Details
+
+We are looking for experienced individuals who know ruby rails extensively for a project that could be from 2-6 months possibly longer. 
+They need to have experience in coding with Ruby Rails as we are preparing for a interactive Web app project launch.
+
+============================================================================================================
+
+18/10/2016 FLIPKART INTERNET PRIVABANGALORE 5,549.00
+
+21/10/2016 PAYTM MOBILE SOLUT INR WWW.PAYTM. 1,473.00
+
+24/10/2016 Mr. AMIT RANJAN MOHANTY VISA MT 3,000.00 Cr
+
+14/11/2016 M-WWW GOIBIBO COM ,P:01,0000245 7,949.56
+
+14/11/2016 KK CESS 2.65
+
+14/11/2016 CESS TAX 2.65
+
+14/11/2016 MER EMI ,INT NBR:01,00000000000245 530.92
+
+14/11/2016 SERVICE TAX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

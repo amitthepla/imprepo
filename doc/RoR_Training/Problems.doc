@@ -1,0 +1,67 @@
+	Suman
+=============================
+
+class NameDisplay
+	@@no_of_students=0
+	@name=[]
+	def display()
+		for i in name
+			puts @name[i]
+		end
+	end
+	def enter()
+		print "No. of students are : "
+		n=gets.to_i-1
+		for i in 0..n
+			print "enter #{i} name :"
+			@name[i] = gets.chomp
+			print "\n"
+			
+		end
+	end
+
+end
+nd=NameDisplay.new
+nd.enter
+nd.display
+
+Sir it is showing the following error..
+
+[Suman@APLD40 Ruby_Programs]$ ruby NameDisplay.rb 
+No. of students are : 2
+enter 0 name :suman
+NameDisplay.rb:14:in `enter': undefined method `[]=' for nil:NilClass (NoMethodError)
+	from NameDisplay.rb:12:in `each'
+	from NameDisplay.rb:12:in `enter'
+	from NameDisplay.rb:22
+
+2.Difference between each do and for loop with an example
+
+3.redo,next with an example
+
+4.Where we use Unpack and Pack directives with an example.
+
+5.Where we use builtin global variable.
+
+
+
+
+	Amit
+==================
+1.Sir Plz  explain us File handling with an example.
+
+
+	Nabanita
+=====================
+1.Sir plz explain us Exception handling with an example.
+
+2.yield in block.
+	Pankaj
+=====================
+1.each_byte()
+
+2.How to use equal? 
+
+3.include? in array.
+
+
