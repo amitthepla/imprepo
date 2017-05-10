@@ -1,0 +1,248 @@
+= stylesheet_link_tag "home"
+:css
+  input[type=submit] {
+    background: #428FD0;
+    color: #fff;
+    border: 2px solid #428FD0;
+    border-radius: 5px;
+    margin-left:-2px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 10px;
+    line-height: 12px;
+    width: 96%;
+    font-family: 'SourceSansPro-Regular';
+  }
+.con-body
+  .banner
+  .container
+    .jumbotron
+      .navbar-left.col-md-12.p0
+        %h3  
+          Cloud CRM Tool for You and Your Team
+        //%h3
+        //  A Simple CRM to boost your Sales
+
+
+
+        /.form_txt
+        /  - @beta_request = BetaRequest.new
+        /  = form_for @beta_request, :url => beta_request_path, :html => { :class => 'form-inline' } do |f|
+        /    %div.text-center
+        /      = f.email_field "email", :class => "txt_box", :required => true, :autocomplete => "on", :placeholder => "Email Address"
+        /    %div
+        /      = f.submit "Sign Up", :disable_with => "Submitting....", :onclick=> "return chk_validemail('beta_request_email')"
+
+        %div.col-md-12.main-content{:style=>"min-height:250px"}
+          %div.wkp-bnrlst-txt
+            %div.fl.feature-text.col-md-5
+              Features List
+              %ul
+                %li.open-icon.down
+                  Unlimited Leads
+                %li.open-icon.message
+                  Unlimited Tasks
+                %li.open-icon.usabilty
+                  Unlimited Contacts
+                %li.open-icon.task
+                  Unlimited User
+                %li.open-icon.opn-ct
+                  Activity log
+            .beta_form
+              .beta_mail.col-md-6
+                - @user = User.new
+                #msg-div.text-center
+                  = form_for @user, :url => save_user_path, :html => { :class => 'form-inline' } do |f|
+                    .txt_btn
+                      / .fl.col-md-12{:style=> "padding-right: 0px;"}
+                      /   .fl.full_name.col-md-6{:style=> "padding: 0px; margin-left: -14px; margin-right: 0px;"}
+                      /     = f.text_field "first_name",:value => "", :class => "beta_txt_box1", :require =>true, :placeholder => "First Name"
+                      /   .fl.full_name.col-md-6{:style=> "padding-right: 0px;"}
+                      /     = f.text_field "last_name",:value => "", :class => "beta_txt_box1", :require =>true, :placeholder => "Last Name"
+                      /   .cb
+                      / .cb
+                      .fl.mail_dl_osc
+                        = f.email_field "email", :class => "beta_txt_box", :required => true, :autocomplete => "off", :placeholder => "Email Address"
+                      .cb
+                      .fl.password_icon
+                        = f.password_field "password", :class => "beta_txt_box", :required => true, :placeholder => "Password"
+                      .cb
+                      .fl.org_dl_osc
+                        = f.text_field "organization_name", :class => "beta_txt_box", :required => true, :placeholder => "Organization Name", :style => "width: 399px;"
+                      .cb
+                      /.fl.col-md-12{:style=> "padding-right: 0px;"}
+                      /  .fl.full_name.col-md-6{:style=> "padding: 0px;margin-left: -14px; margin-right: 0px;"}
+                      /    = f.text_field  :organization_name, :required => true, :class=>"beta_txt_box1", :placeholder=>"Organization Name"
+                      /  .fl.full_name.col-md-6{:style=> "padding-right: 0px;"}
+                      /    = f.select :organization_size, CompanyStrength.find(:all).collect {|c| [ c.range, c.id ]}, {:include_blank => '- Organization Size -'},  :required => "true", :class=>"beta_txt_box1"
+                      /  .cb
+                      /.cb
+                      /.fl.full_name
+                      /  = f.text_field  :organization_website, :required => true, :class=>"beta_txt_box", :placeholder=>"Website"
+                      /.cb
+                      .fl
+                        / %input{:name => "user[terms_of_service]", :type => "hidden", :value => "0"}
+                        /   %input{:name => "user[terms_of_service]", :type => "checkbox", :value => "1", :style => "transform: scale(1.4); transform-origin: 0 0 0;"}
+                      .fl.why_email
+                        By clicking 'Signup', you agree to the 
+                        %a{href: "/terms"} Terms of Service
+                        and 
+                        %a{href: "/privacy"} Privacy Policy
+                      .fl.sub-form1.sub-btn
+                        = f.submit "Sign Up", :disable_with => "Submitting....", :class => "sub-form", :onclick=> "return chk_validemail('beta_request_email')"
+                      .socl-signup
+                        %ul.socl-btn.fl
+                          %li.vi-google{:onclick => "social_authenticate('#{user_omniauth_authorize_path(:google_oauth2)}')"}
+                          %li.vi-linkedin{:onclick => "social_authenticate('#{user_omniauth_authorize_path(:linkedin)}')"}
+                        
+                        .cb
+                      .cb
+                               
+          .cb
+    .cb10
+.cb
+.container
+  .simple
+    Focus
+    %img{alt: "Bullet", src: "/assets/bullet.png"}
+      Accelerate
+      %img{alt: "Bullet", src: "/assets/bullet.png"}
+        Win
+  .row
+    .col-md-3
+      %a.tn{href: "#manage_deals"}
+        .con-box1.box_focus
+          %span
+            %img{src: "/assets/manage_deal.png"}/
+            %br/
+            %span.mng_txt Manage Leads
+    .col-md-3
+      %a.tn{href: "#manage_contact"}
+        .con-box1.box_focus
+          %span
+            %img{src: "/assets/manage_contact.png"}/
+            %br/
+            %span.mng_txt Manage Contacts
+    .col-md-3
+      %a.tn{href: "#sales_activity"}
+        .con-box1.box_focus
+          %span
+            %img{src: "/assets/manage_activity.png", style: "margin:15px 0"}/
+            %br/
+            %span.mng_txt Manage Sales Activities
+    .col-md-3
+      %a.tn{href: "#sales_force"}
+        .con-box1.box_focus
+          %span
+            %img{src: "/assets/sales_force.png"}/
+            %br/
+            %span.mng_txt Sales Force Action
+  .cb10
+  .simple
+    What you Get
+
+  .cb
+  .mng_txt Manage Leads, Manage Contacts, Manage Sales Activities and Sales Force Action
+  .cb10
+  %a{name: "manage_deals"}
+  .gray_content
+    .navbar-left.col-md-6
+      %img.lt_help_1{src: "/assets/Manage_deal2.jpg"}
+    .navbar-left.col-md-6
+      .wus_sub{style: "font-weight:bold"} Manage Leads & Grow your business
+      .fnt17{style: "color:#333333;font-size:19px;width: 428px;line-height:37px;"} No more struggling with spreadsheets  emails. WakeUpSales helps you to manage your deals effectively to grow your business exponentially by adding visibility to your sales pipeline.
+  .cb10
+  %a{name: "manage_contact"}
+  .gray_content
+    .navbar-left.col-md-6
+      .wus_sub{style: "font-weight:bold"} Manage Your Contacts
+      .fnt17{style: "color:#333333;font-size:19px;width: 428px;line-height:37px;"} Customer information is the most valuable for any business. WakeUpSales helps you to store  link the context of each deal to the contacts.
+    .navbar-left.col-md-6
+      %img.lt_help_2{src: "/assets/Manage_contact2.jpg"}
+  .cb10
+  %a{name: "sales_activity"}
+  .gray_content
+    .navbar-left.col-md-6
+      %img.lt_help_3{src: "/assets/Sales_activity2.jpg"}
+    .navbar-left.col-md-6
+      .wus_sub{style: "font-weight:bold"} Manage Sales Activities
+      .fnt17{style: "color:#333333;font-size:19px;width: 428px;line-height:37px;"} WakeUpSales facilitates excellent features for managing in-depth sales activities, such as maintaining notes, tasks, email communication, sales buckets around deals.
+  .cb10
+  %a{name: "sales_force"}
+  .gray_content
+    .navbar-left.col-md-6
+      .wus_sub{style: "font-weight:bold"} Sales Force Action
+      .fnt17{style: "color:#333333;font-size:19px;width: 428px;line-height:37px;"} WakeUpSales is lean  easy to use by your salesforce. Facilitates your sales team to manage  organize deals in pipeline  thereby boost their productivity.
+    .navbar-left.col-md-6
+      %img.lt_help_2{src: "/assets/Sales_Force_action2.jpg"}
+  .cb
+  .gray_content
+    .simple 
+    /Try WakeUpSales for FREE!
+    %input{maxlength: "100", name: "utf8", type: "hidden", value: "?"}/
+    %input{maxlength: "100", name: "authenticity_token", type: "hidden", value: "HoVWF8dQkz8+h3dy+y/rxXnEbkZQriVjaQTLbLJuiPw="}/
+    /%form#new_beta_account.form-inline{"accept-charset" => "UTF-8", action: "/beta_accounts", method: "post"}
+    /  .col-md-12.p0{style: "text-align:center"}
+    /    %input#beta_account_email_2.txt_box{autocomplete: "on", maxlength: "100", name: "beta_account[email]", placeholder: "Your Email Address", required: "required", size: "30", type: "email"}/
+    /    %input.sign{"data-disable-with" => "Submitting....", maxlength: "100", name: "commit", onclick: "return chk_validemail('beta_account_email_2')", style: "height:45px;margin:17px 0 0 15px;width: 250px;", type: "submit", value: "Create my Beta Account"}/
+    /    .cb
+- if !params[:t].nil? || !params[:t].blank?
+  = render :partial => "devise/registrations/new"
+:javascript
+  $(document).ready(function() {
+      $('#free_signup').click(function(){
+        $('html, body').animate({
+          scrollTop: $(".beta_form").offset().top
+        }, 2000);
+      });
+       $('#feature').click(function(){
+        $('html, body').animate({
+          scrollTop: $(".simple").offset().top
+        }, 2000);
+      });
+      if('#{@buser_email}' != ""){
+        //$("#user_email").val('ddddd');
+        //alert("#{@buser_email}")
+        $('#signup_modal_popup').modal('show'); 
+        $(".email_sgnup_form").val('#{@buser_email}').prop("readonly",true);
+        $("#user_is_beta_user").val(1);
+      }else{
+        history.replaceState({}, '', '/');  
+        $("#user_is_beta_user").val(0);
+      }
+      if('#{cookies[:redirect_deal_id]}' != ''){
+        setTimeout('redirect_deal()', 5000);
+        $.removeCookie("redirect_deal_id");
+      }
+      $('#new_beta_request').bind('ajax:complete', function(e, data, status, xhr) {
+        alert(data.responseText)
+      });
+    });
+    function redirect_deal()
+    {
+      window.location.href ="/leads/#{cookies[:redirect_deal_id]}";
+    }     
+    function chk_validemail(type)
+    {
+      var email_id=$("#"+type+"").val();
+      var atpos=email_id.indexOf("@");
+      var dotpos=email_id.lastIndexOf(".");
+      if (email_id != '' && (atpos<1 || dotpos<atpos+2 || dotpos+2>=email_id.length))
+        {
+         //alert('Please enter a valid email address.')
+         $("#msg-div").text("Please enter a valid email address.");
+         //$("#"+type+"").focus();
+         return false;
+        }
+      else
+      {
+        return true;
+      }
+    }
+    function social_authenticate(auth_url){
+      window.location.href = auth_url;
+    }

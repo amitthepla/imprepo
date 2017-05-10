@@ -1,0 +1,115 @@
+<%faction = @u_subs.present? ? "/subscriptions/update" : "/subscriptions/create" %>
+<%= form_tag(faction, method: "post", remote: true, id: "payment-form", class: "cmn_new_popup_form", style: "width:100%;") do %>
+  <div class="bt-drop-in-wrapper">
+    <div id="bt-dropin"></div>
+  </div>
+  <%=hidden_field_tag "user_limit", "", class: "form-control", id: "user_limit"%>
+  <%=hidden_field_tag "price", "", class: "form-control", id: "price"%>
+  <div class="row">
+    <div style="margin-bottom: 20px;" class="form-group">
+      <div class="form_fld">
+        <span class="cwkp-sprite users"></span>
+        <%=text_field_tag "card_holder_name", "",class: "form-control", id: "card_holder_name", required: 'true', autocomplete: "off", :placeholder => "CARD HOLDER'S NAME"%>                        
+      </div>
+      <div id="name_err" class="error_txt"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Name -->
+    <div class="form-group wd35 fl">
+      <div class="form_fld">
+        <span class="cwkp-sprite credit_card"></span>
+        <%=text_field_tag "card_number", "", class: "form-control", id: "card_num", required: 'true', autocomplete: "off", :placeholder => "CARD NUMBER", :maxlength => 20,:onkeydown=>"return numbersonly(event)"%>                        
+      </div>
+      <div id="number_err" class="error_txt"></div>                      
+    </div>
+    <div class="form-group wd20 fl ml10">
+      <div class="form_fld">
+      <span class="cwkp-sprite calendar_icon"></span>
+        <%= select_tag :exp_month , options_for_select(01..12), :prompt => "Month", :class => "form-control", :style=>"width:160px" %>
+      </div>
+      <div id="exp_month_err" class="error_txt"></div>
+    </div>
+    <div class="form-group wd20 fl ml10">
+      <div class="form_fld">
+      <span class="cwkp-sprite calendar_icon"></span>
+         <%= select_tag :exp_year , options_for_select(Date.today.year..Date.today.year+35), :prompt => "Year", :class => "form-control", :style=>"width:160px" %>                        
+      </div>
+      <div id="exp_year_err" class="error_txt"></div>
+    </div>
+   <div class="form-group wd20 fl ml10">
+      <div class="form_fld">
+        <span class="cwkp-sprite credit_cvv"></span>
+        <%=password_field_tag "CVV2", "",class: "form-control", id: "code", required: 'true', :class => "form-control", autocomplete: "off", :placeholder => "CODE (CVC/CVV)", :maxlength => 4,:onkeydown=>"return numbersonly(event)"%>                         
+      </div>
+      <div id="cvv_err" class="error_txt"></div>
+      <div class="card_img cvv_img_to_top" style="width: 171px;font-size:10px;">
+        <a href="javascript:void(0);" class="cvv_img">
+            What is cvv/cvc Number?
+            <div align="center" style="display:none;position:absolute;" class="cvvcard">
+              <%=image_tag "new-ui/cvv.gif"%>
+            </div>
+        </a>
+      </div>
+    </div>
+    <div class="cb"></div>
+  </div>
+
+  <div class="row">
+    <div style="margin-bottom: 20px;" class="form-group">
+      <div style="font-size: 18px;padding: 20px;color:#333;">Credit Card Billing Address</div>
+    </div>
+  </div>
+  <!-- Street Address-->
+  <div style="margin-bottom: 20px;" class="form-group">
+    <div class="form_fld">
+      <span class="cwkp-sprite street"></span>
+      <%=text_field_tag "street_address", "",class: "form-control", id: "bill_street_address", required: 'true', autocomplete: "off", :placeholder => "STREET ADDRESS"%>
+    </div>
+    <div id="street_err" class="error_txt"></div>
+  </div>
+  <!-- Locality-->
+  <div class="form-group wd32 fl">
+    <div class="form_fld">
+      <div class="form_fld col-md-4">
+        <span class="cwkp-sprite city"></span>
+        <%=text_field_tag "city", "",class: "form-control", id: "bill_city", required: 'true', autocomplete: "off", :placeholder => "CITY"%>
+      </div>
+    </div>
+    <div id="city_err" class="error_txt"></div>
+  </div>
+
+  <!-- Region -->
+ <div class="form-group wd32 fl ml10">
+    <div class="form_fld">
+      <span class="cwkp-sprite state"></span>
+      <%=text_field_tag "state", "",class: "form-control", id: "bill_state", required: 'true', autocomplete: "off", :placeholder => "STATE"%>
+    </div>
+    <div id="state_err" class="error_txt"></div>
+  </div>
+
+  <!-- POSTAL CODE -->
+  <div class="form-group wd32 fl ml10">
+    <div class="form_fld">
+      <span class="cwkp-sprite zip"></span>
+      <%=text_field_tag "zipcode", "",class: "form-control", id: "bill_zipcode", required: 'true', autocomplete: "off", :placeholder => "ZIP CODE"%>
+    </div>
+    <div id="zipcode_err" class="error_txt"></div>
+  </div>
+  <div class="cb"></div>
+  <!-- COUNTRY -->
+  <div class="form-group" style="margin-bottom: 20px;">
+    <div class="form_fld cmn_selct_fld">
+    <span class="cwkp-sprite country"></span>
+       <%= select_tag :country_code_alpha2, options_from_collection_for_select(Country.all, "ccode", "name"), :prompt => "COUNTRY", :required => true, :class => "form-control", :style=>"width:100%;"%>
+    </div>
+    <div id="country_err" class="error_txt"></div>
+  </div>
+
+  <%=submit_tag "Pay Now", class: "btn btn-success btn-lg btn-block checkout-btn", onclick: "return validate_card();", :style => "margin-top:30px;"%>
+  <%=hidden_field_tag "gmt_offset"%>
+  <%=hidden_field_tag "lat"%>
+  <%=hidden_field_tag "long"%>        
+  <%=hidden_field_tag "remote_ip"%>         
+<%end%>

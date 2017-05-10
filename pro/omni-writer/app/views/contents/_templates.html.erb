@@ -1,0 +1,46 @@
+<!-- <span>List of templates</span>
+<div id="template-tab" class="btn-group" data-toggle="buttons-radio">
+  <%# @templates.each do |t|%>
+		<a href="javascript:" class="btn btn-large btn-info" data-toggle="template-tab" id="<%#=t[1]%>"><%#=t[0]%></a>
+  <%# end %>
+</div> -->
+<p>
+	<%=select_tag "project_templates", options_from_collection_for_select(@templates, "slug", "name"), class: 'form-control select-width', prompt: "- Select Template -"%>
+</p>
+
+<!-- <div id="template-div" class="container">
+	<h4>Schema</h4>
+	<%#if @project.present? %>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+			      	<tr>
+				      	<%# @project.schema.each do |key| %>
+				       		<th><%#= key[0] %></th>
+						<%#end %>
+			      	</tr>
+				</thead>
+		 		<tbody>
+					<tr>
+				 		<%# @project.schema.each do |value| %>
+						    <td><%#= value[1] %></td>
+						<%#end %>
+					 </tr>
+				</tbody>
+			</table>
+		</div>
+	<%# end %>
+</div> -->
+
+<script>
+$(function(){
+ $("#project_templates").change(function(){
+ 	$('#template_slug').val(this.value);
+ // 	if($("#file-select").val() != undefined && $("#file-select").val() != '' && ($("#project").find(":selected").val() != undefined && $("#project").find(":selected").val() != '')){
+	//     $('#run-btn').removeAttr('disabled');
+	// }else{
+	//     $('#run-btn').attr('disabled', 'disabled');
+	//   }
+  });
+});
+</script> 

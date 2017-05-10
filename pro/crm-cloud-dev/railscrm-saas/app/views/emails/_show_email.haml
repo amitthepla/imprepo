@@ -1,0 +1,473 @@
+:css
+  .wysiwyg {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    overflow: hidden;
+    width: 181px;
+  }
+  #reply-email-body-wysiwyg-iframe, #forward-email-body-wysiwyg-iframe {
+    margin-bottom: 18px;
+    width: 558px !important;
+  }
+  .message-body {
+    margin-left: 20px;
+    padding-top: 25px;
+    width: 90%;
+  }
+
+  .email-body {
+    margin-top: 25px;
+  }
+
+  table.info-table tr td {
+    border: none;
+  }
+
+  blockquote {
+    font-size: small;
+  }
+
+
+- basic_info = get_basic_info(@email)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.email-details
+  / Back button block
+  %div
+    %a#btn-email-back.btn.btn-default{:href => "javascript:", :style => "width: 10%;", :title => "Back"}
+      %i.fa.fa-level-up.fa-lg.fa-rotate-270{:style => "font-size: 20px;"}
+  / End back button block
+  - if params[:provider] == 'google'
+    .pull-right{:style => "margin-top:-58px;"}
+      %ul.unstyled.inbox-pagination
+        %li
+          %a#btn-reply-google.np-btn{"data-page-token" => "", :href => "#", :title => "Reply", :onclick => "$('#reply-mail-form')[0].reset();$('#reply-attachment-details').html('');"}
+            %i.fa.fa-reply.pagination-left
+        %li &nbsp;
+        %li
+          %a#btn-forward-google.np-btn{"data-page-token" => "", :href => "#", :title => "Forward", :onclick => "$('#forward-mail-form')[0].reset();$('#forward-attachment-details').html('');"}
+            %i.fa.fa-forward.pagination-right
+    
+  %h3
+    = basic_info[:subject]
+  %div{:style => "border-top: 1px solid #d8d8d8;margin-top: 15px;"}
+  .message-body
+    .sender-info
+      %table.info-table
+        %tr
+          %td
+            %strong= basic_info[:from]
+        %tr
+          %td
+            %span to:
+            %span
+              = basic_info[:to]
+        - if basic_info[:cc].present?
+          %tr
+            %td
+              %span cc:
+              %span= basic_info[:cc]
+        - if basic_info[:bcc].present?
+          %tr
+            %td
+              %span bcc:
+              %span= basic_info[:bcc]
+
+    .email-body
+      - email_body = get_email_content(@email)
+      = email_body
+/
+  <span id='fwd_content_span' style="display:none"><haml_silent></haml_silent></span>
+  <span id='reply_content_span' style="display:none"><haml_silent></haml_silent></span>
+
+- if params[:provider] == 'google'
+  / Reply
+  #google-reply-email.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :style => "display: none;min-height:500px;overflow-y:auto;", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4.modal-title Reply Message
+        .modal-body
+          = form_tag reply_email_path, :method => 'post', :id => 'reply-mail-form', :class => 'form-horizontal', :remote => true, :multipart => true do
+            = hidden_field_tag "reply_to_email", basic_info[:in_reply_to]
+            = hidden_field_tag "reply_to_subject", basic_info[:subject]
+            = hidden_field_tag "reply_to_message_id", basic_info[:msg_id]
+            = hidden_field_tag "is_reply_message", true
+            .form-group
+              = label_tag :'email-to', 'To', class: 'col-lg-2 control-label'
+              .col-lg-10
+                = text_field_tag :to, basic_info[:in_reply_to] , :placeholder => 'Recipients', :class => 'form-control', :id => 'reply-email-to', :required => true, :readonly => true
+            .form-group
+              = label_tag :'email-cc', 'Cc', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                = text_field_tag :cc, basic_info[:cc], :id => 'reply-email-cc', :class => 'form-control', :name => 'cc'
+            .form-group
+              = label_tag :'email-bcc', 'Bcc', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                = text_field_tag :bcc, basic_info[:bcc], :id => 'reply-email-bcc', :class => 'form-control', :name => 'bcc'                
+            .form-group
+              = label_tag 'email-subject', 'Subject', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                - subj = basic_info[:subject].include?("Re:") ? basic_info[:subject] : "Re: #{basic_info[:subject]}"
+                = text_field_tag :subject, subj, :id => 'reply-email-subject', :name => 'subject', :class => 'form-control', :placeholder => 'Subject', :readonly => true
+            .form-group
+              = label_tag :'email-body', 'Message', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                = text_area_tag :body, generate_reply_content(email_body, basic_info), :id => 'reply-email-body', :name => 'body', :class => 'form-control tinymce_reply', :placeholder => 'Type your message here.', :rows => "10", :cols => "30"
+            .form-group
+              .col-lg-offset-2.col-lg-10
+                %span.btn.green.fileinput-button
+                  %i.fa.fa-paperclip.fa.fa-white
+                  %span Attachment
+                  = file_field_tag :'files[]', :id => 'reply-attachments', :multiple => true
+                .text-right
+                  / <button class="btn btn-send" type="submit">Send</button>
+                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+                  = submit_tag 'Send', :id => 'send-reply-email', :class => 'btn btn-send'
+            .form-group
+              #reply-attachment-details.col-lg-offset-2.col-lg-10
+      / /.modal-content
+    / /.modal-dialog
+  / /.modal
+  / Forward
+  #google-forward-email.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :style => "display: none;min-height:500px;overflow-y:auto;", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4.modal-title Forward Message
+        .modal-body
+          = form_tag reply_email_path, :method => 'post', :id => 'forward-mail-form', :class => 'form-horizontal', :remote => true, :multipart => true do
+            = hidden_field_tag "reply_to_message_id", basic_info[:msg_id]
+            = hidden_field_tag "is_reply_message", true
+            .form-group
+              = label_tag :'email-to', 'To', class: 'col-lg-2 control-label'
+              .col-lg-10
+                = text_field_tag :to, '' , :placeholder => 'Recipients', :class => 'form-control', :id => 'forward-email-to', :required => true
+            .form-group
+              = label_tag :'email-cc', 'Cc', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                = text_field_tag :cc, basic_info[:cc], :id => 'forward-email-cc', :class => 'form-control', :name => 'cc'
+            .form-group
+              = label_tag :'email-bcc', 'Bcc', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                = text_field_tag :bcc, basic_info[:bcc], :id => 'forward-email-bcc', :class => 'form-control', :name => 'bcc'
+            .form-group
+              = label_tag 'email-subject', 'Subject', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                - subj = basic_info[:subject].include?("Fwd:") ? basic_info[:subject] : "Fwd: #{basic_info[:subject]}"
+                = text_field_tag :subject, subj, :id => 'forward-email-subject', :name => 'subject', :class => 'form-control', :placeholder => 'Subject'
+            .form-group
+              = label_tag :'email-body', 'Message', :class => 'col-lg-2 control-label'
+              .col-lg-10
+                = text_area_tag :body, generate_forward_content(email_body, basic_info), :id => 'forward-email-body', :name => 'body', :class => 'form-control tinymce_reply', :placeholder => 'Type your message here.', :rows => "10", :cols => "30"
+            .form-group
+              .col-lg-offset-2.col-lg-10
+                %span.btn.green.fileinput-button
+                  %i.fa.fa-paperclip.fa.fa-white
+                  %span Attachment
+                  = file_field_tag :'files[]', :id => 'forward-attachments', :multiple => true
+                .text-right
+                  / <button class="btn btn-send" type="submit">Send</button>
+                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+                  = submit_tag 'Send', :id => 'send-forward-email', :class => 'btn btn-send'
+            .form-group
+              #forward-attachment-details.col-lg-offset-2.col-lg-10
+      / /.modal-content
+    / /.modal-dialog
+  / /.modal
+:javascript
+  var pd;
+  $(function () {
+    $("#btn-email-back").on("click", function () {
+      $("#task_loader,.fixed_loader").show();
+      var page_token, postData, searchQuery = $.trim($("#txt-email-search").val());
+      if ("#{params[:provider]}" == "google") {
+        page_token = pageToken[currentPage];
+      }
+
+      if (searchQuery == "") {
+        postData = {label_id: labelId, page_token: page_token, mail_type: mailType}
+      } else {
+        postData = {q: searchQuery}
+      }
+      pd = postData;
+      $.ajax({
+        url: "/emails/#{params[:provider]}/mail",
+        type: 'GET',
+        data: postData,
+        success: function (res) {
+          $(".email_details_header,.search_bar").show();
+          $("#email-content").html(res);
+          $(".mail-option").show();
+          $("#task_loader,.fixed_loader").hide();
+        }
+      });
+    });    
+    
+    $("#btn-reply-google").on("click", function () {
+      $("#google-reply-email").modal("show");
+    });
+
+    $("#btn-forward-google").on("click", function () {
+      $("#google-forward-email").modal("show");      
+    });
+
+
+    $('#google-reply-email').on('shown.bs.modal', function() {
+        if (typeof tinyMCE != 'undefined') {
+          //alert('tinymce is correct')          
+          tinymce.EditorManager.editors = [];
+          $('#reply-email-body').wysiwyg({
+            rmUnusedControls: true,
+            controls: {
+              bold: { visible : true },
+              underline: { visible: true },
+              italic: { visible: true },
+              insertOrderedList: { visible: true },
+              insertUnorderedList: { visible: true },
+              undo: { visible: true },
+              redo: { visible: true },
+              indent: { visible: true },
+              outdent: { visible: true },
+              h1: { visible: true },
+              h2: { visible: true },
+              h3: { visible: true },
+              removeFormat: { visible: true },
+              increaseFontSize: { visible: true },
+              decreaseFontSize: { visible: true }
+            }
+          }); 
+           //$(tinymce.get('reply-email-body').getBody()).html('');
+           //$('#reply-email-body').val('')
+        } else {
+         // alert('tinymce is not correct')
+         setTimeout(arguments.callee, 50);
+        }
+    })
+
+    $('#google-forward-email').on('shown.bs.modal', function() {
+        if (typeof tinyMCE != 'undefined') {
+          //alert('tinymce is correct')          
+          tinymce.EditorManager.editors = [];
+          $('#forward-email-body').wysiwyg({
+            rmUnusedControls: true,
+            controls: {
+              bold: { visible : true },
+              underline: { visible: true },
+              italic: { visible: true },
+              insertOrderedList: { visible: true },
+              insertUnorderedList: { visible: true },
+              undo: { visible: true },
+              redo: { visible: true },
+              indent: { visible: true },
+              outdent: { visible: true },
+              h1: { visible: true },
+              h2: { visible: true },
+              h3: { visible: true },
+              removeFormat: { visible: true },
+              increaseFontSize: { visible: true },
+              decreaseFontSize: { visible: true }
+            }
+          }); 
+           //$(tinymce.get('reply-email-body').getBody()).html('');
+           //$('#reply-email-body').val('')
+        } else {
+         // alert('tinymce is not correct')
+         setTimeout(arguments.callee, 50);
+        }
+    })
+
+    $('#forward-mail-form').on('ajax:success', function(e, data, status, xhr){
+      $("#google-forward-email").modal("hide");
+    }).on('ajax:error',function(e, xhr, status, error){
+      console.log('error occured')
+    });
+
+
+    // Reply stuffs //
+    $('#reply-mail-form').bind('form-pre-serialize', function (e) {
+      tinyMCE.triggerSave();
+    });
+
+    var reply_options = {
+      target: '#output1', // target element(s) to be updated with server response
+      contentType: "application/x-www-form-urlencoded;charset=utf-8",
+      beforeSubmit: changeBtnTextReply, // pre-submit callback
+      success: showResponseReply, // post-submit callback
+      error: function (xhr) {
+        alert(xhr.responseText);
+        $("#send-reply-email").val("Send").prop("disabled", false);
+      }
+    };
+
+    // bind form using 'ajaxForm'
+    $('#reply-mail-form').ajaxForm(reply_options);
+
+    function changeBtnTextReply() {
+      $("#send-reply-email").val("Sending...").prop("disabled", true);
+    }
+
+    function showResponseReply(responseText, statusText, xhr, $form) {
+      $("#send-reply-email").val("Send").prop("disabled", false);
+      $("#google-reply-email").modal("hide");
+      $("#reply-mail-form")[0].reset();
+      $("#forward-attachment-details").html("");
+    }
+    // Forward stuffs //
+
+    $('#forward-mail-form').bind('form-pre-serialize', function (e) {
+      tinyMCE.triggerSave();
+    });
+
+    var reply_options = {
+      target: '#output1', // target element(s) to be updated with server response
+      contentType: "application/x-www-form-urlencoded;charset=utf-8",
+      beforeSubmit: changeBtnTextForward, // pre-submit callback
+      success: showResponseForward, // post-submit callback
+      error: function (xhr) {
+        alert(xhr.responseText);
+        $("#send-forward-email").val("Send").prop("disabled", false);
+      }
+    };
+
+    // bind form using 'ajaxForm'
+    $('#forward-mail-form').ajaxForm(reply_options);
+
+    function changeBtnTextForward() {
+      $("#send-forward-email").val("Sending...").prop("disabled", true);
+    }
+
+    function showResponseForward(responseText, statusText, xhr, $form) {
+      $("#send-forward-email").val("Send").prop("disabled", false);
+      $("#google-forward-email").modal("hide");
+      $("#forward-mail-form")[0].reset();
+      $("#reply-attachment-details").html("");
+    }
+    $("#reply-attachments").change(function () {
+      if ($(this)[0].files.length == 0) return false;
+      var attachmentContent = "";
+      $.each($(this)[0].files, function (key, value) {
+        attachmentContent += buildAttamantContent(value.name, formatBytes(value.size, 2));
+      });
+      $("#reply-attachment-details").html(attachmentContent);
+    });
+    $("#forward-attachments").change(function () {
+      if ($(this)[0].files.length == 0) return false;
+      var attachmentContent = "";
+      $.each($(this)[0].files, function (key, value) {
+        attachmentContent += buildAttamantContent(value.name, formatBytes(value.size, 2));
+      });
+      $("#forward-attachment-details").html(attachmentContent);
+    });
+    function buildAttamantContent(fileName, fileSize) {
+      return "<div class='col-xs-7' style='white-space: nowrap; padding: 3px 0'>" +
+          "<span>" + fileName + "</span></div>" +
+          "<div class='col-xs-4 col-xs-offset-1' style='padding: 3px 0'><span>" + fileSize + "</span></div>";
+    }    
+    function formatBytes(bytes, decimals) {
+      if (bytes == 0) return '0 KB';
+      var k = 1024; // or 1024 for binary
+      var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      var i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + ' ' + sizes[i];
+    }
+  })

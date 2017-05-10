@@ -1,0 +1,106 @@
+<div class="purchase-loader-div">
+  <div class="purchase-loader">
+   <%=image_tag "ajax-loader2.gif"%>
+  </div>
+</div>
+<div style="padding-top: 22px;padding-left: 35px;" class="top-list-bar white-sticky-header fixed-in-app-header">
+  <span style="margin-top:5px">
+    <span class="navigation_sec">
+     <%=link_to "Subscription", "/users/subscription"%>
+    </span>
+  </span>
+</div>
+<div class="padrht payment-page cstm-material-modal cmn_bdr_shadow credit-card-popup" style="margin:20px;">
+  <h4>Billing History</h4>
+    <div class="table-responsive">                  
+      <table id="mytable" class="table table-bordred table-striped">
+        <thead>
+          <!--  <th>User Limit</th>
+           <th>Price</th>
+           <th>Balance</th>
+           <th>Subsdcription ID</th>
+           <th>Profile ID</th>
+           <th>CC Token</th>
+           <th>Sub. Start Date</th>
+           <th>Next Billing Date</th>
+           <th>Status</th>
+           <th>Payment Status</th>
+           <th>Cancelled Payment Failure</th> -->
+           <th>Invoice Date</th>
+           <th>Invoice Number</th>
+           <th>Applied Amount($)</th>
+           <th>Status</th>
+           <th>Action</th>
+        </thead>
+        <tbody>
+          <% if @trans.present? %>
+            <%@trans.each do |t|%>
+              <tr>
+                <td><%=t.user_subscription.subscription_start_date.strftime("%a %d %b %Y")%></td>
+                <td><%=link_to t.invoice_id, "/users/download_invoice/" + t.invoice_id.to_s, :target => "_blank"%></td>
+                <td><%=t.amount%></td>
+                <td><%=t.status%></td>
+                <td><%= link_to "Send Email", "javascript:void(0)", :onclick=>"get_invoice_email_popup('#{t.id}')", :"data-toggle"=>'modal', :rel=>'popup'%></td>
+               <!--  <td><%#=t.user_subscription.user_limit%></td>
+                <td><%#=t.amount%></td>
+                <td><%#=t.balance%></td>
+                <td><%#=t.btsubscription_id%></td>
+                <td><%#=t.user_subscription.btprofile_id%></td>
+                <td><%#=t.user_subscription.cc_token%></td>
+                <td><%#=t.user_subscription.subscription_start_date%></td>
+                <td><%#=t.user_subscription.next_billing_date%></td>
+                <td><%#=t.user_subscription.is_active%></td>
+                <td><%#=t.transaction_type%></td>
+                <td><%#=t.user_subscription.is_cancel_payment_fail%></td>   -->         
+              </tr>
+            <%end%>
+          <% else %>
+            <tr>
+              <td colspan="11">
+                No transaction!
+              </td>
+            </tr>
+          <%end%>
+        </tbody>      
+      </table>
+  </div>
+<!-- Modal -->
+<div id="tranInvoiceModal" class="modal fade" role="dialog">
+  <div class="modal-dialog new_form_layout">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Send Transaction Invoice</h4>
+      </div>
+      <div class="modal-body">
+        <div id="invoice_email_content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function get_invoice_email_popup(id){
+    var post_data = {id: id};
+    $.ajax({
+        type: "get",
+        url: "/get_invoice_email",
+        dataType: 'json',
+        async: true,
+        data: post_data,
+        beforeSend: function(){
+        },
+        success: function(data)
+        { 
+          $('#tranInvoiceModal').modal('show');
+        },
+          error: function(data) {
+          },
+          complete: function(data) {
+            $('#tranInvoiceModal').modal('show');
+            $('#invoice_email_content').html(data.responseText);
+          }
+      });
+  }
+</script>

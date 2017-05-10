@@ -1,0 +1,120 @@
+:css
+  body {background:#fff;}
+= stylesheet_link_tag   "home"
+.faqs_page
+  .banner-image.faq_banner
+    %h1
+      Frequently Asked Questions
+    %p
+      You've got questions. We've got answers.            
+  .wrapper{style: "padding: 30px 0px 50px;"}
+    .sign_up_icons
+    %div{:style => "font-size: 16px;"}
+      .faq-que.first_que
+        .que_icon.fl ?
+        .que_div.fl What is CRM Software?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          CRM (customer relationship management) software is enterprise software that covers a broad set of applications and software to help businesses manage customer data and customer interactions, access business information, run reports, automate sales, marketing and customer support and also manage employee, vendor and partner relationships. 
+        .cb10
+        %p
+          CRM software is an innovative, cost effective way to work. Businesses using CRM software will enjoy an increase in productivity and a reduction in costs associated with developing effective sales, marketing and customer service strategies.
+        %p
+          CRM software:
+        %ul
+          %li
+            Maintains a database for all lead, contact, tasks and activity information
+          %li
+            Helps lead generation and task management from lead through the sale
+          %li
+            Improves customer service through timely management of all issues
+          %li
+            And more!
+      .faq-que 
+        .que_icon.fl ?
+        .que_div.fl  What is Cloud CRM?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          Nowadays, newer CRM systems are Cloud CRM, that means that the application and data is all held on the CRM providers’ servers in a datacentre, and accessed via an internet browser. Cloud CRM is also known as Software-as-a-Service (SaaS) CRM, online CRM and Web CRM. Cloud has a number of technical and pricing advantages:
+        %ul
+          %li
+            You don’t need any local servers to run the CRM system on. So there’s no capital cost, no server software and no maintenance.
+          %li
+            Updates, backups, maintenance all done by the Cloud vendor (that’s us!).
+          %li
+            Users can access the system from anywhere via the internet e.g. home, office or smartphone.
+          %li
+            By running thousands of customers’ CRM system on our servers, we get great economies of scale which we can pass on to our customers.
+      .faq-que
+        .que_icon.fl ?
+        .que_div.fl What is Sales Force Automation?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          Sales Force Automation (SFA) is the name given to a software application for sales people to help them with the sales process. It includes either contact management or lead management, together with email and diary sharing.
+        .cb10
+        %p
+          SFA is usually a part of a company’s CRM system that automatically records all the stages in a sales process. The idea is to track all contact that’s been made with a customer, along with the purpose of the contact, and any follow up that may be needed. This might include phone calls, emails and meetings. This ensures that sales efforts are not being duplicated, reducing the risk of irritating customers.
+      .faq-que
+        .que_icon.fl ?
+        .que_div.fl  Does the CRM integrate with Accounting Software?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          Yes, your CRM ststem can be easily integrated with the online accounting software systems like quickbooks, freshbooks. Setting up CRM accounting software integration means you can seamlessly create and update customer records between your accounting system and CRM so your customer data is always up to date. 
+        .cb10
+        %p
+          The integration also allows you to create invoices directly from the leads screen in your CRM. This means you can email them directly without changing systems. We are also providing you manual invoice process which is completely FREE.    
+      .faq-que
+        .que_icon.fl ?
+        .que_div.fl What are the Technical Requirements for the CRM?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          WakeUpSales CRM is an online or Cloud CRM system so there are no technical requirements. All you need to use the CRM system is the internet browser that you are using now. There’s no software to instal, so you can use the CRM system on PCs, Macs, iPads and smartphones.
+        .cb10
+        %p
+          Browsers we support include FireFox, Chrome, Safari, Opera and version 7 and above of Internet Explorer. 
+
+      .border_top
+      .cb   
+    
+
+:javascript
+  $("document").ready(function(){
+    $(".first_que").click();
+  });
+  $(".faq-que").click(function(){
+    if($(this).find('.arr_div').hasClass("glyphicon-chevron-right")){
+      $('.faq-que').find('.arr_div').addClass("glyphicon-chevron-right");
+      $(this).find('.arr_div').removeClass("glyphicon-chevron-right");
+      $('.faq-que').find('.arr_div').removeClass("glyphicon-chevron-down");
+      $(this).find('.arr_div').addClass("glyphicon-chevron-down");
+      $('.faq-que').removeClass("active_faq_que");
+      $(this).addClass("active_faq_que");
+      $(this).next().addClass("active_faq_ans");      
+    }
+    else{
+      $(this).find('.arr_div').removeClass("glyphicon-chevron-down");
+      $(this).find('.arr_div').addClass("glyphicon-chevron-right");
+      $(this).removeClass("active_faq_que");
+      $(this).next().removeClass("active_faq_ans");     
+    }
+    var i = $(this).index('.faq-que');
+    $(".faq-ans").not(".faq-ans:eq("+i+")").hide();
+    $(".faq-ans:eq("+i+")").slideToggle();
+  });
+
+          

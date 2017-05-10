@@ -1,0 +1,10 @@
+.white-sticky-header.fixed-in-app-header{style: "padding-top: 22px;padding-left: 33px;"}
+  %span{style: "margin-top:5px"}  
+    %span.navigation_sec
+      = link_to @community_plugin.name, @community_plugin
+      ="/"
+    %span.curr_page_name
+      Edit Plugin
+= render 'form'
+
+

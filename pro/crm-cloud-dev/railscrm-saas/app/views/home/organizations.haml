@@ -1,0 +1,234 @@
+/ .col-md-12{:style => "padding-top:5%;"}
+/   .table-responsive
+/     %table.table.white-table.table-hover.table-striped
+/       %thead
+/         %tr
+/           %th Name
+/           %th Email
+/           %th Date Signed up
+/           %th Location
+/           %th Google/Linkedin/Regular sign up
+/           %th Last activity date
+/           %th No of user invited
+/           %th No of lead created
+/           %th No of contacts created
+/           %th No of tasks created
+/       %tbody
+/         - if @organizations.present?
+/           - @organizations.each do |org|
+/             %tr
+/               %td
+/                 = org.name
+/               %td 
+/                 = org.email.present? ? org.email : "N/A"
+/               %td
+/                 = org.created_at.strftime("%Y-%m-%d")
+/               %td 
+/                 = "N/A"
+/               %td
+/                 - google_users = org.users.select {|r| r.provider.include?("google") if r.provider.present? }.count
+/                 - linkedin_users = org.users.select {|r| r.provider.include?("linkedin") if r.provider.present? }.count
+/                 - regular_users = org.users.select {|r| r.provider.nil? }.count
+/                 = "Google (" + google_users.to_s + "), Linkedin (" + linkedin_users.to_s + "), Regular (" + regular_users.to_s + ")"
+/               %td
+/                 = org.total_users.present? ? org.total_users : 0
+/               %td 
+/                 = 0
+/               %td
+/                 = org.deals.count                
+/               %td
+/                 = org.contacts.count                
+/               %td
+/                 = org.tasks.count
+- if @organizations.present?
+  #updateTrialModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "quickeditModal", role: "dialog", tabindex: "-1"}
+    .modal-dialog.cstm-material-modal
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", type: "button", "data-dismiss" => "modal"} ×
+          %h4.modal-title UPDATE TRIAL PERIOD
+        .modal-body
+          #org_trial_content{style: "margin-left: 12px;"}
+
+  .white-sticky-header.fixed-in-app-header{style: "padding-top: 22px;padding-left: 33px;"}
+    %span{style: "margin-top:5px"}  
+      %span.curr_page_name
+        Organizations
+    .fr
+      .btn-group          
+        %span.dropdown-toggle{"data-toggle" => "dropdown", type: "button", style: "padding: 2px 5px;"}
+          %span.glyphicon.glyphicon-list
+          %span.caret
+        %ul.dropdown-menu{role: "menu", style: "left: -148px;width: 200px;"}
+          - @columns=["Name", "Email", "date_signed_up", "location", "gl_li_re_signed_up", "last_activity_date","no_of_user_invited","no_of_lead_created","no_of_contacts_created","no_of_tasks_created"]
+          - i=-1
+          %li.arrow_top{style: "left: 168px;top: -11px;"}
+          - @columns.each do |sc|
+            %li.dropdown-submenu{:style => "margin-left: 10px;"}
+              = check_box_tag "columns[]", sc,false, :id => "column_#{sc}", :class=>"toggle-vis",:"data-column"=> i+=1,:onclick => "fnShowHide(#{i})", :checked => true
+              = sc.humanize.gsub("col", "")
+            %li.divider 
+  .col-md-12
+    .table-responsive{style: "border:none;"}
+      %table#organizationList.table.table-hover{style: "border: 1px solid #E0DEDE;    background: #fff;","data-source"=>organizations_url(format: 'json')}
+        %thead
+          %tr
+            %th 
+            %th Name
+            %th Email
+            %th Date Signed up
+            %th Location
+            %th Google/Linkedin/Regular sign up
+            %th Last activity date
+            %th No of user invited
+            %th No of lead created
+            %th No of contacts created
+            %th No of tasks created
+        %tbody
+:javascript
+    organizationDataTable=$('#organizationList').dataTable({
+      oLanguage: {"sLengthMenu": "_MENU_", "sProcessing": "<img alt='loader' src='/assets/ajax-loader.png'>" },
+      sPaginationType: "bootstrap",
+      bJQueryUI: true,
+      bServerSide: true,
+      sDom: '<"H"f>rtp',
+      aoColumns: [],
+      sAjaxSource: $('#organizationList').data('source'),
+      bLengthChange: false,
+      bFilter: false,
+      bSort: false,
+      aoColumnDefs: [
+        {
+          aTargets: [0],
+            mRender: function(data, type, row ){
+              return "<div style='cursor:pointer' rel='tooltip' href='javascript:void(0)' onclick=\"get_org_trial_form('" + row[0] + "')\" data-toggle='modal' class='vertical_dot' data-id='" + row[0] + "'></div>";
+            }
+        },
+        {
+          aTargets: [1],
+            mRender: function(data, type, row ){
+              return "<a href='/organization/"+row[0]+"/users' class='change-color-ll'>"+row[1]+"</a>"
+            }
+        },
+        {aTargets: [2],
+            mRender: function(data, type, row ){
+              return row[2]
+              }
+        },
+        {aTargets: [3],
+            mRender: function(data, type, row ){
+              return row[3]
+              }
+        },
+        {aTargets: [4],
+            mRender: function(data, type, row ){
+              return row[4]
+              }
+        },
+        {aTargets: [5],
+            mRender: function(data, type, row ){
+              return row[5]
+              }
+        },
+        {aTargets: [6],
+            mRender: function(data, type, row ){
+              return row[6]
+              }
+        },
+        {aTargets: [7],
+            mRender: function(data, type, row ){
+              return row[7]
+              }
+        },
+        {aTargets: [8],
+            mRender: function(data, type, row ){
+              return row[8]
+              }
+        },
+        {aTargets: [9],
+            mRender: function(data, type, row ){
+              return row[9]
+              }
+        },
+        {aTargets: [10],
+            mRender: function(data, type, row ){
+              return row[10]
+              }
+        },
+      ],
+      fnPreDrawCallback: function() { $('#task_loader,.fixed_loader').show();},
+      fnDrawCallback: function() {$('#task_loader,.fixed_loader').hide();$('span').powerTip({smartPlacement: true,fadeInTime: 100,fadeOutTime: 200});},
+      fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+        $('#task_loader,.fixed_loader').hide();
+        $(nRow).addClass('task_row');
+         $(nRow).hover(
+          function() {
+          $(this).find("div.action_task").show();
+          }, function() {
+          $(this).find("div.action_task").hide();
+         });
+         
+      }
+    });
+
+    function fnShowHide( iCol )
+  {
+      //var type = $.camelCase('#{params[:type]}');
+      //alert('#{params[:type]}'.capitalize())
+      /* Get the DataTables object again - this is not a recreation, just a get of the object */
+      var oTable = $('#organizationList').dataTable();
+      var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+      oTable.fnSetColumnVis( iCol, bVis ? false : true );
+      //var column = oTable.column( $(this).attr('data-column') );
+      //column.visible( ! column.visible() );     
+  }
+  function get_org_trial_form(id){
+    $.ajax({
+        type: "GET",
+        url: "org_trial_form",
+        dataType: 'json',
+        data: {org_id: id},
+        async: false,
+        beforeSend: function(){
+          $("#task_loader,.fixed_loader").show();
+        },
+        success: function(data)
+        {
+         
+        },
+        error: function(data) {
+          $("#task_loader,.fixed_loader").hide();
+        },
+        complete: function(data) {          
+          $('#updateTrialModal').modal('show');
+          $('#org_trial_content').html(data.responseText);
+          $("#task_loader,.fixed_loader").hide();
+        }
+    });
+  }
+
+  function update_org_trial(id){
+    var user_allowed_by_admin = $("#organization_user_allowed_by_admin").val();
+    var extend_trial_days = $("#organization_extend_trial_days").val();
+    $.ajax({
+        type: "POST",
+        url: "update_org_trial",
+        dataType: 'json',
+        data: {org_id: id, user_allowed_by_admin: user_allowed_by_admin, extend_trial_days: extend_trial_days},
+        async: true,
+        beforeSend: function(){
+          $("#task_loader,.fixed_loader").show();
+        },
+        success: function(data)
+        {
+         $('#UpdateTrialModal').modal('show');
+        },
+        error: function(data) {
+          $("#task_loader,.fixed_loader").hide();
+        },
+        complete: function(data) {
+          $('#updateTrialModal').modal('hide');
+          $("#task_loader,.fixed_loader").hide();
+        }
+    });
+  }

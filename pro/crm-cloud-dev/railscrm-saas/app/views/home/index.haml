@@ -1,0 +1,274 @@
+= stylesheet_link_tag "home"
+= javascript_include_tag "jquery.bxslider"
+:css
+  #typed{
+    padding-left: 10px;
+  }
+- cache('home_page_new_ui', skip_digest: true) do
+  .home-page
+    .award_image
+      %a{href: "/awards-and-recognitions"}
+        %img{:alt => "CRM Tool Awards and Recognition", :height => "", :src => "/assets/new-ui/WUS_Awarded.png", :width => "",title: "CRM Tool Awards and Recognition"}
+        .cb10
+        %img{:alt => "CRM Tool Awards and Recognition", :height => "", :src => "/assets/new-ui/award_accurate_review.png", :width => "",title: "CRM Tool Awards and Recognition"}
+        
+    %section.team-form-bnr.padtb-40
+      .wrapper
+        .signnup
+          .relative
+            %h1.static-h 
+              A Simple 'n' Smart CRM Tool 
+              %br
+              to Boost your
+              .type-wrap
+                #typed-strings
+                  %span Productivity
+                  %span Sales
+                  %span Efforts
+                  %span Team
+                  %span Happiness
+                  %span Customer Relations
+                %span#typed
+          %p
+            Streamline your Sales Activities & Lead Management with this innovative yet easy-to-use CRM tool. Whole new UI & a bunch of exciting Integrations to choose from...
+          - @user = User.new
+          = form_for @user, :url => save_user_path, :html=>{:class => "form signup-form"} do |f|
+            %span.inp-fld
+              = f.email_field :email, :required => true, :placeholder=>"Email"
+            %span.inp-fld  
+              = f.text_field "organization_name", :required => true, :placeholder => "Company Name"
+            %span.inp-fld  
+              = f.submit "Get Started", :disable_with => "Submitting....", :onclick=> "return chk_validemail('beta_request_email');track_signup();"
+              %small
+                No credit card required
+          %div
+            %input.vi-google-signup.vertical-align{:onclick => "social_authenticate('/auth/google_oauth2')", :title => "Sign in using Google Account", :type => "button"}/
+            %span.or_txt
+              |
+              %br
+              OR
+              %br
+              |
+            %input.vi-linkedin-signup.vertical-align{:onclick => "social_authenticate('/auth/linkedin')", :title => "Sign in using Linkedin Account", :type => "button"}/
+          .bnr-btm-img-row
+            %div.fl
+              %span.bnr-icon
+                %img{:alt => "Lead Tracking", :title => "Lead Status Tracking", :height => "", :src => "/assets/new-ui/Lead Status Tracking.png", :width => "",title: "Lead Tracking"}/
+                %p
+                  Lead Status 
+                  %br
+                  Tracking
+              %span.bnr-icon
+                %img{:alt => "Integration", :height => "", :src => "/assets/new-ui/Integrations.png", :width => "",title: "Integration"}/
+                %p
+                  Integrations
+            %figure.middle-img
+              %img{:alt => "CRM Tool New UI", :height => "", :src => "/assets/new-ui/Home-Page-top-banner.jpg", :width => "",title: "CRM Tool New UI"}/
+            %div.fr
+              %span.bnr-icon
+                %img{:alt => "Resource Allocation", :height => "", :src => "/assets/new-ui/Resource Allocation.png", :width => "",title: "Resource Allocation"}/
+                %p
+                  Resource 
+                  %br
+                  Allocation
+              %span.bnr-icon
+                %img{:alt => "Mail", :height => "", :src => "/assets/new-ui/Mailbox.png", :width => "",title: "Mail"}/
+                %p
+                  Mailbox
+    %section.strip-blue.list_website
+      .wrapper
+        %h2
+          The WakeUpSales CRM has featured on some of the popular platforms. We feel privileged.
+        %div.width-50
+          %div.wl.mt-10
+            %a{href: "https://www.g2crowd.com/products/andolasoft-wakeupsales/reviews", target: "_blank",title: "CRM Tool on G2crowd"}  
+              %img{:alt => "CRM Tool on G2crowd", :height => "", :src => "/assets/new-ui/crowd.png", :width => ""}/
+          %div.wl.mt-10
+            %a{href: "http://www.capterra.com/customer-relationship-management-software/spotlight/153054/WakeUpSales/Andolasoft", target: "_blank",title: "CRM Tool on Capterra"}   
+              %img{:alt => "CRM Tool on Capterra", :height => "", :src => "/assets/new-ui/capture.png", :width => ""}/
+          %div.wl.mt-20
+            %a{href: "https://www.f6s.com/wakeupsales", target: "_blank",title: "CRT Tool at F6S"}    
+              %img{:alt => "CRT Tool at F6S", :height => "", :src => "/assets/new-ui/f6s.png", :width => ""}/
+          %div.wl.mt-25
+            %a{href: "http://www.saasgenius.com/program/crm-software/wakeupsales", target: "_blank",title: "CRM Tool in SaaS Genius"}   
+              %img{:alt => "CRM Tool in SaaS Genius", :height => "", :src => "/assets/new-ui/saas-genious.png", :width => ""}/
+          .cb
+        .cb
+    %section.easy-find.padtb-40
+      .wrapper
+        %span
+        %h2 What Wakeupsales is all about
+        %p Out of so many reasons to love Wakeupsales CRM, here're a few
+        %ul
+          %li
+            %i.fa.fa-check{"aria-hidden" => "true"}
+            Manage Leads & Grow Your Business
+          %li
+            %i.fa.fa-check{"aria-hidden" => "true"}
+            Streamline Sales Activities
+          %li
+            %i.fa.fa-check{"aria-hidden" => "true"}
+            Manage Your Contacts
+          %li
+            %i.fa.fa-check{"aria-hidden" => "true"}
+            Improve Your Productivity
+        %figure
+          %img{:alt => "CRM Tool New UI", :height => "", :src => "/assets/new-ui/10_search_features.png", :width => "", title: "CRM Tool New UI"}/
+        .boxes
+          .box
+            %h6 Lead Management
+            %p This has never been easier. With the Wakeupsales CRM you can manage & nurture leads without a miss. It's Easy!
+          .box.middle
+            %h6 Organised Sales Flow
+            %p The easy-to-use CRM helps you streamline your sales process, like never before. It's so cool.
+          .box
+            %h6 Improved Deal Closures
+            %p If you do everything right, this is a given. No doubt, Wakeupsales helps you improve your deal closures drastically.
+          .cb
+    %section.new_testimonial
+      %ul#slider2
+        %li
+          %div.slider-bg.bg-1
+            %div.address
+              %span.pf-img
+                %img{:alt => "CRM Tool User", :height => "", :src => "/assets/new-ui/Customer-Image-Turkey.png", :width => "",title: "CRM Tool User"}
+              %strong
+                Taylan Toprak 
+              %em
+                Owner, Estateslist.com, 
+                %br
+                Turkey
+            %div.quote-txt
+              %span.quote-comma
+                &ldquo;
+              I really loved the UI of Wakeupsales. It's very pleasant to work with. The plugin library isn't so rich at the moment but I'm sure it will grow by time. This crm is definitely worth a try!
+              %span.quote-comma
+                &rdquo;
+            .cb
+        %li
+          %div.slider-bg.bg-2
+            %div.address
+              %span.pf-img
+                %img{:alt => "CRM Tool User", :height => "", :src => "/assets/new-ui/Customer-image-India.png", :width => "",title: "CRM Tool User"}
+              %strong
+                Hemant P 
+              %em
+                CEO, Glyxo
+                %br
+                India
+            %div.quote-txt
+              %span.quote-comma
+                &ldquo;
+              WakeUpSales helped me to automate my website visitors and insert them directly to my CRM Dashboard. I liked it because it's easy to use and opensource. The CRM is great at forecasting agreements, and its integrations make it more likeable.
+              %span.quote-comma
+                &rdquo; 
+            .cb
+        %li
+          %div.slider-bg.bg-2
+            %div.address
+              %span.pf-img
+                %img{:alt => "CRM Tool User", :height => "", :src => "/assets/new-ui/Indian_customer_image_2.png", :width => "",title: "CRM Tool User"}
+              %strong
+                Ajay P
+              %em
+                Centurion Ads & Media 
+                %br
+                India
+            %div.quote-txt
+              %span.quote-comma
+                &ldquo;
+              Wakeupsales is a smart CRM tool. It has got a simple (and clean) user interface unlike others I had tried in the past. The most important thing was the app's simplified flow - lets you attain the objective of managing customers in a superb way. Looking forward.
+              %span.quote-comma
+                &rdquo; 
+            .cb
+    %section.try-wks-free
+      .wrapper
+        %a.wkp-free{:href => "/users/sign-up",title: "Try WakeupSales for Free"}
+          Try WakeupSales for Free
+        %p
+          Signing Up is simple 'n' easy. No Credit Cards Required.
+    %section.core-feature
+      .wrapper
+        %h2.text-center Core Features
+        %h4 Features that make the WakeUpSales CRM Stand Out.
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature1{title: "Lead Status Tracking & Management"}
+          %strong Lead Status Tracking & Management
+          %p To ensure you don't remain in the dark on where your prospects are coming from.
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature2{title: "Mailbox"}
+          %strong Mailbox
+          %p Manage your email account right from your CRM, without going through the pain of logging in separately.
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature3{title: "Resource Utilization"}
+          %strong Resource Utilization
+          %p To ensure all your resources are put into the right places & their time is best utilised.
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature4{title: "Analytics Reports"}
+          %strong Analytics Reports
+          %p So that you don't miss out on any of the important figures/stats from your CRM.
+        .cb
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature5{title: "Email Campaigning & Follow Ups"}
+          %strong 
+            Email Campaigning &
+            %br
+            Follow Ups
+          %p No more you have to worry about following up manually with all your prospects. 
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature6{title: "Kanban View"}
+          %strong Kanban View
+          %p All your opportunities arranged beautifully as per your different stages. It's pretty useful.
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature7{title: "Interactive Dashboard"}
+          %strong Interactive Dashboard
+          %p Never before, a CRM has come up with something like this. Comes bundled with a whole new UI.
+        .col-md-3.cf-txt
+          %span.icon.home_sprite.core_feature8{title: "Integrations"}
+          %strong Integrations
+          %p Blend your favorite 3rd party apps with your favorite CRM Tool. It's practically Magic. 
+        .cb
+      %div.text-center
+        %a.explore-feature{:href => "/features", title: "Explore All Features"}
+          Explore All Fearures
+    %section.favorite-app
+      .wrapper
+        %h2
+          Get the Best out of Your Wakeupsales CRM.
+        %p
+          Blend your favorite 3rd party apps with your favorite CRM Tool. It's practically Magic.
+        %figure
+          %img{:alt => "image", :height => "", :src => "/assets/new-ui/close-io-version-3.png", :width => "",title: "Integrate 3rd party app with CRM Tool"}
+        %a.learn-more{:href => "/integrations", title: "Explore All Integrations"}
+          Explore all the Integrations
+    %section.sft-from.e-crm
+      .wrapper
+        %h2 
+          The Easiest CRM + Sales Automation Tool
+          %br
+          Try for 90days Free!
+        = form_for @user, :url => save_user_path, :html=>{:class => "form signup-form"} do |f|
+          %span.inp-fld
+            = f.email_field :email, :required => true, :placeholder=>"Email"
+          %span.inp-fld  
+            = f.text_field "organization_name", :required => true, :placeholder => "Company Name"
+          %span.inp-fld  
+            = f.submit "Get Started", :disable_with => "Submitting....", :onclick=> "return chk_validemail('beta_request_email');track_signup();"
+            %small
+              No credit card required
+
+:javascript
+  $(document).ready(function() {
+    var wh=$(window).height() - 100; 
+    $('.team-form-bnr').height(wh);
+    $('#slider2').bxSlider({
+      controls: true,
+      auto: true,
+      autoControls: false,
+      pause: 10000,
+      pager: false,
+      touchEnabled: true,
+      adaptiveHeight: true
+    });
+    $('.bx-controls-direction > a').html(''); 
+  });

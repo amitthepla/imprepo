@@ -1,0 +1,13 @@
+production:
+  environment: sandbox
+  merchant_id: wvj9qbh2cqwsz27p
+  public_key: gcvy7dq3jkdg57vf
+  private_key: 64410c5855846ce54cfdc3b0b4e10f88
+
+development:
+  environment: sandbox
+  merchant_id: wvj9qbh2cqwsz27p
+  public_key: gcvy7dq3jkdg57vf
+  private_key: 64410c5855846ce54cfdc3b0b4e10f88
+
+

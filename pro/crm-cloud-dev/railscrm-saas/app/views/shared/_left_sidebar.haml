@@ -1,0 +1,196 @@
+.left_col.scroll-view
+  #sidebar-menu.main_menu_side.hidden-print.main_menu
+  .menu_section
+    %ul.nav.side-menu
+      %li{style: "background: #FAFAFA;border-left: none;min-height:60px"}
+        %a{:href => "javascript:void(0)", onclick: "showProfileList()",style: "padding: 14px 13px;"}
+          .fl.user-profile
+            - display_name = current_user.full_name.blank? ? (current_user.organization.present? ? current_user.organization.name : "Not Available") : current_user.full_name
+
+            - if current_user.image.present? && current_user.image.image.present?
+              .fl.userImage
+                = image_tag current_user.image.image.url(:thumb), :alt=>""  
+            -else
+              - first_char = display_name.chars.first
+              %div.profileImage{:style => "background: #{@current_user.get_user_color_code(first_char.downcase[0])} !important"}
+                = first_char
+          .fl.menu_name.top-pf.ml-3
+            %span{title: display_name}  
+              = display_name.length > 15 ? display_name[0..12] + ".." : display_name
+          .fr.menu_name.top-pf
+            .pf-arrow
+              > 
+          .cb
+        .profile_menu_list
+          %div
+            =link_to "/profile" do
+              %i.fa.fa-user{"aria-hidden" => "true"}
+              My Profile
+          %div
+            = link_to destroy_user_session_path, :method => :delete,:id=>"logout", :onclick=>"return track_logout();" do
+              %i.fa.fa-sign-out
+              Log Out
+      - if params[:controller] == "subscriptions"
+        %li
+          %li#home
+            %a{:href => "/users/subscription"}
+              %span.menu_icon{title: "Subscription"}
+                %span.cwkp-sprite.d-bord
+              %span.menu_name.ml-3
+                Subscription
+        %li
+          %li#home
+            %a{:href => "/users/transactions"}
+              %span.menu_icon{title: "Transaction"}
+                %span.cwkp-sprite.d-bord
+              %span.menu_name.ml-3
+                Transactions
+        %li
+          %li#home
+            %a{:href => "/users/credit_card"}
+              %span.menu_icon{title: "Credit Card"}
+                %span.cwkp-sprite.credit_card
+              %span.menu_name.ml-3
+                Credit Card
+      - else
+        - unless @current_user.is_siteadmin?
+          %li
+            /- cache('dashboard_menu', skip_digest: true) do
+            %li#home
+              %a{:href => "/dashboard", :onclick => "trackEventLeadTracker('Dashboard', 'Header', '#{user_signed_in? ? current_user.email : ""}')"}
+                %span.menu_icon{title: "Dashboard"}
+                  %span.cwkp-sprite.d-bord
+                %span.menu_name.ml-3
+                  Dashboard
+        - else
+          %li#organizations
+            =link_to (user_signed_in? ? "/organizations" : "/"), :onclick => "trackEventLeadTracker('Organization', 'Header', '#{user_signed_in? ? current_user.email : ""}')" do
+              %span.menu_icon
+                %i.fa.fa-building{title: "Organizations"}
+                %span.menu_name
+                  Organizations
+            %li#community_plugins
+              %a{href: "/community_plugins"}
+                %span.menu_icon{title: "Plugins"}  
+                  %i.fa.fa-plug
+                  %span.menu_name
+                    Plugins
+        -unless @current_user.is_siteadmin?
+          %li#leads.active_leads
+            -if @current_user.is_admin?
+              - ur_h = cookies[:page_tab].present? ? "/deals?type=#{cookies[:page_tab]}" : "/deals"
+              - ur_h = "/leads"
+            -else
+              - ur_h = cookies[:page_tab].present? ? "/deals?type=#{cookies[:page_tab]}" : "/deals?assigned_to=#{current_user.id}"
+              - ur_h = "/leads?assigned_to=#{current_user.id}"
+            %a{:href => "#{ur_h}"}
+              .fl.link_name
+                %span.menu_icon
+                  %span.cwkp-sprite.lds{title: "Leads"}
+                %span.menu_name
+                  Leads
+              .fr.count-box.lead-count-box
+                = @current_organization.present? ? @current_organization.deals.where(is_active: true).count : 0
+              .cb
+          %li#leads_kanban_view
+            %a{:href => "/leads/kanban"}
+              %span.menu_icon
+                %span.kanban.cwkp-sprite{title: "Kanban View"}
+                %span.menu_name
+                  Kanban View
+          /- cache("admin_#{@current_user.is_admin?}", skip_digest: true) do
+          %li#tasks
+            %a{:href => "/tasks", :onclick => "trackEventLeadTracker('Task', 'Header', '#{user_signed_in? ? current_user.email : ""}')"}
+              .fl.link_name  
+                %span.menu_icon
+                  %span.cwkp-sprite.task{title: "Tasks"}
+                %span.menu_name
+                  Tasks
+              .fr.count-box.task-count-box
+                - if @current_user.is_admin?  
+                  = @current_organization.present? ? @current_organization.tasks.count : 0
+                - else
+                  = @current_organization.tasks.where(created_by: @current_user.id).count
+              .cb
+          %li#contacts
+            %a{:href => "/contacts", :onclick => "trackEventLeadTracker('Contact', 'Header', '#{user_signed_in? ? current_user.email : ""}')"}
+              .fl.link_name  
+                %span.menu_icon  
+                  %span.cwkp-sprite.contact{title: "Contacts"}
+                %span.menu_name
+                  Contacts
+              .fr.count-box.contact-count-box
+                - contacts = IndividualContact.where("created_by=?", @current_user.id)
+                = @current_organization.present? ? (@current_user.is_admin? ? (@current_organization.individual_contacts.present? ? @current_organization.individual_contacts.count : "0") : (contacts.present? ? contacts.count : "0") ) : "0"
+              .cb
+
+          - if @current_user.is_admin?  
+            %li#users
+              %a{:href => users_path}
+                %span.menu_icon  
+                  %span.cwkp-sprite.lds.users{title: "Users"}
+                %span.menu_name
+                  Users
+            %li#mail_box
+              %a{:href => "/emails/connect"}
+                %span.menu_icon  
+                  %span.cwkp-sprite.ht-20.mail_box{title: "Mailbox"}
+                %span.menu_name
+                  Mailbox
+            %li#manage_invoice
+              %a{:href => "/manage_invoice"}
+                %span.menu_icon  
+                  %span.cwkp-sprite.manage_invoice{title: "Manage Invoice"}
+                %span.menu_name
+                  Manage Invoice
+            %li#daily_update
+              %a{:href => "/daily_updates"}
+                %span.menu_icon  
+                  %span.cwkp-sprite.contact.daily_update{title: "Daily Updates"}
+                %span.menu_name
+                  Daily Updates
+           
+            / %li#files
+            /   %a{:href => "/files"}
+            /     %span.menu_icon  
+            /       %span.cwkp-sprite.files{title: "Files"}
+            /     %span.menu_name
+            /       Files
+
+            / %li#reports
+            /   %a{:href => "/reports"}
+            /     %span.menu_icon  
+            /       %span.cwkp-sprite.reports{title: "Reports"}
+            /     %span.menu_name
+            /       Reports
+            / %li#activities
+            /   %a{:href => "/activities", :onclick => "trackEventLeadTracker('Activities', 'Header', '#{user_signed_in? ? current_user.email : ""}')"}
+            /     %span.menu_icon  
+            /       %span.cwkp-sprite.activity{title: "Activity"}
+            /     %span.menu_name
+            /       Activity
+:javascript
+  function showProfileList(){
+    $(".profile_menu_list").slideToggle( "fast", function() {
+      if($(".profile_menu_list").is(":hidden"))
+        {
+          $(".pf-arrow").css({
+          '-moz-transform':'rotate(0deg)',
+          '-webkit-transform':'rotate(0deg)',
+          '-o-transform':'rotate(0deg)',
+          '-ms-transform':'rotate(0deg)',
+          'transform':'rotate(0deg)'
+        });
+        }
+      else{
+        $(".pf-arrow").css({
+          '-moz-transform':'rotate(88deg)',
+          '-webkit-transform':'rotate(88deg)',
+          '-o-transform':'rotate(88deg)',
+          '-ms-transform':'rotate(88deg)',
+          'transform':'rotate(88deg)'
+        });
+      }
+    });
+      
+  }

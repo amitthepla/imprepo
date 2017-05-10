@@ -1,0 +1,386 @@
+<style>
+.panel-title {display: inline;font-weight: bold;}
+.checkbox.pull-right { margin: 0; }
+.pl-ziro { padding-left: 0px; }
+.pr-ziro{padding-right:0}
+</style>
+<div class="purchase-loader-div">
+  <div class="purchase-loader">
+   <%=image_tag "ajax-loader2.gif"%>
+  </div>
+</div>
+<div class="payment-page cstm-material-modal">
+          <div class="wrapper">
+            <%=link_to "/",:class=>"logo" do%>
+            <%=image_tag "new-ui/wus-all-in-one.png", alt:"logo", title:"logo", width:"200", height:"50"%>
+          <%end%>
+            <div class="wrap-inner">
+            <div class="price-form">
+              <div id="thankyou" style="text-align:center;width:100%;border:0px solid #666666;height:auto;display:none;">
+                <%=image_tag "new-ui/thankyou_purchase.png"%>
+                <h3 class="reg" style="text-align:center;color:#FF7E00;font-size:30px;padding-top:10px;">Thanks for purchasing <%=@plugin.name%> <%="plugin" if @plugin.is_plugin%>.</h3>
+                <h3 class="reg" style="text-align:center;color:#5B767D;font-size:24px;padding-top:10px;">Just one more step...</h3>
+                <div id="msgsuccess" class="sml_hd_1 faq_ans" style="text-align:center;color:#333333;padding-top:10px;font-size:20px;">
+                  An email is sent to the email <span id="purchaser_email"></span><br/>
+                  <%if @plugin.is_plugin%>
+                    <span style="color:red;">please check and download the source code.</span>
+                  <%end%>
+                </div>
+                <div class="faq_an" style="text-align:center;color:#333333;font-size:18px;padding-top:30px;">
+                  If you do not receive any email, please feel free to <br/><a href="mailto:support@wakeupsales.com?subject=<%=@plugin.name%> plugin purchase" style="color:#FF7E00">contact us</a> for all help and support.
+                </div>
+              </div>
+              <div id="purchase-div">
+                <div class="sumary_addon">
+                  <h2><%=@plugin.name%> <%="plugin" if @plugin.is_plugin%> cost <strong>$<%=@plugin.price%></strong>.</h2>
+                      <% if @plugin.is_plugin %>
+                        <p>After successful purchase, you will receive the source code and the installation manual in your email.</p>
+                      <%end%>
+                </div>
+                <%= form_tag("/plugin/#{@plugin.unique_id}/pay", method: "post", remote: true, id: "payment-form") do %>
+                        <div class="bt-drop-in-wrapper">
+                          <div id="bt-dropin"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <%=text_field_tag "email", "", id: "email", required: 'true', autocomplete: "off"%>
+                            <!-- <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span> -->
+                            <label class="control-label title-lbl" for="input">EMAIL</label>
+                            <i class="bar"></i>
+                            <div id="email_err" style="display:block;font-size:11px; color:#FF0000"></div>
+                        </div>
+
+                        <div class="form-group">
+                                <%=text_field_tag "card_number", "", class: "form-control", id: "card_num", required: 'true', autocomplete: "off"%>
+                                <!-- <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span> -->
+                            <label class="control-label title-lbl" for="input">CARD NUMBER</label>
+                            <i class="bar"></i>
+                            <div id="number_err" style="display:block;font-size:11px; color:#FF0000"></div>
+                        </div>
+                                    <!-- Name -->
+                        <div class="form-group">
+                          <%=text_field_tag "card_holder_name", "",class: "form-control", id: "card_holder_name", required: 'true', autocomplete: "off"%>
+                          <label class="control-label title-lbl" for="input">CARD HOLDER'S NAME</label>
+                          <i class="bar"></i>
+                          <div id="name_err" style="display:block;font-size:11px; color:#FF0000"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="expityMonth" style="position:relative;top:-5px;">
+                                EXPIRY DATE</label>
+                            <div class="input-group">
+                                  <div class="fl col-md-6 pl-ziro">
+                                      <%#=text_field_tag "exp_month", "", id: "exp_month", required: 'true', autocomplete: "off", maxlength: 2%>
+                                      <!-- <label class="control-label title-lbl" for="input">MM</label>
+                                      <i class="bar"></i> -->                                    
+                                      <%= select_tag :exp_month , options_for_select(01..12), :prompt => "MONTH", :style=>"width:160px" %>
+                                      <label class="control-label" for="select"></label>
+                                      <i class="bar"></i>
+                                      <div id="exp_month_err" style="display:block;font-size:11px; color:#FF0000"></div>
+                                  </div>
+                                  <div class="fl col-md-6 pl-ziro pr-ziro">
+                                  <%#=text_field_tag "exp_year", "", id: "exp_year", required: 'true', autocomplete: "off", maxlength: 4%>
+                                    <!-- <label class="control-label title-lbl" for="input">YYYY</label>
+                                   <i class="bar"></i> -->
+                                   <%= select_tag :exp_year , options_for_select(Date.today.year..Date.today.year+35), :prompt => "YEAR", :style=>"width:160px" %>
+                                   <label class="control-label" for="select"></label>
+                                   <i class="bar"></i>
+                                   <div id="exp_year_err" style="display:block;font-size:11px; color:#FF0000"></div>
+                                   </div>
+                                  <div class="cb"></div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin:40px 0 0">
+                          <%=password_field_tag "CVV2", "", id: "code", required: 'true', autocomplete: "off"%>
+                          <label class="control-label title-lbl" for="input">CODE (CVC/CVV)</label>
+                          <i class="bar"></i>
+                          <div id="cvv_err" style="display:block;font-size:11px; color:#FF0000"></div>
+                          <span class="card_img cvv_img_to_top">
+                              <a href="javascript:void(0);" class="cvv_img">
+                                  What is cvv/cvc Number?
+                                  <div align="center" style="display:none;position:absolute;" class="cvvcard">
+                                    <%=image_tag "new-ui/cvv.gif"%>
+                                  </div>
+                              </a>
+                          </span>
+                        </div>
+
+                        <%=submit_tag "Pay", class: "btn btn-success btn-lg btn-block payment-btn checkout-btn", onclick: "return validate_card();", :style => "margin-top:30px;"%>
+                        <%=hidden_field_tag "gmt_offset"%>
+                        <%=hidden_field_tag "lat"%>
+                        <%=hidden_field_tag "long"%>        
+                        <%=hidden_field_tag "remote_ip"%>       
+                        <%=hidden_field_tag "country"%>   
+                        <%=hidden_field_tag "city"%>          
+                        <%=hidden_field_tag "state"%>     
+                      <%end%>
+                <div class="payment-desc">
+                  <p>Payment Accepted</p>
+                  <div class="card">
+                    <%=image_tag "new-ui/visa.png", alt:"visa", width:"70", height:"45"%>
+                    <%=image_tag "new-ui/master.png", alt:"master", width:"70", height:"45"%>
+                    <%=image_tag "new-ui/amex.png", alt:"amex", width:"70", height:"45"%>
+                    <%=image_tag "new-ui/discover.png", alt:"discover", width:"70", height:"45"%>
+                  </div>
+                  <p class="card-relt-txt">
+                    We currently accept major credit cards like Visa, Mastercard, Discover, American Express, and most European variations. We do not accept Paypal, checks, or POs.
+                  </p>
+                  <div class="braintree-logo">
+                    <a href="">
+                      <%=image_tag "new-ui/braintree.png", alt:"braintree", width:"160", height:"60"%>
+                    </a>
+                  </div>
+                  <div class="secure-check">
+                    <%=image_tag "new-ui/locked.png", alt:"braintree", width:"20", height:"20"%>
+                    Secure checkout
+                  </div>
+                </div>
+              </div>
+              <div class="cb"></div>
+              <p class="privacy_policy">By purchasing you agree to the <a href="/terms" target="_blank">terms of service</a> & <a href="/privacy" target="_blank">privacy policy</a></p>
+            </div>
+            <div class="testimonial">
+              <%=image_tag "new-ui/Customer-Image-Turkey.png", alt:"braintree", width:"130", height:"140"%>
+              <strong>Taylan Toprak</strong>
+              <em>Owner, Estateslist.com Turkey</em>
+              <p>
+                <span>&ldquo;</span>Wakeupsales has a brilliant UI, which makes CRM work joyful. I liked the UI and it's easy to work with. Wakeupsales has a plugin library that's going to increase very soon, I'm sure. Great work. Keep it up.
+                <span>&rdquo;</span>
+              </p>
+            </div>
+            <div class="cb"></div>
+          </div>
+          <div class="checkout_footer">
+            <p>Copyright © 2017 WakeUpSales. Andolasoft. <a href="/terms" target="_blank">terms of service</a> & <a href="/privacy" target="_blank">privacy policy</a></p>
+          </div>
+        </div>
+      </div>
+
+<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+<!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+<script>
+  $(function() {
+    $("#payment-form").bind('ajax:before', function() {
+      $(".purchase-loader-div").show();
+      $("#purchaser_email").html('"'+$("#email").val()+'",');
+    });
+    $("#payment-form").bind('ajax:success', function() {
+      $("#purchase-div").hide();
+      $("#thankyou").show();
+      $(".purchase-loader-div").hide();
+      window.setTimeout(function() {
+          window.location.href = 'http://wakeupsales.org/plugins';
+      }, 10000);
+    });
+    $("#payment-form").bind('ajax:error', function(evt, data, status, xhr) {
+      $("#search_result").after("<div class='alert fade in alert-bodanger' style='position:absolute;'><button class='close' data-dismiss='alert'>×</button>" + data.responseText + "</div>");
+      $(".purchase-loader-div").hide();
+      $("#payment-form")[0].reset();
+    });
+    $("body").on("contextmenu",function(e){
+      return false;
+    });
+
+    $( ".custom-frm-inner" ).click(function() {
+      $(this).parent().next('.control-label').addClass("control-lbl-add")
+    });
+    $( ".custom-frm-inner" ).focusout(function() {
+      if($(this).val() == ""){
+        $(this).parent().next('.control-label').removeClass("control-lbl-add")
+      }else{
+        $(this).parent().next('.control-label').addClass("control-lbl-add-txt")
+      }
+    });
+    $(".cvv_img").hover(function() {
+        $(".cvvcard").show();
+    }, function() {
+        $(".cvvcard").hide();
+    });
+    $("#card_num,#code,#exp_month,#exp_year").keydown(function(event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        } else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault();
+            }
+        }
+    });
+
+    $('#card_holder_name').off('keyup').on('keyup',function(){
+       $('#name_err').html('');
+    });
+    $('#email').off('keyup').on('keyup',function(){
+      $('#email_err').html('');
+      //validate_email('email');
+    });
+    $('#card_num').off('keyup').on('keyup',function(){
+       $('#number_err').html('');
+    });
+    $('#code').off('keyup').on('keyup',function(){
+       $('#cvv_err').html('');
+       $('#exp_month_err').html('');
+       $('#exp_year_err').html('');
+    });
+    // $('#exp_month').off('keyup').on('keyup',function(){
+    //    $('#exp_month_err').html('');
+    //    $('.exp_date_valid').html('');
+    // });
+    // $('#exp_year').off('keyup').on('keyup',function(){
+    //    $('#exp_year_err').html('');
+    //    $('.exp_date_valid').html('');
+    // });
+
+    $('#exp_month').on('change', function() {
+      if( this.value != "" ){
+        $('#exp_month_err').html('');
+      }
+      var d = new Date(),
+      current_month = d.getMonth() + 1,
+      current_year = d.getFullYear();
+      if( this.value != "" && $('#exp_year').value != "" ){
+        var selected_month = parseInt($(this).val());
+        var selected_year = parseInt($("#exp_year").val());
+        if((selected_month < current_month) && (selected_year <= current_year)){
+          $('#exp_month_err').html("Invalid month");
+        }
+      }
+    })
+
+    $('#exp_year').on('change', function() {
+      if( this.value != "" ){
+        $('#exp_year_err').html('');
+      }
+      var d = new Date(),
+      current_month = d.getMonth() + 1,
+      current_year = d.getFullYear();
+      if( $('#exp_month').value != "" && this.value != "" ){
+        var selected_month = parseInt($('#exp_month').val());
+        var selected_year = parseInt($(this).val());
+        if(selected_month < current_month && selected_year <= current_year){
+          $('#exp_month_err').html("Invalid month");
+        }
+        else{
+          $('#exp_month_err').html("");
+        }
+      }
+    })
+
+    // try {
+    //   getLocation();  
+    //   var d = new Date()
+    //   var gmtHours = -d.getTimezoneOffset()/60;
+
+    //   $("#gmt_offset").val(gmtHours);
+    //   $.get("http://ipinfo.io", function(response) {
+    //       //alert(response.ip);
+    //       $("#remote_ip").val(response.ip);
+    //       $("#country").val(response.country);
+    //       $("#city").val(response.city);    
+    //       $("#state").val(response.state);    
+    //   }, "jsonp");
+     
+      
+    // }catch(err) {
+
+    // }
+  })
+  function getLocation() {
+    if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+  }
+  function geoSuccess(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    $("#lat").val(lat);
+    $("#long").val(lng);
+    // var latlng = new google.maps.LatLng(lat, lng);
+    // var geocoder = geocoder = new google.maps.Geocoder();
+    // geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+    //     if (status == google.maps.GeocoderStatus.OK) {
+    //         if (results[1]) {
+    //             alert("Location: " + results[1].formatted_address);
+    //         }
+    //     }
+    // });
+  }
+  function geoError() {
+    console.log("Geocoder failed.");
+    $("#lat").val("0.0");
+    $("#long").val("0.0");
+  }
+  function validate_card() {
+    var letterNumber = /^[0-9]+$/;
+    var dt_valid = /^(0[1-9]|1[0-2])\/[0-9]{2}$/;
+    var validate = 0;
+    var card_number = $.trim($("#card_num").val());
+    var name = $.trim($("#card_holder_name").val());
+     var email = $.trim($("#email").val());
+    var card_cvc = $.trim($("#code").val());
+     var exp_month = $.trim($("#exp_month").val());
+    var exp_year = $.trim($("#exp_year").val());
+    $(".error_upg").hide();
+    if (name == "") {
+        $("#name_err").html('Name can not be blank');
+        validate = 1;
+    }
+    if (email == "") {
+        $("#email_err").html('Email can not be blank');
+        validate = 1;
+    }else{
+        var emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!$("#email").val().trim().match(emailRegEx)){
+            $("#email_err").html('Invalid email. Please enter a valid email');
+            validate = 1;
+        }        
+    }
+    if (card_number == "") {
+        $("#number_err").html('Card Number can not be blank');
+        validate = 1;
+    } else if (!card_number.match(letterNumber)) {
+        $("#number_err").html('Invalid Card Number');
+        validate = 1;
+    }
+    if (card_cvc == "") {
+        $("#cvv_err").html('CVV can not be blank.');
+        validate = 1;
+    } else if ((!card_cvc.match(letterNumber) || card_cvc == 0)) {
+        $("#cvv_err").html('Invalid CVV number');
+        validate = 1;
+    }
+    if (exp_month == "") {
+        $("#exp_month_err").html('Expiry Month can not be blank');
+        validate = 1;
+    }
+    if (exp_year == "") {
+        $("#exp_year_err").html('Expiry Year can not be blank');
+        validate = 1;
+    }
+    
+    var d = new Date(),
+    current_month = d.getMonth() + 1,
+    current_year = d.getFullYear();
+    if( $('#exp_month').value != "" && $('#exp_year').value != "" ){
+      var selected_month = parseInt($('#exp_month').val());
+      var selected_year = parseInt($('#exp_year').val());
+      if(selected_month < current_month && selected_year <= current_year){
+        $('#exp_month_err').html("Invalid month");
+        validate = 1;
+      }
+    }
+
+    if (validate == 1) {
+        return false;
+    } else {
+        return true;
+    }
+  }
+</script>

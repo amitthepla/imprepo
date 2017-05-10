@@ -1,0 +1,37 @@
+.white-sticky-header.fixed-in-app-header{style: "padding-top: 22px;padding-left: 33px;"}
+  %span{style: "margin-top:5px"}  
+    %span.curr_page_name
+      Plugins
+    .fr
+      = link_to 'Add Plugin', new_community_plugin_path
+    .cb
+.col-md-12
+  %table#cloud_plugins.table.table-striped.table-bordered.dt-responsive.nowrap{:cellspacing => "0", :width => "100%"}
+    %thead  
+      %tr
+        %th Name
+        %th Price
+        %th Description
+        %th URL
+        %th Is active
+        %th Download Count
+    %tbody
+      - @community_plugins.each do |community_plugin|
+        %tr
+          %td
+            = link_to community_plugin do
+              = community_plugin.name
+          %td= community_plugin.price
+          %td= community_plugin.description
+          %td= "https://wakeupsales.com/plugin/" + community_plugin.unique_id.to_s + "/checkout"
+          %td= community_plugin.is_active
+          %td=community_plugin.plugin_transactions.inject(0){|sum,x| sum + x.download_count}
+          / = link_to 'Destroy', community_plugin, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  /%br
+  /= link_to 'New Community plugin', new_community_plugin_path
+
+:javascript
+  $(document).ready(function() {
+    $("#cloud_plugins").dataTable();
+  });

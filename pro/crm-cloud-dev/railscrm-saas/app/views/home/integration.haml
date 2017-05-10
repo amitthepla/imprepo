@@ -1,0 +1,137 @@
+:css
+  body{background: #fff;}
+.integration_page
+  .banner-image.integration_banner
+    %h1 INTEGRATIONS
+    %p Ideally connect your CRM  to popular online applications like Google Calendar, Gmail, MailChimp, QuickBooks Online and more.
+  .integration_wrapper.wrapper
+    %h2.sub_heading
+      Available Integrations in WakeUpSales CRM
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.gmail_integration
+      .col-md-9
+        .integration_desc
+          %h2 Gmail Integration
+          %p Manage your email account right from your CRM, without going through the pain of logging in separately.
+      .cb 
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.amazon_ses_integration
+      .col-md-9
+        .integration_desc
+          %h2 Amazon SES Integration
+          %p Amazon's SES, literally makes sending emails pretty easy with Wakeupsales.
+      .cb 
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.sendgrid_integration
+      .col-md-9
+        .integration_desc
+          %h2 Sendgrid Integration
+          %p The world's most popular transactional and email marketing platform integrates seamlessly with WakeUpSales.
+      .cb
+      .integration_container  
+      .col-md-3
+        .int_icon_wrapper  
+          .integration_icon.quickbooks_integration
+      .col-md-9
+        .integration_desc
+          %h2 Quickbooks
+          %p Your loved CRM with the crowd favorite accounting software. It gives you so much more power.
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper  
+          .integration_icon.freshbooks_integration
+      .col-md-9
+        .integration_desc
+          %h2 FreshBooks
+          %p The popular cloud accounting software for small businesses now works just fine with Wakeupsales CRM.
+
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.google_calendar
+      .col-md-9
+        .integration_desc
+          %h2 Google Calendar
+          %p Keep all the activities from your google calendar in sync with your Wakeupsales CRM & vice versa.
+
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.asterisk_dialer
+      .col-md-9
+        .integration_desc
+          %h2 Asterisk Dialler
+          %p Get so much more out of your CRM with the free & open source framework for in-app communications.
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper  
+          .integration_icon.ring_central
+      .col-md-9
+        .integration_desc
+          %h2 Ring Central
+          %p The ultimate business communications service now works seamlessly with Wakeupsales CRM. It's so cool.
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.twilio_integration
+      .col-md-9
+        .integration_desc
+          %h2 Twilio
+          %p Imagine what you can do, if your CRM now offers Voice, Video calling & Messaging from the app itself!
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.import_gmail_cont
+      .col-md-9
+        .integration_desc
+          %h2 Import Gmail Contacts
+          %p Import all your Gmail contacts with a click & convert them to leads. We provide a setup guide.
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.zapier_integration
+      .col-md-9
+        .integration_desc
+          %h2 Zapier
+          %p Automate tasks between other online apps like Basecamp & Gmail, automate tedious tasks. It's pretty handy.
+      .cb
+    .integration_container  
+      .col-md-3
+        .int_icon_wrapper
+          .integration_icon.mailchimp_integration
+      .col-md-9
+        .integration_desc
+          %h2 Mailchimp Integration
+          %p Integrate the most popular email marketing platform with Wakeupsales CRM. How-to documents included.
+      .cb
+.home-page  
+  %section.sft-from.e-crm
+    .wrapper
+      %h2 
+        The Easiest CRM + Sales Automation Tool
+        %br
+        Try for 90days Free!
+      - @user = User.new
+      = form_for @user, :url => save_user_path, :html=>{:class => "form signup-form"} do |f|
+        %span.inp-fld
+          = f.email_field :email, :required => true, :placeholder=>"Email"
+        %span.inp-fld  
+          = f.text_field "organization_name", :required => true, :placeholder => "Company Name"
+        %span.inp-fld  
+          = f.submit "Get Started", :disable_with => "Submitting....", :onclick=> "return chk_validemail('beta_request_email');track_signup();"
+          %small
+            No credit card required
+

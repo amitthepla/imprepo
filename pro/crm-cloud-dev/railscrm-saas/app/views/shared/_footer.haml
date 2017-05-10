@@ -1,0 +1,118 @@
+%footer
+  .wrapper
+    .row
+      .col-lg-12
+        .col-lg-4.pdr-70
+          .logo-section  
+            %a{href: "/"}
+              %img{src: "/assets/new-ui/wus-all-in-one-white.png", alt: "CRM Application", title: "CRM Application"}
+          %p.desc_footer
+            Streamline your sales activities, improve your productivity & create powerful customer relationships, with this simple & easy-to-use CRM tool. Features to suit everyone's needs, whole new UI & some exciting Integrations to choose from.
+        .col-lg-2
+          %h6.crm-tool
+            CRM Tool
+            %sup.crm-tool-sup Cloud
+          %ul
+            %li
+              %a{:href => "/about-us", title: "About us"} About us
+            %li
+              %a{:href => "/integrations", title: "Integrations"} Integrations
+            %li
+              %a{:href => "/security", title: "Security"} Security
+            %li
+              %a{:href => "/product-updates", title: "Product Updates"} Product Updates
+            %li
+              %a{:href => "/roadmap", title: "Roadmap"} Roadmap
+            %li
+              %a{:href => "/report-a-bug", title: "Report a Bug"} Report a Bug
+            %li
+              %a{href: "/awards-and-recognitions", title: "Awards & Recognitions"} Awards & Recognitions
+              
+        .col-lg-3{style: "padding-left: 40px;"}
+          %h6 KNOWLEDGE BASE
+          %ul  
+            %li
+              %a{:href => "http://blog.wakeupsales.com/", target: "_blank", :style => "outline:none;", title: "Blog"} Blog
+            %li
+              %a{:href => "/about-us", :style => "outline:none;", title: "Help desk"} Help desk
+            %li
+              %a{:href => "/pricing", :style => "outline:none;", title: "FAQs"} 
+                %span FAQ
+                %span{style: "font-size:10px;margin-left: -2px;"} s
+            %li
+              %a{:href => "/pricing", :style => "outline:none;", title: "Pricing"} Pricing
+            %li
+              %a{:href => "/features", title: "Features"} Features
+            %li
+              %a{:href => "https://calendly.com/support-wakeupsales",target: "_blank", :class => "outline-none", title: "Request a Demo"} 
+                Request a Demo
+        .col-lg-3.news_letter_sec.padrht
+          %h6 News letter
+          %p Enter your email address to subscribe to our notification of new posts & features.
+          .news_letter_form  
+            = email_field_tag :email, "",required: true,:placeholder => "Email Address",id: "subscribe_email",autocomplete: "off"
+            %button{onclick: "subscribe_news_letter()", title: "Subscribe CRM Tool Newsletters"}
+              Subscribe
+          .copy-right-inf
+            .text-right.sociai_med_sec
+              %a.facebook{:href => "https://www.facebook.com/wakeupsales/", target: "_blank", title: "WakeUpSales at Facebook"} Facebook
+              %a.twitter{:href => "https://twitter.com/wakeupsales", target: "_blank", title: "WakeUpSales at Twitter"} Twitter
+              / %a.instgram{:href => ""} Instagram
+              %a.linkdin{:href => "https://www.linkedin.com/company/13247372", target: "_blank", title: "WakeUpSales at Linkedin"} Linkedin
+              / %a.g-plus{:href => "", targe
+    .footer_btm
+      .footer_inner.custom-cls
+        %span.pink.mtl-0
+          Copyright © 2017 WakeUpSales.
+          = succeed ".\u{a0}\u{a0}" do
+            %a{:href => "http://www.andolasoft.com/", :target => "_blank", title: "Andolasoft"} Andolasoft
+          = "|"
+          %a{:href => "https://www.wakeupsales.com/sitemap", :class => "ml-10", title: "Sitemap"} Sitemap
+          = "|"
+          %a{:href => "https://www.wakeupsales.com/privacy", :class => "ml-10", title: "Privacy Policy"} Privacy Policy
+          %a{:href => "https://www.wakeupsales.com/terms", :class => "ml-10", title: "Terms of Service"} Terms of Service
+          %br/
+          %span
+            For assistance please contact
+            %a{:href => "mailto:support@wakeupsales.com", title: ""} support@wakeupsales.com
+
+        .cb
+    %div
+      %p.footer-disclaimer.text-center
+        Disclaimer: All logos, images, product names, brands and other trademarks featured or referred to within this website (www.wakeupsales.com) are the property of their respective trademark holders. These trademark holders are not affiliated with WakeUpSales, our products, services or our websites. They do not sponsor or endorse WakeUpSales's service offerings or any of our corporate solutions.
+
+:javascript
+  function subscribe_news_letter() {
+    try{
+      email = $("#subscribe_email").val();
+      if(email == "" ){
+        alert("Please enter your email to subscribe.");
+        return false;
+      }
+      var atpos = email.indexOf("@");
+      var dotpos = email.lastIndexOf(".");
+      if (email != '' && (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length)) {
+        alert('Please enter a valid email address.')
+        return false;
+      }
+      $(".news_letter_form").html("<span style='color:#ddd'>Loading...</span>");
+      var posting = $.post( "http://blog.wakeupsales.com/auto_subscription_blog.php", { email: email, domain: "cloud" });
+      posting.always(function( data ) {
+        $(".news_letter_form").html("<div class='new_letter_success'>Cheers! Please, check your Inbox to confirm your subscription.</div>");
+      });
+    }
+    catch(err) {
+      $("#subscribe_email").html(err.message);
+    }
+  }
+  
+
+
+
+
+
+
+
+  
+  
+    

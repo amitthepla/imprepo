@@ -1,0 +1,34 @@
+<span>List of projects</span>
+<div id="tab" class="btn-group" data-toggle="buttons-radio">
+	<% @projects.each do |p|%>
+		<a href="javascript:" class="btn btn-large btn-info" data-toggle="tab" onclick="fetch_templates('<%=p.slug%>')"><%=p.name%></a>
+	<%end%>
+</div>
+<br/>
+
+<div id="templates-div"></div>
+
+<script>
+function fetch_templates(project_slug){
+  alert(project_slug)  
+  $.ajax({
+        type: "GET",
+        url: "fetch_templates",
+        dataType: 'json',
+        data: {slug: project_slug},
+        async: true,
+        beforeSend: function(){          
+        },
+        success: function(data)
+        {
+         alert("success")
+        },
+        error: function(data) {          
+        },
+        complete: function(data) {
+          alert("complete")
+          $("#templates-div").html(data.responseText);
+        }
+    });
+}
+</script> 

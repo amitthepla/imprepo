@@ -1,0 +1,175 @@
+-@invoices = @invoices.paginate(:page => params[:page], :per_page => 10)
+:css
+  .width-45{
+    width:45%
+  }
+= stylesheet_link_tag   "bootstrap-formhelpers", :media => "all"
+= stylesheet_link_tag   "bootstrap-formhelpers.min", :media => "all"
+
+
+= javascript_include_tag "bootstrap-formhelpers-currencies"
+= javascript_include_tag "bootstrap-formhelpers"
+= javascript_include_tag "bootstrap-formhelpers.min"
+
+
+.container.manage_invoice
+  .white-sticky-header.fixed-in-app-header{style: "padding-top: 22px;padding-left: 33px;"}
+    .fl  
+      %span{style: "margin-top:5px"}  
+        %span.navigation_sec
+          %a{href: "/leads"}
+            Leads
+          ="/"
+        %span.curr_page_name
+          Manage Invoice
+    .fr
+      %span.navigation_sec
+        %a{href: "/invoice/create"}
+          Create Invoice
+    .cb
+  %div{style: "padding: 0 15px;"}
+    %table.table.white-table.table-hover{style: "border: 1px solid #ddd;box-shadow: 0 0 10px #999;"}  
+      %thead{style: "background-color: rgb(237, 238, 240);"}
+        %tr
+          %th{style: "width:10px;"}
+          %th
+            Invoice#
+          %th
+            Bill To
+          %th 
+            Description
+          %th 
+            Amount
+          %th 
+            Due Date
+          %th 
+            Status          
+          %th 
+            Generated Date
+            
+        %tbody
+          -if @invoices.present?
+            -@invoices.each do |invoice|
+              /- if !@current_organization.individual_contacts.where(id: invoice.contact_id).empty?
+              %tr
+                %td
+                  - if invoice.status.present? && (invoice.status.downcase != "paid" && invoice.status.downcase != "cancelled")
+                    .btn-group
+                      .deal_set.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                      %ul.dropdown-menu{role: "menu"}
+                        %li.arrow_top
+                        %li
+                          %a{ title: "Resend Invoice mail",href: "/resend_invoice/#{invoice.id}",:style=>"cursor: pointer;"} Resend
+                        %li.divider
+                        %li
+                          %a{ title: "Change status to Paid",href: "/paid_invoice/#{invoice.id}",:style=>"cursor: pointer;"} Paid
+                        %li.divider
+                        %li
+                          %a{ title: "Cancel Invoice", :"data-confirm"=> "Are you sure to cancel this invoice?",href: "/cancel_invoice/#{invoice.id}",:style=>"cursor: pointer;"} Cancel
+                  - elsif invoice.status.present? && invoice.status.downcase == "paid"
+                    =link_to download_invoice_path(:id => invoice.id) do
+                      %span.cwkp-sprite.export-to-csv
+                    / %a{href: "javascript:void(0)"}
+                    /   %span.fa.fa-download
+                %td
+                  = invoice.invoice_no.present? ? invoice.invoice_no : "NA"
+                %td
+                  - individual_contact = @current_organization.individual_contacts.where("id=?",invoice.contact_id).first
+                  - if individual_contact.present?
+                    %a{href: "/contact/#{individual_contact.to_param}", title: "#{individual_contact.name.present? ? individual_contact.name + ' - ': ''} #{individual_contact.email}" }
+                      = individual_contact.name.present? ? individual_contact.name : individual_contact.email
+                %td
+                  /= invoice.invoice_items.present? ? invoice.invoice_items.last.description.truncate(25) : "NA"
+                  - if invoice.invoice_items.present? && (items=invoice.invoice_items.where("description is NOT NULL and description != ''").map(&:description)).present?
+                    - i = 1
+                    - items.each do |item|
+                      %b
+                        = i
+                      = item.truncate(25)
+                      - i+=1
+                      %br
+                  - else
+                    NA
+                %td
+                  /= invoice.invoice_items.present? ? invoice.invoice_items.last.amount : "NA"
+                  - total_amount=invoice.invoice_items.inject(0){|sum,x| sum + x.amount.to_f }
+                  - if total_amount.present? && invoice.tax.present?
+                    - tax_on_total=(total_amount/100) * invoice.tax
+                    = "%.2f" % (total_amount+tax_on_total)
+                  - elsif total_amount.present? && !invoice.tax.present?
+                    = "%.2f" % total_amount
+                  - else
+                    0.0
+                %td
+                  = invoice.due_date.present? ? invoice.due_date.strftime("%m-%d-%Y") : "NA"
+                %td
+                  = invoice.status.present? ? (invoice.status == "Send" ? "Sent" : invoice.status) : "NA"                
+                %td
+                  = invoice.created_at.strftime("%m-%d-%Y")
+                  
+          -else
+            %tr
+              %td{:colspan=>"8", :align => "center"}      
+                No Invoice Generated yet!        
+    .digg_pagination.fr{style: "margin-bottm: 100px"}
+      = will_paginate @invoices, :container => false
+:javascript
+  $("#bill_to").keypress(function() {
+  $('#bill_to').addClass('loadinggif');
+   setTimeout(hideloader, 510);
+  });
+
+  function hideloader()
+  {
+   $('#bill_to').removeClass('loadinggif');
+  }
+  $("#bill_to").keyup(function() {
+   $("#contact_type").val($('#bill_to').val());
+  });
+
+  $('#bill_to.typeahead').typeahead([{
+    name: 'contacts',
+    minLength: 0,
+    limit: 500,
+    valueKey: 'name',
+    remote: {url: '/get_contacts/'+ #{current_user.organization.id if current_user.organization.present?}+ '?q=%QUERY'},
+    template: "<p style='word-wrap: break-word;'><strong>{{name}}</strong> - {{email}}</p>",
+    engine: Hogan
+    }]).on('typeahead:selected',onSelected).on('typeahead:opened',onOpened);
+  function onSelected($e,datum){
+    $("#invoice_contact_type").val(datum.contact_type);
+    $("#invoice_contact_id").val(datum.id);
+    
+    cont_type = $("#invoice_contact_type").val();
+    cont_id = $("#invoice_contact_id").val();
+    $("#task_loader,.fixed_loader").show();
+     $.ajax({
+      url: 'get_bill_to_details',
+        type: 'POST',
+        data: {cont_id: cont_id, cont_type: cont_type},
+        success: function(res) {
+            $(".bill_to_details").html(res);
+            $("#task_loader,.fixed_loader").hide();
+        },
+        error: function(res) {
+          $("#task_loader,.fixed_loader").hide();
+          alert("Unable to load contact details.");
+        }
+    }); 
+   
+  }
+  function onOpened($e){
+  $("#deal_contact_id").val("")
+  console.log('Opned');
+  }
+  $(function () {
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    $('#invoice_due_date').datetimepicker({
+      format: 'DD/MM/YYYY',
+      autoclose: true,
+      minDate: today,
+      pickTime: false
+    })
+  });

@@ -1,0 +1,117 @@
+:css
+  body{background: #fff;}
+  .features-img img {
+    width: 100%;
+    box-shadow: -3px 3px 40px #aaa;
+  }
+  .mt60 {margin-bottom: 60px}
+  .hero {
+    background: url("../assets/new-ui/features_banner.jpg") no-repeat 0px 0px;
+  }
+.static-jumbotron.features_banner
+  %h1 
+    WakeUpSales Features
+  %h4.static_banner_text
+    There're so many reasons that make WakeUpSales the CRM of choice for businesses of all sizes.            
+  .cb{:style=>"height:20px;"}
+.container.overwrite_container.features_page
+  %div{:style => "font-size: 16px;"}
+    .dwn-wraprer{:style => "margin-bottom: 60px;width: 100%;"}
+      .cnt_all_osc.active.fl.lft_cnt_ig
+        %section
+          %div
+            .row.mt60
+              .col-sm-6.features-img
+                %img{:src => "assets/wus/dashboard_v1.jpg", alt: "Potential sales lead in CRM Tool", title: "Potential sales lead in CRM Tool"}
+              .col-sm-6.features-desc
+                %h2 Sales Automation
+                %ul.features-title.set_tick
+                  %li Leads - Converting Lead to Contact.
+                  %li Tasks - Potential sales in CRM.
+                  %li Activities - All activities on one page.
+                  %li Contacts - Contact can be related to multiple leads.
+              .cb
+        %section
+          %div
+            .row.mt60
+              .col-sm-6.features-desc.pad-left-20
+                %h2 Google Calendar Synchronization
+                %ul.set_tick
+                  %li Meetings
+                  %li Calls
+                  %li Tasks
+                  %li Sending invitations to attendees.
+                  %li
+                    How to synchronize with your
+                    %a{:href => "http://www.wakeupsales.org/Google-calender-installation-guide"}
+                      Google Calendar
+                  %li Shared Calendar. User can see schedules of coworkers.
+              .col-sm-6.features-img
+                %img.features-img{:src => "assets/wus/calendar.jpg", alt: "Google Calendar Synchronization in CRM Tool", title: "Google Calendar Synchronization in CRM Tool"}
+              .cb
+          %section
+            %div
+              .row.mt60
+                .col-sm-6.features-img
+                  %img.features-img{:src => "assets/wus/send-email.jpg", alt: "Emails to any contact in CRM Tool", title: "Emails to any contact in CRM Tool"}
+                .col-sm-6.features-desc
+                  %h2 Emails
+                  %ul.features-title.set_tick
+                    %li Setup your sendgrid account.
+                    %li Send Emails to any contact
+                    %li Track the email open activity
+                .cb
+          %section
+            %div
+              .row.mt60
+                .col-sm-6.features-desc.pad-left-20
+                  %h2 Activity Stream
+                  %ul.set_tick
+                    %li All leads activies
+                    %li All tasks activies
+                    %li All contacts activies
+                    %li All emails sent  open activies
+                .col-sm-6.features-img
+                  %img{:src => "assets/wus/activity.jpg", alt: "Activity Stream in CRM Tool", title: "Activity Stream in CRM Tool"}
+                .cb
+          %section
+            %div
+              .row.mt60
+                .col-sm-6.features-img
+                  %img.features-img{:src => "assets/wus/export_to_csv.jpg", alt: "Export data to CSV", title: "Export data to CSV"}
+                .col-sm-6.features-desc
+                  %h2 Export to CSV
+                  %ul.features-title.set_tick
+                    %li WakeUpSales allows you to export data in CSV format.
+                    %li This feature helps you to take a backup of all your CRM data.
+                .cb
+          %section
+            %div
+              .row.mt60
+                .col-sm-6.features-desc.pad-left-20
+                  %h2 Import from other CRM
+                  %ul.set_tick
+                    %li WakeUpSales allows you to import Lead from others CRM.
+                    %li You can import Lead from Zoho CRM, Sugar CRM, Fatfree CRM or any other CRM
+                    %li We are providing a sample csv file, so that you can import lead from any other CRM.
+                .col-sm-6.features-img{:style => "text-align: center;"}
+                  %img{:src => "assets/wus/import_contact.jpg", alt: "Import from other CRM", title: "Import from other CRM"}
+                .cb
+          .cb
+.home-page  
+  %section.sft-from.e-crm
+    .wrapper
+      %h2 
+        The Easiest CRM + Sales Automation Tool
+        %br
+        Try for 90days Free!
+      - @user = User.new
+      = form_for @user, :url => save_user_path, :html=>{:class => "form signup-form"} do |f|
+        %span.inp-fld
+          = f.email_field :email, :required => true, :placeholder=>"Email"
+        %span.inp-fld  
+          = f.text_field "organization_name", :required => true, :placeholder => "Company Name"
+        %span.inp-fld  
+          = f.submit "Get Started", :disable_with => "Submitting....", :onclick=> "return chk_validemail('beta_request_email');track_signup();"
+          %small
+            No credit card required

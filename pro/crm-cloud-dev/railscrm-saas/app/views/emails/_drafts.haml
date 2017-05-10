@@ -1,0 +1,68 @@
+/ Draft Contents
+%ul.list-group
+  - @emails.each do |email|
+    .email_contents{"data-id" => "#{email[:id]}"}
+      .email_row  
+        .col-md-1
+          /=check_box_tag "action"
+          %input.chk-item{"data-id" => "#{email[:id]}", :type => "checkbox"}/
+          %span.star_icon{:class => "#{email[:starred] ? 'starred' : 'not-starred'}", "data-starred" => "#{email[:starred]}"}= params[:provider] == "google" ? (email[:starred] ? "<span class='email_icons stared_msg star'></span>".html_safe : "<span class='email_icons unstared_msg star'></span>".html_safe) : ''
+          /  %i.fa.fa-star{"aria-hidden" => "true"}
+        %div{:class => "view-message #{email[:unread] ? 'unread' : ''}"}
+          .col-md-3
+            = email[:from].present? ? truncate(email[:from].split('<').first.strip, :length => 30, :ommission => "...") : ''
+          #mail_detail.col-md-6
+            = email[:subject]
+          .col-md-1
+            %span.attachment= email[:attachment] ? "<i class='fa fa-paperclip fa-lg'></i>".html_safe : ''
+          .col-md-1
+            - if email[:received].present?
+              - received = Time.at(email[:received]).in_time_zone(current_user.time_zone)
+              - if received.year == Date.today.year
+                = (received < Date.today) ? received.strftime('%b %e') : received.strftime('%H:%M')
+              - else
+                = received.strftime('%d/%m/%Y')
+          .cb
+/ /list-group
+:javascript
+  $(function () {
+    next_page_token = "#{@next_page_token}";
+    if (next_page_token != "" && $.inArray(next_page_token, pageToken) == -1){
+      pageToken.push(next_page_token);
+    }
+
+    $(".view-message").on("click", function () {
+      var id = $(this).closest(".email_contents").data("id");
+      $.ajax({
+        url: "/emails/#{params[:provider]}/draft/" + id,
+        data: {provider: '#{params[:provider]}'},
+        type: 'GET',
+        success: function (res) {
+          $(".email_details_header,.search_bar").hide();
+          $("#email-content").html(res);
+          $(".mail-option").hide();
+        }
+      });
+    });
+    $(".star").on("click", function () {
+      var element = $(this);
+      var id = element.closest(".email_contents").data("id"),
+          starred = element.parent().data("starred");
+      $.ajax({
+        url: "/emails/#{params[:provider]}/" + id + "/toggle_star/",
+        type: "POST",
+        data: {starred: starred},
+        success: function (res) {
+          if (res.result) {
+            if(element.hasClass("stared_msg")){
+              element.removeClass("stared_msg").addClass("unstared_msg");
+            }else{
+              element.removeClass("unstared_msg").addClass("stared_msg");
+            }
+            element.parent().data("starred", !starred);
+          }
+        }
+      });
+
+    });
+  });

@@ -1,0 +1,29 @@
+.community_plugin_form.con-box1
+  = form_for @community_plugin do |f|
+    - if @community_plugin.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@community_plugin.errors.count, "error")} prohibited this community_plugin from being saved:"
+        %ul
+          - @community_plugin.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group
+      = f.label :name
+      = f.text_field :name, :class => "form-control"
+    .form-group
+      = f.label :price
+      = f.number_field :price, :class => "form-control"
+    .form-group
+      = f.label :description
+      = f.text_area :description, :class => "form-control"
+    - unless @community_plugin.new_record?  
+      .form-group
+        .fl
+          = f.check_box :is_active
+          = f.label :is_active
+        .fl{:style => "margin-left:15px;"}
+          = f.check_box :is_plugin
+          = f.label :is_plugin
+        .cb
+    .form-group
+      = f.submit 'Save',:class => "btn btn-success", disable_with: "Saving"

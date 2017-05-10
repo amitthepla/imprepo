@@ -1,0 +1,93 @@
+:css
+  textarea {
+      color: #444;
+      padding: 5px;
+  }
+  
+  .txtstuff {
+      resize: none; /* remove this if you want the user to be able to resize it in modern browsers */
+      overflow: hidden;
+      padding: 11px;
+  }
+  
+  .hiddendiv {
+      display: none;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word; /* future version of deprecated 'word-wrap' */
+  }
+  
+  /* the styles for 'commmon' are applied to both the textarea and the hidden clone */
+  /* these must be the same for both */
+  .common {
+      width: 500px;
+      min-height: 47px;
+
+      overflow: hidden;
+  }
+  
+  .lbr {
+      line-height: 3px;
+  }  
+= form_for(@deal, url: "leads/#{@deal.to_param}", :html => { :class => 'form-horizontal', :id => "deal_edit_form",:method => "POST" }) do |f|
+  .form-group
+    = hidden_field_tag "quick_edit","q"
+    = f.text_field :title, :required => true,:onblur =>"this.value = jQuery.trim((this.value).replace(/^\s*/g,''))"
+    %label.control-label.title-lbl{:for => "input"} Opportunity
+    %i.bar
+  .row
+    .form-group.col-md-6
+      =f.select :assigned_to, @current_organization.users.where("invitation_token IS ? and is_active = ?", nil,true).order("first_name ASC").collect {|c| [ c.full_name, c.id ]}, {:include_blank => '- Assign user -',:selected=>@deal.assigned_to}, :required => true
+      %label.control-label.control-mr-top7{:for => "select"} Assign User
+      %i.bar
+    .form-group.col-md-6
+      =f.number_field :amount,:onkeyup=>"return numbersonly(event)",:onkeydown=>"return numbersonly(event)"
+      %label.control-label.control-mr-top7{:for => "input"} Lead amount($)
+      %i.bar
+  %label Visibility:
+  .form-group
+    .modal-radio.fl
+      = f.radio_button :is_public, true, :checked => @deal.is_public? == true ? true : ""
+      %label{:for => "deal_is_public_true"}
+        %span
+        - if params[:controller] == "contacts"
+          Everyone
+        - else
+          Everyone in organization  
+    .modal-radio.fl
+      = f.radio_button :is_public, false, :checked => true,  :checked => @deal.is_public? == false ? true : ""
+      %label{:for => "deal_is_public_false"}
+        %span
+        - if params[:controller] == "contacts"
+          Only I can
+        - else
+          Associate Users
+  .cb
+  .modal-footer
+    .form-actions.navbar-right
+      %a{href:"#", "aria-hidden" => "true","data-dismiss" => "modal"}
+        %span.c_links
+          Cancel
+      =f.submit "Update", :disable_with => "Updating...."
+      
+:javascript
+  /*auto expandable textarea */
+  var txt = $('#deal_title'),
+      hiddenDiv = $(document.createElement('div')),
+      content = null;
+  
+  txt.addClass('txtstuff');
+  hiddenDiv.addClass('hiddendiv common');
+  
+  $('body').append(hiddenDiv);
+  
+  txt.on('keyup', function () {
+  
+      content = $(this).val();
+  
+      content = content.replace(/\n/g, '<br>');
+      hiddenDiv.html(content + '<br class="lbr">');
+  
+      $(this).css('height', hiddenDiv.height());
+  
+  });

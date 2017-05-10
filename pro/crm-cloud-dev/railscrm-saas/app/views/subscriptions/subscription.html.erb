@@ -1,0 +1,156 @@
+<div class="purchase-loader-div">
+  <div class="purchase-loader">
+   <%=image_tag "ajax-loader2.gif"%>
+  </div>
+</div>
+<div style="padding-top: 22px;padding-left: 35px;" class="top-list-bar white-sticky-header fixed-in-app-header">
+  <span style="margin-top:5px">
+    <span class="navigation_sec">
+     <%=link_to "Subscription", "/users/subscription"%>
+    </span>
+  </span>
+</div>
+<div class="padrht payment-page cstm-material-modal cmn_bdr_shadow credit-card-popup" style="margin:20px;">
+    <div class="plans">
+		<div class="plan_page border-btm-none">
+        <div class="fl">
+			     <h3>Current Plan: <span class="cmn_link_color">Free</span> <span style="color:#00BCD5;font-size:12px;"></span></h3>
+          <%if !@current_organization.trial_expired? && !@current_organization.is_sub_active%>
+            <div class="cplan_sum">
+              30 days FREE Trial (<span original-title="Wed, 17 May 2017" rel="tooltip" style="color:brown;"><%=@current_organization.trail_days_left_in_days%> day(s) to go</span>)                           
+            </div>
+          <%end%>
+          <%if !@current_organization.trial_expired? && @current_organization.is_sub_active %>
+            <div class="cplan_sum"> You will be charged after your 30 days FREE trial completed on WakeUpSales. The charge on your credit card statement will be from "ANDOLASOFT INC"                         
+            </div>
+          <%end%>
+        </div>
+
+        <%#=debug @current_sub%>
+        <div class="fr">
+          <%= link_to "javascript:void(0)", :onclick => "get_users_dual_list()", :class=> "btn btn-info" do %>
+              Choose User
+          <% end %>
+
+         <!--   <a href="https://thepla.orangescrum.com/pricing" onclick="" class="btn btn_cmn_efect cmn_bg btn-info cmn_size">Change Plan</a> -->
+            <%=link_to "Change Plan", "/users/pricing", :class=> "btn btn-info"%> 
+            <%=link_to "Transaction", "/users/transactions", :class=> "btn btn-info"%>
+        </div>
+        <div class="cb"></div>
+				</div>
+        <div class="cplan_sum mbtm10">
+                    </div>
+    </div>
+         <table class="table table-striped ccard_det cplan_subscr subscri_det_list">
+        <tbody><tr>
+            <td class="tb-col-1st">
+                <label>Created on</label> 
+                <span><%= @current_sub.present? && @current_sub.subscription_start_date.present? ? @current_sub.subscription_start_date.strftime("%a %d %b %Y") : "NA" %> </span>
+            </td>
+            <td>
+              <label>Next Billing Date</label><span><%= @current_sub.present? && @current_sub.next_billing_date.present?  ? @current_sub.next_billing_date.strftime("%a %d %b %Y") : "NA" %></span>
+            </td>
+            <td class="tb-col-2nd">
+                <label>User Limit</label><span><%= @current_sub.present? ? @current_sub.user_limit : "NA" %></span>
+            </td>
+            <%if @current_sub.present? %>
+	            <td class="tb-col-3rd">
+	              <label>Users:<span><%=@current_organization.active_users.count%> of <%= @current_sub.user_limit %></span></label>
+	              <div class="progress cmn_prg_bar">
+	               <div class="progress-bar progress-bar-info" style="width:33%;"></div>
+	              </div>
+	            </td>
+            <%end%>
+        </tr>
+    </tbody></table>
+		<div class="">
+      <h4>History</h4>
+      <div class="table-responsive">                  
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+             <th>User Limit</th>
+             <th>Amount</th>
+             <!-- <th>Subsdcription ID</th>
+             <th>Profile ID</th>
+             <th>CC Token</th> -->
+             <th>Created on</th>
+             <!-- <th>Next Billing Date</th> -->
+             <th>Status</th>
+            <!--  <th>Subscription type</th>
+             <th>Subscription Status</th>
+             <th>Cancelled Payment Failure</th> -->
+          </thead>
+          <tbody>
+            <%@trans.each do |t|%>
+              <tr>
+                <td><%=t.user_limit%></td>
+                <td><%="$"+t.price.to_s%></td>
+                <!-- <td><%#=t.btsubscription_id%></td>
+                <td><%#=t.btprofile_id%></td>
+                <td><%#=t.cc_token%></td> -->
+                <td><%=t.subscription_start_date.present? ? t.subscription_start_date.strftime("%a %d %b %Y") : "NA"%></td>
+                <!-- <td><%#=t.next_billing_date%></td> -->
+                <td><%=t.is_updown%></td>
+                <!-- <td><%#=t.is_updown  %></td>
+                <td><%#=t.is_active%></td>           
+                <td><%#=t.is_cancel_payment_fail%></td>   -->   
+              </tr>
+            <%end%>
+          </tbody>      
+        </table>
+      </div>
+    </div>
+    <div class="cb"></div>
+   	 <%=link_to "Cancel Subscription", "/subscription/cancel", :class=> "btn btn-default color_red btn_hover_link cmn_size fr" %>
+	
+    <div class="cb"></div>
+</div>
+<script>
+  function get_users_dual_list(){
+    $.ajax({
+      type: "POST",
+      url: "/get_users_dual_list",
+      dataType: 'json',
+      async: false,
+      beforeSend: function(){
+        $("#task_loader").show();
+      },
+      success: function(data)
+      {
+      },
+      error: function(data) {
+        $("#task_loader").hide();
+      },
+      complete: function(data) {
+        $("#userActiveDeactiveModal").modal("show");
+        $("#users_dual_list_content").html(data.responseText);
+        $("#task_loader").hide();
+      }
+    });
+  }
+
+  function update_active_inactive_users(){
+    var active_users = $('#hdn_active_user_ids').val();
+    var inactive_users = $('#hdn_inactive_user_ids').val();
+    $.ajax({
+      type: "POST",
+      url: "/update_active_inactive_users",
+      dataType: 'json',
+      async: false,
+      data: {active_user_ids: active_users, inactive_user_ids: inactive_users},
+      beforeSend: function(){
+        $("#task_loader").show();
+      },
+      success: function(data)
+      {
+      },
+      error: function(data) {
+        $("#task_loader").hide();
+      },
+      complete: function(data) {
+        $("#userActiveDeactiveModal").modal("hide");
+        $("#task_loader").hide();
+      }
+    });
+  }
+</script>

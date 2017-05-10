@@ -1,0 +1,41 @@
+%div
+  - if @allowed_user
+    - url_task = "#{@task_url}"
+  - else
+    - url_task = "javascript:"
+
+  %a.btn.btn-default.btn-lg{role: "button",href: url_task, title: @task_text}
+    %span.fnt_od 
+      =@task_count     
+    %span 
+      =@task_text
+  - if @new_ds.present?  
+    - if @allowed_user && @new_deals > 0
+      - url_ndeal = "/leads?type=new"
+      - sty = "margin-right:0px;"
+    - else
+      - url_ndeal = "javascript:"
+      - sty = "margin-right:0px;cursor:default;"
+    %a.btn.btn-default.btn-lg{role: "button", style: sty, href: url_ndeal, title: "New Leads"}
+      %span.fnt_dl 
+        =@new_deals
+      %span
+        New Leads
+      /%span 
+      /  -if !DealStatus.get_deal_name('1',@current_user.organization_id).nil? && !DealStatus.get_deal_name('1',@current_user.organization_id).blank?	
+      /    = DealStatus.get_deal_name('1',@current_user.organization_id).name
+  - if @qualified_ds.present?
+    - if @allowed_user && @qualified_deals > 0
+      - url_qdeal = "/leads?type=qualified"
+      - sty = "margin-right:0px;"
+    - else
+      - url_qdeal = "javascript:"
+      - sty = "margin-right:0px;cursor:default;"
+    %a.btn.btn-default.btn-lg{role: "button", style: sty, href: url_qdeal, title: "Qualified Leads"}
+      %span.fnt_qf 
+        =@qualified_deals
+      %span
+        Qualified Leads
+      /%span 
+      /  -if !DealStatus.get_deal_name('2',@current_user.organization_id).nil? && !DealStatus.get_deal_name('2',@current_user.organization_id).blank?	
+      /    = DealStatus.get_deal_name('2',@current_user.organization_id).name

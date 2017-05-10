@@ -1,0 +1,134 @@
+<!-- <span>List of projects</span>
+<div id="tab" class="btn-group" data-toggle="buttons-radio">
+  <%# @projects.each do |p|%>
+    <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab" onclick="fetch_templates('<%#=p.slug%>')"><%#=p.name%></a>
+  <%#end%>
+</div>
+<br/> -->
+
+ <%#= select_tag "", @projects.collect {|c| [ c.name, c.slug ]}, {:include_blank => '- Select Project -'},:class=>"col-md-12 form-control" %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <h3>SELECT PROJECT | TEMPLATE</h3>
+        <div>
+          <%=select_tag "project", options_from_collection_for_select(@projects, "slug", "name"), class: 'form-control select-width', prompt: "- Select Project -"%>
+        </div>
+        <br/>
+        <div id="templates-div"></div>
+      </div>
+      <div class="col-sm-6 csv-div">
+        <h3>UPLOAD YOUR CSV <span class="sp12">(<%=link_to "Download Template", "/sample_excel_with_example_charts_and_images.xlsx"%>)</span></h3>
+        <!-- :download=>"custom-filename.csv" -->
+        <div>
+          <%= form_tag '/upload', multipart: true do %>
+            <%=hidden_field_tag "project_slug"%>
+            <%=hidden_field_tag "template_slug"%>
+            <p>
+              <%= file_field_tag "file", :class => "btn btn-primary", :id => "file-select" %>
+            </p>
+            <p>
+              <%= submit_tag "Run", class: "btn btn-primary", id: "run-btn", disabled: true, :onclick => "return validate_form()" %>
+            </p>
+            <!-- <div style="clear:both;"></div> -->
+          <% end %>
+        </div>
+        <!-- <div><button type="button" class="btn btn-primary">Run</button></div> -->
+      </div>
+    </div>
+  </div>
+  <% if params[:content].present?%>
+    <div class="row">
+      <div class="col-sm-12" id="content-div">
+        <div class="fr">
+          <%content=Content.where("id=?",params[:records]).first%>
+          <%= link_to "View as HTML", download_path(:records => params[:records].present? ? params[:records].join(",") : nil), class: "btn btn-success", :target => "_blank" %>
+          <%= link_to download_path(:format => content.is_ppt ? "pptx" : "docx", :records => params[:records].present? ? params[:records].join(",") : nil), class: "btn btn-success" do%>
+            Download
+            <span class="glyphicon glyphicon-download"></span>
+          <% end %>
+        </div> 
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Content</th>
+              <!-- <th>Downloaded</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <%if @contents.present?%>
+              <%i=0%>
+              <%@contents.each do |cnt| %>
+                <tr>
+                  <td><%= i+=1 %></td>                  
+                  <td><%= truncate(cnt.content, :length => 400, :separator => '...') %></td>
+                  <!-- <td><%#= cnt.is_downloaded ? "Yes" : "No" %></td> -->
+                </tr>
+              <%end%>
+            <% else %>
+              <tr>
+                <td>Not available</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>        
+      </div>
+    </div>
+  <%end%>
+</div>
+
+<script>
+$(function(){
+  // $(window).load(function() {
+  //   window.location.href.replace(window.location.href.split("?")[1], '')
+  // });  
+ $("#project").change(function(){
+   $('#project_slug').val(this.value);   
+   $.ajax({
+    type: "GET",
+    url: "fetch_templates",
+    dataType: 'json',
+    data: {slug: this.value},
+    beforeSend: function(){     
+      $("#ajax-loader").show();
+      $("#page-overlay").show();
+    },
+    success: function(data)
+    {
+     //alert("success")
+    },
+    error: function(data) {          
+    },
+    complete: function(data) {
+      $("#content-div").hide();
+      $("#page-overlay").hide();
+      $("#templates-div").html(data.responseText);
+      $("#ajax-loader").hide();
+    }
+    });
+ });
+ $("#file-select").change(function(){
+    $('#run-btn').removeAttr('disabled');
+  });
+  
+});
+  function validate_form(){
+    if($("#project").find(":selected").val() == undefined || $("#project").find(":selected").val() == ''){      
+      //event.preventDefault();
+      $("#custom-alert").show().find("span").html("Please select a project");
+      return false;
+    }else if($("#project_templates").find(":selected").val() == undefined || $("#project_templates").find(":selected").val() == ''){
+      //event.preventDefault();
+      $("#custom-alert").show().find("span").html("Please select a template");
+      return false;
+    }else if($("#file-select").val() == undefined || $("#file-select").val() == ''){
+      //event.preventDefault();
+      $("#custom-alert").show().find("span").html("Please select a project");
+      return false;
+    }else{
+      return true;
+    }
+  }
+</script>

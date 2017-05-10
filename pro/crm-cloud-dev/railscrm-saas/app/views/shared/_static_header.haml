@@ -1,0 +1,41 @@
+= stylesheet_link_tag "home"
+:css
+  input[type=submit] {
+    background: #428FD0;
+    color: #fff;
+    border: 2px solid #428FD0;
+    border-radius: 5px;
+    margin-left:-2px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 10px;
+    line-height: 12px;
+    width: 96%;
+    font-family: 'SourceSansPro-Regular';
+  }
+.con-body.hero
+  .banner    
+  / .container.wrapper{:style=>"width:90%;"}
+  /   .product-header
+  /     .product-header-inner
+  /       %a.product-logo{:href => "/"}
+  /       %a.product-logo-hidden{:href => "/"}
+  /       %ul.product-menu.scale{}
+  /         %li#feature_link
+  /           =link_to "Features", features_path, :onclick => "trackEventLeadTracker('Features', 'Header', '#{user_signed_in? ? current_user.email : ""}')"
+  /         %li#contact_us_link
+  /           =link_to "Support", "/contact-us", :onclick => "trackEventLeadTracker('Contact Us', 'Header', '#{user_signed_in? ? current_user.email : ""}')"
+  /         %li#contact_us_link
+  /           =link_to "Integration", "/integration", :onclick => "trackEventLeadTracker('Integration', 'Header', '#{user_signed_in? ? current_user.email : ""}')"
+  /         %li
+  /           =link_to "Blog", "http://blog.wakeupsales.com/", :onclick => "trackEventLeadTracker('Blog', 'Header', '#{user_signed_in? ? current_user.email : ""}')", :target => "_blank"
+  /         %li
+  /           %a{:href => "/users/sign-in"} Log in
+  /         %li.sign-in-btn
+  /           %a{:href => "/users/sign-up"} Sign up FREE
+  /       .cb
+.cb 

@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-lg-6"><h2>All Users</h2></div>
+  <div class="col-lg-6">
+      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#inviteUserModal" style="    position: absolute;margin-top: 2%;margin-left: 51%;">Invite User</button>
+  </div>
+</div>
+<hr/>
+
+<table class="users table-striped">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+   <!-- <th>Confirmed?</th>    
+    <th>Invited?</th>
+    <th>Invitation Accepted?</th> -->
+    <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>      
+      <!-- <td><%#= user.is_verified %></td>
+      <td><%#= user.is_invited %></td>
+      <td><%#= user.accepted_invitation %></td> -->
+      <td>
+        <% if user.is_blocked %>
+          <%= link_to admin_unblock_path(user_id: user.id), method: :put, title: "Unblock", class: '', 'data-confirm' => 'Are you sure?', :remote => true do %>
+            <span class="glyphicon glyphicon-ok-circle">
+          <% end %>
+        <% else %>
+          <%= link_to admin_block_path(user_id: user.id), method: :put, title: "Block", class: '', 'data-confirm' => 'Are you sure?', :remote => true do %>
+            <span class="glyphicon glyphicon-ban-circle">
+          <% end %>
+        <%end%>
+        <%#=debug user.invited_to_sign_up?%>
+        <%if user.invited_to_sign_up? %>
+              &nbsp;<%= link_to admin_resend_invitation_path(user_id: user.id) , method: :put,  :remote => true, title: "Resend Invitation"  do %>
+               <span class="glyphicon glyphicon-retweet">
+         <% end %>
+        <%end%>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+
+<!-- Modal -->
+<div id="inviteUserModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Invite Beta User</h4>
+      </div>
+      <%= form_for(User.new, :url => admin_invite_path, :remote => true, :html=>{:class => "form"}) do |f|%>
+          <div class="modal-body">
+              <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user mycolor"></i></span>
+                  <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name", :required => true %>
+              </div>
+              <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
+                  <%= f.email_field :email, class: "form-control", placeholder: "Email", :required => true %>                  
+              </div>
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag 'Save', class: "btn btn-primary"%>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.users').DataTable({});
+    $("form#new_user").on('ajax:success', function(event, data, status, xhr) {
+      // use data to access to your json data structure
+      alert("Invitation email has been sent to the user.");
+      $('#inviteUserModal').modal('hide');
+      window.location.reload();
+    });
+
+    $("form#new_user").on('ajax:error', function(event, xhr, status, error) {
+      alert(xhr.responseText)
+    });
+
+    $('#inviteUserModal').on('shown.bs.modal', function() {
+        $("#user_name,#user_email").val("")
+    })
+
+
+  })
+  
+</script>

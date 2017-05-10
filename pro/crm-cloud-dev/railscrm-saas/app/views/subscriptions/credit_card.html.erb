@@ -1,0 +1,64 @@
+<div class="purchase-loader-div">
+  <div class="purchase-loader">
+   <%=image_tag "ajax-loader2.gif"%>
+  </div>
+</div>
+<div style="padding-top: 22px;padding-left: 35px;" class="top-list-bar white-sticky-header fixed-in-app-header">
+  <span style="margin-top:5px">
+    <span class="navigation_sec">
+     <%=link_to "Subscription", "/users/subscription"%>
+    </span>
+  </span>
+</div>
+<div class="padrht payment-page cstm-material-modal cmn_bdr_shadow credit-card-popup" style="margin:20px;">
+  <div class="plan_page">
+      <h4 class="bill_his fl">Your Credit Card Details</h4>
+      <div class="fr">
+        <%=link_to users_edit_credit_card_path, :class => "btn btn_cmn_efect cmn_bg btn-info cmn_size" do %>
+          Edit card info
+        <% end %>
+      </div>
+      <div class="cb"></div>
+    </div>
+    <table class="table table-striped ccard_det">
+      <tbody>
+        <tr>
+          <td>
+              <label>Name on Card</label>
+              <span><%=@creditcard.cardholder_name%></span>
+          </td>
+          <td>
+              <label>Credit Card Number</label>
+              <span><%=@creditcard.masked_number%></span>
+          </td>
+          <td>
+              <label>Expiration Date</label>
+              <span><%=@creditcard.expiration_date%></span>
+          </td>
+          <td>
+              <label>Street Address</label>
+              <span><%=@creditcard.billing_address.street_address%></span>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                <label>City</label>
+                <span><%=@creditcard.billing_address.locality%></span>
+            </td>
+            <td>
+                <label>State</label>
+                <span><%=@creditcard.billing_address.region%></span>
+            </td>
+            <td>
+                <label>Country</label>
+                <span><%=@creditcard.billing_address.country_name%></span>
+            </td>
+            <td>
+                <label>ZIP Code</label>
+                <span><%=@creditcard.billing_address.postal_code%></span>
+            </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+</div>

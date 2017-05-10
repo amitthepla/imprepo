@@ -1,0 +1,12 @@
+#S3 buckets configs
+#production environment S3 buckets
+production:
+  bucket: auto-writer
+  access_key_id: AKIAJYNZK4HDSSQ75QSA
+  secret_access_key: 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
+#development environment S3 buckets
+development:
+  bucket: auto-writer
+  access_key_id: AKIAJYNZK4HDSSQ75QSA
+  secret_access_key: 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
+#test environment S3 buckets

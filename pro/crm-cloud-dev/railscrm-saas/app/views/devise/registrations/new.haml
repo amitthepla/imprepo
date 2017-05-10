@@ -1,0 +1,85 @@
+= stylesheet_link_tag "home"
+.row.contact_row.signup-page
+  .col-md-12.pad-0
+    .col-md-4.pad-0
+      .sl-testimonial{title: "CRM Tool Testimonial"}
+        %a{href: "/"}
+          %span.w-logo
+    .col-md-8
+      .wrapper 
+        .top-btn-row
+          %small
+            Already a Wakeupsales member?
+          %a.sign_in_cta{href: "/users/sign-in"}
+            Sign In
+        %h1.text-center Signing Up for the World's Easiest CRM Tool, is even Easier...
+        %p.sub-hd Streamline your sales activities & create powerful customer relationships, with this simple & easy-to-use CRM tool. Features to suit everyone's needs, whole new UI & some exciting Integrations to choose from.
+
+        #login-alert.alert.alert-danger.col-sm-12{:style => "display:none"}
+        - @user = User.new
+        = form_for @user, :url => save_user_path, :html=>{:class => "form signup-form"} do |f|
+          = f.email_field :email, :required => true, :class=>"form-control email-c-name", :placeholder=>"Email"
+          = f.text_field "organization_name", :class => "form-control email-c-name", :required => true, :placeholder => "Company Name"
+          = f.submit "Sign up for free", :disable_with => "Submitting....", :onclick=> "return chk_validemail('beta_request_email');track_signup();"
+        %div{:style => "text-align:center;margin: 10px;"} - OR -
+        .social_media_sign_up
+          %p
+            You can also signup with 
+          %input.vi-google-signup{:onclick => "social_authenticate('/auth/google_oauth2')", :title => "Sign in using Google Account", :type => "button"}
+          %input.vi-linkedin-signup{:onclick => "social_authenticate('/auth/linkedin')", :title => "Sign in using Linkedin Account", :type => "button"}
+          %div
+            %strong
+              By signing up, You accept our
+              %small
+                %a{href: "/terms"}
+                  Terms of Service
+            %strong
+              and
+              %small
+                %a{href: "/privacy"}
+                  Privacy Policy
+        /%h6
+        /  Pricing plan starts from $0&nbsp;&nbsp;|&nbsp;&nbsp;Lifetime access with 20 Users
+
+    .cb
+    %section.strip
+      .wrapper
+        %p Get the best out of your WakeUpSales CRM.
+        = link_to "/integration", target: "_blank" do
+          Check out the Integrations
+          %i.fa.fa-arrow-circle-right{"aria-hidden" => "true"}
+    %div.ft-gray-trip
+      .fl
+        %span
+          &#169;
+          = Time.now.strftime("%Y")
+          Wakeupsales
+        %span
+          |
+        %span
+          =link_to "Terms of Service", "/terms"          
+        %span
+          |
+        %span
+          =link_to "Privacy Policy", "/privacy"          
+        /%span
+        /  |
+        /%span
+        /  Site map
+      .fr
+        %span
+          Wakeupsales is a Web-based Sales CRM.
+      .cb
+
+
+
+:javascript
+  $(document).ready(function() {
+    $('#feature').click(function(){
+      window.location.href="/#features";
+    });
+  });
+  $(document).ready(function() {
+    var wh=$(window).height(); 
+    $('.sl-testimonial').height(wh);
+  });

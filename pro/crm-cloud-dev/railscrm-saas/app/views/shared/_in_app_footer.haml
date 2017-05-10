@@ -1,0 +1,54 @@
+.footer-after-login
+  .col-md-3.padrht
+    %p 
+      Using 3.21 Mb of storage | Hours Spent: 0
+  .col-md-2.text-center
+    %b Need Help?
+    %a{href: "https://www.wakeupsales.com/contact-us", target: "_blank"}
+      Click here!
+  .col-md-2.text-center
+    %a{"data-toggle" => "modal", href: "#feedbackModal",rel: "tooltip", title: "Send feedback"} 
+      %span Feedback
+    / %a{href: "mailto:support@wakeupsales.org", target: "_top", title: "Send feedback"}
+    /   %span.cwkp-sprite.top-arrow.feedback
+    /   %span
+    /     support@wakeupsales.org
+  - if @current_organization.present?
+    .col-md-5.text-right{:style => "padding:0;right:15px;"}
+      %p 
+        Last activity |
+        - org_activities = @current_organization.activities
+        - if (act = org_activities.where("activity_by IS NOT NULL")).present?
+          - user = User.where("id =?",act.last.activity_by).first
+          %b
+            = user.full_name.present? ? user.full_name : user.email.split("@")[0]
+          |
+        %b 
+          = @current_organization.name.truncate(15)
+        
+        
+        - if org_activities.present? && dt = org_activities.last.created_at
+          - today = Time.zone.now.strftime('%Y-%m-%d')
+          - yesterday = (Time.zone.now - (24 * 60 * 60)).strftime('%Y-%m-%d')
+          - day_before_yesterday = (Time.zone.now - (48 * 60 * 60)).strftime('%Y-%m-%d')
+          |
+          %span{:id => "activityHead"} 
+            %b
+              - if (Date.today.to_s == DateTime.parse(dt.to_s).strftime('%Y-%m-%d').to_s)
+                Today
+                &#45;
+                = DateTime.parse(dt.to_s).strftime('%H:%M %p').to_s
+              - else
+                - if (yesterday.to_s == DateTime.parse(dt.to_s).strftime('%Y-%m-%d').to_s)
+                  Yesterday
+                  &#45;
+                  = DateTime.parse(dt.to_s).strftime('%H:%M %p').to_s
+                - else
+                  - if (yesterday.to_s == DateTime.parse(dt.to_s).strftime('%Y-%m-%d').to_s)
+                    Yesterday
+                    &#45;
+                    = DateTime.parse(dt.to_s).strftime('%H:%M %p').to_s
+                  - else
+                    = dt.strftime("%b %d, %Y %H:%M %p")
+  .cb
+= render partial: "shared/feedback_modal"

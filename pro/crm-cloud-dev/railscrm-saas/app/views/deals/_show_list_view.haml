@@ -1,0 +1,343 @@
+.list_view
+  .col-md-12
+    #alert-msg.alert.fade.in.alert-danger{style: "display:none;"}
+      %button.close{onclick: "$('#alert-msg').hide();$('task_loader,.fixed_loader').hide();"} x
+      #msg_div
+    #filter_msgdeals.col-md-offset-0{style: "text-align: center;display:none"}
+    =hidden_field_tag "individual_filter_present", @filter_msg.present?
+    - if @filter_msg.present?
+      #individual_filter_msg.col-md-offset-0{style: "text-align: center"}
+        =@filter_msg.html_safe
+        =link_to "RESET", "/leads", class: "btn btn-xs btn-warning"
+    
+    
+    .tablisting.task_tab
+      .top-list-bar.white-sticky-header.fixed-in-app-header
+        .lead-stage  
+          %ul
+            - if params[ :type] == "inactive_deals"
+              %li#inactive_deals.active
+                %a{"data-toggle" => "tab", href: "#junk_deals",onclick: "get_deals('inactive_deals');" , id: "inactive_dealsDeals"} 
+                  %span.badge#badge_junk
+                    = attention_deals_count
+                  Leads need attention
+            -else
+              %li#all_tab
+                %span{onclick: "get_deals('all');", id: "allDeals"}
+                  All
+                  %span#badge_all.badge_count
+              = hidden_field_tag "hdn_tab",""
+              = hidden_field_tag "hdn_tab_name",""
+              - if !@current_user.deal_setting.nil?
+                / # - @current_user.deal_setting.tabs.split(',').each do |ds_id|
+                - DealStatus.where("id IN (?)",@current_user.deal_setting.tabs.split(',')).order('original_id asc').each do |ds_id|
+                  - if (deal_status = DealStatus.get_deal_name(ds_id,@current_user.organization.id)).present?
+                    - if deal_status.is_visible && deal_status.is_active
+                      - ds_tab = deal_status.name.downcase.gsub(' ','_')
+                      %li
+                        %a{"data-toggle" => "tab", href: "#{ds_tab}_deals",onclick: "$('#hdn_tab').val('#{deal_status.id}');$('#hdn_tab_name').val('#{ds_tab}');get_deals('#{ds_tab}','#{deal_status.id}');", id: "#{ds_tab}Deals", value: deal_status.id}
+                          = deal_status.name
+                          %span.badge_count{id: "badge_#{ds_tab}"}
+            / - deal_statuses = @current_organization.deal_statuses.where({is_active: true, is_visible: true}).order("original_id")
+            / - deal_count = deal_statuses.count
+            / - deal_tab_per = (100/deal_count)
+            / - i = 0
+            / - deal_statuses.each do |deal_status|
+            /   - tab_color = deal_status.color.present? ? deal_status.color :  DealsHelper::COLORS[i]
+            /   - total_deals = @current_organization.deals.where("deal_status_id=? AND is_active = ?",deal_status.id, true).count
+            /   - i += 1
+            /   - ds_tab = deal_status.name.downcase.gsub(' ','_')
+            /   %li{:id => "#{ds_tab}_tab",:title => deal_status.name, 'data-id' => deal_status.id, :class => "stage_#{deal_status.id}", :onclick => "get_deals('#{ds_tab}','#{deal_status.id}');"}
+            /     %div  
+            /       = deal_status.name
+            /       %span.badge_count{id: "badge_#{ds_tab}"}
+            /         /= "(#{total_deals})"
+            %li.add
+              %a{"data-toggle" => "modal", href: "#dealsettingModal", rel: "popup", title: "Tab Settings"}
+                %div.add-stage +
+        
+
+        .navbar-right
+          %span#hide_main
+            .btn-group    
+              .dropdown-toggle.f_menu{"data-toggle" => "dropdown", type: "button",onclick: "reser_all_submenu();"}
+                %span.cwkp-sprite.filter
+              %ul.dropdown-menu.main_menu{role: "menu", style: "top: 26px"}
+                %li.arrow_top{style: "left:80%;z-index:99"}
+                %li.dropdown-submenu{:style => "position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown",onclick: "display_hide_submenu('created');"} Created By
+                  #cr.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.cre_arw{style: "display:none;"}
+                    %ul#cre_by_app.dropdown-menu{style: "height:200px;overflow-y:scroll;overflow-x:hidden;display:inline-block;margin-right:-8px;"}
+                      - all_org_users.each do |cre_by|
+                        %li
+                          %a{href: "#",onclick: "chk_radio_button(#{cre_by.id},'created')",class: "filterSelectDropdow"}
+                            %input{id:"cre_by_#{cre_by.id}", class: "cre_by_c",type: "checkbox", value: "#{cre_by.id}",c_name: "#{cre_by.full_name.present? ? cre_by.full_name : cre_by.email.split('@')[0]}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "created_by"}
+                              =cre_by.full_name.present? ? cre_by.full_name : cre_by.email.split("@")[0]
+                        %li.divider
+
+                %li.divider
+
+                %li.dropdown-submenu{:style => "position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown",onclick: "display_hide_submenu('assigned');"} Assigned To
+                  #asg.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.asg_arw{style: "display:none;"}
+                    %ul.dropdown-menu{style: "height:200px;overflow-y:scroll;overflow-x:hidden;display:inline-block;position:relative;margin-right:-8px;"}
+                      - select_all_org_users.each do |assg_by|
+                        %li
+                          - assg_by.is_active == false ? sty = "background-color:#f0f0f0;" : sty = ""
+                          %a{href: "javascript:void(0)",onclick: "chk_radio_button(#{assg_by.id},'assigned')",class: "filterSelectDropdow", style:sty}
+                            %input{id:"assg_by_#{assg_by.id}", class: "asg_by_c",type: "checkbox", value: "#{assg_by.id}",a_name: "#{assg_by.full_name.present? ? assg_by.full_name : assg_by.email.split('@')[0]}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "assg_by"}
+                              =assg_by.full_name.present? ? assg_by.full_name : assg_by.email.split("@")[0]
+                        %li.divider
+                %li.divider
+
+                %li.dropdown-submenu{:style => "position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown",onclick: "display_hide_submenu('location');"} Location
+                  #lo.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.loc_arw{style: "display:none;"}
+                    %ul.dropdown-menu.col-md-3{style: "height:200px;overflow-y:scroll;overflow-x:hidden;display:inline-block;margin-right:-8px;"}
+                      - Country.all.each do |cn|
+                        %li
+                          %a{href: "javascript:void(0)",onclick: "chk_radio_button(#{cn.id},'loc')",class: "filterSelectDropdow"}
+                            %input{id:"country_#{cn.id}", class: "country_c",type: "checkbox", value: "#{cn.id}",coun_name: "#{cn.name}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "coun"}
+                            =cn.name
+                        %li.divider
+                %li.divider
+                %li.dropdown-submenu{onclick: "display_hide_submenu('priority');", :style=>"position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown"} Priority
+                  #pr.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.pri_arw{style: "display:none;"}
+                    %ul.dropdown-menu{style: "display:inline-block;position:relative;margin-right: -8px;"}
+                      -@current_user.organization.priority_types.each do |pri|
+                        %li
+                          %a{href: "javascript:void(0)",onclick: "chk_radio_button(#{pri.id},'priority')",class: "filterSelectDropdow"}  
+                            %input{id:"priority_#{pri.id}", class: "priority_c",type: "checkbox", value: "#{pri.id}",prio_name: "#{pri.name}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "prio"}
+                            =pri.name
+                        %li.divider
+                %li.divider
+                %li.dropdown-submenu{onclick: "display_hide_submenu('next');", :style => "position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown"} Next Action
+                  #nex.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.next_arw{style: "display:none;"}
+                    %ul.dropdown-menu{style: "display:inline-block;position:relative;margin-right: -8px;"}
+                      -@current_user.organization.task_types.each do |ty|
+                        %li
+                          %a{href: "javascript:void(0)",onclick: "chk_radio_button(#{ty.id},'next')",class: "filterSelectDropdow"}  
+                            %input{id:"next_#{ty.id}", class: "next_c",type: "checkbox", value: "#{ty.id}",next_name: "#{ty.name}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "next"}
+                            =ty.name
+                        %li.divider
+                %li.divider
+                %li
+                  %a{name: "li_opportunity" ,class: "filterSelectDropdow", href: "javascript:void(0)", onclick: "hide_sec_menu()"} Opportunities
+                %li.divider
+                %li.dropdown-submenu{onclick: "display_hide_submenu('anytime');", :style=>"position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown"} Anytime
+                  #any.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.any_arw{style: "display:none;"}
+                    %ul.dropdown-menu{style: "display:inline-block;position:relative;margin-right: -8px;"}
+                      %li
+                        %a{href: "javascript:void(0)",onclick: "chk_radio_button('past_week','any')",class: "filterSelectDropdow"}  
+                          %input{id:"past_week", class: "any_time",type: "radio", value: "Past Week",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "anytime"}
+                          Past Week
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0)",onclick: "chk_radio_button('past_two_weeks','any')",class: "filterSelectDropdow"}  
+                          %input{id:"past_two_weeks", class: "any_time",type: "radio", value: "Past Two Weeks",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "anytime"}
+                          Past Two Weeks
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0)",onclick: "chk_radio_button('past_three_weeks','any')",class: "filterSelectDropdow"}  
+                          %input{id:"past_three_weeks", class: "any_time",type: "radio", value: "Past Three Weeks",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "anytime"}
+                          Past Three Weeks
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0)",onclick: "chk_radio_button('past_month','any')",class: "filterSelectDropdow"}  
+                          %input{id:"past_month", class: "any_time",type: "radio", value: "Past Month",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "anytime"}
+                          Past Month
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0)",onclick: "chk_radio_button('past_year','any')",class: "filterSelectDropdow"}  
+                          %input{id:"past_year", class: "any_time",type: "radio", value: "Past Year",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "anytime"}
+                          Past Year
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0)",onclick: "chk_radio_button('cu_date','any')",class: "filterSelectDropdow"} 
+                          %input{id:"cu_date", class: "any_time",type: "radio", value: "Custom Date",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "anytime"}
+                          Custom Date
+                      %li#custom_date{style: "display:none;margin:4px;"}
+                        =text_field_tag "deal_from","",value: "",class: "form-control typeahead",placeholder: "From"
+                        .cb10
+                        =text_field_tag "deal_to","",value: "",class: "form-control typeahead",placeholder: "To"
+                        .cb10
+                        %button.btn.btn-primary{class: "filterSelectDropdow",type: "button",rel: "tooltip", title: "Filter" } 
+                          Search
+
+                %li.divider
+                %li.dropdown-submenu{onclick: "display_hide_submenu('last');", :style=>"position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown"} Last Touch
+                  #lat.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.lst_arw{style: "display:none;"}
+                    %ul.dropdown-menu{style: "display:inline-block;position:relative;margin-right: -8px;"}
+                      /-if current_user.deal_setting
+                      - @current_organization.deal_statuses.where({is_active: true, is_visible: true}).each do |deal_status|
+                        /- deal_status = DealStatus.get_deal_name(ds_id,current_user.organization.id)
+                        %li
+                          %a{href: "javascript:void(0)",onclick: "chk_radio_button(#{deal_status.id},'stage')",class: "filterSelectDropdow"}  
+                            %input{id:"stage_#{deal_status.id}", class: "stage_c",type: "checkbox", value: "#{deal_status.id}",stage_name: "#{deal_status.name}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "stage"}
+                            =deal_status.name
+                        %li.divider
+                %li.divider
+                %li.dropdown-submenu{onclick: "display_hide_submenu('user_label');",:id=>"li_user_label", :style=>"position: relative;"}
+                  %a{href: "javascript:void(0)","data-toggle"=>"dropdown"} User Label
+                  #lbl.sec_mnu{style: "display: none;position: absolute;left: initial;top: -11px;display: block;right: 148px;"}
+                    .arrow_left.lead_arrow.lbl_arw
+                    %ul.dropdown-menu{style: "display:inline-block;position:relative;margin-right: -8px;"}
+                      - UserLabel.all.each do |label|
+                        %li
+                          %a{href: "javascript:void(0)",onclick: "chk_radio_button(#{label.id},'user_label')",class: "filterSelectDropdow"}  
+                            %input{id:"user_label_#{label.id}", class: "user_label_c",type: "checkbox", value: "#{label.id}",user_label_name: "#{label.name}",style: "cursor:pointer;margin-top: 0;vertical-align: middle;",name: "userLabel"}
+                            =label.name
+                        %li.divider
+                
+          / %a#additional_links{"data-toggle" => "modal", href: "#dealModal", onclick: "$('#new_deal')[0].reset();$('.error').html('');", style: "text-decoration:none;"}
+          /   %span.p5{type: "button",rel: "tooltip", title: "Add a Lead" }
+          /     %span.cwkp-sprite.add-a-lead
+          %a#additional_links{"data-toggle" => "modal", href: "#BulkLeadModal", rel: "popup", title: "Bulk lead upload"}
+            %span.cwkp-sprite.bulk-lead-upload{type: "button",rel: "tooltip", title: "Bulk Lead Upload" } 
+          %a#leads_export_btn{"data-toggle" => "modal", href: leads_path(format: "csv"), style: "text-decoration:none;"}
+            %span.p5{type: "button",rel: "tooltip", title: "Export to CSV" }
+              %span.cwkp-sprite.export-to-csv
+          %a{href: "javascript:void(0)", onclick: "show_kanban_view();highlight_kanban()", title: "Show Kanban view"}
+            .link_to_kanban_view.fr.cwkp-sprite
+          / %a{href: "javascript:void(0)", onclick: "show_funnel_chart();", title: "Show funnel chart"}
+          /   .link_to_list_view.fr.glyphicon.glyphicon-stats{style: "font-size: 21px;margin: 0 0 0 20px;"}
+      #filter_options.filter_box{style: "display:none"}
+        .col-md-12.deal_filter
+          .row
+            .col-md-2
+              =select_tag "filter_created_by", options_from_collection_for_select(all_org_users, "id", "full_name"), :class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Created by -"
+            .col-md-2
+              =select_tag "filter_assigned_to", options_from_collection_for_select(all_org_users, "id", "full_name"), :class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Assigned to -"
+            .col-md-2
+              =select_tag "filter_location", options_from_collection_for_select(Country.all, "id", "name"),:class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Location -"
+            .col-md-2
+              =select_tag "filter_priority", options_from_collection_for_select(@current_user.organization.priority_types, "id", "name"),:class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Priority -"
+            .col-md-2
+              = select_tag "filter_date", options_for_select(["Past Week","Past Two Weeks","Past Three Weeks", "Past Month", "Past Year"]),:class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Any time -"
+            .col-md-2
+              = select_tag "filter_last_touch", options_for_select(["Last Week","Last Two Weeks","Last Three Weeks","Last Month","Last Three Months"]),:class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Last touch -"
+            .col-md-2
+              = select_tag "filter_stage", options_from_collection_for_select(current_user.organization.deal_statuses,"original_id", "name"),:class=>"col-md-12 form-control filterSelectDropdow", :prompt => "- Any Stage -"
+      .cb
+      %ul.tag_filter{style: "margin-left:0px;text-align:center;display:none;margin-bottom:15px;"}
+        %li#show_filter_dealmsg
+        %li.created_by_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#created_by_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('created_by','cre_by_c');"} x
+        %li.assigned_to_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#assigned_to_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('assigned_to','asg_by_c');"} x
+        %li.location_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#location_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('location','country_c');"} x
+        %li.priority_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#priority_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('priority','priority_c');"} x
+        %li.next_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#next_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('next','next_c');"} x
+        %li.date_range_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#from_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('date_range','any_time');"} x          
+        %li.last_touch_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#last_touch_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('last_touch','lst_tch');"} x      
+        %li.date_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#date_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('date','any_time');"} x          
+        %li.opportunity_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#opportunity_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('opportunity','opportunity');"} x
+        %li.label_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#label_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('label_type','label_type');"} x
+        %li.deal_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#deal_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('tag','tag');"} x
+        %li.stage_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#stage_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('stage','stage_c');"} x
+        %li.user_label_tag.com_cls{style: "display: none;"}
+          .tag_dd
+            %span#user_label_tag_txt
+            %a.filter_tag_deal{href: "javascript:void(0);", onclick: "reset_deal_filter('user_label','user_label_c');"} x  
+        %li.reset_tag.com_cls
+          %div{:style => "margin-top: -15px;position: absolute;"}
+            %a{href: "javascript:void(0);", onclick: "reset_all_deal_filter();reset_filter_val();", class: "btn btn-xs btn-warning"} RESET
+      .tab-content
+        =hidden_field_tag "all_div_val","1"
+        -if current_user.deal_setting
+          - @current_user.deal_setting.tabs.split(",").each do |ds_id|
+            - if (deal_status = DealStatus.get_deal_name(ds_id,@current_user.organization.id)).present?
+              - ds_tab = deal_status.name.downcase.gsub(' ','_')
+              =hidden_field_tag ds_tab + "_div_val","0"
+        =hidden_field_tag "filter_get_val","0"
+        =hidden_field_tag 'hdndeals', 'mydeals'
+        =hidden_field_tag 'opp'
+        - if params[:type] == "inactive_deals"
+          #inactive_deals_content.w-box.tab-pane.in.active
+        - else
+          #all_deals.w-box.tab-pane.in.active          
+          #working_deals.w-box.tab-pane.in
+          #un_assigned_deals.w-box.tab-pane.in
+          -if(!@current_user.deal_setting.nil?)
+            - @current_user.deal_setting.tabs.split(",").each do |ds_id|
+              - deal_status = DealStatus.get_deal_name(ds_id,@current_user.organization.id)
+              - if deal_status.present?
+                %div{:id => deal_status.name.downcase.gsub(' ','_') + "_deals", :class=> "w-box tab-pane in"}
+      .cb
+    
+
+
+  =hidden_field_tag "deal_quarter"
+  =hidden_field_tag "deal_year"
+  = render :partial => "tab_settings"
+  = render :partial => "shared/label"
+  = render :partial => "shared/move_deal"
+  = render :partial => "deals/change_assignee"
+  = render :partial => "deals/confirm_deal_delete"
+  #quickeditModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "quickeditModal", role: "dialog", tabindex: "-1"}
+    .modal-dialog.cstm-material-modal
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", type: "button", "data-dismiss" => "modal"} ×
+          %h4.modal-title Edit Lead
+        .modal-body
+          #deal_content{style: "margin-left: 12px;"}
+
+:javascript
+  $(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+  }); 
+  function highlight_kanban(){
+    $("#leads").removeClass("activ_menu");
+    $("#leads_kanban_view").addClass("activ_menu");
+    $("#leads_kanban_view .kanban_view").css({"background-position":"-115px -169px","color":"#000"});
+  }
+  
+  function hide_sec_menu(){
+    $(".sec_mnu").hide();
+  }

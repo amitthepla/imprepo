@@ -1,0 +1,11 @@
+= hidden_field_tag "hdn_active_user_ids"
+= hidden_field_tag "hdn_inactive_user_ids"
+#userActiveDeactiveModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "assignLeadModal", role: "dialog", tabindex: "-1"}
+  .modal-dialog.cstm-material-modal{:style => "width: 1050px;"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", type: "button", "data-dismiss" => "modal"} ×
+        %h4.modal-title{style:"margin-left:5px"} Activate/ Deactive User(s)
+      .modal-body
+        #users_dual_list_content
+

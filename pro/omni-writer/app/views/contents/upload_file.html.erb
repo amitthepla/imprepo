@@ -1,0 +1,119 @@
+<!-- <span>List of projects</span>
+<div id="tab" class="btn-group" data-toggle="buttons-radio">
+  <%# @projects.each do |p|%>
+    <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab" onclick="fetch_templates('<%#=p.slug%>')"><%#=p.name%></a>
+  <%#end%>
+</div>
+<br/> -->
+
+ <%#= select_tag "", @projects.collect {|c| [ c.name, c.slug ]}, {:include_blank => '- Select Project -'},:class=>"col-md-12 form-control" %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <h3>Select project and template</h3>
+        <div>
+		  <%if @projects.present?%>
+			<%=select_tag "project", options_from_collection_for_select(@projects, "slug", "name"), class: 'form-control select-width', prompt: "- Select Project -"%>
+		  <%end%>
+        </div>
+        <br/>
+        <div id="templates-div"></div>
+      </div>
+      <div class="col-sm-6 csv-div">
+        <h3>Upload csv <span class="sp12">(<%=link_to "Download sample csv", "/sample_csv.csv"%>)</span></h3>
+        <div>
+          <%= form_tag '/upload', multipart: true do %>
+            <%=hidden_field_tag "project_slug"%>
+            <%=hidden_field_tag "template_slug"%>
+            <p>
+              <%= file_field_tag "file", :class => "btn btn-primary", :id => "file-select" %>
+            </p>
+            <p>
+              <%= submit_tag "Run", class: "btn btn-primary", id: "run-btn", disabled: true %>
+            </p>
+            <!-- <div style="clear:both;"></div> -->
+          <% end %>
+        </div>
+        <!-- <div><button type="button" class="btn btn-primary">Run</button></div> -->
+      </div>
+    </div>
+  </div>
+  <% if params[:content].present?%>
+    <div class="row">
+      <div class="col-sm-12" id="content-div">
+        <div class="fr">
+          <%= link_to "Download", download_path(:format => "csv", :records => params[:records].join(",")), class: "btn btn-primary" %>
+        </div> 
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Sl No</th>
+              <th>Content</th>
+              <!-- <th>Downloaded</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <%if @contents.present?%>
+              <%i=0%>
+              <%@contents.each do |cnt| %>
+                <tr>
+                  <td><%= i+=1 %></td>
+                  <td><%= cnt.content %></td>
+                  <!-- <td><%#= cnt.is_downloaded ? "Yes" : "No" %></td> -->
+                </tr>
+              <%end%>
+            <% else %>
+              <tr>
+                <td>Not available</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>        
+      </div>
+    </div>
+  <%end%>
+</div>
+
+<script>
+$(function(){
+  // $(window).load(function() {
+  //   window.location.href.replace(window.location.href.split("?")[1], '')
+  // });  
+ $("#project").change(function(){
+  // if($("#file-select").val() != 'undefined' && $("#file-select").val() != '' && ($("#project_templates").find(":selected").val() != 'undefined' && $("#project_templates").find(":selected").val() != '')){
+  //   $('#run-btn').removeAttr('disabled');
+  // }
+  
+   $('#project_slug').val(this.value);   
+   $.ajax({
+    type: "GET",
+    url: "fetch_templates",
+    dataType: 'json',
+    data: {slug: this.value},
+    beforeSend: function(){     
+      $("#ajax-loader").show();
+      $("#page-overlay").show();
+    },
+    success: function(data)
+    {
+     //alert("success")
+    },
+    error: function(data) {          
+    },
+    complete: function(data) {
+      $("#content-div").hide();
+      $("#page-overlay").hide();
+      $("#templates-div").html(data.responseText);
+      $("#ajax-loader").hide();
+    }
+    });
+ });
+ $("#file-select").change(function(){
+    $('#run-btn').removeAttr('disabled');
+    // if(($("#project").find(":selected").val() != 'undefined' && $("#project").find(":selected").val() != '') && ($("#project_templates").find(":selected").val() != 'undefined' && $("#project_templates").find(":selected").val() != '')){
+    //   $('#run-btn').removeAttr('disabled');
+    // }
+  });
+});
+</script> 

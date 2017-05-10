@@ -1,0 +1,65 @@
+.white-sticky-header.fixed-in-app-header{style: "padding-top: 22px;padding-left: 33px;"}
+  %span{style: "margin-top:5px"}  
+    %span.navigation_sec
+      %a{href: community_plugins_path}
+        Plugins
+      ="/"
+    %span.curr_page_name
+      = @community_plugin.name
+
+.plugins_details.con-box1
+  .edit_plugin
+    %a.fa.fa-edit{href: edit_community_plugin_path(@community_plugin)} 
+  %p#notice= notice
+  %table
+    %tr 
+      %th Name
+      %td 
+        = ':'
+        = @community_plugin.name
+    %tr 
+      %th Price
+      %td 
+        = ':'
+        = @community_plugin.price
+    %tr 
+      %th Description
+      %td 
+        = ':'
+        = @community_plugin.description
+    %tr 
+      %th Unique
+      %td 
+        = ':'
+        = @community_plugin.unique_id
+    %tr 
+      %th Is active
+      %td 
+        = ':'
+        = @community_plugin.is_active
+    %tr 
+      %th Is plugin
+      %td 
+        = ':'
+        = @community_plugin.is_plugin        
+
+.purchase_details
+  %table#purchase_listing.table.table-striped.table-bordered.dt-responsive.nowrap{:cellspacing => "0", :width => "100%"}
+    %thead  
+      %tr
+        %th Name
+        %th Email
+        %th Location
+        %th Download Date
+        %th Download Count
+    %tbody
+      - @community_plugin.plugin_transactions.order("download_date desc").each do |plugin_transaction|
+        %tr
+          %td= plugin_transaction.name.present? ? plugin_transaction.name : ""
+          %td= plugin_transaction.email.present? ? plugin_transaction.email : ""
+          %td= plugin_transaction.location.present? ? plugin_transaction.location : ""
+          %td= plugin_transaction.download_date.present? ? plugin_transaction.download_date.strftime("%m-%d-%Y") : ""
+          %td= plugin_transaction.download_count.present? ? plugin_transaction.download_count : "" 
+  
+:javascript
+  $("#purchase_listing").dataTable();

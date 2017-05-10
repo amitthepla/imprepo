@@ -1,0 +1,155 @@
+:css
+  #my_alert_msg ul li{list-style-type: none}
+  .con-box1 { min-height: 700px; }
+%script{src: "assets/jquery.tagsinput.min.js"}
+.container
+  .white-sticky-header.fixed-in-app-header{style: "padding-top: 22px;padding-left: 33px;"}
+    %span{style: "margin-top:5px"}  
+      %span.navigation_sec
+        %a{href: "/leads"}
+          Leads
+        ="/"
+      %span.curr_page_name
+        Settings
+  .col-md-12
+    .con-box1.p0
+      .col-md-2.p0.style_bod
+        .mtop30{style: "padding-left:15px"}
+          %h4 Settings
+        %hr
+        .p0
+          %ul.nav.settings-navleft.nav-sidebar
+            %li.hd_active
+              %a{ href: "javascript:void(0)"}Public
+
+            %li.c_acn#li_lead_stages
+              %a{ href: "javascript:void(0)", :onclick=>"display_section('lead_stages')"} Lead Stages
+
+            %li.c_acn#li_sns
+              %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('tasks_type')"} Task Type
+
+            / %li.c_acn#li_sns
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('sns')"} SNS Medias
+
+            / %li.c_acn#li_widgets
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('widgets')"} Widgets
+          %ul.nav.settings-navleft.nav-sidebar
+            %li.hd_active
+              %a{ href: "javascript:void(0)"}Personal
+
+            / %li.c_acn#li_profile
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('profile')"} Profile
+
+            / %li.c_acn#li_chart
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('chart')"} Charts
+            - if user_signed_in? && @current_user.is_super_admin?
+
+              %li.c_acn#li_group
+                %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('group')", class: "mygroups"} Groups
+          %ul.nav.settings-navleft.nav-sidebar
+            %li.hd_active
+              %a{ href: "javascript:void(0)"}Account
+            - if current_user.is_admin?  || current_user.is_super_admin?
+
+              %li.c_acn#li_org
+                %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('org')"} Organization
+              %li.c_acn#li_priority
+                %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('priority')"} Priority
+              / %li.c_acn#li_admin
+              /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('admin')"} Admin
+              / %li.c_acn#li_report
+              /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('report')"} Report
+              / %li.c_acn#li_send_weekly_email
+              /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('send_weekly_email')"} Send Weekly Email
+              /%li.c_acn#li_deal
+              /  %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('deal')"} Deal Status
+
+            / %li.c_acn#li_user_label
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('user_label')", class: "mylabels"} Label
+
+
+            / %li.c_acn#li_api_token
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('api_token')"} API Token
+            / %li.c_acn#li_weekly_digest
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('weekly_digest')"} Weekly Digest     
+
+                       
+            %li.c_acn#li_task_outcome
+              %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('task_outcome')"} Task Outcomes
+            / %li.c_acn#li_api_integration
+            /   %a{ href: "javascript:void(0)", :onclick=>"display_sectionajax('api_integration')"} Api Integration
+
+        .cb10
+      .col-md-10
+        - if user_signed_in?
+          #lead_stages
+            = render :partial=> "lead_stages"
+          #tasks_type{:style=>"display:none"}
+          #sns{:style=>"display:none"}
+          #widgets{:style=>"display:none"}
+          /#group{:style=>"display:none"}
+          /  = render :partial=> "groups"
+          #chart{:style=>"display:none"}
+          - if current_user.is_super_admin?
+            #group{:style=>"display:none"}
+            #org{:style=>"display:none"}
+            #priority{:style=>"display:none"}
+            #task_outcome{:style=>"display:none"}
+          #api_integration{:style=>"display:none"}
+          #deal{:style=>"display:none"}
+          #user_label{:style=>"display:none"}
+          #email_notification{:style=>"display:none"}
+          #api_token{:style=>"display:none"}
+          #weekly_digest{:style=>"display:none"}
+      .cb
+
+:javascript
+  function display_section(tab){
+   //alert($('.col-md-10').find('.active').html());
+   $('.col-md-10').find('.active').css('display','none');
+   $('.c_acn').removeClass('active');
+   $('#li_'+tab).addClass('active');
+   $('#'+tab).addClass('active').css('display','block');
+  }
+  function display_sectionajax(tab){
+    $("#task_loader,.fixed_loader").show();
+    $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      type: "POST",
+      url: "settings/fetch_pages",
+      data: {tab:tab},
+      success: function(data){ 
+        $('#'+tab).html(data);  
+        display_section(tab);
+        $("#task_loader,.fixed_loader").hide();
+       },
+      error: function(data){
+        alert('got an error');
+      }
+    });  
+  }
+  $(function() { 
+   var settings = window.location.hash.replace("javascript:void(0)","")
+   if(window.location.hash == "")
+     display_section('lead_stages')
+   else
+     display_section(settings)
+  });
+
+  // function save_feeds_org(){
+  //   var feed = $('#tags_feed_keywords_settings').val();
+  //   $.ajax({
+  //     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+  //     type: "POST",
+  //     url: "settings/update_feed_keyword_org",
+  //     data: {keywords:feed},
+  //     success: function(data){
+  //       //$('#feed').html(data);
+  //       $(document).trigger("add-alerts", [{'message': "Settings for Feed keywords updated successfully.",'priority': 'info'}]);
+  //     },
+  //     error: function(data){
+  //       alert('got an error');
+  //     }
+  //   });
+  // }
+

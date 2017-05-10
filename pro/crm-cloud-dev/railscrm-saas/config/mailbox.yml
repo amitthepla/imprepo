@@ -1,0 +1,9 @@
+production:
+  client_id: 852025085963-abukc5ttjs751h509jamvqsqv3cb82jt.apps.googleusercontent.com
+  client_secret: yHWp2a5ExBAftB3pf0zNUBN5
+development:
+  client_id: 852025085963-abukc5ttjs751h509jamvqsqv3cb82jt.apps.googleusercontent.com
+  client_secret: yHWp2a5ExBAftB3pf0zNUBN5
+test:
+  client_id: 852025085963-abukc5ttjs751h509jamvqsqv3cb82jt.apps.googleusercontent.com
+  client_secret: yHWp2a5ExBAftB3pf0zNUBN5

@@ -1,0 +1,169 @@
+:javascript
+  function trackEventLeadTracker(a,b,c){$.post("https://ldtracker.com/users/saveeventtrack",{company_unique_id:'85W0zPwAJ0',domain_unique_id:'FmvNPj5diWTfGNT2fhY4',event_name:a,eventRefer:b,email_id:c},function(a){return!0}).fail(function(a){return!0})}
+  $(function(){
+   $('a[rel="tooltip"],i,input:checkbox,button,div').powerTip({placement: 'n'});
+   $(".slide_m").hide();
+   $(".nav.navbar-nav li a").hover(function(){
+     $(this).find(".slide_m").show('slide', { direction: 'right' }, 300);
+   },function(){
+     $(this).find(".slide_m").hide();
+   });
+   $('.f_menu').click(function() {
+    //$(this).preventDefault();
+    $(this).next('.dropdown-menu').toggle(100);
+    //$(this).find('.dropdown-menu').stop(true, true).slideToggle(100);
+    //e.preventDefault()
+   });
+  }); 
+  function send_mail(){
+    $('#task_loader,.fixed_loader').show();
+    $.ajax( {
+      type: "POST",
+      url: "/send_latest_blog_mail" ,
+      data: {},
+      success: function(result) {
+        $('#task_loader,.fixed_loader').hide();
+        $(document).trigger("add-alerts", [{'message': "Latest blog mail sent successfully." ,'priority': 'success'}]);
+      },
+      complete: function(result) {
+        $('#task_loader,.fixed_loader').hide();
+        
+      },
+      error: function(result) {
+        
+        $('#task_loader,.fixed_loader').hide();
+        
+      }
+    });
+  }     
+%header
+  .wrapper
+    .row
+      .col-lg-12
+        .col-lg-3
+          / %a.logo{:href => "javascript:void(0)", :title => "logo"}
+          =link_to (user_signed_in? ? "/dashboard" : "/"), class: "navbar-brand" do
+            =image_tag ("/assets/new-ui/wus-all-in-one.png"),alt: "WUS-logo", :style => "height:50px;", title: "CRM Application"
+        .col-lg-9
+          - if user_signed_in? && current_user.organization.present?
+            = render :partial => "shared/top_header"
+          - else
+            %ul.menu
+              - if action_name != "new_organization"
+                %li
+                  %a{href: features_path , :id=>"feature", rel: "nofollow", :onclick => "trackEventLeadTracker('Features', 'Header', '#{user_signed_in? ? current_user.email : ""}')", title: "FEATURES"} 
+                    FEATURES
+                / %li
+                /   %a{href: "https://www.wakeupsales.com/security"}
+                /     / Pricing
+                /     Security
+                %li
+                  %a{href: "/pricing", title: "PRICING"}
+                    / Helpdesk
+                    PRICING
+                %li
+                  %a{href: "/integrations", :onclick=>"trackEventLeadTracker('Integration', 'Header', '')", title: "INTEGRATIONS"}
+                    INTEGRATIONS
+                %li
+                  %a{href: "http://blog.wakeupsales.com/", rel: "nofollow", onclick: "trackEventLeadTracker('Blog', 'Header', '')", target:"_blank", title: "BLOG"}
+                    BLOG
+                - unless request.path ==  "/users/sign-in"
+                  %li{style: "padding: 27px 10px;"}
+                    %a{:href => "/users/sign-in", title: "SIGN IN"} SIGN IN
+                - unless request.path == "/users/sign-up"  
+                  %li.signup-btn
+                    %a.cbtn-effect{:href => "/users/sign-up", title: "SIGN UP FREE"} SIGN UP FREE
+                %li.menu-bar{style: "padding: 27px 13px;"}
+                  %i.fa.fa-bars{"aria-hidden" => "true"}
+                  %ul
+                    / %li.hoz_bar
+                    /   %a{href: contact_us_path, :onclick=>"trackEventLeadTracker('Contact Us', 'Header', '')"}
+                    /     Support
+                    %li.hoz_bar{style: "padding-top: 6px;"}
+                      %a{href: "/awards-and-recognitions", title: "AWARDS & RECOGNITIONS"} AWARDS & RECOGNITIONS
+                    %li.hoz_bar
+                      %a{href: "https://www.wakeupsales.com/contact-us", title: "SUPPORT"}
+                        SUPPORT
+                    %li
+                      %a{href: "/pricing", title: "FAQs"}
+                        %span FAQ
+                        %span{style: "font-size:10px;margin-left: -2px;"} s
+            %ul.nav-form
+              %li
+                - @user = User.new
+                = form_for @user, :url => save_user_path, :html=>{:class => "form"} do |f|
+                  %span.inp-fld
+                    = f.email_field :email, :required => true, :class=>"form-control", :placeholder=>"Email"
+                  %span.inp-fld
+                    = f.text_field "organization_name", :class => "form-control", :required => true, :placeholder => "Company Name"
+                  %span.inp-btn
+                    = f.submit "Sign Up", :disable_with => "Submitting...."
+                  %a.login-txt{:href => "/users/sign-in"} Sign In
+        .cb
+
+= render partial: "home/import_contact_modal"
+
+:javascript
+  $('#my-link').click(function (event) {
+    alert('Hooray!');    
+    event.preventDefault(); // Prevent link from following its href
+    track_logout();
+  });
+  
+  // Start of Leadtracker script Script
+  function setSuptrackCookie(a,b,c){localStorage.setItem(a,b)}function getSuptrackCookie(a){return n="undefined"!=typeof localStorage.getItem(a)?localStorage.getItem(a):"",n}$(document).ready(function(){var d=new Date(jQuery.now()),dtime=d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),pages=[];if(getSuptrackCookie("suptrack_refer")||setSuptrackCookie("suptrack_refer",document.referrer),getSuptrackCookie("suptrack_usr_code")||setSuptrackCookie("suptrack_usr_code","suptrack_usr_"+jQuery.now(),3650),!getSuptrackCookie("suptrack_usr_pages")){var url1={urls:[{url:window.location.href,lastmodified:dtime}]};setSuptrackCookie("suptrack_usr_pages",JSON.stringify(url1),3650)}if(getSuptrackCookie("suptrack_usr_pages")){var updatedpage=getSuptrackCookie("suptrack_usr_pages"),parsedpage=JSON.parse(updatedpage);parsedpage.urls.push({url:window.location.href,lastmodified:dtime});var finstrprse=JSON.stringify(parsedpage);setSuptrackCookie("suptrack_usr_pages",finstrprse,3650)}
+  $.post("https://ldtracker.com/users/saveprospects",{
+    company_unique_id: '85W0zPwAJ0', 
+    domain_unique_id: 'FmvNPj5diWTfGNT2fhY4', 
+    clientip:'#{request.env['REMOTE_ADDR']}',
+    domain:'#{request.env['SERVER_NAME']}',
+    created_at:dtime,
+    referURL:getSuptrackCookie('suptrack_refer') //This is the localstorage function to store data of referer
+  },function(Data){
+  },'json').fail(function(response) {
+    return true;
+  });
+     
+  if(getSuptrackCookie('suptrack_usr_name') && getSuptrackCookie('suptrack_usr_code')) {
+    jQuery.post("https://ldtracker.com/users/updatepages",
+      {
+        company_unique_id: '85W0zPwAJ0', 
+        domain_unique_id: 'FmvNPj5diWTfGNT2fhY4',
+        usr_code:getSuptrackCookie('suptrack_usr_code'),
+        usr_pages:getSuptrackCookie('suptrack_usr_pages')
+      },
+    function(data){ //Success
+             
+    }).fail(function(response){ //Response Fail
+             
+    });
+    }
+  });
+
+  function track_signin(){
+    var email = $("#user_email").val();
+    var login_time = "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}";
+    $.post("https://ldtracker.com/users/savesessiontrack",{
+        company_unique_id:'85W0zPwAJ0', //This is Company Unique Id
+        domain_unique_id:'FmvNPj5diWTfGNT2fhY4', //This is Domain Unique Id
+        last_login: login_time,
+        email_id: email
+    },function(Data){
+    },'json').fail(function(response) {
+        return true;
+    });
+  }
+  function track_logout(){
+    var logout_time = "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}";
+    var email = "#{current_user.nil? ? '' : current_user.email}";
+    $.post("https://ldtracker.com/users/updatelogoutsession",{
+        company_unique_id:'85W0zPwAJ0', //This is Company Unique Id
+        domain_unique_id:'FmvNPj5diWTfGNT2fhY4', //This is Domain Unique Id
+        last_logout_date: logout_time,
+        email_id: email
+    },function(Data){
+        //document.location.href = 'index.php';
+    },'json').fail(function(response) {
+        return true;
+    });
+  }

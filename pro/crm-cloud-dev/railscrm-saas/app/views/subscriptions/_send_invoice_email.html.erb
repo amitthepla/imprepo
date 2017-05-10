@@ -1,0 +1,25 @@
+<%= form_tag( "/send_invoice_email", :method=>"post", :class => "cmn_new_popup_form") do |f| %>
+  <div class="form-group">
+    <div class="form_fld">
+      <span class="cwkp-sprite lead_name"></span>
+      <%=email_field_tag "email", "", :required=>"required", :placeholder=>"Email", :name=>"email", :id=>"email", :style=>"cursor:not-allowed"%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form_fld">
+      <span class="cwkp-sprite lead_email"></span>
+      <%=text_area_tag "subject", "", :style=>"resize: none;", :rows=>"4", :required=>"required", :placeholder=>"Subject", :name=>"subject", :id=>"subject", :maxlength=>"100"%>
+    </div>
+  </div>
+  <div style="margin: 20px 0;">
+    <span class="cwkp-sprite attach"></span>
+    <%=link_to "Invoice #"+@tran.invoice_id.to_s, "/users/download_invoice/" + @tran.invoice_id.to_s, :target => "_blank"%>
+  </div>
+  <div class="modal-footer">
+  <button type="submit" onclick="return validate_send_email()" id="send_email_submit_btn" "disable_with"="Please wait..." class="btn btn-info">
+  Send
+  </button>
+  <a class="btn.btn-default" href="#" aria-hidden="true" data-dismiss="modal"> Cancel</a>
+  </div>
+<% end %>
+

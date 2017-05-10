@@ -1,0 +1,15 @@
+#dealsettingKanbanModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog.cstm-material-modal
+    .modal-content
+      = form_tag "/tab_settings_in_kanban",  :class => "form",:method=>"post",:id=>"kanban_stage", :remote => true do |f|
+        .modal-header
+          %span.close{"aria-hidden" => "true", type: "button", "data-dismiss" => "modal"} ×
+          %h4.modal-title Select tabs to enable
+        .modal-body
+          
+        .modal-footer
+          .pull-left{style: "padding: 2px 10px 10px;"}
+            %button.btn.btn-primary{type: "submit", data: { disable_with: "Please wait..." }} Save
+            %a{href:"#", "aria-hidden" => "true","data-dismiss" => "modal"}
+              %span
+                Cancel

@@ -1,0 +1,18 @@
+.mtop30
+  .navbar-left
+    %h4
+      Manage Task Type
+  .navbar-right
+    .btn.btn-primary.btn-success.pad2{ data: { toggle: "modal", target: "#addTaskType" }}
+      .glyphicon.glyphicon-plus-sign
+      Add Task Type
+.cb10
+%hr{style: "margin-top: 0;"}
+.tasks
+  - current_user.organization.task_types.each do |task_types|
+    %div{style: "margin-bottom: 15px;background-color: #eee;border-radius: 5px;border: 1px solid rgb(153, 153, 153);padding: 10px 5px;height: 40px;cursor: pointer", id: "task_type_#{task_types.id}"}
+      .fl.task_type_name
+        = task_types.name
+      .fr
+        %span.glyphicon.glyphicon-pencil{value: "#{task_types.id}", data: { toggle: "modal", target: "#editTaskType", id: task_types.id, :name => task_types.name }}
+        %span.glyphicon.glyphicon-trash{value: "#{task_types.id}", onclick: "deleteTaskType(this)", titlt: "Delete", data: { id: task_types.id }}

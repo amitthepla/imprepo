@@ -1,0 +1,16 @@
+<style>
+.print-screen {    
+    position: absolute;
+    margin-left: 80%;
+    margin-top: 5%;    
+}
+@media print {
+   .print-screen {
+       display: none;
+    }  
+}
+</style>
+
+<div class="print-screen"><%= button_tag 'Print', :onclick => 'window.print();return false;', :style => "cursor: pointer;" %></div>
+
+<%= replace_url(@contents.first.replace_text_with_url) %>

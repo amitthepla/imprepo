@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <h3>Upload</h3>
+        <div>
+          <%= form_for Asset.new, url: upload_asset_path, html: { multipart: true } do |form| %>
+            <div class="fl">
+              <%= form.file_field :file, id: "upload-file", class: "btn btn-primary" %>
+            </div>
+            <div class="fl" style="margin-left:10px;">
+              <%= form.submit "Save", class: "btn btn-primary", :onclick => "return validate_form()" %>
+            </div>
+            <div class="cb"></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+   <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>&nbsp;</th> 
+              <th>Name</th>
+              <th>Uploaded By</th>
+              <th>URL</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%if @asests.present?%>
+              <%i=0%>
+              <%@asests.each do |asset| %>
+                <tr>
+                 <!-- <td><%#= i+=1 %></td> -->
+                  <td>
+                    <a class="asset-icon" href="#" data-id="<%=asset.file.url(:medium)%>" data-toggle="modal" data-target="#assetModal" title="Click to zoom">
+                      <%= image_tag(asset.file.url(:icon)) %>
+                    </a>
+                  </td>
+                  <td><%= asset.file_file_name %></td>
+                  <td><%= asset.user.name %></td>
+                  <td><%= asset.file.url %></td>
+                  <td>
+                    <%= link_to destroy_asset_path(:id=>asset.id), method: "delete", "data-confirm" => "Are you sure?" do%>
+                      <span class="glyphicon glyphicon-trash" style="color:red;"></span>
+                    <% end %>
+                  </td>
+                </tr>
+              <%end%>
+            <% else %>
+              <tr>
+                <td>Not available</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>        
+      </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="assetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <h4 class="modal-title" id="myModalLabel">Image</h4> -->
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <%= image_tag("", :id => "photo") %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on("click", ".asset-icon", function () {
+       var img = $(this).data('id');
+        $('#photo').attr("src",img);
+  });
+  function validate_form(){
+    if($("#upload-file").val() == undefined || $("#upload-file").val() == ''){
+      $("#custom-alert").show().find("span").html("Please select a file");
+      return false;
+    }else{
+      return true;
+    }
+  }
+</script>

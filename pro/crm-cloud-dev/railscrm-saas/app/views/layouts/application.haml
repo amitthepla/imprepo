@@ -1,0 +1,230 @@
+!!!
+%html{lang: "en"}
+  - if request.fullpath.include? "sign-in"
+    - @title = "Sign in WakeUpSales | Free CRM Tool and Client Management Software​"
+    - @description = "Registered user can sign in to WakeUpSales the free CRM tool using their personal credentials. User can also sign in using Google+ and LinkedIn social accounts."
+    - @keywords = "free crm, crm tools, crm tool, best crm tool, best crm app, free crm app, crm software, free crm tool, best free crm, free crm software, best crm software, cloud crm software, lead management tool, lead management app, client management tools, free lead management tool, lead management software, client management software, customer management system, free lead management software, customer management software, crm customer relationship management."  
+  %meta{charset: "utf-8"}
+  %meta{content: "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+  %meta{content: @description.present? ? @description : "WakeUpSales is the best free CRM tool to streamline the sales activities, manage leads, create powerful customer relationships and improve the productivity with CRM Solution.", name: "description"}
+  %meta{content: @keywords.present? ? @keywords : "free crm software, best crm software, client management software, customer management software, lead management software, customer management system, free lead management tool, free crm tool, cloud crm software, lead management tool, free crm app, crm software, best free crm, free crm, contact management software, free lead management software, Lead Management crm tool, client relationship management, free crm solution, cloud crm Tool, Free cloud crm tool, relationship management, customer management, crm", name: "keywords"}
+  %meta{:content => "k0X8NB8FSC5-suNVWERQB73xNH_ab0XCVB7dVlZ_8mc", :name => "google-site-verification"}
+  %title 
+    = @title.present? ? @title : "WakeUpSales | Free CRM Tool | Client Management Software" 
+  = javascript_include_tag "application"
+  = stylesheet_link_tag   "application", :media => "all"
+  = stylesheet_link_tag "custom.min"
+  
+  = csrf_meta_tags
+  = favicon_link_tag 'fav-icon.png', :rel => 'shortcut icon'
+  - if(Rails.env == "production")
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-47612570-1', 'wakeupsales.com');
+      ga('send', 'pageview');  
+  /-if (user_signed_in? && (params[:action] != "features" && params[:action] != "security" && params[:action] != "integration")) || (params[:controller] != "home" && params[:action] != "index")
+  / -is_home = "false"
+  / -if  !user_signed_in? && (params[:controller] == "home" && params[:action] == "index")
+  /   -is_home = "true"
+  -if user_signed_in?
+    %body.nav-md
+      /= render :partial => "shared/header"
+      .container.body
+        .main_container
+          - if params[:action] != "checkout"
+            .top_nav
+              = render :partial => "shared/top_header"            
+            .cb
+            .col-md-3.left_col.menu_fixed
+              = render :partial => "shared/left_sidebar"
+            %div{style: "clear:both;"}
+            %div{"data-alerts" => "alerts", "data-fade" => "3000", "data-ids" => "myid", "data-titles" => "", :class=>"col-md-12"}
+            %div#search_result
+          /- if (bootstrap_flash.include?("Signed out successfully.") || bootstrap_flash.include?("Signed in successfully."))
+          /- else
+          /  = bootstrap_flash
+          - if (user_signed_in? && (params[:action] != "features" || params[:action] != "contact_us" || params[:action] != "security" || params[:action] != "integration"))
+            = bootstrap_flash
+          /.content-body
+          - if params[:action] == "checkout"
+            .content-body
+              = yield
+          - else
+            .right-container{:role => "main"}
+              .fix_in_app_footer
+                = yield
+              - unless @current_user.is_siteadmin?  
+                =render partial: "shared/in_app_footer"
+          #task_loader{style: "display:none;position: fixed; height: 100%; width: 100%; z-index: 99999; background:#fff; top:0px; left:0px;opacity:0.4"}
+          %div{:class=>"loader_img fixed_loader"}
+            /= image_tag "ajax-loader2.gif"
+            = image_tag "ajax-loader.gif"
+
+  - else
+    :javascript
+      // Start of Tawk.to Script
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/57a1c001ae976409093092fa/default';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+      })();
+      // End of Tawk.to Script
+    
+    %body
+      -if (params[:action] == "sitemap" || params[:action] == "privacy" || params[:action] == "terms" || params[:action] == "integration" || params[:action] == "pricing" || params[:action] == "faq" || params[:action] == "features"  ||  params[:action] == "report_a_bug" ||  params[:action] == "contact_us" || params[:action] == "security" || params[:action] != "new" && (params[:controller] == "devise/sessions" && params[:action] != "create") || (params[:controller] == "home" && params[:action] == "index") || params[:action] == "awards_and_recognitions" || params[:action] == "about_us" || params[:action] == "roadmap" || params[:action] == "releases")
+        = render :partial => "shared/header"
+      %div{style: "clear:both;"}
+      %div{"data-alerts" => "alerts", "data-fade" => "3000", "data-ids" => "myid", "data-titles" => "", :class=>"col-md-12"}
+      %div#search_result
+      /- if (bootstrap_flash.include?("Signed out successfully.") || bootstrap_flash.include?("Signed in successfully."))
+      /- else
+      /  = bootstrap_flash
+      /- if (user_signed_in? && (params[:action] != "features" || params[:action] != "security" || params[:action] != "integration"))
+      / - if is_home == "false"
+      - if (bootstrap_flash.include?("Successfully signed in."))
+      - else
+        = bootstrap_flash
+      .content-body
+        = yield
+  - if !user_signed_in? && params[:action] != "checkout" && params[:action] != "new" || action_name == "new_organization" || (user_signed_in? && (params[:action] == "features" || params[:action] == "security" || params[:action] == "integration"))
+    = render :partial => "shared/footer"
+/ # = javascript_include_tag "custom.min"      
+- if user_signed_in? && current_user.organization.present?
+  - unless current_user.is_siteadmin?
+    = render :partial => "shared/deal"
+    = render :partial => "shared/add_contact"
+    = render :partial => "shared/notes_attachment"
+    = render :partial => "shared/send_email"
+    = render :partial => "shared/apply_label"    
+    = render :partial => "users/invite_user"
+    = render :partial => "tasks/task_popup"
+    = render :partial => "tasks/google_calendar_popup"
+    - if params[:controller] == "deals"
+      = render :partial => "shared/bulk_lead"
+  = render :partial => "shared/users_list"
+
+%link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+
+
+:javascript
+  /*sticky header start*/
+  
+  /*sticky header end*/
+  //$(function(){
+    //$("#headerMenuBar").each     
+    if("#{params[:query]}" == "")
+      $('.srch_fld').val('')
+    $("div[class^='alert']").delay(4000).fadeOut(2000);
+    $('a[rel="tooltip"],i,input:checkbox').powerTip({smartPlacement: true,fadeInTime: 100,fadeOutTime: 200});
+    $("li").removeClass("activ_mnu");
+    if("#{params[:action]}" == "activities"){
+      li_id="activities";
+    }
+     else if("#{params[:action]}" == "getting_started"){
+      li_id="gettingStarted";
+    }else{
+      li_id="#{params[:controller]}";
+    }
+    $("#"+li_id).addClass("activ_mnu");
+    $("#free_signup").click(function(){$("#beta_account_email").focus();})
+
+  //})
+
+
+
+
+
+
+
+  var pathname = window.location.pathname; // Returns path only
+  if( pathname == "/" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#home").addClass("activ_menu");
+    $("#home .d-bord").css({"background-position":"4px 2px","color":"#000"});
+  }
+  if( pathname == "/dashboard" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#home").addClass("activ_menu");
+    $("#home .d-bord").css({"background-position":"-472px 3px","color":"#000"});
+  }
+  else
+  if( document.URL.indexOf("leads/kanban") >= 0 ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#leads_kanban_view").addClass("activ_menu");
+    $("#leads_kanban_view .kanban").css({"background-position":"-471px -53px","color":"#000","height":"22px"});
+  }
+  else
+  if( document.URL.indexOf("leads") >= 0 ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#leads").addClass("activ_menu");
+    $("#leads .lds").css({"background-position":"-474px -25px","color":"#000"});
+  }
+  
+  else
+  if( pathname == "/tasks" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#tasks").addClass("activ_menu");
+    $("#tasks .task").css({"background-position":"-472px -80px","color":"#000"});
+  }
+  else
+  if( pathname == "/contacts" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#contacts").addClass("activ_menu");
+    $("#contacts .contact").css({"background-position":"-472px -107px","color":"#000"});
+  }
+  else
+  if( pathname == "/getting_started" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#gettingStarted").addClass("activ_menu");
+    $("#gettingStarted .g-start").css({"background-position":"4px -110px","color":"#000"});
+    $("#gettingStarted .menu_name").addClass("sel-g-start");
+  }
+  else
+  if( pathname == "/users" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#users").addClass("activ_menu");
+    $("#users .users").css({"background-position":"-472px -134px","color":"#000"});
+  }
+  else
+  if( pathname == "/daily_updates" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#daily_update").addClass("activ_menu");
+    $("#daily_update .daily_update").css({"background-position":"-471px -213px","color":"#000"});
+  }
+  else
+  if( pathname == "/organizations" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#organizations").addClass("activ_menu");
+  }
+  else
+  if( pathname == "/community_plugins" ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#community_plugins").addClass("activ_menu");
+  }
+  else
+  if( document.URL.indexOf("emails") >= 0 ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#mail_box").addClass("activ_menu");
+    $("#mail_box .mail_box").css({"background-position":"-472px -162px","color":"#000"});
+  }
+  else
+  if( document.URL.indexOf("invoice") >= 0 ){
+    $(".active_class li").removeClass("activ_menu");
+    $("#manage_invoice").addClass("activ_menu");
+    $("#manage_invoice .manage_invoice").css({"background-position":"-471px -186px","color":"#000"});
+  }
+  
+
+  $('#send_feedback').bind('ajax:complete', function( data, status, xhr) {
+    $('#feedbackModal').modal('hide');
+  });
+
+  
+    

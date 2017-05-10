@@ -1,0 +1,481 @@
+:css
+  body {background:#fff;}
+  #ex1Slider .slider-selection {
+    background: #7ab9fe;
+  }
+
+  .ui-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 5.2em;
+    height: 2.2em;
+    cursor: default;
+    margin: 0 -40px auto !important;
+    text-align: center; 
+    line-height: 30px;
+    color: #FFFFFF;
+    font-size: 15px;
+  }
+
+  .ui-slider .ui-slider-handle .glyphicon {
+    color: #FFFFFF;
+    margin: 0 3px; 
+    font-size: 11px;
+    opacity: 0.5;
+  }
+
+  .ui-corner-all {
+    border-radius: 20px;
+  }
+
+  .ui-slider-horizontal .ui-slider-handle {
+    top: -.9em;
+  }
+
+  .ui-state-default,
+  .ui-widget-content .ui-state-default {
+    border: 1px solid #f9f9f9;
+    background: #3498db;
+  }
+
+  .ui-slider-horizontal .ui-slider-handle {
+    margin-left: -0.5em;
+  }
+
+  .ui-slider .ui-slider-handle {
+    cursor: pointer;
+  }
+
+  .ui-slider a,
+  .ui-slider a:focus {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .price, .lead p {
+    font-weight: 600;
+    font-size: 32px;
+    display: inline-block;
+    line-height: 60px;
+  }
+
+  h4.great {
+    background: #00ac98;
+    margin: 0 0 25px -60px;
+    padding: 7px 15px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    display: inline-block;
+    -moz-box-shadow:    2px 4px 5px 0 #ccc;
+      -webkit-box-shadow: 2px 4px 5px 0 #ccc;
+      box-shadow:         2px 4px 5px 0 #ccc;
+  }
+
+
+  .price-slider {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .price-slider span {
+    font-weight: 200;
+    display: inline-block;
+    color: #7f8c8d;
+    font-size: 13px;
+  }
+
+  .form-pricing {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+
+  .ui-slider-range-min {
+    background: #2980b9;
+  }
+
+.pricing_page
+  / .pricing_top_sec
+  /   .price_sec
+  /     %span.price_sec_dollar $
+  /     %span.price_sec_zero 0
+  /   .pricing_desc
+  /     That's correct. It's completely free with features likes lead management, team collaboration, lead project management, activities, invoice generator, lead web event tracking along with all the premium features like Gmail, Mailchimp & more..
+  /   %p
+  /     We will soon release our premium plans...until then enjoy automating & managing your customer relations absolutely free...Happy Wakeupsaling 
+  / .paid_plan
+  /   %p 
+  /     The paid plans are still work in progress. But not to surprise you, it will start from $4 per user/per month!
+  
+  .pricing_sec
+    %h1 
+      Pricing
+    %p.desc
+      The Wakeupsales Cloud CRM suits everyone. So do the price...
+    .no_of_users_sec
+      %span
+        Number of users
+      %span.no_of_users
+        5
+    .slider_sec
+      / %input#user_slider{"data-slider-id" => "ex1Slider", "data-slider-max" => "50", "data-slider-min" => "0", "data-slider-step" => "1", "data-slider-value" => "14", :type => "text"}
+
+      .price-slider
+        .col-sm-12
+          #slider
+          .cb
+        .cb
+      .cb
+    .monthly_price_sec
+      .col-md-4.padlft.monthly_price_txt
+        Monthly Price:
+      .col-md-4
+        .monthly_price
+          %span{style:"font-size:25px;margin-right: -10px;"} $
+          %span 140
+        .monthly_price_per_user
+          $4 user/month
+      .col-md-4
+        .pricing_sign_up_btn.signup-page
+          %a.sign_in_cta{href: "/users/sign-up", style: "border: 2px solid #46A0D5;"}
+            Sign Up
+      .cb
+    .get_in_touch_sec
+      %p
+        Haver more than 50 users?
+      %a.get_in_touch_btn{href: "#"}    
+        Let's Get in Touch  
+
+
+  .what_you_get_sec
+    %h2
+      What you get?
+    .fl  
+      %ul
+        %li
+          30 Day Free Trial
+        %li
+          Unlimited Projects
+        %li
+          Lead Management
+        %li
+          Email Campaigning
+        %li
+          Skype/Email/Chart Support
+    .fr
+      %ul
+        %li
+          Project Management
+        %li
+          Website Integration
+        %li
+          Gmail Integration
+        %li
+          Lead Event Tracking
+        %li
+          Free Walkthrough
+    .cb
+    %p
+      and much more...
+  .banner-image.pricing_banner
+    %h2
+      Frequently Asked Questions 
+    %p
+      You've got questions. We've got answers.            
+  .wrapper{style: "padding: 30px 0px 50px;"}
+
+    / .faq_heading
+    /   %h1
+    /     Frequently Asked Questions 
+    / .cb
+    %div{:style => "font-size: 16px;"}
+      .faq-que.first_que
+        .que_icon.fl ?
+        .que_div.fl What is CRM Software?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          CRM (customer relationship management) software is enterprise software that covers a broad set of applications and software to help businesses manage customer data and customer interactions, access business information, run reports, automate sales, marketing and customer support and also manage employee, vendor and partner relationships. 
+        .cb10
+        %p
+          CRM software is an innovative, cost effective way to work. Businesses using CRM software will enjoy an increase in productivity and a reduction in costs associated with developing effective sales, marketing and customer service strategies.
+        %p
+          CRM software:
+        %ul
+          %li
+            Maintains a database for all lead, contact, tasks and activity information
+          %li
+            Helps lead generation and task management from lead through the sale
+          %li
+            Improves customer service through timely management of all issues
+          %li
+            And more!
+      .faq-que 
+        .que_icon.fl ?
+        .que_div.fl  What is Cloud CRM?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          Nowadays, newer CRM systems are Cloud CRM, that means that the application and data is all held on the CRM providers’ servers in a datacentre, and accessed via an internet browser. Cloud CRM is also known as Software-as-a-Service (SaaS) CRM, online CRM and Web CRM. Cloud has a number of technical and pricing advantages:
+        %ul
+          %li
+            You don’t need any local servers to run the CRM system on. So there’s no capital cost, no server software and no maintenance.
+          %li
+            Updates, backups, maintenance all done by the Cloud vendor (that’s us!).
+          %li
+            Users can access the system from anywhere via the internet e.g. home, office or smartphone.
+          %li
+            By running thousands of customers’ CRM system on our servers, we get great economies of scale which we can pass on to our customers.
+      .faq-que
+        .que_icon.fl ?
+        .que_div.fl What is Sales Force Automation?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          Sales Force Automation (SFA) is the name given to a software application for sales people to help them with the sales process. It includes either contact management or lead management, together with email and diary sharing.
+        .cb10
+        %p
+          SFA is usually a part of a company’s CRM system that automatically records all the stages in a sales process. The idea is to track all contact that’s been made with a customer, along with the purpose of the contact, and any follow up that may be needed. This might include phone calls, emails and meetings. This ensures that sales efforts are not being duplicated, reducing the risk of irritating customers.
+      .faq-que
+        .que_icon.fl ?
+        .que_div.fl  Does the CRM integrate with Accounting Software?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          Yes, your CRM ststem can be easily integrated with the online accounting software systems like quickbooks, freshbooks. Setting up CRM accounting software integration means you can seamlessly create and update customer records between your accounting system and CRM so your customer data is always up to date. 
+        .cb10
+        %p
+          The integration also allows you to create invoices directly from the leads screen in your CRM. This means you can email them directly without changing systems. We are also providing you manual invoice process which is completely FREE.    
+      .faq-que
+        .que_icon.fl ?
+        .que_div.fl What are the Technical Requirements for the CRM?
+        .fr
+          .glyphicon.glyphicon-chevron-right.arr_div
+        .cb
+      .faq-ans
+        %p
+          WakeUpSales CRM is an online or Cloud CRM system so there are no technical requirements. All you need to use the CRM system is the internet browser that you are using now. There’s no software to instal, so you can use the CRM system on PCs, Macs, iPads and smartphones.
+        .cb10
+        %p
+          Browsers we support include FireFox, Chrome, Safari, Opera and version 7 and above of Internet Explorer. 
+
+      .border_top
+      .cb   
+
+:javascript
+  $("document").ready(function(){
+    $(".first_que").click();
+  });
+  $(".faq-que").click(function(){
+    if($(this).find('.arr_div').hasClass("glyphicon-chevron-right")){
+      $('.faq-que').find('.arr_div').addClass("glyphicon-chevron-right");
+      $(this).find('.arr_div').removeClass("glyphicon-chevron-right");
+      $('.faq-que').find('.arr_div').removeClass("glyphicon-chevron-down");
+      $(this).find('.arr_div').addClass("glyphicon-chevron-down");
+      $('.faq-que').removeClass("active_faq_que");
+      $(this).addClass("active_faq_que");
+      $(this).next().addClass("active_faq_ans");      
+    }
+    else{
+      $(this).find('.arr_div').removeClass("glyphicon-chevron-down");
+      $(this).find('.arr_div').addClass("glyphicon-chevron-right");
+      $(this).removeClass("active_faq_que");
+      $(this).next().removeClass("active_faq_ans");     
+    }
+    var i = $(this).index('.faq-que');
+    $(".faq-ans").not(".faq-ans:eq("+i+")").hide();
+    $(".faq-ans:eq("+i+")").slideToggle();
+  });
+
+
+
+  $(function() {
+    $("#slider").slider({
+        animate: true,
+        value:1,
+        min: 1,
+        max: 50,
+        step: 1,
+        slide: function(event, ui) {
+            update(1,ui.value); //changed
+        }
+    });
+    update(1,1);
+    // var slider = new Slider("#ex6");
+    // slider.on("slide", function(sliderValue) {
+    //   document.getElementById("ex6SliderVal").textContent = sliderValue;
+    // });
+   
+    $("#payment-form").bind('ajax:before', function() {
+      $(".purchase-loader-div").show();
+      $("#purchaser_email").html('"'+$("#email").val()+'",');
+    });
+    $("#payment-form").bind('ajax:success', function() {
+      //alert('success')
+      window.location.href = "/users/subscription";      
+    });
+    $("#payment-form").bind('ajax:error', function(evt, data, status, xhr) {
+      $("#search_result").after("<div class='alert fade in alert-bodanger' style='position:absolute;'><button class='close' data-dismiss='alert'>×</button>" + data.responseText + "</div>");
+      $(".purchase-loader-div").hide();
+      $("#payment-form")[0].reset();
+    });
+    //$("body").on("contextmenu",function(e){
+    //  return false;
+    //});
+
+    $( ".custom-frm-inner" ).click(function() {
+      $(this).parent().next('.control-label').addClass("control-lbl-add")
+    });
+    $( ".custom-frm-inner" ).focusout(function() {
+      if($(this).val() == ""){
+        $(this).parent().next('.control-label').removeClass("control-lbl-add")
+      }else{
+        $(this).parent().next('.control-label').addClass("control-lbl-add-txt")
+      }
+    });
+    $(".cvv_img").hover(function() {
+        $(".cvvcard").show();
+    }, function() {
+        $(".cvvcard").hide();
+    });
+    $("#card_num,#code,#exp_month,#exp_year").keydown(function(event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        } else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault();
+            }
+        }
+    });
+
+    $('#card_holder_name').off('keyup').on('keyup',function(){
+       $('#name_err').html('');
+    });
+    $('#email').off('keyup').on('keyup',function(){
+      $('#email_err').html('');
+      //validate_email('email');
+    });
+    $('#card_num').off('keyup').on('keyup',function(){
+       $('#number_err').html('');
+    });
+    $('#code').off('keyup').on('keyup',function(){
+       $('#cvv_err').html('');
+       $('#exp_month_err').html('');
+       $('#exp_year_err').html('');
+    });
+    // $('#exp_month').off('keyup').on('keyup',function(){
+    //    $('#exp_month_err').html('');
+    //    $('.exp_date_valid').html('');
+    // });
+    // $('#exp_year').off('keyup').on('keyup',function(){
+    //    $('#exp_year_err').html('');
+    //    $('.exp_date_valid').html('');
+    // });
+
+    $('#exp_month').on('change', function() {
+      if( this.value != "" ){
+        $('#exp_month_err').html('');
+      }
+      var d = new Date(),
+      current_month = d.getMonth() + 1,
+      current_year = d.getFullYear();
+      if( this.value != "" && $('#exp_year').value != "" ){
+        var selected_month = parseInt($(this).val());
+        var selected_year = parseInt($("#exp_year").val());
+        if((selected_month < current_month) && (selected_year <= current_year)){
+          $('#exp_month_err').html("Invalid month");
+        }
+      }
+    })
+
+    $('#exp_year').on('change', function() {
+      if( this.value != "" ){
+        $('#exp_year_err').html('');
+      }
+      var d = new Date(),
+      current_month = d.getMonth() + 1,
+      current_year = d.getFullYear();
+      if( $('#exp_month').value != "" && this.value != "" ){
+        var selected_month = parseInt($('#exp_month').val());
+        var selected_year = parseInt($(this).val());
+        if(selected_month < current_month && selected_year <= current_year){
+          $('#exp_month_err').html("Invalid month");
+        }
+        else{
+          $('#exp_month_err').html("");
+        }
+      }
+    })
+
+    // try {
+    //   getLocation();  
+    //   var d = new Date()
+    //   var gmtHours = -d.getTimezoneOffset()/60;
+
+    //   $("#gmt_offset").val(gmtHours);
+    //   $.get("http://ipinfo.io", function(response) {
+    //       //alert(response.ip);
+    //       $("#remote_ip").val(response.ip);
+    //       $("#country").val(response.country);
+    //       $("#city").val(response.city);    
+    //       $("#state").val(response.state);    
+    //   }, "jsonp");
+     
+      
+    // }catch(err) {
+
+    // }
+  })
+
+  //changed. now with parameter
+  function update(slider,val) {
+    //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+    console.log(slider)
+    console.log(val)
+    //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+    var $users = val //:$("#amount").val();
+    $( "#user_limit" ).val($users);
+    //$( "#price" ).val($users*5);
+    $( "#total_payment" ).html($users*5);
+    
+    // Show number of user selected
+    $(".no_of_users").html($users);
+
+    //store number of user in cookie
+    $.cookie('no_of_users',$users);
+
+    /* commented
+    $amount = $( "#slider" ).slider( "value" );
+    $duration = $( "#slider2" ).slider( "value" );
+     */
+
+     // $total = "$" + ($amount * $duration);
+     // $( "#amount" ).val($amount);
+     // $( "#amount-label" ).text($amount);
+     // $( "#duration" ).val($duration);
+     // $( "#duration-label" ).text($duration);
+     // $( "#total" ).val($total);
+     // $( "#total-label" ).text($total);
+
+     
+
+     $('#slider a').html('<label><span class="glyphicon glyphicon-chevron-left"></span> '+$users+' <span class="glyphicon glyphicon-chevron-right"></span></label>');
+  }

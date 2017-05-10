@@ -1,0 +1,44 @@
+<br />
+<div class="container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+         <div class="row myborder">
+            <h4 style="color: #7EB59E; margin: initial; margin-bottom: 10px;">Sign Up Now</h4><hr>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user mycolor"></i></span>
+                  <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name", :required => true %>
+              </div>           
+               
+              <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
+                  <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email", :required => true%>                  
+              </div>
+              <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock mycolor"></i></span>       
+                  <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" , :required => true %>
+                   </div>
+           
+              <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock mycolor"></i></span>
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm Password", :required => true %>                                 
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <%= f.submit "Sign up", class: "btn-u pull-left"%>&nbsp;
+                      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                         <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end -%>
+                  </div>
+              </div>
+            <%end%>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+      </div>
+      
+   
