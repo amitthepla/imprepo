@@ -1,0 +1,43 @@
+<%= form_for(@event, :html => {:class => ""} ) do |f| %>
+  <div class="input-wrapper">
+    <%= f.label :description,"Description"  %>
+    <%= f.text_field :description %>
+  </div>
+  
+  <div class="input-wrapper">
+    <%= f.label :start_time,"Start Time"  %>
+    <%= f.text_field :start_time %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :end_time,"End Time"  %>
+    <%= f.text_field :end_time %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :type,"Type"  %>
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :status,"Status"  %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :resources,"Resources"  %>
+    <%= f.text_field :resources %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :location,"Location"  %>
+    <%= f.text_field :location %>
+  </div>
+
+  <%= f.submit "Update Patient", :class => "btn" %>
+
+<% end %>
+
+<% if true_user.is_super_admin? %>
+    <%= link_to 'Delete Event',  @event,  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+<% end %>

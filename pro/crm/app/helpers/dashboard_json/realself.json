@@ -1,0 +1,68 @@
+[
+    {
+        "options": [
+            {
+                "title": "Real Self Performance",
+                "subTitle": "",
+                "yAxisLabel": "Total",
+                "tooltipValueSuffix": " Month"
+            }
+        ]
+    },
+    {
+        "series": [
+            {
+                "name": "Inquiries",
+                "data": [
+                    13,
+                    16,
+                    15,
+                    23,
+                    18,
+                    12,
+                    13,
+                    24,
+                    26,
+                    2,
+                    null,
+                    null
+                ]
+            },
+            {
+                "name": "Calls",
+                "data": [
+                    21,
+                    18,
+                    21,
+                    13,
+                    13,
+                    28,
+                    30,
+                    13,
+                    19,
+                    4,
+                    null,
+                    null
+                    
+                ]
+            },
+            {
+                "name": "Website Clicks",
+                "data": [
+                    169,
+                    130,
+                    122,
+                    121,
+                    199,
+                    243,
+                    277,
+                    268,
+                    246,
+                    41,
+                    null,
+                    null
+                ]
+            }
+        ]
+    }
+]

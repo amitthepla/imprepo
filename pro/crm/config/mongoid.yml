@@ -1,0 +1,34 @@
+development:
+  sessions:
+    default:
+      database: crmbeauty-development
+      hosts:
+        - localhost:27017
+  options: #strictly 2 spaces before
+    raise_not_found_error: false #strictly 4 spaces before not 6
+
+test:
+  sessions:
+    default:
+      #database: pop_app_test
+      uri: <%= ENV["MONGO_URL"] %>
+      options:
+        read: primary
+        # In the test environment we lower the retries and retry interval to
+        # low amounts for fast failures.
+        max_retries: 1
+        retry_interval: 0
+  options: #strictly 2 spaces before
+    raise_not_found_error: false #strictly 4 spaces before not 6
+
+production:
+  sessions:
+    default:
+      use_utc: false
+      use_activesupport_time_zone: true
+      uri: <%= ENV["MONGO_URL"] %>
+      options:
+        max_retries: 1
+        retry_interval: 0
+  options: #strictly 2 spaces before
+    raise_not_found_error: false #strictly 4 spaces before not 6        

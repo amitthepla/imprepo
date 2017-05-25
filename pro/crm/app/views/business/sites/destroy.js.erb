@@ -1,0 +1,9 @@
+$("#<%=@site_id%>").closest("tr").remove();
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Deleted Site Form',
+  text: "You have succesfully deleted <%= @site_name %> as a Site Form.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-danger'
+});

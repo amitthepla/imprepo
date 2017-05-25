@@ -1,0 +1,17 @@
+
+<div class="form-group">
+<%= f.label :communication,"Communication"  %><br/>
+<%= f.select(:communication, [['Email'], ['Phone Call'], ['Text Message']],{}, {class: "form-control chzn-select"}) %><br>
+</div>
+  <div class="form-group">
+    <%= f.label :title,"Title"  %>
+    <%= f.text_field :title, class: "form-control"  %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :description,"Description"  %>
+    <%= f.text_area :description, class: "form-control"  %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :due_date,"Due"  %>
+    <%= f.date_field :due_date , class: "form-control input-sm date" %><br>
+  </div>

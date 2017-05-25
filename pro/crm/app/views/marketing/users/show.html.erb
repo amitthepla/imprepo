@@ -1,0 +1,9 @@
+<% if !@user.is_super_admin? %>
+    <%= link_to "Impersonate User", admin_user_impersonate_path(@user), {:class => 'btn'} %>
+<% end %>
+<p><%= @user.first_name %> <%= @user.last_name %></p>
+<p><%= @user.email %></p>
+<% if @user.roles.present? %>
+    <p><%= @current_org.roles.find(@user.roles.first).name %></p>
+<% end %>
+

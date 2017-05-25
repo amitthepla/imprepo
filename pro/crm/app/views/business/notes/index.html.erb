@@ -1,0 +1,11 @@
+<h1>All Notes</h1>
+
+<%= link_to 'Add New Note', public_send("new_business_#{@subject_type}_note_path") %>
+
+<% @notes.each do |note| %>
+  <%= link_to note.body, '#' %>
+<% end %>
+
+<% if @notes.empty? %>
+  <p>No Notes</p>
+<% end %>

@@ -1,0 +1,75 @@
+<%= form_for(@event, :html => {:class => "cf"} ) do |f| %>
+<div class="fr"><a href="javascript:void(0)" onclick="$('#new-event').hide()" title="Close">X</a></div>
+<div class="cb">
+<h1>New Event</h1>
+<% if @event.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@event.errors.count, "error")%>
+            prohibited this Doc from being saved:
+        </h2>
+        <p>There were problems with the following fields:</p>
+        <ul>
+        <% @event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+
+<% end %>
+<div class="left-side">
+<div class="input-wrapper is-hidden">
+  <%= f.label :contact,"Patient"  %>
+  <%= f.text_field :contact, :value => params[:contact_id] %>
+</div>
+  <div class="input-wrapper">
+    <label>Inform Chart #</label>
+    <input type="text" name="external_record_id" %>
+  </div>
+  <div class="input-wrapper">
+    <%= f.label :description,"Description"  %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="input-wrapper">
+    <label>Date</label>
+    <input type="date" name="user_date"/>
+  </div>
+  <div class="input-wrapper">
+    <label>Start Time</label>
+    <input type="time" name="user_start_time">
+  </div>
+  <div class="input-wrapper">
+    <label>End Time</label>
+    <input type="time" name="user_end_time">
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :type,"Type"  %>
+    <%= f.select(:type,[['Appt: New Patient Constult','Appt: New Patient Constult'],['Appt: Existing Patient Consult','Appt: Existing Patient Consult'],['Appt: Virtual Consult','Appt: Virtual Consult']], :include_blank => "") %>
+  </div>
+
+  <div class="input-wrapper is-hidden">
+    <%= f.label :status,"Status"  %>
+    <%= f.select(:status,[['Check In', 'Check In'],['Check Out', 'Check Out'],['Check Back', 'Check Back'],['Canceled', 'Canceled'],['No Show', 'No Show']], :include_blank => "") %>
+  </div>
+</div>
+<div class="right-side">
+  <div class="input-wrapper is-hidden">
+    <%= f.label :resources,"Resources"  %>
+    <%= f.select(:resources,[['Dr. Mendieta','Dr. Mendieta'],['Pinina Fitzgerald','Pinina Fitzgerald'],['Marisol Bravo','Marisol Bravo'],['Vivian Aponte','Vivian Aponte']],{},{:multiple => true, :size => 5 }) %>
+  </div>
+
+  <div class="input-wrapper is-hidden">
+    <%= f.label :location,"Location"  %>
+    <%= f.select(:location,[['4 Beauty Aesthetics', '4 Beauty Aesthetics']]) %>
+  </div>
+  <br />
+  <div>
+    <label><input type="checkbox" name="send_forms" checked="true" /> Send Consultation Forms Immediately?</label>
+  </div>
+</div>
+<br />
+  <%= f.submit "Save Event", :class => "btn" %>
+
+<% end %>

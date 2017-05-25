@@ -1,0 +1,357 @@
+<style>
+  .message-body {
+    margin-left: 20px;
+    padding-top: 25px;
+    width: 90%;
+  }
+
+  .email-body {
+    margin-top: 25px;
+  }
+
+  table.info-table tr td {
+    border: none;
+  }
+
+  blockquote {
+    font-size: small;
+  }
+</style>
+
+
+<% basic_info = params[:provider] == 'outlook' ? Business::EmailHelper::Outlook::get_outlook_info(@email) : get_basic_info(@email) %>
+<%#=debug basic_info %>
+<div class="email-details">
+  <!-- Back button block -->
+  <div>
+    <a href="javascript:" title="Back" id="btn-email-back" class="btn btn-default" style="width: 10%;">
+      <i class="fa fa-level-up fa-lg fa-rotate-270" style="font-size: 20px;"></i>
+    </a>
+  </div>
+  <!-- End back button block -->
+  <%if params[:provider] == 'google'%>
+        <div class="pull-right">
+          <ul class="unstyled inbox-pagination">
+            <li>
+              <a href="#" id="btn-reply-google" class="np-btn" data-page-token="" title="Reply"><i class="fa fa-reply pagination-left"></i></a>
+            </li>
+            <li>
+              <a href="#" id="btn-forward-google" class="np-btn" data-page-token="" title="Forward"><i class="fa fa-forward pagination-right"></i></a>
+            </li>
+          </ul>
+        </div>
+  <%end%>
+  <h3>
+    <%= basic_info[:subject] %>
+  </h3>
+
+  <div style="border-top: 1px solid #d8d8d8;margin-top: 15px;"></div>
+  <div class="message-body">
+    <div class="sender-info">
+      <table class="info-table">
+        <tr>
+          <td><strong><%= basic_info[:from] %></strong></td>
+        </tr>
+        <tr>
+          <td>
+            <span>to:</span>
+            <span><%= basic_info[:to]%><%#= basic_info[:to].present? ? basic_info[:to].split('<').first.strip : '' %></span>
+            <!--<span><i class="fa fa-caret-down"></i></span>-->
+          </td>
+        </tr>
+        <%if basic_info[:cc].present? %>
+          <tr>
+            <td>
+              <span>cc:</span>
+              <span><%= basic_info[:cc]%></span>             
+            </td>
+          </tr>
+        <%end%>
+      </table>
+    </div>
+    <div class="email-body">
+      <% email_body = params[:provider] == 'outlook' ? Business::EmailHelper::Outlook::get_outlook_email_content(@email) : get_email_content(@email) %>
+      <%= email_body %>
+      </div>    
+  </div>
+</div>
+<!--
+<span id='fwd_content_span' style="display:none"><%#= generate_forward_content(email_body, basic_info) %></span>
+<span id='reply_content_span' style="display:none"><%#= generate_reply_content(email_body, basic_info) %></span>
+-->
+<%if params[:provider] == 'google'%>
+  <!-- Reply -->
+     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="google-reply-email" class="modal fade" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h4 class="modal-title">Reply Message</h4>
+          </div>
+          <div class="modal-body">
+            <!-- <form data-remote="true" role="form" id="compose-mail-form" class="form-horizontal" action="/emails/<%#= params[:provider] %>/send_mail" method="post" enctype="multipart/form-data"> -->
+            <%= form_tag business_reply_email_path, :method => 'post', :id => 'reply-mail-form', :class => 'form-horizontal', :remote => true, :multipart => true do %>
+                <%= hidden_field_tag "reply_to_email", basic_info[:in_reply_to] %>
+                <%= hidden_field_tag "reply_to_subject", basic_info[:subject] %>
+                <%= hidden_field_tag "reply_to_message_id", basic_info[:msg_id] %>
+                <%= hidden_field_tag "is_reply_message", true %>
+                <div class="form-group">
+                  <%#= label_tag :to, 'To', class: "col-lg-2 control-label" %>
+                  <%= label_tag :'email-to', 'To', class: 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <%= text_field_tag :to, basic_info[:in_reply_to] , :placeholder => 'Recipients', :class => 'form-control', :id => 'reply-email-to', :readonly => true%>
+                  </div>
+                </div>        
+                 <div class="form-group">
+                  <%= label_tag :'email-cc', 'Cc', :class => 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <%= text_field_tag :cc, basic_info[:cc], :id => 'reply-email-cc', :class => 'form-control', :name => 'cc' %>
+                  </div>
+                </div>   
+                <div class="form-group">
+                  <%= label_tag 'email-subject', 'Subject', :class => 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <% subj = basic_info[:subject].include?("Re:") ? basic_info[:subject] : "Re: #{basic_info[:subject]}" %>
+                    <%= text_field_tag :subject, subj, :id => 'reply-email-subject', :name => 'subject', :class => 'form-control', :placeholder => 'Subject', :readonly => true %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :'email-body', 'Message', :class => 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <%= text_area_tag :body, generate_reply_content(email_body, basic_info), :id => 'reply-email-body', :name => 'body', :class => 'form-control tinymce_reply', :placeholder => 'Type your message here.', :rows => "10", :cols => "30" %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                  <span class="btn green fileinput-button">
+                    <i class="fa fa-plus fa fa-white"></i>
+                    <span>Attachment</span>
+                    <%= file_field_tag :'files[]', :id => 'email-attachments', :multiple => true %>
+                    <%#= hidden_field_tag :"files[]" %>
+                  </span>
+                    <div class="text-right">
+                      <!-- <button class="btn btn-send" type="submit">Send</button> -->
+                      <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                      <%= submit_tag 'Send', :id => 'send-reply-email', :class => 'btn btn-send' %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div id="reply-attachment-details" class="col-lg-offset-2 col-lg-10"></div>
+                </div>
+            <% end %>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Forward -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="google-forward-email" class="modal fade" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h4 class="modal-title">Forward Message</h4>
+          </div>
+          <div class="modal-body">
+            <!-- <form data-remote="true" role="form" id="compose-mail-form" class="form-horizontal" action="/emails/<%#= params[:provider] %>/send_mail" method="post" enctype="multipart/form-data"> -->
+            <%= form_tag business_reply_email_path, :method => 'post', :id => 'forward-mail-form', :class => 'form-horizontal', :remote => true, :multipart => true do %>
+                <%= hidden_field_tag "reply_to_message_id", basic_info[:msg_id] %>
+                <%= hidden_field_tag "is_reply_message", true %>
+                <div class="form-group">
+                  <%#= label_tag :to, 'To', class: "col-lg-2 control-label" %>
+                  <%= label_tag :'email-to', 'To', class: 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <%= text_field_tag :to, '' , :placeholder => 'Recipients', :class => 'form-control', :id => 'forward-email-to'%>
+                  </div>
+                </div>        
+                 <div class="form-group">
+                  <%= label_tag :'email-cc', 'Cc', :class => 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <%= text_field_tag :cc, basic_info[:cc], :id => 'forward-email-cc', :class => 'form-control', :name => 'cc' %>
+                  </div>
+                </div>   
+                <div class="form-group">
+                  <%= label_tag 'email-subject', 'Subject', :class => 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <% subj = basic_info[:subject].include?("Fwd:") ? basic_info[:subject] : "Fwd: #{basic_info[:subject]}" %>
+                    <%= text_field_tag :subject, subj, :id => 'forward-email-subject', :name => 'subject', :class => 'form-control', :placeholder => 'Subject' %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :'email-body', 'Message', :class => 'col-lg-2 control-label' %>
+                  <div class="col-lg-10">
+                    <%= text_area_tag :body, generate_forward_content(email_body, basic_info), :id => 'forward-email-body', :name => 'body', :class => 'form-control tinymce_reply', :placeholder => 'Type your message here.', :rows => "10", :cols => "30" %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                  <span class="btn green fileinput-button">
+                    <i class="fa fa-plus fa fa-white"></i>
+                    <span>Attachment</span>
+                    <%= file_field_tag :'files[]', :id => 'email-attachments', :multiple => true %>
+                    <%#= hidden_field_tag :"files[]" %>
+                  </span>
+                    <div class="text-right">
+                      <!-- <button class="btn btn-send" type="submit">Send</button> -->
+                      <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                      <%= submit_tag 'Send', :id => 'send-forward-email', :class => 'btn btn-send' %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div id="forward-attachment-details" class="col-lg-offset-2 col-lg-10"></div>
+                </div>
+            <% end %>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <%#= tinymce :alternate %>
+<%end%>
+
+
+<script>
+  var pd;
+  $(function () {
+    $("#btn-email-back").on("click", function () {
+      var page_token, postData, searchQuery = $.trim($("#txt-email-search").val());
+      if ("<%= params[:provider] %>" == "outlook") {
+        page_token = outlookPageSize;
+      } else {
+        page_token = pageToken[currentPage];
+      }
+
+      if (searchQuery == "") {
+        postData = {label_id: labelId, page_token: page_token, mail_type: mailType}
+      } else {
+        postData = {q: searchQuery}
+      }
+      pd = postData;
+      $.ajax({
+        url: "/emails/<%= params[:provider] %>/mail",
+        type: 'GET',
+        data: postData,
+        success: function (res) {
+          $("#email-content").html(res);
+          $(".mail-option").show();
+        }
+      });
+    });    
+    
+    $("#btn-reply-google").on("click", function () {
+      $("#google-reply-email").modal("show");
+    });
+
+    $("#btn-forward-google").on("click", function () {
+      $("#google-forward-email").modal("show");      
+    });
+
+
+    $('#google-reply-email').on('shown.bs.modal', function() {
+        if (typeof tinyMCE != 'undefined') {
+          //alert('tinymce is correct')          
+          tinymce.EditorManager.editors = [];
+          tinyMCE.init({
+            selector: "textarea#reply-email-body",
+            toolbar: ["styleselect | bold italic underline | undo redo"]
+          });
+           //$(tinymce.get('reply-email-body').getBody()).html('');
+           //$('#reply-email-body').val('')
+        } else {
+         // alert('tinymce is not correct')
+         setTimeout(arguments.callee, 50);
+        }
+    })
+
+    $('#google-forward-email').on('shown.bs.modal', function() {
+        if (typeof tinyMCE != 'undefined') {
+          //alert('tinymce is correct')          
+          tinymce.EditorManager.editors = [];
+          tinyMCE.init({
+            selector: "textarea#forward-email-body",
+            toolbar: ["styleselect | bold italic underline | undo redo"]
+          });
+           //$(tinymce.get('reply-email-body').getBody()).html('');
+           //$('#reply-email-body').val('')
+        } else {
+         // alert('tinymce is not correct')
+         setTimeout(arguments.callee, 50);
+        }
+    })
+
+    $('#forward-mail-form').on('ajax:success', function(e, data, status, xhr){
+      $("#google-forward-email").modal("hide");
+    }).on('ajax:error',function(e, xhr, status, error){
+      console.log('error occured')
+    });
+
+
+    // Reply stuffs //
+    $('#reply-mail-form').bind('form-pre-serialize', function (e) {
+      tinyMCE.triggerSave();
+    });
+
+    var reply_options = {
+      target: '#output1', // target element(s) to be updated with server response
+      contentType: "application/x-www-form-urlencoded;charset=utf-8",
+      beforeSubmit: changeBtnTextReply, // pre-submit callback
+      success: showResponseReply, // post-submit callback
+      error: function (xhr) {
+        alert(xhr.responseText);
+        $("#send-reply-email").val("Send").prop("disabled", false);
+      }
+    };
+
+    // bind form using 'ajaxForm'
+    $('#reply-mail-form').ajaxForm(reply_options);
+
+    function changeBtnTextReply() {
+      $("#send-reply-email").val("Sending...").prop("disabled", true);
+    }
+
+    function showResponseReply(responseText, statusText, xhr, $form) {
+      $("#send-reply-email").val("Send").prop("disabled", false);
+      $("#google-reply-email").modal("hide");
+      $("#reply-mail-form")[0].reset();
+      $("#forward-attachment-details").html("");
+    }
+    // Forward stuffs //
+
+    $('#forward-mail-form').bind('form-pre-serialize', function (e) {
+      tinyMCE.triggerSave();
+    });
+
+    var reply_options = {
+      target: '#output1', // target element(s) to be updated with server response
+      contentType: "application/x-www-form-urlencoded;charset=utf-8",
+      beforeSubmit: changeBtnTextForward, // pre-submit callback
+      success: showResponseForward, // post-submit callback
+      error: function (xhr) {
+        alert(xhr.responseText);
+        $("#send-forward-email").val("Send").prop("disabled", false);
+      }
+    };
+
+    // bind form using 'ajaxForm'
+    $('#forward-mail-form').ajaxForm(reply_options);
+
+    function changeBtnTextForward() {
+      $("#send-forward-email").val("Sending...").prop("disabled", true);
+    }
+
+    function showResponseForward(responseText, statusText, xhr, $form) {
+      $("#send-forward-email").val("Send").prop("disabled", false);
+      $("#google-forward-email").modal("hide");
+      $("#forward-mail-form")[0].reset();
+      $("#reply-attachment-details").html("");
+    }
+
+
+
+  })
+</script>

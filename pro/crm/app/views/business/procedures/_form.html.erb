@@ -1,0 +1,67 @@
+<% if @procedure.errors.any? %>
+    <div class="row">
+      <div class="col-md-8">
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@procedure.errors.count, 'error') %>
+            prohibited this procedure from being saved:
+          </h2>
+          <p>There were problems with the following fields:</p>
+          <ol>
+            <% @procedure.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <br/>
+<% end %>
+
+<center>
+  <%= form_for(@procedure, :html => {:class => 'form-inline no-margin'}) do |f| %>
+      <div class="col-md-4">
+        <div class="form-group has-success">
+          <%= f.label :name, 'Procedure' %><br/>
+          <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :details, 'Details' %><br/>
+          <%= f.text_field :details, placeholder: 'Details', class: 'form-control' %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :cost, 'Cost' %><br/>
+          <%= f.text_field :cost, placeholder: '100', class: 'form-control' %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :type, 'Type' %><br/>
+          <%= f.select(:type, ([%w(Body Body), %w(Face Face), %w(Butt Butt), %w(Breast Breast), %w(Leg Leg), %w(Arm Arm)]), {:include_blank => 'Type'}, {class: 'chzn-select form-control'}) %>
+        </div>
+
+
+        <div class="form-group has-success">
+          <%= f.label :procedure_for, 'Procedure For' %><br/>
+          <%= f.select(:procedure_for, ([%w(Male M), %w(Female F), %w(Both B)]), {}, {class: 'chzn-select form-control'}) %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :surgical, "Is this a Surgical Procedure?"%>
+          <%= f.check_box :surgical , class: "form-control"%>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :medspa, "Is this a MedSpa Procedure?"%>
+          <%= f.check_box :medspa, class: "form-control"%>
+        </div>
+
+        <div class="form-group">
+          <br>
+          <%= f.submit 'Save Procedure', :class => 'btn btn-sm form-control btn-success' %>
+        </div>
+
+      </div>
+  <% end %>
+</center>

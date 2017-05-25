@@ -1,0 +1,31 @@
+
+<strong class="font-12"><span class="text-info">Consultation Date: </span><%= @consultation.date.strftime('%D') %></strong><br/>
+<strong class="font-12"><span class="text-info">Consultation Fee: </span><%= number_to_currency(@consultation.cost) %></strong><br/>
+<strong class="font-12"><span class="text-info">Physician: </span><%= get_name(@current_org.users.where(id: @consultation.physician_id).first)%></strong><br/>
+<strong class="font-12"><span class="text-info">Status: </span><%= ("No Show" if @consultation.no_show) || ("Cancelled" if @consultation.cancelled) || ("Completed" if @consultation.date < Date.today.beginning_of_day) || "Pending" %></strong><br/>
+<br>
+<% if @consultation.cancelled || @consultation.no_show %>
+  <div class="col-md-10">
+    <%= form_for @consultation,method: 'put', remote: true do |f| %>
+      <%= f.hidden_field :cancelled, value: false%>
+      <%= f.hidden_field :no_show, value: false%>
+      <%= f.hidden_field :lead_id, value: @consultation.lead.id %>
+      <%= f.submit "Reinstate Consult" ,class:"btn btn-xs btn-primary" %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="col-md-6">
+    <%= form_for @consultation,method: 'put', remote: true do |f| %>
+      <%= f.hidden_field :cancelled, value: true %>
+      <%= f.hidden_field :lead_id, value: @consultation.lead.id %>
+      <%= f.submit "Cancel Consult" ,class:"btn btn-xs btn-danger" %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= form_for @consultation,method: 'put', remote: true do |f| %>
+      <%= f.hidden_field :no_show, value: true %>
+      <%= f.hidden_field :lead_id, value: @consultation.lead.id %>
+      <%= f.submit "No Show" ,class:"btn btn-xs btn-warning" %>
+    <% end %>
+  </div>
+<% end %>

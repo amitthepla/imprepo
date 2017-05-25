@@ -1,0 +1,126 @@
+<ul>
+  <li >
+    <%= link_to business_leads_path , class: " should-load" do%>
+    <span class="menu-icon">
+      <i class="fa fa-desktop fa-lg"></i>
+    </span>
+    <span class="text">
+      Dashboard
+    </span>
+    <span class="menu-hover"></span>
+    <%end%>
+  </li>
+
+  <li>
+    <%= link_to business_phone_messages_path , class: " should-load" do%>
+    <span class="menu-icon">
+      <i class="fa fa-phone fa-lg"></i>
+    </span>
+    <span class="text">
+      Messages
+    </span>
+    <span class="menu-hover"></span>
+    <%end%>
+  </li>
+
+  <li class="openable">
+    <a href="#">
+      <span class="menu-icon">
+        <i class="fa fa-users fa-lg"></i>
+      </span>
+      <span class="text">
+        Leads
+      </span>
+      <span class="menu-hover"></span>
+    </a>
+    <ul class="submenu">
+
+      <li>
+        <%= link_to business_leads_path, class: " should-load"  do %>
+        <span class="submenu-label">
+          View Leads
+        </span>
+        <%end%>
+      </li>
+
+      <li>
+        <%= link_to duplicate_leads_path, class: " should-load"  do %>
+        <span class="submenu-label">
+          Duplicate Leads
+        </span>
+        <%end%>
+      </li>
+
+      <li>
+        <%= link_to business_import_index_path, class: " should-load"  do %>
+        <span class="submenu-label">
+          Import Leads
+        </span>
+        <%end%>
+      </li>
+
+      <li>
+        <%= link_to business_leads_consult_log_path, class: " should-load"  do %>
+        <span class="submenu-label">
+          Consult Log
+        </span>
+        <%end%>
+      </li>
+
+      <li>
+        <%= link_to business_leads_surgery_log_path, class: " should-load"  do %>
+        <span class="submenu-label">
+          Surgery Log
+        </span>
+        <%end%>
+      </li>
+
+      <li>
+        <%= link_to injectable_leads_path, class: " should-load"  do %>
+        <span class="submenu-label">
+          Injectable Leads
+        </span>
+        <%end%>
+      </li>
+
+    </ul>
+  </li>
+
+  <li>
+    <%= link_to business_tasks_path, class: " should-load"  do %>
+    <span class="menu-icon">
+      <i class="fa fa-tasks fa-lg"></i>
+    </span>
+    <span class="text">
+      Tasks
+    </span>
+    <span class="menu-hover"></span>
+    <%end%>
+  </li>
+
+
+  <li>
+    <%= link_to business_settings_path, class: " should-load"  do %>
+    <span class="menu-icon">
+      <i class="fa fa-cogs fa-lg"></i>
+    </span>
+    <span class="text">
+      Settings
+    </span>
+    <span class="menu-hover"></span>
+    <%end%>
+  </li>
+
+</ul>
+
+<div class="alert alert-info">
+  <%= link_to marketing_dashboard_path, class: " should-load"  do %>
+  <span class="menu-icon">
+    <i class="fa fa-star fa-lg"></i>
+  </span>
+  <span class="text">
+    Marketing
+  </span>
+  <span class="menu-hover"></span>
+  <%end%>
+</div>

@@ -1,0 +1,330 @@
+
+<div class="form-wrapper">
+<header> <a href="#" class="logo"><%= image_tag("logo_white.png", alt: "4Beauty Aesthetics") %></a></header>
+<div class="sub-heading">
+	<ul class="step-title">
+		<li class="is-active">
+			<div>1</div>
+			<p>Intro</p>
+		</li>
+		<li>
+			<div>2</div>
+			<p>Verify Information</p>
+		</li>
+		<li>
+			<div>3</div>
+			<p>About You</p>
+		</li>
+		<li>
+			<div>4</div>
+			<p>Emergency Contact</p>
+		</li>
+		<li>
+			<div>5</div>
+			<p>Medical History</p>
+		</li>
+		<li>
+			<div>6</div>
+			<p>Social History</p>
+		</li>
+<!-- 		<li>
+			<div>7</div>
+			<p>About your Procedure</p>
+		</li> -->
+	</ul>
+	<div class="step-process"></div>
+</div>
+<%= form_for(@contact,:url => consultation_submission_path, :html => {:class => ""} ) do |f| %>
+	<input type="hidden" name="questionnaire_token" value="<%= @contact.public_token %>"/>
+	<div class="step step-intro is-active">
+	<h1>Hi, <%= @contact.first_name %>. Let's get ready for your consultation with <br/> Dr. Mendieta.</h1>
+	<p> This process should only take a few moments and will expidite your consultation.</p>
+	<button>Begin</button>
+	</div>
+<div class="step step-1">
+	<div class="step-inputs">
+		<h3>Is this information correct?</h3>
+		 <div class="input-wrapper">
+	        <%= f.label :first_name,"First"  %>
+	        <%= f.text_field :first_name, disabled: true %>
+	    </div>
+	    <div class="input-wrapper">
+	        <%= f.label :last_name,"Last"  %>
+	        <%= f.text_field :last_name, disabled: true %>
+	    </div>
+	    <div class="input-wrapper">
+	        <%= f.label :email,"Email"  %>
+	        <%= f.text_field :email, disabled: true %>
+	    </div>
+
+	    <div class="input-wrapper">
+	        <%= f.label :phone,"Phone"  %>
+	        <%= f.text_field :phone, autocomplete: false  %>
+	    </div>
+
+	    <div class="input-wrapper">
+		    <%= f.label :address,"Address"  %>
+		    <%= f.text_field :address, autocomplete: false  %>
+	    </div>
+		<div class="input-wrapper">
+		    <%= f.label :city,"City"  %>
+		    <%= f.text_field :city, autocomplete: false  %>
+	    </div>
+		<div class="input-wrapper">
+		    <%= f.label :state,"State"  %>
+		    <%= f.text_field :state, autocomplete: false  %>
+	    </div>
+	    <div class="input-wrapper">
+		    <%= f.label :zip,"Zip"  %>
+		    <%= f.text_field :zip, autocomplete: false  %>
+	    </div>
+	</div>
+    <button>Continue</button>
+</div>
+<div class="step step-2">
+	<div class="step-inputs">
+		<h3>Details About you</h3>
+		<div class="input-wrapper">
+			<label>Date of Birth:</label>
+			<%= f.text_field :dob, :id => 'dob' %>
+		</div>
+		<div class="input-wrapper">
+			<label>Driver's License #:</label>
+			<%= f.text_field :driver_license_number, autocomplete: false  %>
+		</div>
+		<div class="input-wrapper">
+			<label>Driver's License State:</label>
+			<%= f.text_field :driver_license_state, autocomplete: false  %>
+		</div>
+		<div class="input-wrapper">
+			<label>Height:</label>
+			<%= f.text_field :height, :id => 'height', autocomplete: false  %>
+		</div>
+		<div class="input-wrapper">
+			<label>Weight:</label>
+			<%= f.text_field :weight, autocomplete: false  %>
+		</div>
+		<% if @contact.gender == 'F' %>
+			<div class="input-wrapper">
+				<label>Dress Size:</label>
+				<%= f.text_field :dress_size, autocomplete: false  %>
+			</div>
+			<div class="input-wrapper">
+				<label>Bra Size:</label>
+				<%= f.text_field :bra_size, :id => 'bra', autocomplete: false  %>
+			</div>
+		<% end %>
+	</div>
+
+	<button>Continue</button>
+</div>
+<div class="step step-3">
+	<div class="step-inputs">
+		<h3>In case of an emergency, who should be notified?</h3>
+		<div class="input-wrapper">
+			<label>First Name:</label>
+		    <%= f.text_field :emergency_contact_first_name, autocomplete: false  %>
+	    </div>
+	    <div class="input-wrapper">
+		    <label>Last Name:</label>
+		    <%= f.text_field :emergency_contact_last_name, autocomplete: false  %>
+	    </div>
+	    <div class="input-wrapper">
+		    <label>Phone:</label>
+		    <%= f.text_field :emergency_contact_phone, autocomplete: false  %>
+	    </div>
+	    <div class="input-wrapper">
+		    <label>Relationship:</label>
+		    <%= f.text_field :emergency_contact_relationship, autocomplete: false  %>
+	    </div>
+    </div>
+	<button>Continue</button>
+</div>
+	<%= f.fields_for :questionnaire, @questionnaire do |questionnaire_fields| %>
+<div class="step step-4">
+	<div class="step-inputs">
+		<h3>Medical History</h3>
+		<small>In this time of rapidly expanding medical knowledge and the increasing specialization associated therewith, there exists a very real risk of the specialist physician not being aware of the general health and medical background of the patient. On occasion such information may critically affect what procedures we may safely undertake on you and under what circumstances. We therefore ask that you give us the following medical information.</small>
+
+		<p><small>Please list all medications which you are currently taking or have used in the past 6 months (be sure to include any of the following: birth control pills, aspirin or ibuprofen containing drugs, diet pills, diabetic medications, steroids, glaucoma drops, asthma medications, Digoxin, Lanoxin, nitroglycerin, Jsordil, lnderal, other heart medications, Lasix, other diuretics, high blood pressure medications, Coumadin, Persantine, tranquilizers, sleeping pills, anti-depressants, pain pills or shots, epilepsy medications</small></p>
+		<div class="input-wrapper">
+			<label>Medication(s)?</label>
+			<%= questionnaire_fields.text_area :medications, autocomplete: false  %>
+		</div>
+
+		<p><small>Please list all of the following medical conditions you now have or have had in the past:
+			bleeding tendency / hepatitis / diabetes / blood transfusions / glaucoma / dry eyes / lung disease / TB /
+			asthma or wheezing / emphysema / bronchitis / irregular heart beat / chest pain / heart disease /
+			heart attack / stroke / epilepsy / heart burn / intestinal ulcers or bleeding / depression / mental illness /
+			drug or alcohol addiction / any other serious illness or injury / None of the above</small></p>
+		<div class="input-wrapper">
+			<label>Medical condition(s):</label>
+			<%= questionnaire_fields.text_area :medical_conditions, autocomplete: false  %>
+		</div>
+		<br/>
+		<div class="input-wrapper">
+			<label>Surgical History:</label>
+			<%= questionnaire_fields.text_area :surgical_history, autocomplete: false  %>
+		</div>
+
+		<div class="input-wrapper">
+			<label>Allergies:</label>
+			<%= questionnaire_fields.text_area :allergies, autocomplete: false  %>
+		</div>
+		<div class="input-wrapper">
+			<p>Have you or anyone in your family ever had unusual reactions to anesthesia (muscle weakness ,jaundice, breathing problems or unexpected fevers?</p>
+			<%= questionnaire_fields.select(:anesthesia_history,[['Yes', 'Yes'], ['No', 'No']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>Have you ever seen a cardiologist?:</label>
+			<%= questionnaire_fields.select(:cardiologist_visit,[['Yes', 'Yes'], ['No', 'No']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>Physician Name:</label>
+			<%= questionnaire_fields.text_field :cardiologist_physician, autocomplete: false  %>
+		</div>
+		<div class="input-wrapper">
+			<label>Date of last EKG:</label>
+			<%= questionnaire_fields.text_field :cardiologist_ekg, autocomplete: false  %>
+		</div>
+		<% if @contact.gender == 'F' %>
+			<div class="input-wrapper">
+				<label>Last Mammogram:</label>
+				<%= questionnaire_fields.text_field :last_mammogram, autocomplete: false  %>
+			</div>
+			<div class="input-wrapper">
+				<label>History of Breast Cancer in family?</label>
+				<%= questionnaire_fields.select(:history_of_breast_cancer,[['Yes', 'Yes'], ['No', 'No']], :include_blank => "--") %>
+			</div>
+			<div class="input-wrapper">
+			<label>Do you have children?</label>
+				<%= questionnaire_fields.select(:children,[['Yes', 'Yes'], ['No', 'No']], :include_blank => "--") %>
+			</div>
+
+			<div class="input-wrapper">
+				<label>Last Pregnancy Date:</label>
+				<%= questionnaire_fields.text_field :last_pregnancy_date, :id => 'pregnancy_date' %>
+			</div>
+			<div class="input-wrapper">
+				<label>How many pregnancies?</label>
+				<%= questionnaire_fields.text_field :gravida, autocomplete: false  %>
+			</div>
+			<div class="input-wrapper">
+				<label>How many deliveries?</label>
+				<%= questionnaire_fields.text_field :para, autocomplete: false  %>
+			</div>
+		<% end %>
+		<button>Continue</button>
+		</div>
+	<button>Continue</button>
+</div>
+
+<div class="step step-5">
+	<div class="step-inputs">
+		<h3>Social History</h3>
+		<div class="input-wrapper">
+			<label>Employer</label>
+			<%= f.text_field :employer, autocomplete: false  %>
+		</div>
+
+	    <div class="input-wrapper">
+	    	<label>Occupation</label>
+	    	<%= f.text_field :occupation, autocomplete: false  %>
+	    </div>
+
+	    <div class="input-wrapper">
+	    	<label>Work Phone</label>
+	    	<%= f.text_field :business_phone, autocomplete: false  %>
+	    </div>
+		<div class="input-wrapper">
+			<label>Marital Status:</label>
+			<%= f.select(:marital_status,[['Divorced', 'Divorced'], ['Married', 'Married'], ['Separated', 'Separated'], ['Single', 'Single'], ['Widow', 'Widow']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>Do you drink caffinated beverages?</label>
+			<%= questionnaire_fields.select(:caffine_use,[['Yes', 'Yes'], ['No', 'No'], ['Not Anymore','Not Anymore']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>Do you smoke?</label>
+			<%= questionnaire_fields.select(:smoker,[['Yes', 'Yes'], ['No', 'No'], ['Not Anymore','Not Anymore']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>If yes, How often do you smoke?</label>
+			<%= questionnaire_fields.select(:smoke_use,[['Less than 1 pack a day', 'Less than 1 pack a day'], ['2-5 packs a day','2-5 packs a day'], ['5+ packs per day','5+ packs per day']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>How often do you drink alcohol?</label>
+			<%= questionnaire_fields.select(:alcholic_use,[['Never', 'Never'], ['Monthly', 'Monthly'], ['2-5 Times per month','2-5 Times per month'], ['2-5 Times per week','2-5 Times per week'], ['5+ Times per week','5+ Times per week']], :include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+			<label>Do you or have you ever used recreational drugs or steroids?</label>
+			<%= questionnaire_fields.select(:recreational_drug_use,[['Yes', 'Yes'], ['No', 'No']], :include_blank => "--") %>
+		</div>
+	</div>
+	<%= f.submit "Submit", :class => "btn" %>
+</div>
+
+<!-- <div class="step step-6">
+	<div class="step-inputs">
+		<h3>About your Procedure</h3>
+
+		<div class="input-wrapper">
+		<label>What month were you thinking of having this procedure?</label>
+			<select class="js-select-field" data="procedure-month">
+				<option value="01">January</option>
+				<option value="02">Febuary</option>
+				<option value="03">March</option>
+				<option value="04">April</option>
+				<option value="05">May</option>
+				<option value="06">June</option>
+				<option value="07">July</option>
+				<option value="08">August</option>
+				<option value="09">September</option>
+				<option value="10">October</option>
+				<option value="11">November</option>
+				<option value="12">December</option>
+			</select>
+			</div>
+			<div class="input-wrapper">
+			<label>What year were you thinking of having this procedure?</label>
+			<select class="js-select-field" data="procedure-year">
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
+				<option value="2017">2017</option>
+				<option value="2018">2018</option>
+				<option value="2019">2019</option>
+				<option value="2020">2020</option>
+			</select>
+		</div>
+		<%= questionnaire_fields.hidden_field :planned_surgery_date, :id => 'procedure' %>
+		<div class="input-wrapper">
+		<label>What is your interest level?</label>
+			<%= questionnaire_fields.select(:interest_level,[['1 - Low', '1 - Low'], ['3 - Moderate', '3 - Moderate'], ['9 - High', '9 - High']],:include_blank => "--") %>
+		</div>
+		<div class="input-wrapper">
+		<label>Explain your motivation for this procedure.</label>
+			<%= questionnaire_fields.text_area :motivation %>
+		</div>
+		<div class="input-wrapper">
+		<label>Please tell us about your expectations with this procedure.</label>
+			<%= questionnaire_fields.text_area :expectations %>
+		</div>
+		<div class="input-wrapper">
+			<label>Do you have any questions for Dr. Mendieta?</label>
+			<%= questionnaire_fields.text_area :extra_questions %>
+		</div>
+	</div>
+	<% end %>
+	<%= f.submit "Complete my Beauty Profile", :class => "btn" %>
+</div> -->
+<!-- <div class="step step-7">
+<p>How did you hear about us?
+	<input type="text"/></p>
+</div>
+<div class="step step-outro">
+	Thank you for filling this questionnaire out. If you have any questions feel free to call us at (305) 860-0717.
+	Follow us on Facebook.
+</div> -->
+
+<% end %>
+</div>

@@ -1,0 +1,22 @@
+    <h4>Import leads from a lead aggregator's emails</h4>
+
+    <%= link_to import_realself_emails_path, class:'btn btn-md btn-success' do%>
+      <span>Import Real Self Leads <i class="fa fa-stethoscope fa-lg" aria-hidden="true"></i></span>
+    <%end%>
+
+    <%= link_to import_opticall_emails_path, class:'btn btn-md btn-primary' do%>
+      <span>Import OptiCall Leads <i class="fa fa-phone fa-lg" aria-hidden="true"></i></span>
+    <%end%>
+
+
+<br><br>
+
+
+    <div col="col-md-4 col-xs-6">
+      <h4>Import leads from a CSV</h4>
+      <%= form_tag parse_path, multipart: true, method: "post" do %>
+        <%= file_field_tag :file %>
+        <br>
+        <%= submit_tag "Parse", class: "btn btn-md btn-info"%>
+      <% end %>
+    </div>

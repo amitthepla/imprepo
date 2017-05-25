@@ -1,0 +1,15 @@
+<style type="text/css">
+	.page-break { 
+		display:block; 
+		clear:both; 
+		page-break-after:always; 
+	}
+</style>
+<%= render :file => '/forms/medical_history', :locals => {:contact => @contact, :questionnaire => @contact.questionnaire} %>
+<div class="page-break"></div>
+<%= render :file => '/forms/new_consult', :locals => {:contact => @contact, :questionnaire => @contact.questionnaire} %>
+<div class="page-break"></div>
+<%= render :file => '/forms/patient_consult', :locals => {:contact => @contact, :questionnaire => @contact.questionnaire} %>
+<div class="page-break"></div>
+<%= render :file => '/forms/patient_information', :locals => {:contact => @contact, :questionnaire => @contact.questionnaire} %>
+<div class="page-break"></div>

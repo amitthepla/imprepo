@@ -1,0 +1,20 @@
+<% row_count = 0 %>
+<% @sources.each do |src| %>
+  <tr style="text-align:center;">
+      <td style="vertical-align:middle;"><%= row_count += 1 %></td>
+      <td style="vertical-align:middle;"><%= src.name.titleize %></td>
+      <td style="vertical-align:middle;"><%= src.source_type.name.titleize %></td>
+      <td style="vertical-align:middle;"><%= src.start_date ? src.start_date.strftime('%D') : "Long Running Source" %></td>
+      <td style="vertical-align:middle;"><%= src.end_date ? src.end_date.strftime('%D') : "Long Running Source"  %></td>
+      <td style="vertical-align:middle;"><%= number_to_currency(src.cost) %></td>
+      <td style="vertical-align:middle;text-align:center;">
+        <%= link_to src, method: :delete, data:{confirm: "Delete this contact?"} do %>
+          <i class="text-danger fa fa-trash-o fa-lg" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to edit_business_source_path(src) do %>
+          <i class="text-info fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+        <% end %>
+      </td>
+
+    </tr>
+<% end %>

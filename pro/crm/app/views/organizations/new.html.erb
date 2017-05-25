@@ -1,0 +1,377 @@
+<style>
+  .signup-widget {
+    margin: 20px auto 0;
+    width: 600px;
+  }
+
+  .error {
+    border-color: red
+  }
+</style>
+
+<%= form_tag create_organization_path, class: 'form-login', id: 'organization-signup-form' do %>
+    <div id="add-organization">
+      <div class="login-wrapper">
+        <div class="text-center">
+          <h2 class="fadeInUp animation-delay8" style="font-weight:bold">
+            <span class="text-primary">Organization</span>
+            <span style="color:#ccc; text-shadow:0 1px #fff ">Signup</span>
+          </h2>
+        </div>
+        <div class="signup-widget animation-delay1">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <div class="pull-left">
+                <h4>Please enter Organization data</h4>
+              </div>
+            </div>
+            <div class="panel-heading clearfix">
+              <div class="pull-left">
+                <i class="fa fa-asterisk"></i> All fields are mandatory
+              </div>
+              <div class="pull-right">
+                <span style="font-size:11px;">Already have an account?</span>
+                <a class="btn btn-default btn-xs login-link" href="/" style="margin-top:-2px;"><i class="fa fa-sign-in "></i>
+                  Sign In</a>
+              </div>
+            </div>
+            <div class="panel-body">
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :company_name, 'Company Name' %>
+                    <%= text_field_tag :company_name, @organization.company_name, placeholder: 'Company Name', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[company_name]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :phone, 'Phone' %><br>
+                    <%= text_field_tag :phone, @organization.phone, placeholder: '1234567890', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[phone]', id: 'org-phone', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :address, 'Address' %><br>
+                    <%= text_field_tag :address, @organization.address, placeholder: 'Company Address', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[address]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :city, 'City' %><br>
+                    <%= text_field_tag :city, @organization.city, placeholder: 'City Name', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[city]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :state, 'State' %><br>
+                    <%= text_field_tag :state, @organization.state, placeholder: 'State', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[state]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :zip, 'Zip' %><br>
+                    <%= text_field_tag :zip, @organization.zip, placeholder: '125402', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[zip]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+              </div>
+
+              <!--<div class="row">-->
+                <!--<div class="col col-md-6">-->
+                  <!--<div class="form-group">-->
+                    <%#= label :notification_address, 'Notification Email' %><br>
+                    <!--<%#= text_field_tag :notification_address, @organization.notification_address, placeholder: 'notify@organization.com', class: 'form-control input-sm bounceIn animation-delay2', name: 'organization[notification_address]', onblur: 'removeError(this);' %>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <hr/>
+              <%= link_to 'Next', 'javascript:', id: 'add-admin', class: 'btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right', onclick: 'addAdmin();', onblur: 'removeError(this);' %>
+            </div>
+          </div><!-- /panel -->
+        </div><!-- /login-widget -->
+      </div><!-- /login-wrapper -->
+    </div>
+
+    <div id="add-admin-user" style="display: none;">
+      <div class="login-wrapper">
+        <div class="text-center">
+          <h2 class="fadeInUp animation-delay8" style="font-weight:bold">
+            <span class="text-primary">Organization</span>
+            <span style="color:#ccc; text-shadow:0 1px #fff ">Signup</span>
+          </h2>
+        </div>
+        <div class="signup-widget animation-delay1">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <div class="pull-left">
+                <h4>Please enter Admin user data</h4>
+              </div>
+            </div>
+            <div class="panel-heading clearfix">
+              <div class="pull-left">
+                <i class="fa fa-asterisk"></i> All fields are mandatory
+              </div>
+
+              <div class="pull-right">
+                <span style="font-size:11px;">Already have an account?</span>
+                <a class="btn btn-default btn-xs login-link" href="/" style="margin-top:-2px;"><i class="fa fa-sign-in "></i>
+                  Sign In</a>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :first_name, 'First Name' %>
+                    <%= text_field_tag :first_name, @user.first_name, placeholder: 'First Name', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[first_name]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :last_name, 'Last Name' %><br>
+                    <%= text_field_tag :last_name, @user.last_name, placeholder: 'Last Name', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[last_name]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :email, 'Email' %><br>
+                    <%= text_field_tag :email, @user.email, placeholder: 'someone@example.com', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[email]', onblur: 'removeError(this);checkemail(this);' %>
+                  </div>
+                  <p id="email-error" class="text-danger" style="display: none;">Email has been already registered.</p>
+                </div>
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :username, 'Username' %><br>
+                    <%= text_field_tag :username, @user.username, placeholder: 'Username', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[username]', onblur: 'removeError(this);checkUserName(this);' %>
+                  </div>
+                  <p id="username-error" class="text-danger" style="display: none;">Username is not available.</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :password, 'New Password' %><br>
+                    <%= password_field_tag :password, @user.password, placeholder: 'New Password', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[password]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :password_confirmation, 'Retype Password' %><br>
+                    <%= password_field_tag :password_confirmation, @user.password_confirmation, placeholder: 'Retype Password', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[password_confirmation]', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-md-6">
+                  <div class="form-group">
+                    <%= label :phone, 'Phone' %><br>
+                    <%= text_field_tag :phone, @user.phone, placeholder: 'Phone', class: 'form-control input-sm bounceIn animation-delay2', name: 'user[phone]', id: 'user-phone', onblur: 'removeError(this);' %>
+                  </div>
+                </div>
+                <div class="col col-md-6"></div>
+              </div>
+
+              <hr/>
+              <%= link_to 'Signup', 'javascript:', id: 'create-organization', class: 'btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right', onclick: 'submitForm();' %>
+              <%= link_to 'Previous', 'javascript:', id: 'back-btn', class: 'btn btn-default btn-sm bounceIn animation-delay5 login-link pull-right', style: 'margin-right: 5px;', onclick: 'goBack();' %>
+            </div>
+          </div><!-- /panel -->
+        </div><!-- /login-widget -->
+      </div><!-- /login-wrapper -->
+    </div>
+<% end %>
+
+<script>
+  var isValidUsername = true;
+  var isValidemail = true;
+  $(document).on("ready", function () {
+  });
+
+  function addAdmin() {
+    var isValid = validateOrganizationForm();
+    if (isValid) {
+      $("#add-organization").hide();
+      $("#add-admin-user").show();
+    }
+  }
+
+  function goBack() {
+    $("#add-organization").show();
+    $("#add-admin-user").hide();
+  }
+
+  function submitForm() {
+    var isValid = validateUserForm();
+    if (isValid && isValidUsername && isValidemail) {
+      $("#organization-signup-form").submit();
+    }
+  }
+
+  function validateOrganizationForm() {
+    var isValid = true;
+    var regexNumber = /^\d+$/;
+//    var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var company = $("#company_name"),
+        phone = $("#org-phone"),
+        address = $("#address"),
+        city = $("#city"),
+        state = $("#state"),
+        zip = $("#zip");
+//        notification_address = $("#notification_address");
+
+    if ($.trim(company.val()) == "") {
+      isValid = false;
+      company.addClass("error");
+    }
+    if ($.trim(phone.val()) == "") {
+      isValid = false;
+      phone.addClass("error");
+    } else if (regexNumber.test($.trim(phone.val())) == false) {
+      isValid = false;
+      phone.addClass("error");
+    }
+    if ($.trim(address.val()) == "") {
+      isValid = false;
+      address.addClass("error");
+    }
+    if ($.trim(city.val()) == "") {
+      isValid = false;
+      city.addClass("error");
+    }
+    if ($.trim(state.val()) == "") {
+      isValid = false;
+      state.addClass("error");
+    }
+    if ($.trim(zip.val()) == "") {
+      isValid = false;
+      zip.addClass("error");
+    } else if (regexNumber.test($.trim(zip.val())) == false) {
+      isValid = false;
+      zip.addClass("error");
+    }
+//    if ($.trim(notification_address.val()) == "") {
+//      isValid = false;
+//      notification_address.addClass("error");
+//    } else if (regexEmail.test($.trim(notification_address.val())) == false) {
+//      isValid = false;
+//      notification_address.addClass("error");
+//    }
+    return isValid;
+  }
+
+  function validateUserForm() {
+    var isValid = true;
+    var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var regexNumber = /^\d+$/;
+    var first_name = $("#first_name"),
+        last_name = $("#last_name"),
+        email = $("#email"),
+        username = $("#username"),
+        password = $("#password"),
+        confirm = $("#password_confirmation"),
+        phone = $("#user-phone");
+
+    if ($.trim(first_name.val()) == "") {
+      isValid = false;
+      first_name.addClass("error");
+    }
+    if ($.trim(last_name.val()) == "") {
+      isValid = false;
+      last_name.addClass("error");
+    }
+    if ($.trim(email.val()) == "") {
+      isValid = false;
+      email.addClass("error");
+    } else if (regexEmail.test($.trim(email.val())) == false) {
+      isValid = false;
+      email.addClass("error");
+    }
+    if ($.trim(username.val()) == "") {
+      isValid = false;
+      username.addClass("error");
+    }
+    if ($.trim(password.val()) == "") {
+      isValid = false;
+      password.addClass("error");
+    }
+    if ($.trim(confirm.val()) == "") {
+      isValid = false;
+      confirm.addClass("error");
+    }
+    if ($.trim(phone.val()) == "") {
+      isValid = false;
+      phone.addClass("error");
+    } else if (regexNumber.test($.trim(phone.val())) == false) {
+      isValid = false;
+      phone.addClass("error");
+    }
+
+    if ($.trim(password.val()) != $.trim(confirm.val())) {
+      isValid = false;
+      password.addClass("error");
+      confirm.addClass("error");
+    }
+    return isValid;
+  }
+
+  function removeError(inputNode) {
+    if ($.trim($(inputNode).val()) != "") {
+      $(inputNode).removeClass("error");
+    }
+  }
+
+  function checkUserName(inputNode) {
+    var username = $.trim($(inputNode).val());
+    if (username == "") {
+      return;
+    }
+    $.ajax({
+      url: "/check_username_availability/" + username,
+      type: "GET",
+      success: function (result) {
+        if (!result.available) {
+          $("#username").addClass('error');
+          $("#username-error").show();
+          isValidUsername = false;
+        } else {
+          $("#username-error").hide();
+          isValidUsername = true;
+        }
+      }
+    });
+  }
+
+  function checkemail(inputNode) {
+    var email = $.trim($(inputNode).val());
+    if (email == "") {
+      return;
+    }
+    $.ajax({
+      url: "/check_email_availability",
+      type: "GET",
+      data: {email: email},
+      success: function (result) {
+        if (!result.available) {
+          $("#email").addClass('error');
+          $("#email-error").show();
+          isValidemail = false;
+        } else {
+          $("#email-error").hide();
+          isValidemail = true;
+        }
+      }
+    });
+  }
+</script>

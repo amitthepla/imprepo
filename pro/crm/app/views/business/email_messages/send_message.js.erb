@@ -1,0 +1,17 @@
+<% if @status %>
+  $.gritter.add({
+    title: '<i class="fa fa-check-circle"></i> Successfully Sent Email',
+    text: "You have succesfully sent an email message.",
+    sticky: false,
+    time: '5000',
+    class_name: 'gritter-success'
+  });
+<%else%>
+  $.gritter.add({
+    title: '<i class="fa fa-exclamation-triangle"></i> Error Sending Message',
+    text: "Unable to send email message. An error of type <%=@ex.class%> happened, message is <%=@ex.message%>",
+    sticky: false,
+    time: '5000',
+    class_name: 'gritter-danger'
+  });
+<%end%>

@@ -1,0 +1,184 @@
+<div class="column">
+  <div class="column__header">
+    <h1>Coordinator Rotation</h1>
+  </div>
+</div>
+
+<style>
+  .dual-list .list-group {
+    margin-top: 8px;
+  }
+
+  .list-left li, .list-right li {
+    cursor: pointer;
+  }
+
+  .list-arrows {
+    padding-top: 100px;
+  }
+
+  .list-arrows button {
+    margin-bottom: 20px;
+  }
+
+  h1, h2, h3 {
+    color: #808080 !important;
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    line-height: 1.1 !important;
+  }
+</style>
+
+<br/>
+
+
+<%= form_for(@setting, :html => {:class => '.form-horizontal lead-workflow'}) do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :name, 'Setting Name' %>
+          <%= f.text_field :name, class: 'form-control' %>
+          <%= hidden_field_tag :coordinators %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+
+        <div class="dual-list list-left col-md-5">
+          <h4>List of available sales coordinators</h4>
+          <div class="well text-right">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                  <input type="text" name="SearchDualList" class="form-control" placeholder="search"/>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="btn-group">
+                  <a class="btn btn-default selector" title="select all"><i class="fa fa-square-o"></i></a>
+                </div>
+              </div>
+            </div>
+            <ul id="available-list" class="list-group">
+              <% @coordinators[:available].each do |sc| -%>
+                  <li rel="<%= sc.id.to_s %>" class="list-group-item"><%= sc.full_name %></li>
+              <% end -%>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-arrows col-md-1 text-center">
+          <button class="btn btn-default btn-sm move-left" onclick="return false;">
+            <span class="fa fa-chevron-left"></span>
+          </button>
+          <br/>
+          <button class="btn btn-default btn-sm move-right" onclick="return false;">
+            <span class="fa fa-chevron-right"></span>
+          </button>
+        </div>
+
+        <div class="dual-list list-right col-md-5">
+          <h4>List of sales coordinators added to rotation</h4>
+          <div class="well">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="btn-group">
+                  <a class="btn btn-default selector" title="select all"><i class="fa fa-square-o"></i></a>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="input-group">
+                  <input type="text" name="SearchDualList" class="form-control" placeholder="search"/>
+                  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+              </div>
+            </div>
+            <ul id="rotation-list" class="list-group">
+              <% @coordinators[:rotation].each do |sc| -%>
+                  <li rel="<%= sc.id.to_s %>" class="list-group-item"><%= sc.full_name %></li>
+              <% end -%>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 pull-right" style="margin-right: 95px;">
+        <%= f.submit 'Update Rotation', :class => 'btn btn-primary form-control', onclick: 'submitForm(this);return false;' %>
+      </div>
+    </div>
+
+<% end %>
+
+
+<script>
+  var dta;
+  $(function () {
+
+    $('body').on('click', '.list-group .list-group-item', function () {
+      $(this).toggleClass('active');
+    });
+
+    $('.list-arrows button').click(function () {
+      var $button = $(this), actives = '';
+      if ($button.hasClass('move-left')) {
+        actives = $('.list-right ul li.active');
+        actives.clone().appendTo('.list-left ul');
+        actives.remove();
+      } else if ($button.hasClass('move-right')) {
+        actives = $('.list-left ul li.active');
+        actives.clone().appendTo('.list-right ul');
+        actives.remove();
+      }
+    });
+
+    $('.dual-list .selector').click(function () {
+      var $checkBox = $(this);
+      if (!$checkBox.hasClass('selected')) {
+        $checkBox.addClass('selected').closest('.well').find('ul li:not(.active)').addClass('active');
+        $checkBox.children('i').removeClass('fa-square-o').addClass('fa-check-square-o');
+      } else {
+        $checkBox.removeClass('selected').closest('.well').find('ul li.active').removeClass('active');
+        $checkBox.children('i').removeClass('fa-check-square-o').addClass('fa-square-o');
+      }
+    });
+
+    $('[name="SearchDualList"]').keyup(function (e) {
+      var code = e.keyCode || e.which;
+      if (code == '9') return;
+      if (code == '27') $(this).val(null);
+      var $rows = $(this).closest('.dual-list').find('.list-group li');
+      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+      $rows.show().filter(function () {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+      }).hide();
+    });
+
+//    $(".lead-workflow").on("submit", function (e) {
+//      e.preventDefault();
+//      var rotations = [];
+//      $('ul#rotation-list li').each(function () {
+//        rotations.push($(this).attr('rel').toString());
+//      });
+//      $("#coordinators").val(rotations.join(","));
+////      $(this).submit();
+//      dta = this
+//    });
+
+  });
+
+  function submitForm(inputNode) {
+    var rotations = [];
+    $('ul#rotation-list li').each(function () {
+      rotations.push($(this).attr('rel').toString());
+    });
+    $("#coordinators").val(rotations.join(","));
+    $(inputNode).closest("form").submit();
+  }
+</script>

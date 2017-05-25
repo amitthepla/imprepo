@@ -1,0 +1,1003 @@
+<div class="col-md-8">
+  <div class="row fadeInDown animation-delay1">
+    <br>
+    <div class="col-md-8 col-md-offset-2 alert alert-success"> <center>The Funnel Analytics display will represent data that derives from leads that inquire within the provided date range.</center></div>
+    <br>
+    <div class="col-md-12 text-center referral-sources">
+     <a data-target="#internet_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="internet"><%= source_count_check(@sources["Internet"]) -%></span><span>Internet</span></a>
+     <a data-target="#referral_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="referral"><%= source_count_check(@sources["Referral"]) -%></span><span>Referral</span></a>
+     <a data-target="#social_media_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:8%"><span id="relations"><%= source_count_check(@sources["Social Media"]) -%></span><span>Social Media</span></a>
+     <a data-target="#traditional_media_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:8%"><span id="print"><%= source_count_check(@sources["Traditional Media"]) -%></span><span>Traditional</span></a>
+     <a data-target="#event_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="events"><%= source_count_check(@sources["Events"]) -%></span><span>Events</span></a>
+     <a data-target="#telemarketing_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="outdoor"><%= source_count_check(@sources["Telemarketing"]) -%></span><span>Telemarketing</span></a>
+     <a data-target="#walk_in_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="walkin"><%= source_count_check(@sources["Walk-In"]) -%></span><span>Walk In</span></a>
+     <a data-target="#other_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:8%"><span id="other"><%= source_count_check(@sources["Other"]) -%></span><span>Other</span></a>
+   </div>
+   <div style="clear:both;"> </div>
+   <br>
+  </div>
+
+
+
+    <div class="row fadeInDown animation-delay2">
+      <div class="col-md-4 col-md-offset-2">
+        <a data-target="#phone_leads" role="button" data-toggle="modal">
+          <div class="panel panel-default panel-stat1 bg-warning">
+            <div id="phone-calls" class="value"><%= @phone_leads_count %></div>
+            <div class="title">
+              <span class="m-left-xs">Phone</span>
+            </div>
+            <br>
+          </div>
+        </a>
+      </div><!-- /panel -->
+      <div class="col-md-4 ">
+        <a data-target="#internet_leads" role="button" data-toggle="modal">
+          <div class="panel panel-default panel-stat1 bg-info">
+            <div id="internet" class="value"><%= @web_leads_count %></div>
+            <div class="title">
+              <span class="m-left-xs">Internet</span>
+            </div>
+            <br>
+          </div>
+        </a>
+      </div><!-- /panel -->
+    </div>
+
+    <div class="row fadeInDown animation-delay3">
+      <div class="col-md-8 col-md-offset-2">
+        <a data-target="#leads" role="button" data-toggle="modal">
+          <div class="panel panel-default panel-stat1 bg-success">
+            <div id="total-leads" class="value"><%= @leads_count %></div>
+            <div class="title">
+              <span class="m-left-xs">Total Leads</span>
+            </div>
+            <br>
+          </div>
+        </a>
+      </div><!-- /panel -->
+    </div>
+
+    <div class="row fadeInDown animation-delay4">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
+          <div class="col-md-10 col-md-offset-1">
+            <a data-target="#appts" role="button" data-toggle="modal">
+              <div class="panel panel-default panel-stat1 bg-orange">
+                <div id="appointments" class="value"><%= @appt_count %></div>
+                <div class="title">
+                  <span class="m-left-xs">Appointments</span>
+                </div>
+                <br>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div><!-- /panel -->
+    </div>
+
+    <div class="row fadeInDown animation-delay5">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
+          <div class="col-md-8 col-md-offset-2">
+            <a data-target="#consults" role="button" data-toggle="modal">
+              <div class="panel panel-default panel-stat1 bg-amethyst">
+                <div id="consultations" class="value"><%= @consult_count %></div>
+                <div class="title">
+                  <span class="m-left-xs">Consultations</span>
+                </div>
+                <br>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div><!-- /panel -->
+    </div>
+
+    <div class="row fadeInDown animation-delay6">
+      <div class="col-md-4 col-sm-4 col-md-offset-4">
+        <a data-target="#surgeries" role="button" data-toggle="modal">
+          <div class="panel panel-default panel-stat1 bg-sky">
+            <div id="scheduled-surgeries" class="value"><%= @surgery_count %></div>
+            <div class="title">
+              <span class="m-left-xs">Scheduled Surgeries</span>
+            </div>
+            <br>
+          </div>
+        </a>
+      </div><!-- /panel -->
+    </div>
+
+    <div class="row fadeInDown animation-delay7">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-12">
+          <div class="col-md-10 col-md-offset-1">
+            <a data-target="#completed_sx" role="button" data-toggle="modal">
+              <div class="panel panel-default panel-stat1 bg-success">
+                <div id="completed" class="value"><%= @completed_surgery_count %></div>
+                <div class="title">
+                  <span class="m-left-xs">Completed</span>
+                </div>
+                <br>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div><!-- /panel -->
+    </div>
+    <div class="row fadeInDown animation-delay8">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-12">
+          <div class="col-md-10 col-md-offset-1">
+            <a data-target="#cancelled_sx" role="button" data-toggle="modal">
+              <div class="panel panel-default panel-stat1 bg-danger">
+                <div id="cancelled" class="value"><%= @cancelled_surgery_count %></div>
+                <div class="title">
+                  <span class="m-left-xs">Cancelled</span>
+                </div>
+                <br>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div><!-- /panel -->
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="col-md-4 " id="analytics-data" >
+  <div class="col-md-10 fadeInDown animation-delay3" style="margin-top:5%;">
+    <div class="panel bg-default">
+      <div class="panel-body text-center">
+        <span class="h6 block m-bottom-sm text-success">Inquiry to Appointment</span>
+        <div class="m-top-sm">
+          <span class="h3 text-success"><span id="ita"> <%= @leads_count == 0 ? 0 : ((@consult_count.to_f / @leads_count) * 100).round(2)  %></span>
+            <i class="fa fa-percent "></i></span>
+        </div>
+      </div>
+      <div class="panel-body bg-default" style="border-top:solid 1px black">
+        <div class="row text-center">
+          <% if @web_consults > 0 %>
+          <div class="col-xs-6 text-success" style="border-right:solid 1px black">
+            Internet
+            <strong class="block"><span id="email-percent"> <%= @web_leads_count == 0 ? 0 : ((@web_consults.to_f / @web_leads_count) * 100).round(2) %>%</span>
+              <!--<i class="fa fa-percent"></i>-->
+            </strong>
+          </div>
+          <% end %>
+          <% if @phone_consults > 0 %>
+          <div class="col-xs-6 text-success">
+            Phone
+            <strong class="block">
+              <span id="phone-percent"> <%= @phone_leads_count == 0 ? 0 : ((@phone_consults.to_f / @phone_leads_count) * 100).round(2) %>%</span>
+              <!--<i class="fa fa-percent"></i>-->
+            </strong>
+          </div>
+          <%end%>
+        </div>
+      </div>
+      <div class="panel-body" style="overflow:auto; max-height:20vh">
+        <div id="ita-individual">
+          <table class="table table-striped table-borderless">
+            <tbody>
+            <% @ita_users.each do |k, v| -%>
+                <tr>
+                  <td><%= k.to_s.titleize -%></td>
+                  <td><span><%= v -%>%</span></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /panel -->
+    </div>
+  </div>
+
+  <div class="col-md-10 fadeInDown animation-delay4" style="margin-top:5%;">
+    <div class="panel bg-default">
+      <div class="panel-body text-center">
+        <div class="col-md-6" style="border-right:solid black 1px">
+          <span class="h6 block m-bottom-sm text-danger" style="margin-bottom: 23px">No Show</span>
+          <div class="m-top-sm">
+            <span class="h3 text-danger"><span id="no-show-rate"> <%= @no_show_consult_count  %></span></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <span class="h6 block m-bottom-sm text-danger" style="margin-bottom: 23px">Cancelled Consultation</span>
+          <div class="m-top-sm">
+        <span class="h3 text-danger"><span id="cancelled-consultations"> <%= @cancelled_consult_count %></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-10 fadeInDown animation-delay5" style="margin-top:5%;">
+    <div class="panel bg-default">
+      <div class="panel-body text-center text-success">
+        <span class="h6 block m-bottom-sm">Closing Rate</span>
+        <div class="m-top-sm">
+          <span class="h3 text-success"><span id="closing-rate"> <%= @consult_count == 0 ? 0 : ((@surgery_count.to_f / @consult_count) * 100).to_i  %></span>
+            <i class="fa fa-percent "></i></span>
+        </div>
+      </div>
+      <div class="panel-body" style="overflow:auto; max-height:20vh; border-top:black 1px solid">
+        <div id="closing-rate-individual">
+          <table class="table table-striped table-borderless">
+            <thead>
+            <tr>
+              <th>User</th>
+              <th>Consults</th>
+              <th>Surgeries</th>
+              <th>Rate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @cr_users.each do |k, v| %>
+                <tr>
+                  <td><%= k.to_s.titleize -%></td>
+                  <td><span><%= @cr_users[k][:consults] %></span></td>
+                  <td><span><%= @cr_users[k][:surgeries] %></span></td>
+                  <td><span><%= @cr_users[k][:rate] %>%</span></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /panel -->
+    </div>
+  </div>
+
+  <div class="col-md-10 fadeInDown animation-delay6" style="margin-top:5%;">
+    <div class="panel bg-default">
+      <div class="panel-body text-center">
+        <span class="h6 block m-bottom-sm text-danger">Cancel Rate</span>
+        <div class="m-top-sm">
+          <span class="h3 text-danger"><span id="cancel-rate"> <%= @surgery_count == 0 ? 0 : ((@cancelled_surgery_count.to_f / @surgery_count) * 100).to_i %></span>
+            <i class="fa fa-percent "></i></span>
+        </div>
+      </div>
+      <div class="panel-body bg-default" style="border-top:solid 1px black">
+        <div class="row text-center">
+          <div class="col-xs-6 text-success" style="border-right:solid 1px black">
+            Earned Revenue
+            <strong id="earned-revenue" class="block"> <%= number_to_currency(@earned_revenue) %></strong>
+          </div>
+
+          <div class="col-xs-6 text-danger">
+            Lost Revenue
+            <strong id="lost-revenue" class="block"> <%= number_to_currency(@lost_revenue) %></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 " id="analytics-modals" style="margin-top:140px">
+  <div class="modal fade" id="other_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Other Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="otherSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Other"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Other"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="walk_in_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Walk In Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="walk-inSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Walk-In"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Walk-In"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="telemarketing_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="telemarketingSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Telemarketing"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Telemarketing"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="event_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="eventSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Events"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Events"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="traditional_media_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Traditional Media Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="traditionalSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Traditional Media"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Traditional Media"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="social_media_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Social Media Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="socialSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Social Media"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Social Media"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="referral_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Referral Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="referralSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Referral"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Referral"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cached_cost) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="internet_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Internet Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="internetSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@sources["Internet"]).each do |src| %>
+              <tr>
+                <td><%= src.cached_name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @source_counts["Internet"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost|| 0 )  %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- source modals above -->
+  <!-- panel modals below -->
+
+  <div class="modal fade" id="phone_leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Phone Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="phoneLeads" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @phone_leads.each do |lead| %>
+              <tr>
+                <td><%= link_to lead.cached_name , "/leads/#{lead.id}"%></td>
+                <td><%= lead.cached_user_name %></td>
+                <td><%= lead.cached_created_at.strftime('%D')%></td>
+                <td><span class="label label-<%=stage_label(lead.cached_stage)%>"><%= confirm_info(lead.cached_stage).titleize %></span></td>
+                <td><%= lead.cached_source_name %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="internet_leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Web Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="webLeads" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @web_leads.each do |lead| %>
+              <tr>
+                <td><%= link_to lead.cached_name , "/leads/#{lead.id}"%></td>
+                <td><%= lead.cached_user_name %></td>
+                <td><%= lead.cached_created_at.strftime('%D')%></td>
+                  <td><span class="label label-<%=stage_label(lead.cached_stage)%>"><%= confirm_info(lead.cached_stage).titleize %></span></td>
+                  <td><%= lead.cached_source_name %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="leadsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @leads.each do |lead| %>
+              <tr>
+                <td><%= link_to lead.cached_name , "/leads/#{lead.id}"%></td>
+                <td><%= lead.cached_user_name %></td>
+                <td><%= lead.cached_created_at.strftime('%D')%></td>
+                  <td><span class="label label-<%=stage_label(lead.cached_stage)%>"><%= confirm_info(lead.cached_stage).titleize %></span></td>
+                  <td><%= lead.cached_source_name %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="consults">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Consultations</h3>
+        </div>
+        <div class="modal-body">
+          <table id="consultsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @consults.each do |appt| %>
+              <tr>
+                <td><%= link_to appt.lead.cached_name , "/leads/#{appt.lead.id}"%></td>
+                <td><%= appt.date.strftime('%D')%></td>
+                <td><%= number_to_currency(appt.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="appts">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Appointments</h3>
+        </div>
+        <div class="modal-body">
+          <table id="appointmentsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @appointments.each do |appt| %>
+              <tr>
+                <td><%= link_to appt.lead.cached_name ,  "/leads/#{appt.lead.id}"%></td>
+                <td><%= appt.date.strftime('%D')%></td>
+                <td><%= number_to_currency(appt.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="cancelled_sx">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Cancelled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="cancelledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cancelled_surgeries.each do |sx| %>
+              <tr>
+                <td><%= link_to sx.lead.cached_name ,  "/leads/#{sx.lead.id}"%></td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="completed_sx">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Completed Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="completedSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @completed_surgeries.each do |sx| %>
+              <tr>
+                <td><%= link_to sx.lead.cached_name , "/leads/#{sx.lead.id}"%></td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @surgeries.each do |sx| %>
+              <tr>
+                <td>
+                  <%if sx.lead.present?%>
+                    <%= link_to sx.lead.cached_name , "/leads/#{sx.lead.id}"%>
+                  <%else%>
+                    <%= sx.id %>
+                  <%end%>
+                </td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+
+
+  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+  <script>
+  $(document).ready(function(){
+    if($('#scheduledSurgery').length) {
+      $('#scheduledSurgery').DataTable();
+    };
+    if($('#completedSurgery').length) {
+      $('#completedSurgery').DataTable();
+    };
+    if($('#cancelledSurgery').length) {
+      $('#cancelledSurgery').DataTable();
+    };
+    if($('#phoneLeads').length) {
+      $('#phoneLeads').DataTable();
+    };
+    if($('#webLeads').length) {
+      $('#webLeads').DataTable();
+    };
+    if($('#leadsTable').length) {
+      $('#leadsTable').DataTable();
+    };
+    if($('#appointmentsTable').length) {
+      $('#appointmentsTable').DataTable();
+    };
+    if($('#consultsTable').length) {
+      $('#consultsTable').DataTable();
+    };
+    if($('#internetSources').length) {
+      $('#internetSources').DataTable();
+    };
+    if($('#referralSources').length) {
+      $('#referralSources').DataTable();
+    };
+    if($('#socialSources').length) {
+      $('#socialSources').DataTable();
+    };
+    if($('#traditionalSources').length) {
+      $('#traditionalSources').DataTable();
+    };
+    if($('#eventSources').length) {
+      $('#eventSources').DataTable();
+    };
+    if($('#telemarketingSources').length) {
+      $('#telemarketingSources').DataTable();
+    };
+    if($('#walk-inSources').length) {
+      $('#walk-inSources').DataTable();
+    };
+    if($('#otherSources').length) {
+      $('#otherSources').DataTable();
+    };
+
+  });
+  </script>
+
+<style>
+  .referral-sources a {
+    font-size: 2em !important;
+    padding: 0 !important;
+    margin: 2.5px;
+    text-align: center;
+  }
+
+  .day {
+    height: auto !important;
+  }
+</style>

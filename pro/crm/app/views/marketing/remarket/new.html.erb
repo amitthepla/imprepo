@@ -1,0 +1,64 @@
+<div class="panel">
+  <div class="panel-body">
+    <div class="col-md-12 text-center">
+      <div class="row">
+        <%= form_tag remarket_results_path, :method => 'get', :id => 'text_leads', class: 'form-inline no-margin' do %>
+
+            <%= select_tag :stage, options_from_collection_for_select(@stages, 'stage_id', 'name', :selected => params[:stage]), :prompt => '-- Stage --', class: 'form-control', style: 'margin-right:20px' %>
+
+            <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control', style: 'margin-right:20px' %>
+            <div class="input-group " style="margin-right:2%">
+              <input type="text" name="start_date" placeholder="Date Range Start" value="<%= params[:start_date] %>" class="datepicker  form-control">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+            <div class="input-group " style="margin-right:2%">
+              <input type="text" name="end_date" placeholder="Date Range End" value="<%= params[:end_date] %>" class="datepicker  form-control">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+
+            <%= select_tag :coordinator, options_from_collection_for_select(@coordinators, 'id', 'first_name', :selected => params[:coordinator]), :prompt => '-- Coordinator --', class: 'form-control', style: 'margin-right:20px' %>
+
+            <%= submit_tag 'Search', class: 'btn btn-sm btn-info' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-1 text-center">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="h4">Leads to be remarketed</div>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-success">
+          <span> You have queried for <%= @leads ? @leads.count : "0" %> leads</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-md-offset-1 text-center">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="h4">Remarketing Options</div>
+      </div>
+      <div class="panel-body">
+        <a class="btn btn-danger" href="#sendText" role="button" data-toggle="modal" style="width:200px;"><%=image_tag 'twilio.png', height: '35px'%>  Send Mass Text</a>
+        <br>
+        <a class="btn btn-info" href="#listAlert" role="button" data-toggle="modal" style="width:200px;margin-top:5px;"><%=image_tag 'powermailchimp-header-icon_1.png', height: '35px'%>  Send Mass Email</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @leads %>
+  <%= render partial: 'modals' %>
+<% end %>
+<style>
+  .datepicker {
+    z-index: 110 !important;
+  }
+</style>

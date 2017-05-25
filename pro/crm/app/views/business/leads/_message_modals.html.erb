@@ -1,0 +1,83 @@
+<div class="modal fade" id="sendText">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Send Text Message</h4>
+      </div>
+      <%= form_tag send_text_to_lead_path, :method => 'post', class: 'form-group' do %>
+          <div class="modal-body">
+            <label class="h5 control-label">Message</label><br/>
+            <div class="input-group col-md-10">
+              <textarea onkeyup="countChar(this)" data-required="true" type="text" name="message" value="" class="form-control" rows="7" placeholder="Send <%= lead.name %> a text message." rows="4"></textarea>
+              <div class="pull-right" style="margin-top:10px;">
+                <span id="charNum">1600</span><span>/1600 characters</span></div>
+            </div>
+            <%= hidden_field_tag 'lead_id', lead.id %>
+
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag 'Send Text', class: 'btn btn-xs btn-success should-load' %>
+            <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="sendEmail">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Send Email</h3>
+      </div>
+      <%= form_tag send_email_to_lead_path, :method => 'post', class: 'form-group' do %>
+          <div class="modal-body">
+            <label class="h4 control-label">Subject</label><br/>
+            <div class="input-group col-md-10">
+              <textarea data-required="true" name="subject" class="form-control" rows="1" placeholder="Subject"></textarea>
+            </div>
+            <hr>
+            <label class="h4 control-label">Body</label><br/>
+            <div class="input-group col-md-10">
+              <h6>Hello <%= @lead.name %>,</h6>
+              <textarea data-required="true" name="message" class="form-control" rows="7" placeholder="Body"></textarea>
+            </div>
+            <h6>Sincerely,</h6>
+            <h6><%= @current_account.roles.include?(@current_org.roles.where({name: 'Administrator'}).first.id.to_s) ? (@lead.user.full_name rescue @current_org.company_name) : @current_account.full_name %></h6>
+
+            <%= hidden_field_tag 'lead_id', lead.id %>
+
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag 'Send Email', class: 'btn btn-xs btn-success should-load' %>
+            <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="stopAutoMessages">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Discontinue Auto Messaging</h4>
+      </div>
+      <%= form_for lead, :method => 'PUT', class: 'form-group' do |f| %>
+          <div class="modal-body">
+            <div class="input-group col-md-10">
+              <div class="alert alert-danger" role="alert">Use this option if you intend take over communication with this lead. This will opt the lead out of Atuo Communication and Auto Migration.</div>
+            </div>
+            <%= f.hidden_field 'auto_communicate', value: false %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit 'Opt Out', class: 'btn btn-xs btn-success should-load' %>
+            <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

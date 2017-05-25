@@ -1,0 +1,15 @@
+    <%= link_to 'Back to Phone Messages', business_phone_messages_path, :class => 'btn btn-primary' %>
+
+    <div class="card">
+        <h2>Message</h2>
+      <p>Patient Name:<strong> <%= @phone_message.from %></strong></p>
+      <p>Call Back Number:<strong> <%= @phone_message.callback_number %></strong></p>
+      <p>Email:<strong> <%= @phone_message.email %></strong></p>
+      <p>Surgery Date:<strong> <%= @phone_message.surgery_date.strftime("%m/%d/%Y") if @phone_message.surgery_date %></strong></p>
+      <p>Message:<strong> <%= @phone_message.message %></strong></p>
+      <p>Created:<strong> <%= @phone_message.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y  %I:%M%p") %></strong></p>
+      <p>Created By:<strong> <%= (@created_by.nil? ? 'CRM' : @created_by.full_name) %></strong></p>
+      <% if @current_account == @phone_message.user %>
+        <%= link_to 'Mark Completed', business_phone_message_mark_complete_path(@phone_message), :class => 'btn btn-primary' %>
+      <% end %>
+    </div>

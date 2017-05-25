@@ -1,0 +1,17 @@
+<tr id="<%=site.id%>">
+  <td style="vertical-align:middle;"><%= site.name.titleize%></td>
+  <td style="vertical-align:middle;"><%= site.source.name if site.source %></td>
+  <td style="vertical-align:middle;"><%= site.landing_page ? "Landing Page" : "Organic"%></td>
+  <td style="vertical-align:middle;"><%= site.url %></td>
+  <td style="vertical-align:middle;"><%= site.site_id %></td>
+  <td style="vertical-align:middle;"><a href="#" class="generateForm" data-site-id="<%= site.site_id %>" data-toggle="modal" data-target="#siteFormModal">Click here to get code</a></td>
+  <td style="vertical-align:middle;">
+    <a href="<%= edit_business_site_path(site)%>" data-target= "#editSite" data-toggle="modal" data-remote="true">
+      <i class="text-info fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+    </a>
+    &nbsp;&nbsp;
+    <%= link_to site, remote: true, method: :delete, data:{confirm: "Delete this Site Form?"} do %>
+    <i class="text-danger fa fa-trash-o fa-lg" aria-hidden="true"></i>
+    <% end %>
+  </td>
+</tr>

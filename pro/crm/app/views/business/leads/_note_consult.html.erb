@@ -1,0 +1,35 @@
+<div class="modal fade" id="noteConsult">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Note Consult</h4>
+      </div>
+      <%= form_tag consult_note_path, :method => 'post', class: "form-inline no-margin" do %>
+      <div class="modal-body">
+        <div class="alert alert-warning">
+          <strong>You can create a Consultation Note and set a follow up task for <%=task.lead.name%>. You must select a date to creat the followup task. Only select a date if you would like to create a follow up task.</strong>
+        </div>
+        <div class="form-group" style="width: 80%;">
+          <label class=" control-label">Note</label><br>
+          <%= text_area_tag :consult_note, nil ,class: "form-control", style: "width: 100%;"%>
+        </div>
+        <hr>
+        <div class="form-group">
+        <label class=" control-label">When would you like to follow up with <%=@lead.name%>?   </label><br><br>
+        <div class="input-group">
+          <input name="due_date" type="text" class="datepicker form-control" id="date_<%=task.id%>" >
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+      </div>
+            <%= hidden_field_tag "task_id", task.id %>
+            <%= hidden_field_tag "lead_id", task.lead.id %>
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag "Make Note", class: "btn btn-xs btn-success should-load" %>
+            <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+          <% end %>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

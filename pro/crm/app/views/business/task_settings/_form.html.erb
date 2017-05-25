@@ -1,0 +1,46 @@
+<% if @task_setting.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@task_setting.errors.count, "error")%>
+            prohibited this Doc from being saved:
+        </h2>
+        <p>There were problems with the following fields:</p>
+        <ul>
+        <% @task_setting.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+
+<% end %>
+<%= form_for(@task_setting, :html => {:class => ""} ) do |f| %>
+  <p>
+    <%= f.label :stage,"Stage"  %><br/>
+    <%= f.select(:stage,options_from_collection_for_select(@lead_stages,:name,:name)) %>
+  </p>  
+  <p>
+  <%= f.label :name,"Name"  %><br/>
+  <%= f.text_field :name %>
+  </p>
+  <p>
+  <%= f.label :duration,"Duration"  %><br/>
+  <%= f.number_field :duration %>
+  </p>
+  <p>
+  <%= f.label :description,"Description"  %><br/>
+  <%= f.text_area :description %>
+  </p>
+  <p>
+    <div class="fl" style="width:300px;">
+      <%= f.label :auto_create,"Auto Task Create"  %>
+      <%= f.check_box :auto_create %>
+    </div>
+    <div class="fl" style="width:300px;">
+      <%= f.label :auto_email,"Auto Email Send"  %>
+      <%= f.check_box :auto_email %>
+    </div>
+  </p>
+  <div class="cb"></div>
+  <%= f.submit "Save Task Setting", :class => "btn" %>
+
+<% end %>

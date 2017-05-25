@@ -1,0 +1,40 @@
+<h1>All Deals</h1>
+
+<p><%= link_to 'Add New Deal', new_business_deal_path, {:class => 'btn'} %><p>
+
+<div class="column" data-column-id="<%= @qualified_leads_stage.stage_id %>" data-column-type="<%= @qualified_leads_stage.type %>">
+  <div class="column__header">
+    <h1>Column: <%= @qualified_leads_stage.name if @qualified_leads_stage.present? %></h1>
+    <p>Description: <%= @qualified_leads_stage.description if @qualified_leads_stage.present? %></p>
+  </div>
+  <div class="column__list js-sortable-list">
+    <% @qualified_leads.each do |lead| %>
+    <div class="column__item" data-item-id="<%= lead.id %>">
+      <%= link_to lead.full_name, lead %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<% @stages.each do |stage| %>
+<% @stage_deals = @deals.where(stage: stage.stage_id) %>
+  <div class="column" data-column-id="<%= stage.stage_id %>" data-column-type="<%= stage.type %>">
+    <div class="column__header">
+      <h1>Column: <%= stage.name %></h1>
+      <p>Description: <%= stage.description %></p>
+    </div>
+    <div class="column__list js-sortable-list">
+      <% @stage_deals.each do |deal| %>
+      <div class="column__item" data-item-id="<%= deal.id %>">
+        <%= link_to deal.contact.full_name, deal %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @deals.empty? %>
+  <p>No Deals</p>
+<% end %>

@@ -1,0 +1,34 @@
+<h1>New Stage</h1>
+<% if @stage.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@stage.errors.count, "error") %>
+        prohibited this Doc from being saved:
+      </h2>
+      <p>There were problems with the following fields:</p>
+      <ul>
+        <% @stage.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+
+<% end %>
+<%= form_for(@stage, :html => {:class => ""}) do |f| %>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description %>
+
+    <%= f.label :position, "Position" %>
+    <%= f.text_area :position %>
+
+    <%= f.label :roles, "Roles" %>
+    <%= f.select(:roles, options_from_collection_for_select(@current_org.roles, :id, :name), {}, {:multiple => true, :size => 5, :include_hidden => false}) %>
+
+    <%= f.hidden_field :type, value: params[:type] %>
+
+    <%= f.submit "Save Stage", :class => "btn" %>
+
+<% end %>

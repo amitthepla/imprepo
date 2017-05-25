@@ -1,0 +1,74 @@
+<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+
+<script type="text/javascript">
+ <% if !Rails.env.production? %>
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+ <% end %>
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',{ authEndpoint: '/auth/pusher' }), // uses your API KEY
+      channel = pusher.subscribe('private-<%= @current_account ? @current_account.push_channel_id : 'null' %>');
+      channel.bind('message', function(data) {
+        console.log(data);
+        if (Notify.needsPermission) {
+            Notify.requestPermission(onPermissionGranted('New Lead',data['from'] +', '+ data['subject']), onPermissionDenied());
+        } else {
+            showNotification('New Lead',data['from'] +', '+ data['subject'])
+        }
+      });
+      channel.bind('completed_report', function(data) {
+        console.log(data);
+        if (Notify.needsPermission) {
+            Notify.requestPermission(onPermissionGranted('Report Completed',data['from'] +', '+ data['subject']), onPermissionDenied());
+        } else {
+            showNotification('Report Completed',data['from'] +', '+ data['subject'])
+        }
+      });
+      channel.bind('failed_report', function(data) {
+        console.log(data);
+        if (Notify.needsPermission) {
+            Notify.requestPermission(onPermissionGranted('Report Failed',data['from'] +', '+ data['subject']), onPermissionDenied());
+        } else {
+            showNotification('Report Failed',data['from'] +', '+ data['subject'])
+        }
+      });
+  (function($, Pusher) {
+  /* Resets all callbacks */
+  Pusher.prototype.reset = function() {
+    $.each(this.channels.channels, function(name, channel) {
+      channel.callbacks._callbacks = {}
+    })
+  }
+
+  $(document).on('page:receive', function() {
+    $.each(Pusher.instances, function(index, instance) {
+      instance.reset()
+    })
+  })
+})(jQuery, Pusher);
+
+function showNotification(title,body) {
+  var myNotification = new Notify(title, {
+      icon: '/assets/doctor.png',
+      body: body,
+      notifyShow: onNotifyShow,
+  });
+
+  myNotification.show();
+}
+function onNotifyShow() {
+    console.log('notification was shown!');
+}
+
+function onPermissionGranted (title,body) {
+    console.log('Permission has been granted by the user');
+    showNotification(title,body);
+}
+
+function onPermissionDenied () {
+    console.warn('Permission has been denied by the user');
+}
+</script>

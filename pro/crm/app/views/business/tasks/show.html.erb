@@ -1,0 +1,38 @@
+<h1>Task</h1>
+<p><%= link_to 'Edit Task', edit_business_task_path(@task), {:class => 'btn'} %></p>
+    <p>Title:<strong> <%= @task.title %></strong></p>
+    <p>Description:<strong> <%= @task.description %></strong></p>
+    <p>Due:<strong> <%= @task.due_date.in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y  %I:%M%p") %></strong></p>
+    <!-- <p>Priority:<strong> <%= @task.priority %></strong></p> -->
+    <p>Created By:<strong> <%= (@created_by.nil? ? 'CRM' : @created_by.full_name) %></strong></p>
+    <p>Stage: <strong><%= @task.stage.titleize %></strong></p>
+
+    <% if @task.stage == 'inquiry'%><a href="#completeTask" role="button" data-toggle="modal" class="btn btn-success btn-xs">Complete Task</a><%end%>
+
+  <% if @task.lead_id.nil? %>
+    <%#=form_for(@task, :html => {:class => ".form-horizontal"} ) do |f| %>
+      <%#= f.label :user,"Assign To"  %>
+      <%#= f.select(:user,options_from_collection_for_select(@current_org.users,:id,:full_name,(@task.user.nil? ? '' : @task.user.id))) %>
+      <%#=f.submit "Save"%>
+      <%# end %>
+  <% else %>
+    <%= link_to 'View Lead', business_lead_path(@task.lead), {:class => 'btn'} %>
+  <% end %>
+  <div class="modal fade" id="completeTask">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Final Task</h4>
+            </div>
+          <div class="modal-body">
+              <p class="text-danger">Is this your final task?</p>
+          </div>
+          <div class="modal-footer">
+            <%= link_to "Final Task", complete_business_task_path(@task.id, "final"), class: "btn btn-sm btn-primary"%>
+              <%= link_to "Create Another Task", complete_business_task_path(@task.id, "not_final")  ,class: "btn btn-info btn-sm"%>
+              <button class="btn btn-sm btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

@@ -1,0 +1,4 @@
+$("#<%=@view %>").html("<%= j render(partial: "#{@chart}")%>");
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');

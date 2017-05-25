@@ -1,0 +1,74 @@
+ <style type="text/css">
+h1 span {
+background-color: #000;
+color: #fff;
+padding: 8px 8px 4px 8px;
+font-size: 1.8em;
+}
+.left-panel {
+  float: left;
+  width: 50%;
+}
+.right-panel {
+  float: left;
+  width: 50%;
+}
+.page-wrapper p, .page-wrapper .left-panel p, .page-wrapper .right-panel p {
+  font-size: 13px;
+  padding-bottom: 0;
+  margin-bottom: 8px;
+}
+</style>
+ <div class="page-wrapper">
+<h1>
+  <span>M</span> E D I C A L / S U R G I C A L &nbsp; H I S T O R Y
+</h1>
+  <div class="left-panel">
+    <p>Patient Name: <%= contact.full_name %></p>
+    <p>Patient No.: <%= contact.external_record_id %></p>
+  </div>
+  <div class="right-panel">
+    <p>Today's Date:</p>
+    <p>Surgery Date:</p>
+    <p>Surgeon Name: Constantino Mendieta, M.D.</p>
+  </div>
+<p>Procedures: </p>
+
+<p><strong>In this time of rapidly expanding medical knowledge and the increasing specialization associated therewith, there exists a very real risk of the specialist physician not being aware of the general health and medical background of the patient. On occasion such information may critically affect what procedures we may safely undertake on you and under what circumstances. We therefore ask that you give us the following medical information.</strong></p>
+<p>Age: <strong><%= contact.age %></strong>&nbsp;&nbsp;&nbsp; Height: <strong><%= contact.height %></strong>&nbsp;&nbsp;&nbsp; Weight: <strong><%= contact.weight %></strong>&nbsp;&nbsp;&nbsp; Occupation: <strong><%= contact.occupation %></strong></p>
+
+<p>
+Please list all medications which you are currently taking or have used in the past 6 months (be sure to include any of the following: birth control pills, aspirin or ibuprofen containing drugs, diet pills, diabetic medications, steroids, glaucoma drops, asthma medications, Digoxin, Lanoxin, nitroglycerin, Jsordil, lnderal, other heart medications, Lasix, other diuretics, high blood pressure medications, Coumadin, Persantine, tranquilizers, sleeping pills, anti-depressants, pain pills or shots, epilepsy medications).</p>
+<p>
+Medication(s): Amount Frequency<br/>
+<strong><%= questionnaire.medications %></strong>
+</p>
+  <p>List all drug allergies:<br/>
+  <strong><%= questionnaire.allergies %></strong>
+  </p>
+  <p>Have you eve Used: LSD/speed/Cocaine/marijuana? <strong><%= questionnaire.recreational_drug_use %></strong></p>
+
+  <p>Are you a smoker? <strong><%= questionnaire.smoker %></strong> &nbsp;&nbsp;&nbsp;Ex-Smoker YES/NO &nbsp;&nbsp;&nbsp;Non-Smoker YES/NO</p>
+  <p>How much are (were) you smoking? <strong><%= questionnaire.smoke_use %></strong> &nbsp;&nbsp;&nbsp;How long? &nbsp;&nbsp;&nbsp;Quit how long ago?</p>
+  <p>How much alcohol do you drink? <strong><%= questionnaire.alcholic_use %></strong>&nbsp;&nbsp;&nbsp;Caffeine? <strong><%= questionnaire.caffine_use %></strong></p>
+
+  <p>Please circle all of the following medical conditions you now have or have had in the past:
+  bleeding tendency / hepatitis / diabetes / blood transfusions / glaucoma / dry eyes / lung disease / TB /
+  asthma or wheezing / emphysema I bronchitis / irregular heart beat / chest pain / heart disease /
+  heart attack / stroke / epilepsy / heart burn / intestinal ulcers or bleeding / depression / mental illness / drug or alcohol addiction / any other serious illness or injury / None of the above<br/>
+  <strong><%= questionnaire.medical_conditions %></strong>
+  </p>
+
+  <p>Is there any possibility that you may be pregnant at this time? YES/NO</p>
+  <p>List all surgeries that you have had (include plastic surgery): Date: <br/>
+    <strong><%= questionnaire.surgical_history %></strong>
+  </p>
+  <p>Have you or anyone in your family ever had unusual reactions to anesthesia (muscle weakness ,jaundice, breathing problems or unexpected fevers? <strong><%= questionnaire.anesthesia_history %></strong></p>
+
+  <p>Do you have (circle): loose or chipped teeth/caps/dentures/contact lenses/None </p>
+  <p>Have you ever seen a cardiologist? <strong><%= questionnaire.cardiologist_visit %></strong>&nbsp;&nbsp;&nbsp;Physician Name: <strong><%= questionnaire.cardiologist_physician %></strong></p>
+  <p>Date of last EKG: <strong><%= questionnaire.cardiologist_ekg %></strong></p>
+
+  <p>Patient's Signature:</p>
+  <p>Date:</p>
+</div>

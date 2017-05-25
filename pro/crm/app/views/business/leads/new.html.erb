@@ -1,0 +1,767 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"/>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<script>
+  $(function () {
+    $(".fancybox").fancybox();
+
+    function validateForm(content) {
+      var $fields = $(content);
+      var dontCount = ["business_lead_consultation_date","business_lead_procedure_date", "business_lead_user", "business_lead_questionnaire_previous_cosmetics_procedure"];
+      var $emptyFields = $fields.filter(function() {
+        $(this).removeClass('error');
+        return $.trim(this.value) === "";
+      });
+      var $emptyFields = $emptyFields.filter(function() {
+        return this.id != dontCount[0] && this.id != dontCount[1] && this.id != dontCount[2] && this.id != dontCount[3];
+      });
+
+      console.log($emptyFields);
+
+      if (!$emptyFields.length) {
+          return true;
+      } else {
+          var message = "<div>"
+          $.each($emptyFields, function(index, value){
+            if ($(value).attr('id') === "first_interest"){
+              var field = "Please select a procedure.";
+              message = message + (field).toUpperCase().replace(/_/g, ' ') + "<br>";
+            }else if ($(value).attr('id') === "height") {
+              $('#feet').addClass('error');
+              $('#inches').addClass('error');
+            }
+            $(value).addClass('error');
+
+          });
+          message = message + "</div>"
+          $('#missing-fields').html(message);
+          $('#fillFields').modal('show');
+          return false;
+      }
+    };
+
+    var currentStep = 1;
+
+    $('#wizardTab li a').click(function () {
+      return false;
+    });
+
+    $('#nextStep').click(function () {
+      currentStep++;
+      if (currentStep == 2) {
+        var valid = validateForm("#wizardContent1 :input");
+
+        if (!valid){
+          currentStep--;
+          return false;
+        }
+        $('#wizardTab li:eq(1) a').tab('show');
+        $('#wizardProgress').css("width", "40%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent2').css("display", "block");
+
+        $('#prevStep').attr('disabled', false).removeClass('disabled');
+        $('#save_lead').css("display", "none");
+        $('#nextStep').css("display", "inline-block");
+
+        $('.script-intro').css("display", "none");
+        $('#ask').css("display", "inline-block");
+        $('#body_image').css("display", "none");
+        $('#current_procedure').css("display", "inline-block");
+        $('#everpresent-save').css('display','block')
+      }
+      else if (currentStep == 3) {
+        var valid = validateForm("#wizardContent2 :input");
+
+        if (!valid){
+          currentStep--;
+          return false;
+        }
+        $('#wizardTab li:eq(2) a').tab('show');
+        $('#wizardProgress').css("width", "60%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent3').css("display", "block");
+        $('#save_lead').css("display", "none");
+        $('#nextStep').css("display", "inline-block");
+
+        $('.script-intro').css("display", "none");
+        $('#listen').css("display", "inline-block");
+      }
+      else if (currentStep == 4) {
+        var valid = validateForm("#wizardContent3 :input");
+
+        if (!valid){
+          currentStep--;
+          return false;
+        }
+        $('#wizardTab li:eq(3) a').tab('show');
+        $('#wizardProgress').css("width", "80%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent4').css("display", "block");
+        $('#save_lead').css("display", "none");
+        $('#nextStep').css("display", "inline-block");
+
+        $('.script-intro').css("display", "none");
+        $('#explain').css("display", "inline-block");
+
+      }
+      else if (currentStep == 5) {
+        var valid = validateForm("#wizardContent1 :input");
+
+        if (!valid){
+          currentStep--;
+          return false;
+        }
+        $('#wizardTab li:eq(4) a').tab('show');
+        $('#wizardProgress').css("width", "100%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent5').css("display", "block");
+
+        $('#nextStep').attr('disabled', true).css("display", "none");
+        $('#save_lead').css("display", "inline-block");
+
+        $('.script-intro').css("display", "none");
+        $('#schedule').css("display", "inline-block");
+        $('#everpresent-save').css("display", "none");
+      }
+      return false;
+    });
+
+    $('#prevStep').click(function () {
+      currentStep--;
+      if (currentStep == 1) {
+        $('#wizardTab li:eq(0) a').tab('show');
+        $('#wizardProgress').css("width", "20%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent1').css("display", "block");
+
+        $('#prevStep').attr('disabled', true).addClass('disabled');
+        $('#nextStep').attr('disabled', false);
+
+        $('.script-intro').css("display", "none");
+        $('#smile').css("display", "inline-block");
+        $('#body_image').css("display", "inline-block");
+        $('#current_procedure').css("display", "none");
+      }
+      else if (currentStep == 2) {
+        $('#wizardTab li:eq(1) a').tab('show');
+        $('#wizardProgress').css("width", "40%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent2').css("display", "block");
+
+        $('#nextStep').attr('disabled', false).removeClass('disabled').css("display", "inline-block");
+        $('#save_lead').css("display", "none");
+        $('.script-intro').css("display", "none");
+        $('#ask').css("display", "inline-block");
+      }
+      else if (currentStep == 3) {
+        $('#wizardTab li:eq(2) a').tab('show');
+        $('#wizardProgress').css("width", "60%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent3').css("display", "block");
+        $('#save_lead').css("display", "none");
+        $('#nextStep').css("display", "inline-block").attr('disabled', false);
+
+        $('.script-intro').css("display", "none");
+        $('#listen').css("display", "inline-block");
+      }
+      else if (currentStep == 4) {
+        $('#wizardTab li:eq(3) a').tab('show');
+        $('#wizardProgress').css("width", "80%");
+        $('.new_lead_content').css("display", "none");
+        $('#wizardContent4').css("display", "block");
+        $('#save_lead').css("display", "none");
+        $('#nextStep').css("display", "inline-block").attr('disabled', false);
+        $('.script-intro').css("display", "none");
+        $('#explain').css("display", "inline-block");
+        $('#everpresent-save').css("display", "inline-block");
+      }
+      return false;
+    });
+
+    $("#lead-gender").on('change', function () {
+      if ($(this).val() == 'F') {
+        $("#lead-male").hide();
+        $("#lead-female").show();
+      }
+      else {
+        $("#lead-female").hide();
+        $("#lead-male").show();
+      }
+    });
+
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    });
+
+    $(".modal-body input[type='checkbox']").on("change", function () {
+      $(".procedure-error").hide();
+    });
+
+    $("#source_type").on("change", function () {
+      var selected_value = $.trim(this.value);
+      var select = $("#source");
+      if (selected_value == "") {
+        select.empty().hide();
+        return false;
+      }
+      $.ajax({
+        url: "/source_options/" + selected_value,
+        type: 'GET',
+        success: function (res) {
+          select.empty().append($('<option></option>').attr("value", "").text("-- Sources --"));
+          $.each(res, function (value, text) {
+            select.append($('<option></option>').attr("value", value).text(text));
+          });
+          select.show();
+        }
+      });
+    });
+
+    $(".procedures").maphilight({groupBy: 'alt'});
+
+    $("#slider-panel").slider({
+      min: 0,
+      max: 50000,
+      step: 100,
+      orientation: "horizontal",
+      tooltip: "show",
+      formatter: function (value) {
+        return '$ ' + value;
+      }
+    });
+
+    $("#business_lead_interested_in").change(function () {
+      var id = $(this).children(":selected").attr("value");
+      console.log(id);
+      $(".procedure-listing").css("display", "none");
+      $("#list_" + id).css("display", "block");
+    });
+
+    $("#quick_procedure").change(function () {
+      var id = $(this).children(":selected").attr("value");
+      console.log(id);
+      $(".procedure-listing").css("display", "none");
+      $("#list_" + id).css("display", "block");
+    });
+
+  });
+
+  function checkProcedures() {
+    var selectedProcedures = $(".modal-body input[type='checkbox']").filter(":checked");
+    if (selectedProcedures.length > 2) {
+      $(".procedure-error").html("You can select maximum two procedures of any category.").show();
+      return false;
+    }
+    else if (selectedProcedures.length == 0) {
+      $(".procedure-error").html("Please select at least one procedure to continue.").show();
+      return false;
+    }
+    else {
+      var first_interest = $.trim(selectedProcedures.first().val()),
+          second_interest = $.trim(selectedProcedures.last().val());
+      $("#first_interest").val(first_interest);
+      if (selectedProcedures.length == 2) {
+        $("#second_interest").val(second_interest);
+      }
+      $(".modal").modal('hide');
+      var selected_checkbox = "<ul class='right_arrow'>";
+      selectedProcedures.each(function () {
+        selected_checkbox += "<li>" + this.name + "</li>";
+        $("#list_" + this.value).css("display", "block");
+      });
+      selected_checkbox += "</ul>";
+      $("#selected_checkbox").html(selected_checkbox);
+    }
+  }
+
+  // function validateForm() {
+  //   var x = document.forms["lead_form"]["business_lead[email]"].value;
+  //   if (x == null || x == "") {
+  //     alert("Email must be filled out");
+  //     return false;
+  //   }
+  // }
+
+
+
+
+
+  function yesnoCheck(that) {
+    if (that.value == "booked_consult") {
+      document.getElementById("consult").style.display = "inline-block";
+      document.getElementById("surgery").style.display = "none";
+    }
+    else if (that.value == "booked_surgery") {
+      document.getElementById("consult").style.display = "inline-block";
+      document.getElementById("surgery").style.display = "inline-block";
+    }
+    else {
+      document.getElementById("consult").style.display = "none";
+      document.getElementById("surgery").style.display = "none";
+    }
+  }
+
+</script>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="panel panel-default">
+        <%= form_for(@lead, :html => {:class => '', name: 'lead_form'}) do |f| %>
+            <div class="panel-tab clearfix">
+              <ul class="tab-bar wizard-demo " id="wizardTab">
+                <li class="active " style="width:100px;text-align:center;">
+                  <a href="#wizardContent1" data-toggle="tab"><span style="font-size: 30px;">S</span><br/>SMILE</a>
+                </li>
+                <li style="width:100px;text-align:center;">
+                  <a href="#wizardContent2" data-toggle="tab"><span style="font-size: 30px;">A</span><br/>ASK</a>
+                </li>
+                <li style="width:100px;text-align:center;">
+                  <a href="#wizardContent3" data-toggle="tab"><span style="font-size: 30px;">L</span><br/>LISTEN</a>
+                </li>
+                <li style="width:100px;text-align:center;">
+                  <a href="#wizardContent4" data-toggle="tab"><span style="font-size: 30px;">E</span><br/>EXPLAIN</a>
+                </li>
+                <li style="width:100px;text-align:center;">
+                  <a href="#wizardContent5" data-toggle="tab"><span style="font-size: 30px;">S</span><br/>SCHEDULE</a>
+                </li>
+              </ul>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-12 text-center">
+                <p id="start" class="script-intro"><span class="text-success">START</span> the call with a smile and
+                  enthusiasm.</p>
+                <p id="ask" class="script-intro" style="display:none;">
+                  <span class="text-success"><strong>ASK</strong></span> the right questions.</p>
+                <p id="listen" class="script-intro" style="display:none;">
+                  <span class="text-success"><strong>LISTEN</strong></span> to the client and give personalized
+                  attention.</p>
+                <p id="explain" class="script-intro" style="display:none;">
+                  <span class="text-success"><strong>EXPLAIN</strong></span> the benefits of choosing Dr. Mendieta and
+                  4beauty.</p>
+                <p id="schedule" class="script-intro" style="display:none;">
+                  <span class="text-success"><strong>SCHEDULE</strong></span> the consultation and close the call with
+                  courtesy.</p>
+              </div>
+              <div class="col-md-6">
+                <div class="tab-content">
+
+
+                  <div class="new_lead_content tab-pane fade in active" id="wizardContent1">
+
+                    <div class="col-md-12">
+                      <br>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <%= f.label :first_name, 'First Name' %><br/>
+                        <%= f.text_field :first_name, class: 'form-control' %>
+                      </div>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <%= f.label :last_name, 'Last Name' %><br/>
+                        <%= f.text_field :last_name, class: 'form-control' %>
+                      </div>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <%= f.label :phone, 'Phone' %><br/>
+                        <%= f.text_field :phone, autocomplete: false, class: 'form-control' %>
+                      </div>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <%= f.label :email, 'Email' %><br/>
+                        <%= f.text_field :email, class: 'form-control' %>
+                      </div>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <%= f.label :gender, 'Gender' %><br/>
+                        <%= f.select :gender, [%w(Female F), %w(Male M)], {}, {id: 'lead-gender', class: 'chzn-select form-control'} %>
+                      </div>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <%= f.label :user, 'Sales Coordinator' %><br/>
+                        <%= f.select :user, options_from_collection_for_select(@sales_coordinators, :id, :full_name, (f.object.user.nil? ? '' : f.object.user.id)), {:include_blank => "Coordinator"}, {class: "chzn-select form-control"} %>
+                      </div>
+
+                      <div class="form-group" style="width: 70%">
+                        <label>How did you hear about us?</label><br/>
+                        <%= select_tag :source_type, options_from_collection_for_select(SourceType.all, :id, :name), {prompt: '-- Source Type --', class: 'chzn-select form-control col-md-4', style: 'width: 90% !important'} %>
+                      </div>
+
+                      <div class="form-group" style="width: 25%">
+                        <label>&nbsp;</label><br/>
+                        <%= select_tag :source, options_from_collection_for_select(@contact.organization.sources.pick_from_active_sources, :id, :name), {class: 'chzn-select form-control col-md-4', style: 'width: 90% !important; display: none;', name: "business_lead[source]"} %>
+                      </div>
+
+                      <input type="hidden" id="first_interest" name="business_lead[interested_in]" value="">
+
+                    </div>
+
+                  </div>
+                  <div class="new_lead_content tab-pane fade" id="wizardContent2" style="display:none">
+                    <div class="col-md-12">
+                      <br>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <label>Height:</label><br/>
+                        <select class="js-select-field chzn-select form-control " id="feet" data="height-feet" style="display:inline-block;width:100px;">
+                          <option>Feet</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                        </select>
+
+                        <select class="js-select-field chzn-select form-control " id="inches" data="height-inches" style="display:inline-block;width:100px;">
+                          <option>Inches</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                        </select>
+                      </div>
+
+                      <%= f.hidden_field :height, :id => 'height' %>
+
+                      <div class="form-group" style="display: inline-block !important;">
+                        <label>Weight:</label><br/>
+                        <%= f.text_field :weight, autocomplete: false, class: 'form-control', style: 'width:50%' %>
+                      </div>
+
+                      <div class="form-group" style="display: inline-block !important; width:70% !important;">
+                        <label>Date of Birth:<br> <small><i>mm/dd/yyyy</i></small></label><br/>
+                        <div class="input-group">
+                          <input type="text" name="date_of_birth" value="" class="datepicker form-control">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                      </div>
+
+
+                      <%= f.fields_for :questionnaire, @questionnaire do |questionnaire_fields| %>
+                          <div class="form-group" style="display: inline-block !important; width:70% !important;">
+                            <label>Medical condition(s):<br><small><i>if this question does not apply please write "N/A"</i></small></label><br/>
+                            <%= questionnaire_fields.text_area :medical_conditions, autocomplete: false, class: 'form-control' %>
+                          </div>
+
+                          <div class="form-group" style="display: inline-block !important; width:70% !important;">
+                            <label>Motivation:<br><small><i>if this question does not apply please write "N/A"</i></small></label><br/>
+                            <%= questionnaire_fields.text_area :motivation, autocomplete: false, class: 'form-control' %>
+                          </div>
+
+                          <div class="form-group" style="display: inline-block !important; width:70% !important;">
+                            <%= questionnaire_fields.label :medications, 'Medication(s)' %><br><small><i>if this question does not apply please write "N/A"</i></small><br/>
+                            <%= questionnaire_fields.text_field :medications, autocomplete: false, class: 'form-control' %>
+                          </div>
+
+                          <div class="form-group" style="display: inline-block !important; width:60% !important;">
+                            <%= questionnaire_fields.label :previous_cosmetics_procedure, 'Previous Cosmentic Procedure' %>
+                            <br/>
+                            <%= questionnaire_fields.select :previous_cosmetics_procedure, options_from_collection_for_select(@procedures, :slug_value, :name), {:include_blank => "Previous Procedure"}, {:class => "form-control chzn-select"} %>
+                          </div>
+
+                          </div>
+                          </div>
+                          <div class="new_lead_content tab-pane fade" id="wizardContent3" style="display:none">
+                            <div class="col-md-12">
+                              <br>
+
+                              <div class="form-group" style="display: block !important;">
+                                <%= questionnaire_fields.label :budget, 'Budget' %>
+                                <%= questionnaire_fields.text_field :budget, id: 'slider-panel', class: 'slider', 'data-slider-id' => 'budgetSlider' %>
+                              </div>
+
+                              <div class="form-group" style="display: block !important;">
+                                <%= questionnaire_fields.label :financing, 'Financing' %>
+                                <%= questionnaire_fields.select :financing, ([%w(Yes Yes), %w(No No)]), {include_blank: 'Financing'}, {class: 'chzn-select form-control'} %>
+                              </div>
+
+                              <div class="form-group" style="display: block !important;">
+                                <%= questionnaire_fields.label :planned_surgery_date, 'Timeframe' %>
+                                <%= questionnaire_fields.select :planned_surgery_date, ([['Next Available Opening', 'asap'], %w(January January), %w(Febuary Febuary), %w(March March), %w(April April), %w(May May), %w(June June), %w(July July), %w(August August), %w(September September), %w(October October), %w(November November), %w(December December)]), {:include_blank => 'Expected Time Frame'}, {class: 'form-control chzn-select'} %>
+                              </div>
+
+                              <!-- <div class="form-group" style="display: block !important">
+                                <label>How soon would you like to have your consultation?</label><br/>
+                                <%# questionnaire_fields.select :appointment_timeframe, ([['Next Available Opening', 'asap'], %w(January January), %w(Febuary Febuary), %w(March March), %w(April April), %w(May May), %w(June June), %w(July July), %w(August August), %w(September September), %w(October October), %w(November November), %w(December December)]), {include_blank: 'Appointment Timeframe'}, {class: 'chzn-select form-control col-md-4'} %>
+                              </div> -->
+
+                      <% end %>
+                      </div>
+
+                      </div>
+                      <div class="new_lead_content tab-pane fade" id="wizardContent4" style="display:none">
+                        <br>
+                        <div class="col-md-10 col-md-offset-1 text-center">
+                          <p>Your consultation will last from 45 minutes to 1 hour. During this time you will personally
+                            meet with and be evaluated by the Doctor. You will get to discuss your goals and ask them
+                            any questions you may have. You will also have your patient coordinator by your side
+                            throughout the process.</p>
+                        </div>
+
+                      </div>
+                      <div class="new_lead_content tab-pane fade" id="wizardContent5" style="display:none">
+                        <div class="col-md-12">
+                          <br>
+                          <div class="form-group" style="display: inline-block !important;">
+                            <%= f.label :appointment_type, 'Consult Type' %>
+                            <%= f.select :appointment_type, ([['In Person', 'in-person'], ['Virtual', 'virtual']]), {:include_blank => 'Appointment Type'}, {class: 'chzn-select form-control'} %>
+                          </div>
+
+                          <div class="form-group" style="display: inline-block !important;">
+                            <%= f.label :interest_level, 'Interest Level' %>
+                            <%= f.select :interest_level, ([['1 - Low', '1 - Low'], ['3 - Moderate', '3 - Moderate'], ['9 - High', '9 - High']]), {:include_blank => 'Interest Level'}, {class: 'chzn-select form-control'} %>
+                          </div>
+
+
+                          <div class="form-group" style="display: inline-block !important;">
+                            <label>Preffered Language</label><br/>
+                            <select name="preffered_language" class="chzn-select form-control">
+                              <option value="en" selected="true">English</option>
+                              <option value="es">Spanish</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group" style="display: inline-block !important; width:70% !important;">
+                            <input type="checkbox" name="send_questionnaire"/>
+                            <label>Send Beauty Profile?</label>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+
+                      </div>
+              </div>
+              <div class="col-md-6">
+                <div id="body_image">
+                  <center>
+                    <h3>Procedures</h3>
+                    <div class=" alert alert-info">Start by clicking your area of concern</div>
+                  </center>
+                  <div id="selected_checkbox" style="margin: 10% 0 0 39%;position: absolute;float: right;font-size: 15px;z-index: 9;"></div>
+                  <div style="position: relative; display: <%= @contact.gender == 'M' ? 'block' : 'none' %>" id="lead-male">
+                    <img src="/images/human/male/body-front.jpg" id="procedures-male" class="procedures" usemap="#bodymapmale">
+                    <map name="bodymapmale">
+                      <area shape="poly" id="face-male" coords="<%= Business::ProcedureMapping.where({name: 'Face', gender: 'M'}).first.coordinates %>"
+                            href="javascript:" title="Face" data-toggle="modal" data-target="#faceProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="body-male" coords="<%= Business::ProcedureMapping.where({name: 'Body', gender: 'M'}).first.coordinates %>"
+                            href="javascript:" title="Body & Chest" data-toggle="modal" data-target="#bodyProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="arm-male-left" class="arm-male" coords="<%= Business::ProcedureMapping.where({name: 'Arm', gender: 'M'}).last.coordinates %>"
+                            href="javascript:" title="Left Arm" alt="arm" data-toggle="modal" data-target="#armProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="arm-male-right" class="arm-male" coords="<%= Business::ProcedureMapping.where({name: 'Arm', gender: 'M'}).first.coordinates %>"
+                            href="javascript:" title="Right Arm" alt="arm" data-toggle="modal" data-target="#armProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="butt-female" coords="<%= Business::ProcedureMapping.where({name: 'Butt', gender: 'M'}).first.coordinates %>"
+                            href="javascript:" title="Butt" data-toggle="modal" data-target="#buttProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="leg-male-left" coords="<%= Business::ProcedureMapping.where({name: 'Leg', gender: 'M'}).last.coordinates %>"
+                            href="javascript:" title="Left Leg" alt="leg" data-toggle="modal" data-target="#legProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="leg-male-right" coords="<%= Business::ProcedureMapping.where({name: 'Leg', gender: 'M'}).first.coordinates %>"
+                            href="javascript:" title="Right Leg" alt="leg" data-toggle="modal" data-target="#legProceduresModalMale" data-backdrop="static" data-keyboard="false">
+                    </map>
+                  </div>
+
+                  <div style="position: relative;" id="lead-female">
+                    <img src="/images/human/female/body-front.jpg" id="procedures-female" class="procedures" usemap="#bodymapfemale">
+                    <map name="bodymapfemale">
+                      <area shape="poly" id="face-female" coords="<%= Business::ProcedureMapping.where({name: 'Face', gender: 'F'}).first.coordinates %>"
+                            href="javascript:" title="Face" data-toggle="modal" data-target="#faceProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="breast-female" coords="<%= Business::ProcedureMapping.where({name: 'Breast', gender: 'F'}).first.coordinates %>"
+                            href="javascript:" title="Breast" data-toggle="modal" data-target="#breastProceduresModal" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="body-female" coords="<%= Business::ProcedureMapping.where({name: 'Body', gender: 'F'}).first.coordinates %>"
+                            href="javascript:" title="Body" data-toggle="modal" data-target="#bodyProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="arm-female-left" alt="arm" coords="<%= Business::ProcedureMapping.where({name: 'Arm', gender: 'F'}).last.coordinates %>"
+                            href="javascript:" title="Left Arm" data-toggle="modal" data-target="#armProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="arm-female-right" alt="arm" coords="<%= Business::ProcedureMapping.where({name: 'Arm', gender: 'F'}).first.coordinates %>"
+                            href="javascript:" title="Right Arm" data-toggle="modal" data-target="#armProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="butt-female" coords="<%= Business::ProcedureMapping.where({name: 'Butt', gender: 'F'}).first.coordinates %>"
+                            href="javascript:" title="Butt" data-toggle="modal" data-target="#buttProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="leg-female-left" coords="<%= Business::ProcedureMapping.where({name: 'Leg', gender: 'F'}).last.coordinates %>"
+                            href="javascript:" title="Left Leg" alt="leg" data-toggle="modal" data-target="#legProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                      <area shape="poly" id="leg-female-right" coords="<%= Business::ProcedureMapping.where({name: 'Leg', gender: 'F'}).first.coordinates %>"
+                            href="javascript:" title="Right Leg" alt="leg" data-toggle="modal" data-target="#legProceduresModalFemale" data-backdrop="static" data-keyboard="false">
+                    </map>
+                  </div>
+                </div>
+                <center>
+                  <div id="current_procedure" style="display:none; width: 80% !important;">
+                    <div class="panel panel-default" style="margin-top:10px; margin:0 auto !important;">
+                      <div class="panel-heading bg-info" style="background-color:#3498db; color:white; font-size:20px">
+                        PROCEDURES
+                      </div>
+                      <div class="panel-body" style="height:250px;overflow:auto;">
+                        <% @procedures.each do |procedure| %>
+                            <div class="procedure-listing" id="list_<%= procedure.slug_value %>" style="display:none">
+                              <h4><%= procedure.name.titleize %></h4> <br/>
+                              <div class="separator"></div>
+                              <p><%= procedure.details.humanize if procedure.details.present? %><br/></p>
+                              <div class="separator"></div>
+                              <p><span>Procedure Cost: </span> <%= number_to_currency(procedure.cost) %></p>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </center>
+                <div class="seperator"></div>
+                <div id="everpresent-save" class="text-center" style="display:none;">
+
+                  <label style="margin-left:20px;">Send Coordinator Intro?</label>
+                  <input checked type="checkbox" name="coordinator_intro" style="margin-left:20px;"/>
+
+                  <%= f.submit 'Quick Save', :class => 'btn btn-info btn-xs', style: 'margin-left:20px;' %>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="panel-footer">
+              <button class="btn btn-success btn-md disabled" id="prevStep" disabled>Previous</button>
+              <button class="btn btn-md btn-success" id="nextStep">Next</button>
+              <%= f.submit 'Save Lead', :class => 'btn btn-success btn-md', id: 'save_lead', style: 'display:none' %>
+
+
+
+              <div class="pull-right" style="width:30%">
+                <div class="progress progress-striped active m-top-sm m-bottom-none">
+                  <div class="progress-bar progress-bar-success" id="wizardProgress" style="width:20%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" id="second_interest" name="business_lead[second_interest]" value="">
+        <% end %>
+      </div><!-- /panel -->
+    </div>
+  </div>
+</div>
+
+<!--###########################################################################################-->
+<!--Modal Section-->
+
+
+<%= render partial: 'shared/procedure_modals', locals: {organization: @contact.organization} %>
+
+<div class="modal fade" id="fillFields" style="margin-top:15%;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+	    <div class="modal-body">
+        <center>
+          <h3 class="text-danger">PLEASE FILL IN ALL FIELDS</h3>
+          <div id="missing-fields"></div>
+          <br>
+          <button class="btn btn-sm btn-danger" data-dismiss="modal" aria-hidden="true">OK</button>
+        </center>
+	    </div>
+  	</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="ajax-loader"><!-- Place at bottom of page --></div>
+<!--End Modal Section-->
+
+<style>
+  .form-group {
+    width: 49%;
+    display: inline-block !important;
+  }
+
+  .form-group-consult-surgery {
+    width: 49%;
+    margin-bottom: 15px;
+  }
+
+  blockquote {
+    border-left: none !important;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    width: 500px;
+    margin: 0.25em 0;
+    padding: 0.25em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: #383838;
+  }
+
+  blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+  }
+
+  blockquote cite {
+    color: #999999;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+  }
+
+  blockquote cite:before {
+    content: "\2014 \2009";
+  }
+
+  canvas {
+    width: auto !important;
+    height: auto !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  ul.right_arrow {
+    list-style: none;
+  }
+
+  ul.right_arrow li:before {
+    content: "\00BB";
+  }
+
+  .ajax-loader {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+  }
+
+  /* When the body has the loading class, we turn
+     the scrollbar off with overflow:hidden */
+  body.loading {
+    overflow: hidden;
+  }
+
+  /* Anytime the body has the loading class, our
+     modal element will be visible */
+  body.loading .modal {
+    display: block;
+  }
+
+  .script-intro {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  .error {
+    border: #FB6752 solid 2px;
+  }
+
+</style>

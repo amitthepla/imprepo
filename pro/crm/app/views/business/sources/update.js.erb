@@ -1,0 +1,14 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$("#<%=@source.id%>").closest("tr").replaceWith("<%= j render(partial: 'source', locals: {src: @source})%>");
+
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Updated Source',
+  text: "You have succesfully update <%=@source.name.titleize%> as a source.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

@@ -1,0 +1,65 @@
+<div class="panel panel-default table-responsive">
+	<div class="panel-heading h4">
+
+		<p><i class="fa fa-list fa-lg"> </i>  Consultation Log <span class="pull-right">  <%= link_to "All Consults", business_leads_consult_log_path, class: "btn btn-sm btn-primary form-inline no-margin" %>
+</span></p>
+	</div>
+	<br>
+	<div class="col-md-12 text-center">
+		<div class="row">
+	<%= form_tag business_leads_consult_log_path, :method => 'get', :id => "consults_by_coordinator", class: "form-inline no-margin" do %>
+
+	<%= text_field_tag :search, params[:search], placeholder: "Search", class: " form-control", style: "margin-right:20px" %>
+
+	<div class="input-group " style="margin-right:2%">
+		<input type="text" name="start_date" placeholder="Date Range Start" value="<%=params[:start_date]%>" class="datepicker  form-control">
+		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	</div>
+	<div class="input-group " style="margin-right:2%">
+		<input type="text" name="end_date" placeholder="Date Range End" value="<%=params[:end_date]%>" class="datepicker  form-control">
+		<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	</div>
+
+		<%= submit_tag "Search", class: " btn btn-sm btn-info" %>
+
+	<% end %>
+	<br>
+	</div>
+	</div>
+	<br>
+
+	<div class="panel-body">
+		<div class="row">
+
+			<div id="consults"><%= render 'consults' %></div>
+
+		</div><!-- /.row -->
+	</div>
+
+	<div class="col-md-10 col-md-offset-1">
+		<br><br>
+
+
+	</div><!-- /panel -->
+</div>
+
+
+<script>
+$(document).ready(function () {
+
+	// date picker
+	$('.datepicker').datepicker({
+		format: "mm/dd/yyyy"
+	}).on('changeDate', function (e) {
+		if (e.viewMode === 'days') {
+			$(this).datepicker('hide');
+			removeErrors();
+		}
+	});
+});
+
+function removeErrors() {
+	$(".datepicker").removeAttr("style");
+	$("#error-text").hide();
+}
+</script>

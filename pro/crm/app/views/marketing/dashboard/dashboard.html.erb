@@ -1,0 +1,260 @@
+<style>
+.drop-zone{
+	border:1px gray solid;
+	background-color: rgba(153, 153, 153, 0.3);
+	min-height:400px;
+	margin:10px;
+	text-align: center;
+}
+
+.add-graph{
+	line-height: 400px;
+	vertical-align: middle;
+}
+
+.quick-btn{
+	margin-bottom:10px;
+}
+
+</style>
+<div class="main-header clearfix">
+	<div class="page-title">
+		<h3 class="no-margin">Dashboard</h3>
+		<span>Welcome back <%= @current_user.first_name%></span>
+	</div><!-- /page-title -->
+</div><!-- /main-header -->
+<hr>
+<div style="clear:both"></div>
+
+<ul class="nav nav-pills">
+  <li class="active"><a data-toggle="pill" href="#whole">Whole View</a></li>
+  <li><a data-toggle="pill" href="#half">Half View</a></li>
+  <li><a data-toggle="pill" href="#quarter">Quarter View</a></li>
+</ul>
+<br>
+<div class="col-md-4 alert alert-info text-center"> Use the panels below to load the desired graphs for comparison. </div>
+<div style="clear:both"></div>
+
+<br>
+<div class="tab-content">
+    <div id="whole" class="tab-pane fade in active">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="drop-zone"  id="whole-graph">
+						<a data-toggle="modal" data-target="#whole-graph-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+    </div>
+    <div id="half" class="tab-pane fade" >
+				<div  class="col-md-6">
+					<div class="drop-zone"  id="half-graph-left">
+						<a data-toggle="modal" data-target="#half-graph-left-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div  class="col-md-6">
+					<div class="drop-zone"  id="half-graph-right">
+						<a data-toggle="modal" data-target="#half-graph-right-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+    </div>
+    <div id="quarter" class="tab-pane fade" >
+				<div class="col-md-6">
+					<div class="drop-zone"  id="top-graph-left">
+						<a data-toggle="modal" data-target="#top-graph-left-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="drop-zone"  id="top-graph-right">
+						<a data-toggle="modal" data-target="#top-graph-right-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="col-md-6">
+					<div class="drop-zone"  id="bottom-graph-left">
+						<a data-toggle="modal" data-target="#bottom-graph-left-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="drop-zone"  id="bottom-graph-right">
+						<a data-toggle="modal" data-target="#bottom-graph-right-modal" class="add-graph"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+    </div>
+  </div>
+	<br>
+	<div style="clear:both;"></div>
+
+<div class="clear:both"></div>
+<div id="whole-graph-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/whole-graph" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/whole-graph" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/whole-graph" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/whole-graph" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/whole-graph" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/whole-graph" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="half-graph-left-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/half-graph-left" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/half-graph-left" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/half-graph-left" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/half-graph-left" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/half-graph-left" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/half-graph-left" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="half-graph-right-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/half-graph-right" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/half-graph-right" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/half-graph-right" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/half-graph-right" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/half-graph-right" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/half-graph-right" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="top-graph-left-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/top-graph-left" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/top-graph-left" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/top-graph-left" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/top-graph-left" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/top-graph-left" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/top-graph-left" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-graph-left-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/bottom-graph-left" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/bottom-graph-left" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/bottom-graph-left" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/bottom-graph-left" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/bottom-graph-left" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/bottom-graph-left" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="top-graph-right-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/top-graph-right" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/top-graph-right" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/top-graph-right" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/top-graph-right" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/top-graph-right" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/top-graph-right" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-graph-right-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Available Charts and Graphs</h4>
+			</div>
+      <div class="modal-body">
+        <div class="container col-md-12">
+					<div class="row">
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/running_total/bottom-graph-right" data-remote="true"><i class="fa fa-line-chart"></i><span>Running Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/lead_count/bottom-graph-right" data-remote="true"><i class="fa fa-area-chart"></i><span>Lead Generation</a></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_roi/bottom-graph-right" data-remote="true"><i class="fa fa-usd"></i><span>Source ROI</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/source_productivity/bottom-graph-right" data-remote="true"><i class="fa fa-pie-chart"></i><span>Source Generation</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/surgical_revenue/bottom-graph-right" data-remote="true"><i class="fa fa-bar-chart-o"></i><span>Monthly Revenue</span></a></span>
+						<span class="col-md-4"><a class="btn btn-default quick-btn col-md-12" href="/marketing/dashboard/get_chart/consult_to_surgery/bottom-graph-right" data-remote="true"><i class="fa fa-arrows-h"></i><span>Consult to Surgery</span></a></span>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>

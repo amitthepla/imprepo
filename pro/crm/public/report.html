@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Conversion Doctor</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link data-turbolinks-track="true" href="/assets/simple_calendar.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/nprogress.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery-ui.min.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery-ui.structure.min.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/select2.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/fullcalendar.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/rails_admin/custom/theming.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap3-switch.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/admin/dashboard.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap-slider.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap-timepicker.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap-wysihtml5.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/business/contact.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/business/dashboard.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/business/surgeries.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/business/task_settings.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/calendar.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/chats.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/consultations.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/datepicker.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/endless-landing.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/endless-landing.min.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/endless-skin.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/endless.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/errors.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/font-awesome.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/font-awesome.min.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/fullcalendar.print.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/iconic-glyphs.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jcarousel.responsive.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery.dataTables.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery.dataTables_themeroller.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery.fancybox.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery.gritter.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/jquery.tagsinput.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/marketing/dashboard.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/marketing/mass_messages.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/morris.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/normalize.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/pace.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/password_resets.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/prettify.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/public.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/slider.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/taggd.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/users.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/wysiwyg-color.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/application.css?body=1" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/jquery.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.turbolinks.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery_ujs.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery-ui.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.ui.touch-punch.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/lodash-2.4.1.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.animateNumber.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/highcharts.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/highcharts/highcharts-more.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.kinetic.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/notify.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/nprogress.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/select2.full.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/moment.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/fullcalendar.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/papaparse.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/tinymce/preinit.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/tinymce/tinymce.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/tinymce.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-switch.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/PusherNotifier.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/admin/dashboard.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-datepicker.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-slider-new.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-slider.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-timepicker.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap-wysihtml5.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/bootstrap.min.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/business/contact.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/business/dashboard.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/business/surgeries.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/business/task_settings.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/chats.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/chosen.jquery.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/consultations.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/endless.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/errors.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/fullcalendar.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/holder.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jcarousel.responsive.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.colorbox.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.cookie.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.dataTables.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.fancybox.pack.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.fileupload.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.flot.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.form.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.gritter.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.jcarousel.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.localscroll.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.maskedinput.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.minicolors.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.nestable.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.popupoverlay.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.resize.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.scrollTo.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.slimscroll.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.sparkline.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.taggd.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.tagsinput.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery.titlealert.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/less-1.5.1.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/map-highlight.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/marketing/dashboard.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/marketing/mass_messages.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/modernizr.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/morris.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/pace.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/parsley.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/password_resets.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/turbolinks.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/public.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/rapheal.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/run_prettify.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/users.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/waypoints.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/wysihtml5-0.3.0.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/application.js?body=1"></script>
+
+</head>
+<body>
+
+<header>
+
+</header>
+
+
+<style>
+.panel {
+  margin:15px !important;
+}
+</style>
+<div class="main-header clearfix">
+  <div class="page-title">
+    <h3 class="no-margin">Monthly Health Check</h3>
+  </div><!-- /page-title -->
+</div><!-- /main-header -->
+<hr>
+<div style="clear:both"></div>
+<center>
+<div class="alert-message"> <h4> Revenue is <span class="text-danger">DOWN</span> from last month and the same as last year. &nbsp; &nbsp; Leads are <span class="text-danger">DOWN</span> from last month and <span class="text-danger">DOWN</span> from last year.</h4></div>
+</center>
+<div class="col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-heading h4">Monthly Health Check</div>
+    <div class="panel-body">
+      <h6>Start with step 1 to review your Monthly Health Check.</h6>
+      <div class="divs">
+        <h5 class="text-success">Marketing & Revenue</h5>
+        <div class="steps"><b>Step 1</b> Lead Generation <span class="pull-right"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 2</b> Source Productivity <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 3</b> Inquiry to Appoinment <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 4</b> Appointments <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 5</b> Appointment to Surgery <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 6</b> Surgeries <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 7</b> Earned and Lost Revenue <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <h5 class="text-success">Staff Performance</h5>
+        <div class="steps"><b>Step 8</b> Receptionist Inquiry to Appointment <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 9</b> Coordinator Communication <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 10</b> Coordinator Closing Rates <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 11</b> Coordinator Revenue <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+
+      </div>
+      <br>
+      <button class="btn btn-success btn-sm disabled" id="prevStep" disabled>Previous</button>
+      <button type="submit" class="btn btn-sm btn-success" id="nextStep">Next</button>
+      <a href="/marketing/dashboard/health_check.pdf" style="display:none;"  class = "btn btn-sm btn-info" id ="print"  target = '_blank'>Print </a>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-9">
+  <div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="h4">4Beauty's Vitals</span>
+            <div class="pull-right" style="width:30%;margin-bottom:5px;">
+              <div style="height:20px;" class="progress progress-striped active m-top-sm m-bottom-none">
+                <div class="progress-bar progress-bar-success" id="wizardProgress" style="width:9%;"></div>
+              </div>
+            </div>
+            <div style="clear:both;"></div>
+					</div>
+					<div class="panel-tab">
+						<ul class="wizard-steps" id="wizardTab">
+							<li class="active">
+								<a href="#wizardContent1" data-toggle="tab">Step 1</a>
+							</li>
+							<li>
+								<a href="#wizardContent2" data-toggle="tab">Step 2</a>
+							</li>
+							<li>
+								<a href="#wizardContent3" data-toggle="tab">Step 3</a>
+							</li>
+              <li>
+                <a href="#wizardContent4" data-toggle="tab">Step 4</a>
+              </li>
+              <li>
+                <a href="#wizardContent5" data-toggle="tab">Step 5</a>
+              </li>
+              <li>
+                <a href="#wizardContent6" data-toggle="tab">Step 6</a>
+              </li>
+              <li >
+                <a href="#wizardContent7" data-toggle="tab">Step 7</a>
+              </li>
+              <li>
+                <a href="#wizardContent8" data-toggle="tab">Step 8</a>
+              </li>
+              <li>
+                <a href="#wizardContent9" data-toggle="tab">Step 9</a>
+              </li>
+              <li>
+                <a href="#wizardContent10" data-toggle="tab">Step 10</a>
+              </li>
+              <li>
+                <a href="#wizardContent11" data-toggle="tab">Step 11</a>
+              </li>
+						</ul>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="wizardContent1">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Lead Generation
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class=" in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        Review this Lead Generation table to determine if there is an issue with the quantity of leads being generated. If there is a large discrepancy review the sources that would directly influence the inquiry type.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Inquiry Type</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Web Inquiry</td>
+                            <td>328</td>
+                            <td>3</td>
+                            <td>
+                              <span class="text-danger">
+                                -325
+                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -10900 %
+                              </span>
+                            </td>
+                            <td>451</td>
+                            <td>3</td>
+                            <td>
+                              <span class="text-danger">
+                                -448
+                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -15000 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Phone Call/ Walk In</td>
+                            <td>40</td>
+                            <td>1</td>
+                            <td>
+                              <span class="text-danger">
+                                -39
+                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -3900 %
+                              </span>
+                            </td>
+                            <td>131</td>
+                            <td>1</td>
+                            <td>
+                              <span class="text-danger">
+                                -130
+                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -13000 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Total</td>
+                            <td>368</td>
+                            <td>4</td>
+                            <td>
+                              <span class="text-danger">
+                                -364
+                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -9100 %
+                              </span>
+                            </td>
+                            <td>582</td>
+                            <td>4</td>
+                            <td>
+                              <span class="text-danger">
+                                -578
+                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -14500 %
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+							</div>
+							<div class="tab-pane fade" id="wizardContent2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Source Productivity
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;width:100%;">
+                        Use the Source Productivity table to review your Source Types. You can determine which Source Type has generated the most leads.
+                      </div>
+                      <table class="table table-hover  table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Source</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Internet</td>
+                            <td><a data-target="#first_internet_sources" role="button" data-toggle="modal">94</a></td>
+                            <td><a data-target="#internet_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-danger">
+                                -94                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -9400 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_internet_sources" role="button" data-toggle="modal">1</a></td>
+                            <td><a data-target="#internet_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-danger">
+                                -1                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -100 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Referral</td>
+                            <td><a data-target="#first_referral_sources" role="button" data-toggle="modal">14</a></td>
+                            <td><a data-target="#referral_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-danger">
+                                -14                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -1400 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_referral_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#referral_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Social Media</td>
+                            <td><a data-target="#first_social_media_sources" role="button" data-toggle="modal">10</a></td>
+                            <td><a data-target="#social_media_sources" role="button" data-toggle="modal">2</a></td>
+                            <td>
+                              <span class="text-danger">
+                                -8                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -400 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_social_media_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#social_media_sources" role="button" data-toggle="modal">2</a></td>
+                            <td>
+                              <span class="text-success">
+                                2                              </span>
+                            </td>
+                            <td>
+                              <span class="text-success">
+                                100 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Traditional Media</td>
+                            <td><a data-target="#first_traditional_media_sources" role="button" data-toggle="modal">3</a></td>
+                            <td><a data-target="#traditional_media_sources" role="button" data-toggle="modal">2</a></td>
+                            <td>
+                              <span class="text-danger">
+                                -1                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -100 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_traditional_media_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#traditional_media_sources" role="button" data-toggle="modal">2</a></td>
+                            <td>
+                              <span class="text-success">
+                                2                              </span>
+                            </td>
+                            <td>
+                              <span class="text-success">
+                                100 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Events</td>
+                            <td><a data-target="#first_events_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#events_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_events_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#events_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Telemarketing</td>
+                            <td><a data-target="#first_telemarketing_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#telemarketing_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_telemarketing_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#telemarketing_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Walk-In</td>
+                            <td><a data-target="#first_walk_in_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#walk_in_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_walk_in_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#walk_in_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Other</td>
+                            <td><a data-target="#first_other_sources" role="button" data-toggle="modal">5</a></td>
+                            <td><a data-target="#other_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-danger">
+                                -5                              </span>
+                            </td>
+                            <td>
+                              <span class="text-danger">
+                                -500 %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_other_sources" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#other_sources" role="button" data-toggle="modal">0</a></td>
+                            <td>
+                              <span class="text-default">
+                                0                              </span>
+                            </td>
+                            <td>
+                              <span class="text-default">
+                                0 %
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+							</div>
+							<div class="tab-pane fade" id="wizardContent3">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Inquiry to Appointment
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        Use the Inquiry to Appointment table to review the lead types that converted to an appointment. You also have the Inquiry to Appointment rates for each of your reception staff.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th Class="text-center"><h5>4Beauty</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Total</td>
+                            <td> 5.43%</td>
+                            <td> 150.0%</td>
+                            <td>
+                              <span class="text-success">
+                                144.57 %
+                              </span>
+                            </td>
+                            <td> 1.89%</td>
+                            <td> 150.0%</td>
+                            <td>
+                              <span class="text-success">
+                                148.11 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Phone / Walk In</td>
+                            <td> 0.0%</td>
+                            <td> 0.0%</td>
+                            <td>
+                              <span class="text-default">
+                                0.0 %
+                              </span>
+                            </td>
+                            <td> 0.0%</td>
+                            <td> 0.0%</td>
+                            <td>
+                              <span class="text-default">
+                                0.0 %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Web</td>
+                            <td> 0.0%</td>
+                            <td> 0.0%</td>
+                            <td>
+                              <span class="text-default">
+                                0.0 %
+                              </span>
+                            </td>
+                            <td> 0.0%</td>
+                            <td> 0.0%</td>
+                            <td>
+                              <span class="text-default">
+                                0.0 %
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+							</div>
+              <div class="tab-pane fade" id="wizardContent4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Appointments
+                    </h4>
+                  </div>
+                  <div id="collapseFour" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see leads who scheduled, cancelled or no showed their Appointments.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr >
+                            <th class="text-center"><h5>Appointment Status</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Total</td>
+                            <td>20</td>
+                            <td>6</td>
+                            <td class="text-danger">
+                              -14
+                            </td>
+                            <td>11</td>
+                            <td>6</td>
+                            <td class="text-danger">
+                              -5
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cancelled</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td class="text-danger">
+                              -1
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="text-default">
+                              0
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>No Show</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="text-default">
+                              0
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="text-default">
+                              0
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Appointment Rates</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>No Show Consultation</td>
+                            <td>0.0%</td>
+                            <td>0.0%</td>
+                            <td class="text-default">
+                              0.0%
+                            </td>
+                            <td>0.0%</td>
+                            <td>0.0%</td>
+                            <td class="text-default">
+                              0.0%
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cancelled Consultation</td>
+                            <td>5.0%</td>
+                            <td>0.0%</td>
+                            <td class="text-danger">
+                              -5.0%
+                            </td>
+                            <td>0.0%</td>
+                            <td>0.0%</td>
+                            <td class="text-default">
+                              0.0%
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent5">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Appointment to Surgery
+                    </h4>
+                  </div>
+                  <div id="collapseFive" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        This table displays the Closing rate for the practice as well ass closing rates for each of your Sales Coordinators.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center">User</th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>4Beauty</td>
+                            <td> 50.0%</td>
+                            <td> 216.67%</td>
+                            <td class="text-success">
+                              166.67 %
+                            </td>
+                            <td> 0.0%</td>
+                            <td> 216.67%</td>
+                            <td class="text-success">
+                              216.67 %
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Surgeries
+                    </h4>
+                  </div>
+                  <div id="collapseSix" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see leads who scheduled, completed and cancelled surgery.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Surgery Status</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Scheduled</td>
+                            <td><a data-target="#first_surgeries" role="button" data-toggle="modal">10</a></td>
+                            <td><a data-target="#surgeries" role="button" data-toggle="modal">13</a></td>
+                            <td class="text-success">
+                              3
+                            </td>
+                            <td><a data-target="#second_surgeries" role="button" data-toggle="modal">0</a></td>
+                            <td><a data-target="#surgeries" role="button" data-toggle="modal">13</a></td>
+                            <td class="text-success">
+                              13
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Completed</td>
+                            <td>8</td>
+                            <td>0</td>
+                            <td class="text-danger">
+                              -8
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="text-default">
+                              0
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cancelled</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td class="text-danger">
+                              -1
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="text-default">
+                              0
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Surgical Rates</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Cancelled Surgery</td>
+                            <td>10.0%</td>
+                            <td>0.0%</td>
+                            <td class="text-danger">
+                              -10.0%
+                            </td>
+                            <td>0.0%</td>
+                            <td>0.0%</td>
+                            <td class="text-default">
+                              0.0%
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent7">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Earned and Lost Revenue
+                    </h4>
+                  </div>
+                  <div id="collapseSeven" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Category</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Earned Revenue</td>
+                            <td>$107,500.00</td>
+                            <td>$0.00</td>
+                            <td class="text-danger">
+                              -$107,500.00
+                            </td>
+                            <td>$0.00</td>
+                            <td>$0.00</td>
+                            <td class="text-default">
+                              $0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Lost Revenue</td>
+                            <td>$8,500.00</td>
+                            <td>$0.00</td>
+                            <td class="text-danger">
+                              -$8,500.00
+                            </td>
+                            <td>$0.00</td>
+                            <td>$0.00</td>
+                            <td class="text-default">
+                              $0.00
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent8">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Receptionist Inquiry to Appointment
+                    </h4>
+                  </div>
+                  <div id="collapseEight" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center">User</th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Alejandra</td>
+                            <td><span>200.0%</span></td>
+                            <td><span>0%</span></td>
+                            <td>
+                              <span class="text-danger">
+                                -200.0%
+                              </span>
+                            </td>
+                            <td><span>3.23%</span></td>
+                            <td><span>0%</span></td>
+                            <td>
+                              <span class="text-danger">
+                                -3.23%
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Dayana</td>
+                            <td><span>27.78%</span></td>
+                            <td><span>200.0%</span></td>
+                            <td>
+                              <span class="text-success">
+                                172.22%
+                              </span>
+                            </td>
+                            <td><span>0%</span></td>
+                            <td><span>200.0%</span></td>
+                            <td>
+                              <span class="text-success">
+                                200.0%
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Kathy</td>
+                            <td><span>0.0%</span></td>
+                            <td><span>0%</span></td>
+                            <td>
+                              <span class="text-default">
+                                0.0%
+                              </span>
+                            </td>
+                            <td><span>0%</span></td>
+                            <td><span>0%</span></td>
+                            <td>
+                              <span class="text-default">
+                                0%
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Coordinator Communication
+                    </h4>
+                  </div>
+                  <div id="collapseNine" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th colspan="2" class="text-center"><h5>Jan 2016</h5></th>
+                            <th colspan="2" class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Dec 2016</h5></th>
+                            <th colspan="2" class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="2" class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                          </tr>
+                          <tr class="bg-info">
+                            <th class="text-center"></th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Colleen</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>28</span></td>
+                            <td><span>8</span></td>
+                            <td><span>3</span></td>
+                            <td class="text-success">
+                              <span>8</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-25</span>
+                            </td>
+                            <td><span>18</span></td>
+                            <td><span>125</span></td>
+                            <td><span>8</span></td>
+                            <td><span>3</span></td>
+                            <td class="text-danger">
+                              <span>-10</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-122</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Marisol</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>120</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-120</span>
+                            </td>
+                            <td><span>28</span></td>
+                            <td><span>126</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-danger">
+                              <span>-28</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-126</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Camille</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>117</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-117</span>
+                            </td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Jenny</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>1</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-success">
+                              <span>1</span>
+                            </td>
+                            <td><span>41</span></td>
+                            <td><span>117</span></td>
+                            <td><span>0</span></td>
+                            <td><span>1</span></td>
+                            <td class="text-danger">
+                              <span>-41</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-116</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Vivian</td>
+                            <!-- historic -->
+                            <td><span>4</span></td>
+                            <td><span>108</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-danger">
+                              <span>-4</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-108</span>
+                            </td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Test</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent10">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Coordinator Closing Rates
+                    </h4>
+                  </div>
+                  <div id="collapseTen" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th colspan="3" class="text-center"><h5>Jan 2016</h5></th>
+                            <th colspan="3" class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="3" class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                          </tr>
+                          <tr class="bg-info">
+                            <th class="text-center"></th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Colleen</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>3</span></td>
+                            <td><span>3</span></td>
+                            <td><span>100.0%</span></td>
+                            <td class="text-success">
+                              <span>3</span>
+                            </td>
+                            <td class="text-success">
+                              <span>3</span>
+                            </td>
+                            <td class="text-success">
+                              <span>100.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Marisol</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>3</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>4</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td class="text-success">
+                              <span>4</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-3</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Camille</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>1</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>1</span></td>
+                            <td><span>2</span></td>
+                            <td><span>50.0%</span></td>
+                            <td class="text-success">
+                              <span>1</span>
+                            </td>
+                            <td class="text-success">
+                              <span>1</span>
+                            </td>
+                            <td class="text-success">
+                              <span>50.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Jenny</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>3</span></td>
+                            <td><span>1</span></td>
+                            <td><span>300.0%</span></td>
+                            <td class="text-success">
+                              <span>3</span>
+                            </td>
+                            <td class="text-success">
+                              <span>1</span>
+                            </td>
+                            <td class="text-success">
+                              <span>300.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Vivian</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>5</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>2</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td class="text-success">
+                              <span>2</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-5</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Test</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0%</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th colspan="3" class="text-center"><h5>Dec 2016</h5></th>
+                            <th colspan="3" class="text-center"><h5>Jan 2017</h5></th>
+                            <th colspan="3" class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                          </tr>
+                          <tr class="bg-info">
+                            <th class="text-center"></th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Colleen</td>
+                            <!-- historic -->
+                            <td><span>6</span></td>
+                            <td><span>5</span></td>
+                            <td><span>120.0%</span></td>
+                            <td><span>3</span></td>
+                            <td><span>3</span></td>
+                            <td><span>100.0%</span></td>
+                            <td class="text-danger">
+                              <span>-3</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-2</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-20.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Marisol</td>
+                            <!-- historic -->
+                            <td><span>2</span></td>
+                            <td><span>9</span></td>
+                            <td><span>22.22%</span></td>
+                            <td><span>4</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td class="text-success">
+                              <span>2</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-9</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-22.22%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Camille</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>1</span></td>
+                            <td><span>2</span></td>
+                            <td><span>50.0%</span></td>
+                            <td class="text-success">
+                              <span>1</span>
+                            </td>
+                            <td class="text-success">
+                              <span>2</span>
+                            </td>
+                            <td class="text-success">
+                              <span>50.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Jenny</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>6</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>3</span></td>
+                            <td><span>1</span></td>
+                            <td><span>300.0%</span></td>
+                            <td class="text-success">
+                              <span>3</span>
+                            </td>
+                            <td class="text-danger">
+                              <span>-5</span>
+                            </td>
+                            <td class="text-success">
+                              <span>300.0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Vivian</td>
+                            <!-- historic -->
+                            <td><span>2</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>2</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0%</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Test</td>
+                            <!-- historic -->
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0</span></td>
+                            <td><span>0.0%</span></td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0</span>
+                            </td>
+                            <td class="text-default">
+                              <span>0%</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent11">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Coordinator Revenue
+                    </h4>
+                  </div>
+                  <div id="collapseEleven" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th class="text-center"><h5>Jan 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Jan 2016 - Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016</h5></th>
+                            <th class="text-center"><h5>Jan 2017</h5></th>
+                            <th class="text-center"><h5>Dec 2016 - Jan 2017</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Colleen</td>
+                            <!-- historic -->
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                            <td><span>$68,200.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-danger">
+                              <span>-$68,200.00</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Marisol</td>
+                            <!-- historic -->
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                            <td><span>$13,800.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-danger">
+                              <span>-$13,800.00</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Camille</td>
+                            <!-- historic -->
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Jenny</td>
+                            <!-- historic -->
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Vivian</td>
+                            <!-- historic -->
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                            <td><span>$25,500.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-danger">
+                              <span>-$25,500.00</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Test</td>
+                            <!-- historic -->
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                            <td><span>$0.00</span></td>
+                            <td><span>$0.00</span></td>
+                            <td class="text-default">
+                              <span>$0.00</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+						</div>
+					</div>
+				</div><!-- /panel -->
+      </div>
+
+        <div class="modal fade" id="first_other_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Other Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-otherSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Repeat Customer</td>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <td>5</td>
+                      <td>$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_walk_in_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Walk In Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-walk-inSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_telemarketing_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-telemarketingSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_event_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-eventSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_traditional_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Traditional Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-traditionalSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Digital Sign</td>
+                      <td>11/01/16</td>
+                      <td>12/31/17</td>
+                      <td>3</td>
+                      <td>$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_social_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Social Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-socialSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Instagram</td>
+                      <td>11/01/16</td>
+                      <td>12/31/17</td>
+                      <td>5</td>
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td>Facebook Q1 Q3</td>
+                      <td>01/01/16</td>
+                      <td>09/30/16</td>
+                      <td>4</td>
+                      <td>$3,124.00</td>
+                    </tr>
+                    <tr>
+                      <td>Twitter</td>
+                      <td>11/01/16</td>
+                      <td>12/31/17</td>
+                      <td>1</td>
+                      <td>$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_referral_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Referral Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-referralSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Word Of Mouth</td>
+                      <td>11/01/16</td>
+                      <td>11/30/16</td>
+                      <td>14</td>
+                      <td>$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_internet_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Internet Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-internetSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Buttsbymendieta</td>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <td>48</td>
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td>Google Adwords   Jan To Oct</td>
+                      <td>01/01/16</td>
+                      <td>10/31/16</td>
+                      <td>9</td>
+                      <td>$61,963.00</td>
+                    </tr>
+                    <tr>
+                      <td>Top Miami Plastic Surgeons</td>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <td>13</td>
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td>Real Self   Q1 To Q2</td>
+                      <td>01/01/16</td>
+                      <td>06/30/16</td>
+                      <td>3</td>
+                      <td>$67,200.00</td>
+                    </tr>
+                    <tr>
+                      <td>Real Self Q3</td>
+                      <td>06/01/16</td>
+                      <td>10/31/16</td>
+                      <td>11</td>
+                      <td>$28,000.00</td>
+                    </tr>
+                    <tr>
+                      <td>Constantinomendieta</td>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <td>4</td>
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td>Themendietatechnique.Com/</td>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <td>3</td>
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td>Real Self Q4</td>
+                      <td>10/01/16</td>
+                      <td>12/31/16</td>
+                      <td>3</td>
+                      <td>$30,548.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <div class="modal fade" id="second_other_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Other Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-otherSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_walk_in_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Walk In Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-walk-inSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_telemarketing_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-telemarketingSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_event_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-eventSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_traditional_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Traditional Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-traditionalSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_social_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Social Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-socialSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_referral_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Referral Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-referralSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_internet_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Internet Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-internetSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Themendietatechnique.Com/</td>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <td>1</td>
+                      <td>$0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+  <div class="modal fade" id="phone_leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Phone Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="phoneLeads" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="leads/587653de06715e274200001f">Remy Martin</a></td>
+                <td>Colleen Finnegan</td>
+                <td>01/11/17</td>
+                <td><span class="label label-info">Booked Consult</span></td>
+                <td>Digital Sign</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="internet_leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Web Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="webLeads" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="leads/586c0cf806715e8506000068">Delanie Wheeler</a></td>
+                <td>Jenny Fitz</td>
+                <td>01/03/17</td>
+                  <td><span class="label label-success">Booked Surgery</span></td>
+                  <td>Twitter</td>
+              </tr>
+              <tr>
+                <td><a href="leads/587652ff06715e274200000d">Mark Roth</a></td>
+                <td>Colleen Finnegan</td>
+                <td>01/11/17</td>
+                  <td><span class="label label-info">Booked Consult</span></td>
+                  <td>Digital Sign</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5886602c06715e4c4e000006">Matthew Rothstein</a></td>
+                <td>Colleen Finnegan</td>
+                <td>01/23/17</td>
+                  <td><span class="label label-orange">Cold</span></td>
+                  <td>Facebook Q1 Q3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="leadsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="leads/586c0cf806715e8506000068">Delanie Wheeler</a></td>
+                <td>Jenny Fitz</td>
+                <td>01/03/17</td>
+                  <td><span class="label label-success">Booked Surgery</span></td>
+                  <td>Twitter</td>
+              </tr>
+              <tr>
+                <td><a href="leads/587652ff06715e274200000d">Mark Roth</a></td>
+                <td>Colleen Finnegan</td>
+                <td>01/11/17</td>
+                  <td><span class="label label-info">Booked Consult</span></td>
+                  <td>Digital Sign</td>
+              </tr>
+              <tr>
+                <td><a href="leads/587653de06715e274200001f">Remy Martin</a></td>
+                <td>Colleen Finnegan</td>
+                <td>01/11/17</td>
+                  <td><span class="label label-info">Booked Consult</span></td>
+                  <td>Digital Sign</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5886602c06715e4c4e000006">Matthew Rothstein</a></td>
+                <td>Colleen Finnegan</td>
+                <td>01/23/17</td>
+                  <td><span class="label label-orange">Cold</span></td>
+                  <td>Facebook Q1 Q3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="consults">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Consultations</h3>
+        </div>
+        <div class="modal-body">
+          <table id="consultsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="leads/57d2ee96fafb4e00030000f1">Kiana Lim Sang</a></td>
+                <td>01/05/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5816768d95b6ee000300000a">Tala Khaddam</a></td>
+                <td>01/05/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/581beabd4d79270003000072">Janyll Gonzalez</a></td>
+                <td>01/12/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/57e0004b42991100030000bd">Genelle Richardson</a></td>
+                <td>01/04/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/584d26f6b017a8000400002c">Maha Alshunaifi</a></td>
+                <td>01/26/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/584aedae62251b0004000085">Melanie Gomez</a></td>
+                <td>01/12/17</td>
+                <td>$100.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="appts">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Appointments</h3>
+        </div>
+        <div class="modal-body">
+          <table id="appointmentsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="leads/57d2ee96fafb4e00030000f1">Kiana Lim Sang</a></td>
+                <td>01/05/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5816768d95b6ee000300000a">Tala Khaddam</a></td>
+                <td>01/05/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/581beabd4d79270003000072">Janyll Gonzalez</a></td>
+                <td>01/12/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/57e0004b42991100030000bd">Genelle Richardson</a></td>
+                <td>01/04/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/584d26f6b017a8000400002c">Maha Alshunaifi</a></td>
+                <td>01/26/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/584aedae62251b0004000085">Melanie Gomez</a></td>
+                <td>01/12/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58593ec8e00ee00004000049">Najah  Fleary</a></td>
+                <td>01/12/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58592aa20ab2200004000058">Deven Mcnair</a></td>
+                <td>01/26/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/585924b90ab2200004000052">Carol Smith</a></td>
+                <td>01/18/17</td>
+                <td>$500.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5859102899f59e0004000038">Aurora Spaven</a></td>
+                <td>01/04/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858df160ab2200004000042">Sidra Glenmore</a></td>
+                <td>01/26/17</td>
+                <td>$80.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858a9640ab2200004000038">Rosa Correa</a></td>
+                <td>01/27/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858a5e30ab2200004000032">Madai Parra</a></td>
+                <td>01/19/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/585899400ab220000400001d">Francine Watkins</a></td>
+                <td>01/04/17</td>
+                <td>$521.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/585880ca0ab2200004000013">Melissa  Zehringer </a></td>
+                <td>01/27/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58587e03e00ee0000400002e">Tequa  Rivers </a></td>
+                <td>01/26/17</td>
+                <td>$500.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/585876a399f59e0004000016">Daysia Cruz Jones</a></td>
+                <td>01/25/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58587156e00ee00004000026">Hajah Sanoe </a></td>
+                <td>01/20/17</td>
+                <td>$120.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/586c0cf806715e8506000068">Delanie Wheeler</a></td>
+                <td>01/25/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58583e6030120b0004000061">Susan Banks</a></td>
+                <td>01/18/17</td>
+                <td>$2,500.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/576d724ddd0a9a0003000011">Matt Rothstein</a></td>
+                <td>01/02/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58581ad79e0d130004000059">Joanne Pina</a></td>
+                <td>01/26/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858132588df14000400004e">Dametryah Thompson</a></td>
+                <td>01/26/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858131988df140004000040">Brittany</a></td>
+                <td>01/24/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858132188df14000400004a">Carolina</a></td>
+                <td>01/25/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58585382e00ee00004000011">Delanie Wheeler</a></td>
+                <td>01/25/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/5858132088df140004000046">Glendell Moss</a></td>
+                <td>01/24/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/587653de06715e274200001f">Remy Martin</a></td>
+                <td>01/17/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/587653de06715e274200001f">Remy Martin</a></td>
+                <td>01/17/17</td>
+                <td>$200.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/587652ff06715e274200000d">Mark Roth</a></td>
+                <td>01/24/17</td>
+                <td>$1,234.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58580d266644200004000046">Lucia</a></td>
+                <td>01/27/17</td>
+                <td>$123.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58580d216644200004000042">Crystal</a></td>
+                <td>01/26/17</td>
+                <td>$100.00</td>
+              </tr>
+              <tr>
+                <td><a href="leads/58580d15664420000400003c">Iner Brown</a></td>
+                <td>01/17/17</td>
+                <td>$100.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="cancelled_sx">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Cancelled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="cancelledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="completed_sx">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Completed Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="completedSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <a href="leads/56fbcb68cfdde4000300003f">Jin Chua</a>
+                </td>
+                <td>Breast Lift With Implants</td>
+                <td>01/04/17</td>
+                <td>$8,000.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/579a57117309280003000056">Laura Perdomo</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>01/07/17</td>
+                <td>$22,800.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/579a68c1742c0700030000d5">Evelyn Menendez</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>01/06/17</td>
+                <td>$10,550.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/57a7994177c6fe0003000007">Lalani  Gomez</a>
+                </td>
+                <td>Breast Lift With Implants</td>
+                <td>01/30/17</td>
+                <td>$9,000.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/57c98290b7632a00030000aa">Deborah Gadd</a>
+                </td>
+                <td>Liposuction Female</td>
+                <td>01/11/17</td>
+                <td>$8,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/57ec2f7daefa180003000165">Porscha March</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>01/20/17</td>
+                <td>$10,550.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/5814fad96b961e0003000004">Samantha Butalid</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>01/17/17</td>
+                <td>$10,550.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58458e737b479c0004000075">Barbara Rodriguez</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>01/23/17</td>
+                <td>$10,550.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58593ec8e00ee00004000049">Najah  Fleary</a>
+                </td>
+                <td>Buttock Implant</td>
+                <td>01/18/17</td>
+                <td>$5,000.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58592aa20ab2200004000058">Deven Mcnair</a>
+                </td>
+                <td>Silicone Injection Removal</td>
+                <td>01/04/17</td>
+                <td>$2,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/586c0cf806715e8506000068">Delanie Wheeler</a>
+                </td>
+                <td>Buttock Implant</td>
+                <td>01/27/17</td>
+                <td>$2,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58580d266644200004000046">Lucia</a>
+                </td>
+                <td>Breast Lift With Implants</td>
+                <td>01/30/17</td>
+                <td>$12,345.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58580d15664420000400003c">Iner Brown</a>
+                </td>
+                <td>Miami Thong Lift</td>
+                <td>01/30/17</td>
+                <td>$2,500.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first_scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <a href="leads/576aa0dc9f78c80003000085">Xiomara Brooks</a>
+                </td>
+                <td>Tummy Tuck</td>
+                <td>12/19/16</td>
+                <td>$12,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/579a66f573092800030000f3">Robert  Pereira</a>
+                </td>
+                <td>Facelift</td>
+                <td>12/10/16</td>
+                <td>$25,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/569f184e65646400038f0000">Lisandra Gonzalez</a>
+                </td>
+                <td>Tummy Tuck</td>
+                <td>12/21/16</td>
+                <td>$11,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/57c459b2ed522e0003000014">Patty Mccue</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>12/06/16</td>
+                <td>$10,550.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/57d16d26e2a1140003000040">Maria Rosario</a>
+                </td>
+                <td>Tummy Tuck</td>
+                <td>12/21/16</td>
+                <td>$8,500.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/57e583a12193f8000300002d">Neda Acadivatan</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>12/20/16</td>
+                <td>$11,000.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58189c6d38098c0003000023">Sophia Wollersheim</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>12/09/16</td>
+                <td>$10,000.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/58260ec9ab96870004000163">Aira Torrens Pena</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>12/17/16</td>
+                <td>$14,550.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/582dc934473bcd00040001ec">Dayne  Corcho</a>
+                </td>
+                <td>Brazilian Butt Lift</td>
+                <td>12/17/16</td>
+                <td>$9,600.00</td>
+              </tr>
+              <tr>
+                <td>
+                    <a href="leads/585185bfb09f0c0004000077">Onaida Bongo</a>
+                </td>
+                <td>Breast Reduction</td>
+                <td>12/16/16</td>
+                <td>$13,800.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second_scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+  <script>
+  $(document).ready(function(){
+    if($('#first-internetSources').length) {
+      $('#first-internetSources').DataTable();
+    };
+    if($('#first-referralSources').length) {
+      $('#first-referralSources').DataTable();
+    };
+    if($('#first-socialSources').length) {
+      $('#first-socialSources').DataTable();
+    };
+    if($('#first-traditionalSources').length) {
+      $('#first-traditionalSources').DataTable();
+    };
+    if($('#first-eventSources').length) {
+      $('#first-eventSources').DataTable();
+    };
+    if($('#first-telemarketingSources').length) {
+      $('#first-telemarketingSources').DataTable();
+    };
+    if($('#first-walk-inSources').length) {
+      $('#first-walk-inSources').DataTable();
+    };
+    if($('#first-otherSources').length) {
+      $('#first-otherSources').DataTable();
+    };
+    if($('#second-internetSources').length) {
+      $('#second-internetSources').DataTable();
+    };
+    if($('#second-referralSources').length) {
+      $('#second-referralSources').DataTable();
+    };
+    if($('#second-socialSources').length) {
+      $('#second-socialSources').DataTable();
+    };
+    if($('#second-traditionalSources').length) {
+      $('#second-traditionalSources').DataTable();
+    };
+    if($('#second-eventSources').length) {
+      $('#second-eventSources').DataTable();
+    };
+    if($('#second-telemarketingSources').length) {
+      $('#second-telemarketingSources').DataTable();
+    };
+    if($('#second-walk-inSources').length) {
+      $('#second-walk-inSources').DataTable();
+    };
+    if($('#second-otherSources').length) {
+      $('#second-otherSources').DataTable();
+    };
+    $('#second_scheduledSurgery').DataTable();
+    $('#first_scheduledSurgery').DataTable();
+    $('#scheduledSurgery').DataTable();
+
+
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    }).on('changeDate', function (e) {
+      if (e.viewMode === 'days') {
+        $(this).datepicker('hide');
+        removeErrors();
+      }
+    });
+
+    $("#next").click(function(){
+      if ($(".divs div span:visible").last().parent().next().is('div')){
+      $(".divs div span:visible").last().parent().next().children('span').show();
+      }else{
+        $(".divs div span:visible").last().parent().next().next().children('span').show();
+      }
+      $(".divs div span:visible").last().parent().children('a').trigger( "click" );
+      if ($(".divs div").last().children('span').is(":visible")) {
+        $("#next").hide();
+        $("#print").show();
+      }
+      return false;
+    });
+});
+
+  </script>
+  <script>
+  $(function	()	{
+    var currentStep = 1;
+
+    $('#wizardTab li a').click(function()	{
+      return false;
+    });
+
+    $('#nextStep').click(function()	{
+
+      currentStep++;
+
+      if(currentStep == 2)	{
+        $('#wizardTab li:eq(1) a').tab('show');
+        $(".divs div:eq(1) span").show();
+        $('#wizardProgress').css("width","18%");
+
+        $('#prevStep').attr('disabled',false);
+        $('#prevStep').removeClass('disabled');
+      }
+      else if(currentStep == 3)	{
+        $('#wizardTab li:eq(2) a').tab('show');
+        $(".divs div:eq(2) span").show();
+        $('#wizardProgress').css("width","27%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 4)	{
+        $('#wizardTab li:eq(3) a').tab('show');
+        $(".divs div:eq(3) span").show();
+        $('#wizardProgress').css("width","36%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 5)	{
+        $('#wizardTab li:eq(4) a').tab('show');
+        $(".divs div:eq(4) span").show();
+        $('#wizardProgress').css("width","45%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 6)	{
+        $('#wizardTab li:eq(5) a').tab('show');
+        $(".divs div:eq(5) span").show();
+        $('#wizardProgress').css("width","54%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 7)	{
+        $('#wizardTab li:eq(6) a').tab('show');
+        $(".divs div:eq(6) span").show();
+        $('#wizardProgress').css("width","63%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 8)	{
+        $('#wizardTab li:eq(7) a').tab('show');
+        $(".divs div:eq(7) span").show();
+        $('#wizardProgress').css("width","72%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 9)	{
+        $('#wizardTab li:eq(8) a').tab('show');
+        $(".divs div:eq(8) span").show();
+        $('#wizardProgress').css("width","81%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 10)	{
+        $('#wizardTab li:eq(9) a').tab('show');
+        $(".divs div:eq(9) span").show();
+        $('#wizardProgress').css("width","90%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 11)	{
+        $('#wizardTab li:eq(10) a').tab('show');
+        $(".divs div:eq(10) span").show();
+        $('#wizardProgress').css("width","100%");
+
+        $('#nextStep').attr('disabled',true);
+        $('#nextStep').addClass('disabled');
+        $('#nextStep').hide();
+        $("#print").show();
+      }
+
+      return false;
+    });
+
+    $('#prevStep').click(function()	{
+
+      currentStep--;
+
+      if(currentStep == 1)	{
+
+        $('#wizardTab li:eq(0) a').tab('show');
+        $('#wizardProgress').css("width","9%");
+
+        $('#prevStep').attr('disabled',true);
+        $('#prevStep').addClass('disabled');
+
+      }
+      else if(currentStep == 2)	{
+        $('#wizardTab li:eq(1) a').tab('show');
+        $(".divs div:eq(2) span").hide();
+        $('#wizardProgress').css("width","18%");
+
+        $('#prevStep').attr('disabled',false);
+        $('#prevStep').removeClass('disabled');
+      }
+      else if(currentStep == 3)	{
+        $('#wizardTab li:eq(2) a').tab('show');
+        $(".divs div:eq(3) span").hide();
+        $('#wizardProgress').css("width","27%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 4)	{
+        $('#wizardTab li:eq(3) a').tab('show');
+        $(".divs div:eq(4) span").hide();
+        $('#wizardProgress').css("width","36%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 5)	{
+        $('#wizardTab li:eq(4) a').tab('show');
+        $(".divs div:eq(5) span").hide();
+        $('#wizardProgress').css("width","45%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 6)	{
+        $('#wizardTab li:eq(5) a').tab('show');
+        $(".divs div:eq(6) span").hide();
+        $('#wizardProgress').css("width","54%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 7)	{
+        $('#wizardTab li:eq(6) a').tab('show');
+        $(".divs div:eq(7) span").hide();
+        $('#wizardProgress').css("width","63%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 8)	{
+        $('#wizardTab li:eq(7) a').tab('show');
+        $(".divs div:eq(8) span").hide();
+        $('#wizardProgress').css("width","72%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 9)	{
+        $('#wizardTab li:eq(8) a').tab('show');
+        $(".divs div:eq(9) span").hide();
+        $('#wizardProgress').css("width","81%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 10)	{
+        $('#wizardTab li:eq(9) a').tab('show');
+        $(".divs div:eq(10) span").hide();
+        $('#wizardProgress').css("width","90%");
+
+        $('#nextStep').attr('disabled',false);
+        $('#nextStep').removeClass('disabled');
+        $('#nextStep').show();
+        $("#print").hide();
+      }
+      else if(currentStep == 11)	{
+        $('#wizardTab li:eq(10) a').tab('show');
+        $('#wizardProgress').css("width","100%");
+
+        $('#nextStep').attr('disabled',true);
+        $('#nextStep').addClass('disabled');
+      }
+
+      return false;
+    });
+  });
+  </script>
+
+  <style>
+  a {
+    cursor: pointer !important;
+  }
+  </style>
+
+
+</body>
+</html>

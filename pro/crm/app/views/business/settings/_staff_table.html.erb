@@ -1,0 +1,28 @@
+<table class="table table-hover table-bordered table-condensed table-striped">
+  <tr>
+    <thead>
+      <th><h5>Name</h5></th>
+      <th><h5>Email</h5></th>
+      <th><h5>Role</h5></th>
+      <th colspan="2"><h5>Action</h5></th>
+    </thead>
+  </tr>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=user.full_name%></td>
+        <td><%=user.email%></td>
+        <td><%= @current_org.roles.where({:id.in => user.roles}).map(&:name).join('<br/>').html_safe %></td>
+        <td><%= link_to 'Update', edit_business_user_path(user)%></td>
+        <td>
+        <% if !user.is_super_admin? && current_user.roles.include?(@current_org.roles.where({name: 'Administrator'}).first.id.to_s) %>
+          <%= link_to 'Impersonate User', marketing_user_impersonate_path(user) %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if @users.empty? %>
+  <p>No Staff</p>
+<% end %>

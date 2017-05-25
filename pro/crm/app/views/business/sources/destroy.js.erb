@@ -1,0 +1,9 @@
+$("#<%=@source_id%>").closest("tr").remove();
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Deleted Source',
+  text: "You have succesfully deleted <%= @source_name %> as a source..",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-danger'
+});

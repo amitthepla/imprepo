@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Gender</th>
+          <th>Casting Type</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th>Story</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @castings.each do |casting| %>
+        <tr>
+          <th scope="row"><%= casting.gender %></th>
+          <td><%= casting.casting_type == '0' ? 'Has changed my life' : 'Will change my life' %></td>
+          <td><%= casting.first_name %></td>
+          <td><%= casting.last_name %></td>
+          <td><%= casting.email %></td>
+          <td><%= casting.phone %></td>
+          <td><%= casting.story %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3><%= @email_message.name.titleize%></h3>
+</div>
+<div class="modal-body">
+  <label class="h4 control-label">Message Body</label><br/>
+  <div class="input-group col-md-10 col-md-offset-1">
+    <h6>Hello {patient's name},</h6>
+    <span><%=@email_message.message.html_safe%></span>
+    <h6>Sincerely,</h6>
+    <h6>{sender's name}</h6>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+</div>

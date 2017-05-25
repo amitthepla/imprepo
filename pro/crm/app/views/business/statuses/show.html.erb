@@ -1,0 +1,6 @@
+<%= link_to 'Back to All Statuses', business_statuses_path %>
+<p><strong>Description:</strong> <%= @status.description %></p>
+<p><strong>Icon:</strong> <span class="iconic" data-glyph="<%= @status.icon %>" title="<%= @status.icon %>" aria-hidden="true"></span></p>
+<p><strong>Color:</strong> <span style="color: <%= @status.color %>;"><%= @status.color %></span></p>
+
+<%= link_to 'Edit Status', edit_business_status_path(@status), {:class => 'btn'} %>

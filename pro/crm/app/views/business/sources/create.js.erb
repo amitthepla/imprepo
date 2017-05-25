@@ -1,0 +1,13 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$("#sources").html("<%= j render(partial: 'index')%>");
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Created Source',
+  text: "You have succesfully created <%=@source.name.titleize%> as a source.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

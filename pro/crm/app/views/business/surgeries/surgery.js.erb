@@ -1,0 +1,14 @@
+$("#surgery-info").html("<%= j render(partial: 'business/leads/surgery_info')%>");
+$("#stage-info").html("<%= j render(partial: 'business/leads/stage_info')%>");
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+$("#<%=@lead.id%>").closest("tr").remove();
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Booked Surgery',
+  text: "You have succesfully booked <%=@lead.name%>'s surgery.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

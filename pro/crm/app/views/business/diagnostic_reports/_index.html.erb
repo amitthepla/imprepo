@@ -1,0 +1,31 @@
+<div style="margin:20px;">
+  <table id="diagnostic_table" class="table">
+    <thead>
+      <tr>
+        <th>Request Date</th>
+        <th>View</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@diagnostic_reports.each do |report|%>
+        <tr id="<%=report.id%>">
+          <td><%=report.created_at.strftime('%b %e, %l:%M %p')%> &nbsp; <%= "<small class='badge badge-warning bounceIn animation-delay1'>New</small>".html_safe if !report.viewed %></td>
+          <td><%= link_to 'View Report', business_diagnostic_report_path(report), target:"_blank"%></td>
+          <td><%= link_to 'Delete Report', business_diagnostic_report_path(report), method:"DELETE", remote: true%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+<script>
+$(document).ready(function(){
+  if($('#diagnostic_table').length) {
+    $('#diagnostic_table').DataTable();
+  };
+});
+</script>

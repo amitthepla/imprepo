@@ -1,0 +1,68 @@
+<%= form_for(@contact, :html => {:class => ""} ) do |f| %>
+  <div class="input-wrapper">
+    <%= f.label :external_record_id,"Chart #"  %>
+    <%= f.text_field :external_record_id %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :first_name,"First Name"  %>
+    <%= f.text_field :first_name %>
+  </div>
+  
+  <div class="input-wrapper">
+    <%= f.label :last_name,"Last Name"  %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :date_of_birth,"Date of Birth"  %>
+    <%= f.text_field :date_of_birth %>
+  </div>
+  
+  <div class="input-wrapper">
+    <%= f.label :phone,"Phone"  %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :alt_phone,"Alt Phone"  %>
+    <%= f.text_field :alt_phone %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :email,"Email"  %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :alt_email,"Alt Email"  %>
+    <%= f.text_field :alt_email %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :address,"Address"  %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :city,"City"  %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :state,"State"  %>
+    <%= f.text_field :state %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.label :zip,"Zip"  %>
+    <%= f.text_field :zip %>
+  </div>
+
+  <%= f.submit "Update Patient", :class => "btn" %>
+
+<% end %>
+
+<% if true_user.is_super_admin? %>
+    <%= link_to 'Delete Patient',  @contact,  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+<% end %>

@@ -1,0 +1,60 @@
+<div class="main-header clearfix">
+  <div class="page-title">
+    <h3 class="no-margin">All Tasks</h3>
+    <span>Welcome back <%= @current_account.first_name %></span>
+    <br/>
+  </div><!-- /page-title -->
+
+  <ul class="page-stats">
+    <li>
+      <%= link_to 'All Tasks', business_tasks_path, class: 'btn-md btn btn-info' %>
+    </li>
+    <li>
+      <p><button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">New Task</button></p>
+    </li>
+  </ul><!-- /page-stats -->
+</div><!-- /main-header -->
+<hr>
+<div id="task-list">
+  <%= render 'tasks_listing' %>
+</div>
+<hr style="clear:both;">
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <%= form_for(@task, :html => {:class => ".form-horizontal"}) do |f| %>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">New Task</h4>
+      </div>
+      <div class="modal-body">
+        <%= render :partial => 'form', :locals => {:f => f} %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        <%= f.submit "Create Task", :class => "btn btn-sm btn-success" %>
+      </div>
+    </div><!-- /.modal-content -->
+    <% end %>
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<script>
+  function ready() {
+    console.log('document is ready!');
+    $('#showTask').click(function () {
+      console.log('link clicked!');
+    }).on('ajax:complete', function (response, xhr, status) {
+      console.dir('complete', arguments);
+      $('.task').html(xhr.responseText);
+    });
+  }
+  $(document).on('ready page:load', ready);
+</script>

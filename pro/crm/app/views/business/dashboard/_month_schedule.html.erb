@@ -1,0 +1,9 @@
+<%= month_calendar events: @events do |date, events| %>
+    <div style="margin-bottom:10px;font-size: 20px;">  <%= date.strftime('%e') if date%></div>
+    <%events.each do |event| %>
+      <div class="alert alert-<%=color_coded(event.class) %>" style="padding:2 px !important;">
+        <%= link_to event.lead.name, event.lead %><br>
+        <%= "Sx: #{event.procedure.titleize}" if event.class == Business::Surgery %>
+      </div>
+    <% end %>
+<% end %>

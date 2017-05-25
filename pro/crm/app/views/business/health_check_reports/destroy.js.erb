@@ -1,0 +1,9 @@
+$("#<%=@report_id%>").closest("tr").remove();
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Deleted Report',
+  text: "You have succesfully deleted your report.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-danger'
+});

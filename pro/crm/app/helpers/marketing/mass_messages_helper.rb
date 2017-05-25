@@ -1,0 +1,2 @@
+module Marketing::MassMessagesHelper
+end

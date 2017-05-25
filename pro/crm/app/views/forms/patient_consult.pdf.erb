@@ -1,0 +1,162 @@
+<style type="text/css">
+html {
+  font-family: 'helvetica','arial','sans-serif';
+}
+
+h1 {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+hr {
+  margin-bottom: 18px;
+}
+h4 {
+  text-align: center;
+}
+h4 .caution-label {
+  font-style: italic;
+  font-family: script;
+}
+label {
+  text-transform: uppercase;
+  font-size: 10px
+}
+input {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #333; 
+}
+.input-wrapper:last-child .alt-label + input,
+input + input {
+  margin: 10px 0px;
+}
+.input-wrapper {
+  margin-bottom: 10px;
+}
+.inline-wrapper .input-wrapper {
+  display: inline-block;
+}
+
+.sm-input {
+  width: 85px;
+}
+.alt-label {
+  color: #037dc4;
+}
+.caution-label {
+  color: #ba3790;
+}
+small {
+  display: block;
+  margin-top: 25px;
+}
+</style>
+<div class="page-wrapper">
+  <header>
+    <h4>Constantino G Mendieta, MD. F.A.C.S. <span class="caution-label">Board Certified Plastic Surgeon</span></h4>
+    <h1>Patient Consultation Record</h1>
+    <hr>
+  </header>
+  <div>
+    <div class="inline-wrapper">
+      <div class="input-wrapper">
+        <label>Date:</label>
+        <input type="text"/>
+      </div>
+      <div class="input-wrapper">
+        <label>Time:</label>
+        <input type="text"/>
+      </div>
+    </div>
+   <div class="input-wrapper">
+      <label>Patient Name:</label>
+      <input type="text" value="<%= contact.full_name %>"/>
+    </div>
+    <div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label>Y.O:</label>
+      <input type="text" class="sm-input" value="<%= contact.age %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>HT:</label>
+      <input type="text" class="sm-input" value="<%= contact.height %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>WT:</label>
+      <input type="text" class="sm-input" value="<%= contact.weight %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>G:</label>
+      <input type="text" class="sm-input" value="<%= questionnaire.gravida %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>P:</label>
+      <input type="text" class="sm-input" value="<%= questionnaire.para %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Dress Size:</label>
+      <input type="text" class="sm-input" value="<%= contact.dress_size %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Bra Size:</label>
+      <input type="text" class="sm-input" value="<%= contact.bra_size %>"/>
+    </div>
+    </div>
+    <div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label>Last Mammogram:</label>
+      <input type="text" value="<%= questionnaire.last_mammogram %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Last Pregnancy:</label>
+      <input type="text" value="<%= questionnaire.last_pregnancy_date %>"/>
+    </div>
+    </div>
+   <div class="input-wrapper">
+      <label>History of Breast Cancer in Family:</label>
+      <input type="text" value="<%= questionnaire.history_of_breast_cancer %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Medical HX:</label>
+      <input type="text" value="<%= questionnaire.medical_conditions %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Surgery HX:</label>
+      <input type="text" value="<%= questionnaire.surgical_history %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Medication:</label>
+      <input type="text" value="<%= questionnaire.medications %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label class="alt-label caution-label">Allergies:</label>
+      <input type="text" value="<%= questionnaire.allergies %>"/>
+    </div>
+    <div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label class="alt-label caution-label">Smokes:</label>
+      <input type="text" value="<%= questionnaire.smoker %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>How Much:</label>
+      <input type="text" value="<%= questionnaire.smoke_use %>"/>
+    </div>
+    </div>
+   <div class="input-wrapper">
+      <label class="alt-label">Procedure Desired:</label>
+      <input type="text" value="<%= contact.leads.last.interested_in %>"/>
+    </div>  
+   <div class="input-wrapper">
+      <label class="alt-label">Recommendations:</label>
+      <input type="text"/>
+      <input type="text"/>
+      <input type="text"/>
+      <input type="text"/>
+      <input type="text"/>
+    </div>
+  </div>
+  <small>
+    Constantino G Mendieta, MD
+  </small>
+</div>

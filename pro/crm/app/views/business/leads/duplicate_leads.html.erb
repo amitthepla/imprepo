@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+
+	<div class="panel-body">
+
+
+		<%=form_tag delete_duplicates_path, :method => 'post' do %>
+				<%= submit_tag "Delete Duplicates", class: "btn btn-sm btn-danger pull-left ", style: "margin-bottom:15px; margin-right:15px;" %>
+				<a class="btn btn-sm btn-info" id="check_all">Check All</a>
+		<table class="table table-striped" id="responsiveTable">
+			<thead>
+				<tr>
+					<th>Delete</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Stage</th>
+					<th>Coordinator</th>
+					<th>Procedure</th>
+					<th>Create On</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @dupes.each do |dupe| %>
+				<tr>
+					<td><%= check_box_tag "delete_dupes[]", dupe.id, false, :id => "dupe_#{dupe.id}" %></td>
+					<td><%= link_to dupe.name, dupe %></td>
+					<td><%= dupe.email %></td>
+					<td><%= dupe.phone %></td>
+					<td><%= dupe.stage ? dupe.stage.titleize : "No Stage" %></td>
+					<td><%= dupe.user ? dupe.user.full_name : "Not Assigned" %></td>
+					<td><%= dupe.interested_in ? dupe.interested_in.titleize : "Not Chosen" %></td>
+					<td><%= dupe.created_at.strftime('%b %e, %l:%M %p') %></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+		<%end%>
+		<center>
+			<nav aria-label="Page navigation">
+		    <ul class="pagination">
+		      <%= paginate @dupes %>
+		    </ul>
+		  </nav>
+		</center>
+	</div>
+</div>
+<script>
+$('#check_all').on("click", function(){
+  var cbxs = $('input[type="checkbox"]');
+  cbxs.prop("checked", !cbxs.prop("checked"));
+});
+</script>

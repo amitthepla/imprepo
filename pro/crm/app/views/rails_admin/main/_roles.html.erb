@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-4">
+    <%- selected_ids = @object.roles %>
+    <p>
+      <%= select_tag 'user_roles', options_for_select(@object.organization.roles.all.collect { |role| [role.name.titleize, role.id.to_s] }, selected_ids), multiple: true, class: 'form-control', name: 'user[roles][]' %>
+    </p>
+  </div>
+</div>

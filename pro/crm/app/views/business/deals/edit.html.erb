@@ -1,0 +1,39 @@
+<%= form_for(@deal, :html => {:class => ""} ) do |f| %>
+    <div class="input-wrapper">
+        <%= f.label :status,"Status"  %>
+        <%= f.text_field :status %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :stage,"Stage"  %>
+        <%= f.select(:stage,options_from_collection_for_select(@current_org.stages.where(type: 'deal'),:stage_id,:name, @deal.stage)) %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :score,"Score"  %>
+        <%= f.text_field :score %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :source,"Source"  %>
+        <%= f.text_field :source %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :value,"Value"  %>
+        <%= f.text_field :value %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :account_rep_id,"Account Rep"  %>
+        <%= f.text_field :account_rep_id %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :sales_rep_id,"Sales Rep"  %>
+        <%= f.text_field :sales_rep_id %>
+    </div>
+
+  <%= f.submit "Update Deal", :class => "btn" %>
+
+<% end %>

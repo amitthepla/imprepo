@@ -1,0 +1,697 @@
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"/>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<style>
+  .gmail_extra {
+    display: none;
+  }
+
+  .tab-content > .tab-pane {
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .tab-content > .active {
+    height: auto;
+    overflow: auto;
+  }
+
+  .datepicker {
+    z-index: 1151 !important;
+  }
+</style>
+
+<% admin = is_admin?(true_user) %>
+
+<div id="breadcrumb"></div><!--breadcrumb-->
+
+<ul class="tab-bar grey-tab">
+  <li class="active">
+    <a href="#overview" data-toggle="tab">
+      <span class="block text-center">
+        <i class="fa fa-home fa-2x"></i>
+      </span>
+      Overview
+    </a>
+  </li>
+
+  <% if @contact %>
+      <% if admin %>
+          <li>
+            <a href="#activity" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-bar-chart fa-2x"></i>
+            </span>
+              Activity
+            </a>
+          </li>
+
+          <li>
+            <a href="#lifecycle" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-recycle fa-2x"></i>
+            </span>
+              Lifecycle
+            </a>
+          </li>
+
+          <li>
+            <a href="#debug" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-bug fa-2x"></i>
+            </span>
+              Debug
+            </a>
+          </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<br>
+
+<div class="padding-md">
+  <div class="row">
+
+    <% unless @contact %>
+        <div class="alert alert-danger">
+          <center><span class="h1"><strong>THIS LEAD IS NOT LINKED TO A PATIENT</strong></span></center>
+        </div>
+    <% end %>
+    <div class="col-md-3 col-sm-3">
+      <div class="row">
+        <div class="">
+          <div id="stage-info">
+            <%= render partial: 'stage_info'%>
+          </div>
+              <center>
+                <a class="btn btn-warning btn-md block" href="#sendText" role="button" data-toggle="modal" style="margin-top:5px;">
+                  <i class="fa fa-comments-o fa-lg"></i> Send Text
+                </a>
+                <a class="btn btn-info btn-md block" href="#sendEmail" role="button" data-toggle="modal" style="margin-top:5px;">
+                  <i class="fa fa-envelope-o fa-lg"></i> Send Email
+                </a>
+                <% if @lead.auto_communicate %>
+                  <a class="btn btn-danger btn-md block" href="#stopAutoMessages" role="button" data-toggle="modal" style="margin-top:5px;">
+                    <i class="fa fa-ban fa-lg" aria-hidden="true"></i> Discontinue Auto Messaging
+                  </a>
+                <% end %>
+
+                <div class="btn-group " style="margin-top:5px;">
+                  <button type="button" class="btn btn-default block dropdown-toggle" data-toggle="dropdown">
+                    Lead Options <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#cold" role="button" data-toggle="modal" class="">Move to Cold</a></li>
+                    <li><a href="#dq" role="button" data-toggle="modal" class="">Disqualify Lead</a></li>
+                    <li><%= link_to 'Edit Lead', edit_business_lead_path(@lead), {:class => 'should-load'} %></li>
+                    <li><%= link_to 'Resend Beauty Profile', business_lead_resend_questionnaire_path(@lead), {class: 'should-load'} %></li>
+                    <li><a href='/send_photo_request/<%=@lead.id%>'  data-remote ='true'>Request Photos</a></li>
+                  </ul>
+                </div>
+                <div class="btn-group " style="margin-top:5px;">
+                  <button type="button" class="btn btn-default block dropdown-toggle" data-toggle="dropdown">
+                    Send Lead Email from Templates <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <%@current_org.email_messages.visible_from_show.each do |email|%>
+                      <li><%= link_to email.name.titleize, business_send_message_path(email.id, @lead.id), method: 'POST', remote: true%></li>
+                    <%end%>
+                  </ul>
+                </div>
+              </center>
+
+          <div class="seperator"></div>
+        </div><!-- /.col -->
+
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title pull-left" style="margin-top:10px;">
+            <i class="fa fa-info-circle fa-1x"></i> Basic Info</h2>
+            <% if @contact %>
+              <%= link_to business_contact_path(@contact) , class: "btn btn-primary btn-sm pull-right" do %>
+                <i class="fa fa-user"></i> View Patient
+              <% end %>
+            <% end %>
+            <div style="clear:both;"></div>
+          </div>
+          <div class="panel-body">
+            <strong class="font-12"><span class="text-info">Name: </span><%= @lead.name %></strong><br/>
+            <strong class="font-12"><span class="text-info">Email: </span><%= [nil, ""].include?(@lead.email) ? "Did Not Answer" : @lead.email %></strong><br/>
+            <strong class="font-12"><span class="text-info">Phone: </span><%= [nil, ""].include?(@lead.phone) ? "Did Not Answer" : number_to_phone(@lead.phone) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Procedure: </span><%= [nil, ""].include?(@lead.interested_in) ? "Did Not Answer" : @lead.interested_in.titleize %></strong><br/>
+            <% if @lead.second_interest.present? %>
+                <strong class="font-12"><span class="text-info">Second Procedure of Interest: </span><%= @lead.second_procedure_name.titleize %></strong><br/>
+            <% end %>
+            <strong class="font-12"><span class="text-info">Budget: </span><%= [nil, ""].include?(@lead.budget) ? "Did Not Answer" : currency_helper(@lead.budget) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Financing: </span><%= [nil, ""].include?(@lead.financing) ? "Did Not Answer" : @lead.financing %></strong><br/>
+            <strong class="font-12"><span class="text-info">Motivation: </span><%= [nil, ""].include?(@lead.motivation) ? "Did Not Answer" : @lead.motivation.humanize %></strong><br/>
+            <strong class="font-12"><span class="text-info">Interest Level:</span> <%= @lead.interest_level == "" ? "Did Not Answer" : @lead.interest_level %></strong><br/>
+            <strong class="font-12"><span class="text-info">Inquired On: </span><%= @lead.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y %I:%M%p") %></strong><br/>
+            <strong class="font-12"><span class="text-info">Created By: </span><%= created_by(@lead.created_by) %></strong><br/>
+
+            <% if @lead.source.present? %>
+                <strong class="font-12"><span class="text-info">Source: </span><%= @lead.source.name.titleize %>
+                  <% if @lead.source.start_date.present? && @lead.source.end_date.present? %>
+                    -- <%= @lead.source.start_date.strftime('%D') %> to <%= @lead.source.end_date.strftime('%D') %></strong>
+                  <% end %>
+                  <br/>
+            <% end %>
+            <strong class="font-12"><span class="text-info">Patient Coordinator: </span><%= @lead.user.nil? ? '' : @lead.user.full_name %></strong><br/>
+            <strong class="font-12"><span class="text-info">Date of Birth: </span> <%= @lead.contact.date_of_birth.strftime('%D') if @lead.contact.date_of_birth %></strong><br/>
+            <strong class="font-12"><span class="text-info">Age: </span><%= @lead.contact.age %></strong><br/>
+            <strong class="font-12"><span class="text-info">Weight: </span><%= @lead.contact.weight %></strong><br/>
+            <strong class="font-12"><span class="text-info">Height: </span><%= @lead.contact.height %></strong><br/>
+            <strong class="font-12"><span class="text-info">Gender: </span><%= @lead.contact.gender %></strong><br/>
+          </div><!-- /.col -->
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title pull-left" style="margin-top:10px;"><i class="fa fa-user-md fa-1x" aria-hidden="true"></i> Consultation Info</h2>
+            <% if @contact %>
+              <a href="#book_consult" role="button" data-toggle="modal" class="btn btn-default btn-sm pull-right" >
+                <i class="fa fa-user-md fa-1x" aria-hidden="true"></i>
+                  <% if @lead.consultation.present? %>
+                    Reschedule Consult
+                  <% else %>
+                    Book Consult
+                  <% end %>
+              </a>
+            <% end %>
+            <div style="clear:both;"></div>
+          </div>
+          <div class="panel-body">
+            <strong class="font-12"><span class="text-info">Appointment Type: </span> <%=  answer?(@lead.appointment_type)  %></strong><br/>
+            <strong class="font-12"><span class="text-info">Appointment Timeframe: </span> <%= answer?(@lead.appointment_timeframe) %></strong><br/>
+            <% if @lead.consultation.present? %>
+              <div id="consult-info">
+                <%= render partial: "consult_info"%>
+              </div>
+            <% else %>
+              <div id="consult-info">
+                <br>
+                <div class="alert alert-warning">Consultation has not been booked.</div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title pull-left" style="margin-top:10px;"><i class="fa fa-stethoscope fa-1x" aria-hidden="true"></i> Surgery Info</h2>
+            <span id="surgery-button">
+              <% if @contact && @lead.consultation.present? %>
+                <%= render partial: 'surgery_button' %>
+              <% else%>
+                <span class="pull-right text-danger">Consult Must Be Booked</span>
+              <% end %>
+            </span>
+            <div style="clear:both;"></div>
+          </div>
+          <div class="panel-body">
+            <strong class="font-12"><span class="text-info">Surgery Timeframe: </span><%= answer?(@lead.planned_surgery_date) %></strong><br/>
+            <% if @lead.surgery.present? %>
+              <div id="surgery-info">
+                <%= render partial: 'surgery_info'%>
+              </div>
+            <% else %>
+              <div id="surgery-info">
+                <br>
+                <div class="alert alert-warning">Surgery has not been booked.</div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <% if @lead.lead_photos.present? %>
+            <div class="panel panel-default">
+              <div class="panel-heading">Photos</div>
+              <div class="panel-body">
+                <%- @lead.lead_photos.each do |lead_photo| %>
+                    <a href="<%= lead_photo.photo.url(:large) %>" rel="group" class="fancybox">
+                      <img src="<%= lead_photo.photo.url(:thumb) %>" alt="photo">
+                    </a>
+                <%- end %>
+                <br>
+              </div>
+            </div>
+        <%- end %>
+
+      </div><!-- /.row -->
+    </div><!-- /.col -->
+
+    <div class="col-md-9 col-sm-9">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="overview">
+
+          <% @stage = @current_org.stages.where(type: "task").where(name: 'New').first %>
+          <% @stage_tasks = @tasks.where(stage: @stage.stage_id).page(params[:page]) %>
+          <% @stage_tasks_count = @tasks.where(stage: @stage.stage_id).count %>
+
+          <div class="col-md-6 fadeInDown animation-delay3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span class="pull-left"> <h4> <i class="fa fa-tasks"></i>  Tasks</h4></span>
+                <span class="pull-right"> <a href="#newTask" role="button" data-toggle="modal" class="pull-left btn btn-success btn-xs" style="margin-top:10px">New Task</a></span>
+                <div style="clear:both;"></div>
+              </div>
+              <div class="panel-body" style="overflow:auto; height:50vh;">
+                <% if @stage_tasks.empty? %>
+                    <div class="column__item sortable-is-disabled"><a>Currently No Tasks</a></div>
+                <% else %>
+                    <% @stage_tasks.each do |task| %>
+                        <div class="panel col-md-12" style="background-color: rgba(253, 227, 167, 0.2);">
+                          <div class="panel-body">
+                            <div class="pull-left m-left-sm">
+                              <% if task.lead %>
+                                  <%= link_to business_lead_path(task.lead), class: "should-load" do %>
+                                      <strong class="font-12 block"><%= task.lead.name %> </strong>
+                                      <% if task.lead.stage %>
+                                          <strong class="font-10 text-info block"><%= task.lead.stage.titleize %> </strong>
+                                      <% end %>
+                                  <% end %>
+                              <% end %>
+                              <span title="<%= task.description %>"><%= task.description %></span><br/>
+                              <span class="text-muted task-due <%= 'text-danger' if task.stage == 'inquiry' && task.due_date && task.due_date < Time.now %>"> <%= "#{task.stage == 'inquiry' && task.due_date < Time.now ? 'Was Due on ' : 'Is Due on ' if task.due_date} #{task.due_date.strftime('%D') if task.stage == 'inquiry' && task.due_date}" %></span><br/>
+                              <div class="seperator"></div>
+                              <% if task.title == "Task created to follow up with Lead after consult." %>
+                                  <a href="#noteConsult" role="button" data-toggle="modal" class="btn btn-success btn-xs">Note
+                                    Consult</a>
+                              <% elsif task.title == "Task created to complete surgery." %>
+                                  <a href="#completeSurgery<%= task.id %>" role="button" data-toggle="modal" class="btn btn-success btn-xs">Complete
+                                    Surgery</a>
+                              <% else %>
+                                  <a href="#completeTask<%= task.id %>" role="button" data-toggle="modal" class="btn btn-success btn-xs">Complete</a>
+                              <% end %>
+                              <%= link_to "Delete", business_task_path(task), class: "btn btn-danger btn-xs should-load", method: :delete %>
+                            </div>
+                          </div>
+                        </div>
+                    <% end %>
+                <% end %>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 panel fadeInDown animation-delay3 panel-default">
+            <div class="panel-heading">
+              <span class="pull-left"> <h4> <i class="fa fa-pencil"></i>  Notes</h4></span>
+              <span class="pull-right">
+                <a href="#newNote" role="button" data-toggle="modal" class="btn btn-success btn-xs" style="margin-top:10px">New Note</a>
+              </span>
+              <div style="clear:both;"></div>
+            </div>
+            <div class="panel-body" style="overflow:auto; height:50vh;">
+              <% @notes.each do |note| %>
+                  <div class="panel-body" style="background-color: rgba(253, 227, 167, 0.2);">
+                    <% if note.body.present? %>
+                        <strong><%= note.user.nil? ? 'CRM' : note.user.full_name %></strong><br/>
+                        <%= Nokogiri::HTML(note.body).to_s.gsub('--', '').html_safe %><br/>
+                        <small>
+                          <i class="fa fa-clock-o"></i> <%= note.created_at.strftime('%D %l:%M %P') %>
+                        </small>
+                        <br/>
+                    <% end %>
+                  </div>
+                  <br>
+              <% end %>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+
+        </div>
+
+
+
+        <% if @contact %>
+
+            <% if admin %>
+                <div id="activity" class="tab-pane fade">
+                  <div class="col-md-12">
+                    <div class="panel fadeInUp animation-delay2 panel-default">
+                      <div class="panel-heading"><i class="fa fa-bar-chart fa-1x"></i> Lead Activity</div>
+                      <div class="panel-body">
+                        <ul class="notes" style="list-style:none;">
+                          <% if @lead.activities.empty? %>
+                              <li>There is currently no activity.</li>
+                          <% else %>
+                              <% @lead.activities.desc(:created_at).each do |activity| %>
+                                  <% unless activity.body.nil? %>
+                                      <li class="card">
+                                        <header class="note-header">
+                                          <strong class="text-info"><%= activity.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y  %I:%M%p') %></strong>
+                                        </header>
+                                        <p class="note-body"><%= activity.body.html_safe %></p>
+                                      </li>
+                                  <% end %>
+                              <% end %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="lifecycle" class="tab-pane fade">
+                  <div class="col-md-12">
+                    <div class="panel fadeInUp animation-delay2 panel-default">
+                      <div class="panel-heading"><i class="fa fa-recycle fa-1x"></i> Stage Lifecycle</div>
+                      <div class="panel-body">
+                        <ul class="notes" style="list-style: none;">
+                          <% if @lead.stage_lifecycle.empty? %>
+                              <li>There is currently no stage life cycle</li>
+                          <% else %>
+                              <% @lead.stage_lifecycle.each do |stage| %>
+                                  <% if !stage[:stage].nil? %>
+                                      <li><%= "#{stage[:stage].titleize} - #{stage[:timestamp].in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y  %I:%M%p")}" %></li>
+                                  <% end %>
+                              <% end %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="debug" class="tab-pane fade">
+                  <div class="col-md-12">
+                    <div class="panel fadeInUp animation-delay2 panel-default">
+                      <div class="panel-heading"><i class="fa fa-bug fa-1x"></i> Debug</div>
+                      <div class="panel-body">
+                        <h2>Debug Informaton</h2>
+                        <p>Search Keys: <%= @contact.search_keys %></p>
+                        <p>Public Token: <%= @contact.public_token %></p>
+                        <p>Questionnaire Sent: <%= @contact.questionnaire.questionnaire_sent? ? 'Yes' : 'No' %></p>
+                        <p>Questionnaire Viewed: <%= @contact.questionnaire.questionnaire_viewed? ? 'Yes' : 'No' %></p>
+                        <p>Questionnaire Filled Out: <%= @contact.questionnaire.questionnaire_filled? ? 'Yes' : 'No' %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+
+            <% if params[:debug] %>
+                <p><%= @contact.search_keys %></p>
+                <p><%= @contact.public_token %></p>
+                <p>Questionnaire Sent: <%= @contact.questionnaire.questionnaire_sent? ? 'Yes' : 'No' %></p>
+                <p>Questionnaire Viewed: <%= @contact.questionnaire.questionnaire_viewed? ? 'Yes' : 'No' %></p>
+                <p>Questionnaire Filled Out: <%= @contact.questionnaire.questionnaire_filled? ? 'Yes' : 'No' %></p>
+            <% end %>
+        <% end %>
+
+
+        <% unless @stage_tasks.empty? %>
+            <% @stage_tasks.each do |task| %>
+                <%= render partial: 'complete_and_final_task', locals: {task: task} %>
+                <%= render partial: 'new_task', locals: {task: task} %>
+                <%= render partial: 'dq_task', locals: {task: task} %>
+                <%= render partial: 'note_consult', locals: {task: task} %>
+                <%= render partial: 'cold_task', locals: {task: task} %>
+                <%= render partial: 'complete_surgery_task', locals: {task: task} %>
+                <%= render partial: 'booked_consult_and_surgery', locals: {task: task} %>
+            <% end %>
+        <% end %>
+      </div>
+    </div><!-- /tab1 -->
+
+
+    <%= render partial: 'message_modals', locals: {lead: @lead} %>
+
+    <!-- this will be a partial rendered to display lead movement modals -->
+
+    <div class="modal fade" id="dq">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Move Lead to Disqualified</h4>
+          </div>
+          <%= form_tag cold_or_dq_lead_path, :method => 'post', class: "form-inline no-margin", id: "move-to-disqualify-form_#{@lead.id}" do %>
+              <div class="modal-body">
+                <p class="text-primary">This will move <%= @lead.name %> to the Disqualified Stage.</p>
+
+                <label class=" control-label">Reason</label>
+                <div class="input-group col-md-4">
+                  <textarea data-required="true" type="text" name="reason" value="" id="wysihtml5-textarea" placeholder="Why is this lead Disqualified?" class="form-control" rows="4"></textarea>
+                </div>
+                <%= hidden_field_tag "stage", "disqualified" %>
+                <%= hidden_field_tag "lead_id", @lead.id %>
+
+              </div>
+              <div class="modal-footer">
+                <%= submit_tag "Move to Disqualfied", class: "btn btn-xs btn-warning should-load", :onclick => "$('#move-to-disqualify-form_#{@lead.id}').submit(); return false;" %>
+
+                <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              </div>
+          <% end %>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="cold">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Move Lead to Cold</h4>
+          </div>
+          <div class="modal-body">
+            <p class="text-primary">This will move <%= @lead.name %> to the Cold Stage.</p>
+            <%= form_tag cold_or_dq_lead_path, :method => 'post', class: "form-inline no-margin", id: "move-to-cold-form_#{@lead.id}" do %>
+
+                <label class=" control-label">Reason</label>
+                <div class="input-group col-md-4">
+                  <textarea data-required="true" type="text" name="reason" value="" id="wysihtml5-textarea" placeholder="Why is this lead cold?" class="form-control" rows="6" require></textarea>
+                </div>
+                <%= hidden_field_tag "stage", "cold" %>
+                <%= hidden_field_tag "lead_id", @lead.id %>
+                </div>
+                <div class="modal-footer">
+                  <%= submit_tag "Move to Cold", class: "btn btn-xs btn-warning should-load", :onclick => "$('#move-to-cold-form_#{@lead.id}').submit(); return false;" %>
+            <% end %>
+            <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+            </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="book_consult">
+      <div class="modal-dialog">
+        <%= form_for @consultation, remote: true do |f| %>
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4>Book Consult</h4>
+            </div>
+
+            <div class="modal-body">
+              <p class="text-primary">Is <%= @lead.name %> ready to book their consultation?</p>
+              <div class="field">
+                <%= f.label :date %><br>
+                <%= f.date_field :date %>
+              </div>
+              <br>
+              <div class="field">
+                <label class=" control-label">Consult Fee</label>
+                <div class="input-group col-md-4">
+                  <span class="input-group-addon">$</span>
+                  <%= f.text_field :cost, class: "form-control" %>
+                  <span class="input-group-addon">.00</span>
+                </div>
+              </div>
+              <br>
+              <div class="field">
+                <%= f.label :physician %><br>
+                <%= f.select :physician_id, options_for_select(@physicians.map {|usr| [usr.full_name, usr.id]}, get_id(@current_org.users.where(id: @consultation.physician_id).first)), {:selected=>@current_org.users.where(id: @surgery.physician_id).first, :include_blank => "-- Physician --"}, {class: "chzn-select form-control"} %>
+              </div>
+              <%= f.hidden_field :cancelled, value: false %>
+              <%= f.hidden_field :lead_id, value: @lead.id %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit "Submit", class: "btn btn-xs btn-success"%>
+              <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+          </div><!-- /.modal-content -->
+        <% end %>
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="book_surgery">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <%= form_for @surgery, html: {class: 'form-group sx-form', remote: true} do |f| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4>Book Surgery</h4>
+            </div>
+            <div class="modal-body">
+              <p class="text-primary">Is <%= @lead.name %> ready to book their surgery?</p>
+                <div class="field">
+                  <label class=" control-label">Procedure Cost</label>
+                  <div class="input-group col-md-4">
+                    <span class="input-group-addon">$</span>
+                    <%= f.text_field :cost, class: "form-control" %>
+                    <span class="input-group-addon">.00</span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <%= f.label "Procedure Date" %><br>
+                  <%= f.date_field :date %>
+                </div>
+                  <div class="field">
+                  <%= f.label :procedure %><br>
+                  <%= f.select :procedure,options_for_select(@current_org.procedures.map{|proc| [proc.name ,proc.slug_value]},@surgery.procedure),{:selected=>@surgery.procedure,:include_blank => "-- Procedure --"}, {class: 'chzn-select form-control'} %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :physician %><br>
+                  <%= f.select :physician_id, options_for_select(@physicians.map {|usr| [usr.full_name, usr.id]}, get_id(@current_org.users.where(id: @surgery.physician_id).first)), {:selected=>@current_org.users.where(id: @surgery.physician_id).first, :include_blank => "-- Physician --"}, {class: "chzn-select form-control"} %>
+                </div>
+                <%= f.hidden_field :cancelled, value: false %>
+                <%= f.hidden_field :lead_id, value: @lead.id %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit "Submit" ,class:"btn btn-xs btn-success" %>
+              <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+          <% end %>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="newNote">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>New Note</h4>
+          </div>
+          <%= form_for(@note, :url => business_lead_notes_path(@lead), :html => {:class => ""}) do |f| %>
+              <div class="modal-body">
+                <div class="form-group">
+                  <%= f.label :body, "Note" %><br/>
+                  <%= f.text_area :body, :id => 'note-body', class: "form-control" %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <%= f.submit "Add Note", :class => "btn btn-xs btn-success should-load" %>
+                <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              </div>
+          <% end %>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="newTask">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>New Task</h4>
+          </div>
+          <%= form_for(@task, :url => business_lead_tasks_path(@lead), :html => {:class => ""}) do |f| %>
+              <div class="modal-body">
+                <div class="form-group" style="display: inline-block; width: 49%">
+                  <%= f.label :communication, "Communication" %><br/>
+                  <%= f.select(:communication, [['Email'], ['Phone Call'], ['Text Message'], ['Follow Up']], {}, {class: "form-control chzn-select"}) %>
+                  <br>
+                </div>
+
+                <div class="form-group" style="display: inline-block; width: 49%">
+                  <%= f.label :due_date, "Due" %>
+                  <%= f.date_field :due_date, class: "form-control input-sm date" %><br>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :description, "Description" %>
+                  <%= f.text_area :description, class: "form-control" %><br>
+                </div>
+                <%= f.hidden_field :lead_id, :value => @lead.id %>
+              </div>
+              <div class="modal-footer">
+                <%= f.submit "Create Task", :class => "btn btn-xs btn-success should-load" %>
+                <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              </div>
+          <% end %>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal -->
+
+
+  </div>
+</div>
+
+<script>
+
+
+  $(document).on("ready page:load load turbolinks:load",function () {
+    $request = null;
+
+    //  Fancybox
+    $(".fancybox").fancybox();
+
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    });
+
+    $('.digg_pagination[remote=true] a').on("click", function () {
+      var stage_id = getUrlParameter(this.href, "stage_id");
+      if ($request != null) {
+        $request.abort();
+        $request = null;
+      }
+      $request = $.get(this.href, function (data) {
+        $("#stage_" + stage_id).html(data);
+      });
+      return false;
+    });
+
+  });
+
+  var getUrlParameter = function getUrlParameter(url, sParam) {
+    var sPageURL = decodeURIComponent(url),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : sParameterName[1];
+      }
+    }
+  };
+
+  function countChar(val) {
+    var len = val.value.length;
+    if (len >= 1600) {
+      val.value = val.value.substring(0, 1600);
+    } else {
+      $('#charNum').text(1600 - len);
+    }
+  }
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($("<%= "#move_#{@lead.id}"%>").is(':checked')) {
+      $("<%= "#stage_#{@lead.id}"%>").attr('disabled', false);
+    }
+    $("<%= "#move_#{@lead.id}"%>").click(function () {
+      if ($(this).prop("checked") == true) {
+        $("<%= "#stage_#{@lead.id}"%>").attr('disabled', false);
+      }
+      else if ($(this).prop("checked") == false) {
+        $("<%= "#stage_#{@lead.id}"%>").attr('disabled', true);
+
+      }
+    });
+  });
+</script>

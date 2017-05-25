@@ -1,0 +1,15 @@
+$("#consult-info").html("<%= j render(partial: 'business/leads/consult_info')%>");
+$("#stage-info").html("<%= j render(partial: 'business/leads/stage_info')%>");
+$("#surgery-button").html("<%= j render(partial: 'business/leads/surgery_button')%>");
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+$("#<%=@lead.id%>").closest("tr").remove();
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Booked Consult',
+  text: "You have succesfully booked <%=@lead.name%>'s consultation.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

@@ -1,0 +1,500 @@
+<div class="panel panel-default">
+  <div class="col-md-12 text-center" style="border-bottom: red 2px solid;">
+    <br>
+    <div class="row">
+      <% if @tasks_count == 0 %>
+          <span class="pull-left bounceIn animation-delay5" style="font-size:1em !important;margin-left: 10px"><span class="badge badge-success" style="font-size:2em !important;"><%= @tasks_count %> </span> Tasks</span>
+      <% else %>
+          <span class="pull-left bounceIn animation-delay5" style="margin-left: 10px"><span class="badge badge-info "><%= @tasks_count %> </span> Tasks</span>
+      <% end %>
+      <%= form_tag business_tasks_path, :method => 'get', class: 'form-inline no-margin' do %>
+          <%= select_tag :stage, options_for_select(@stages, :selected => params[:stage]), :include_blank => 'Stage', class: ' form-control', style: 'margin-right:20px' %>
+
+          <label class="label-checkbox inline">
+            <%= check_box_tag :old, 'OLD', params[:old], class: 'form-control', style: 'margin-right:20px !important', id: 'old' %>
+            Overdue Tasks
+          </label>
+
+          <label class="label-checkbox inline">
+            <%= check_box_tag :today, 'TODAY', params[:today], class: 'form-control', style: 'margin-right:20px !important', id: 'today' %>
+            Today's Tasks
+          </label>
+
+          <div class="input-group " style="margin-right:2%; margin-left: 20px;z-index: 100 !important;">
+            <input type="text" name="start_date" placeholder="Date Range Start" value="<%= params[:start_date] %>" class="datepicker search_date form-control">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+
+          <div class="input-group " style="margin-right:2%;z-index: 100 !important;">
+            <input type="text" name="end_date" placeholder="Date Range End" value="<%= params[:end_date] %>" class="datepicker search_date form-control">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+
+          <%= submit_tag 'Search', class: ' btn btn-sm btn-info should-load' %>
+
+      <% end %>
+    </div>
+    <br>
+  </div>
+
+  <div class="panel-body" style="max-height:50vh; overflow-x:auto;">
+
+    <% if @tasks.empty? %>
+        <center>
+          <h1 class="text-success">You have completed all the tasks for selected date range.
+            <br><i class="fa fa-thumbs-up" style="color:#65cea7;" aria-hidden="true"></i><br><strong>YOU ROCK!</strong>
+          </h1>
+        </center>
+    <% else %>
+        <table class="table table-hover table-striped table-responsive table-border" style="margin-bottom: 60px;">
+          <thead>
+          <tr>
+            <th>Lead</th>
+            <th>Stage</th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @tasks.each do |task| %>
+              <tr>
+                <td style="vertical-align:middle;">
+                  <% if task.lead %>
+                      <%= link_to task.lead.name, task.lead, class: ' should-load' %>
+                  <% else %>
+                      "N/A"
+                  <% end %>
+                </td>
+                <td style="vertical-align:middle;"><h5>
+                  <span class="label label-<%= task.lead ? stage_label(task.lead.stage) : 'default' %>"><%= task.lead ? task.lead.stage.titleize : 'N/A' %></span>
+                </h5></td>
+                <td style="vertical-align:middle;"><%= task.description.present? ? task.description.humanize : 'Generic Task' %></td>
+                <td style="vertical-align:middle;"><%= task.due_date.strftime('%D') %></td>
+                <td style="vertical-align:middle;">
+                  <div class="btn-group">
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
+                      <span class="caret"></span></button>
+                    <ul class="dropdown-menu" style="z-index: 900">
+                      <li>
+                        <% if task.title == 'Task created to follow up with Lead after consult.' %>
+                            <a href="#noteConsult<%= task.id %>" role="button" data-toggle="modal" class="">Note
+                              Consult</a>
+                        <% elsif task.title == 'Task created to complete surgery.' %>
+                            <a href="#completeSurgery<%= task.id %>" role="button" data-toggle="modal" class="">Complete
+                              Surgery</a>
+                        <% else %>
+                            <a href="#completeTask<%= task.id %>" role="button" data-toggle="modal" class="">Complete</a>
+                        <% end %>
+                      </li>
+                      <li><%= link_to 'Delete', business_task_path(task), class: ' should-load', method: :delete %></li>
+                    </ul>
+                  </div><!-- /btn-group -->
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
+  </div>
+  <div class="panel-footer text-center" style="background-color:white; border-top:2px solid red">
+    <% if @tasks_count > 25 %>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <%= will_paginate @tasks, renderer: AjaxBootstrapPaginationHelper::LinkRenderer %>
+          </ul>
+        </nav>
+    <% end %>
+  </div>
+</div>
+
+<% unless @tasks.empty? %>
+    <% @tasks.each do |task| %>
+
+        <div class="modal fade" id="completeTask<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Complete Task</h4>
+              </div>
+              <div class="modal-body">
+                <% if task.lead %>
+                    <div class="alert alert-info">
+                      You can choose to complete this task and move <%= task.lead.name %> to another stage or create a
+                      new <%= task.lead.stage.upcase %> task for <%= task.lead.name %>.
+                    </div>
+
+                    <strong class="font-14 block"><%= task.lead.name %> </strong>
+                    <% if task.lead.stage %>
+                        <strong class="font-12 text-info block">Current Stage: <%= task.lead.stage.titleize %> </strong>
+                    <% end %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <a href="#finalTask<%= task.id %>" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true" class="btn btn-default btn-xs">Move
+                  Lead</a>
+                <a href="#newTask<%= task.id %>" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true" class="btn btn-default btn-xs">Create
+                  New Task</a>
+                <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="finalTask<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Move Lead</h4>
+              </div>
+              <div class="modal-body">
+                <% if task.lead %>
+                    <div class="alert alert-info">
+                      This will move <%= task.lead.name %> to the selected stage. A task will be created automitcally
+                      for <%= task.lead.name %> when you move them.
+                    </div>
+                <% end %>
+                <label>What stage would you like to move <%= task.lead.name %> to? </label><br/><br>
+                <div class="btn-group">
+                  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"> Stages
+                    <span class="caret"></span></button>
+                  <ul class="dropdown-menu slidedown">
+                    <li><%= link_to 'inquiry', final_business_task_path(task.id, 'inquiry', task.lead.id), class: 'should-load' %></li>
+                    <li><%= link_to 'Inquiry', final_business_task_path(task.id, 'inquiry', task.lead.id), class: 'should-load' %></li>
+                    <li>
+                      <a href="#booked_consult_<%= task.id %>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Booked
+                        Consult</a></li>
+                    <li>
+                      <a href="#booked_surgery_<%= task.id %>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Booked
+                        Surgery</a></li>
+                    <li>
+                      <a href="#cold_<%= task.id %>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Cold</a>
+                    </li>
+                    <li>
+                      <a href="#dq_<%= task.id %>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Disqualified</a>
+                    </li>
+                  </ul>
+                </div><!-- /btn-group -->
+
+              </div>
+              <div class="modal-footer">
+                <button href="#completeTask<%= task.id %>" class="btn btn-xs btn-danger" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="newTask<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Create New Task</h4>
+              </div>
+              <%= form_tag not_final_business_task_path, :method => 'post', class: 'form-group' do %>
+                  <div class="modal-body">
+                    <p class="text-danger">This will complete the task and create a new task without promoting this
+                      lead.</p>
+                    <label class=" control-label">Type</label>
+                    <div class="input-group col-md-4">
+                      <%= select_tag(:communication_method, options_for_select(['Call', 'Email', 'Text', 'Follow Up']), :include_blank => '--', :class => ":communication_method") %>
+                    </div>
+                    <label class=" control-label">Due Date</label>
+                    <div class="input-group col-md-4">
+                      <input name="due_date" type="text" value="<%= Date.today.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <%= hidden_field_tag 'task_id', task.id %>
+                    <%= hidden_field_tag 'lead_id', task.lead.id %>
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag 'Create', class: 'btn btn-xs btn-success should-load' %>
+                    <button href="#completeTask<%= task.id %>" class="btn btn-xs btn-danger" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="dq_<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Move Lead to Disqualified</h4>
+              </div>
+              <%= form_tag cold_or_dq_lead_path, :method => 'post', class: 'form-inline no-margin' do %>
+                  <div class="modal-body">
+                    <% if task.lead %>
+                        <div class="alert alert-danger">
+                          This will move <%= task.lead.name %> to the Disqualified Stage.
+                        </div>
+                    <% end %>
+                    <% if task.lead.consultation_date.present? && !task.lead.consult_note.present? %>
+                        <div class="form-group">
+                          <label class=" control-label">Please provide a note for the consultation.</label><br>
+                          <%= select_tag :consult_note, options_for_select(['Financial', 'Must Gain Weight', 'Not a Candidate', 'Shopping Around', 'Red Flag']), :include_blank => true, class: ' form-control' %>
+                        </div>
+                        <br/>
+                    <% end %>
+                    <label class=" control-label">Reason</label><br/>
+                    <div class="input-group col-md-4">
+                      <textarea data-required="true" type="text" name="reason" value="" id="wysihtml5-textarea" placeholder="Why is this lead Disqualified?" class="form-control" rows="4"></textarea>
+                    </div>
+                    <%= hidden_field_tag 'stage', 'disqualified' %>
+                    <%= hidden_field_tag 'lead_id', task.lead.id %>
+
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag 'Move to Disqualified', class: 'btn btn-xs btn-warning should-load' %>
+                    <button href="#finalTask<%= task.id %>" class="btn btn-xs btn-danger" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="cold_<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Move Lead to Cold</h4>
+              </div>
+              <%= form_tag cold_or_dq_lead_path, :method => 'post', class: 'form-inline no-margin' do %>
+                  <div class="modal-body">
+                    <% if task.lead %>
+                        <div class="alert alert-warning">
+                          This will move <%= task.lead.name %> to the Cold Stage.
+                        </div>
+                    <% end %>
+                    <% if task.lead.consultation_date.present? && !task.lead.consult_note.present? %>
+                        <div class="form-group">
+                          <label class=" control-label">Please provide a note for the consultation.</label><br>
+                          <%= select_tag :consult_note, options_for_select(['Financial', 'Must Gain Weight', 'Not a Candidate', 'Shopping Around', 'Red Flag']), :include_blank => true, class: ' form-control' %>
+                        </div>
+                        <br/>
+                    <% end %>
+                    <label class=" control-label">Reason</label><br/>
+                    <div class="input-group col-md-4">
+                      <textarea data-required="true" type="text" name="reason" value="" id="wysihtml5-textarea" placeholder="Why is this lead cold?" class="form-control" rows="6" require></textarea>
+                    </div>
+                    <%= hidden_field_tag 'stage', 'cold' %>
+                    <%= hidden_field_tag 'lead_id', task.lead.id %>
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag 'Move to Cold', class: 'btn btn-xs btn-warning should-load' %>
+                    <button href="#finalTask<%= task.id %>" class="btn btn-xs btn-danger" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="noteConsult<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Note Consult</h4>
+              </div>
+              <%= form_tag consult_note_path, :method => 'post', class: 'form-inline no-margin' do %>
+                  <div class="modal-body">
+                    <div class="alert alert-warning">
+                      <strong>You can create a Consultation Note and set a follow up task for <%= task.lead.name %>. You
+                        must select a date to creat the followup task. Only select a date if you would like to create a
+                        follow up task.</strong>
+                    </div>
+                    <div class="form-group" style="width: 80%;">
+                      <label class=" control-label">Note</label><br>
+                      <%= text_area_tag :consult_note, nil, class: 'form-control', style: 'width: 100%;' %>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                      <label class=" control-label">When would you like to follow up with <%= task.lead.name %>
+                        ? </label><br><br>
+                      <div class="input-group">
+                        <input name="due_date" type="text" class="datepicker form-control" id="date_<%= task.id %>">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
+                    </div>
+                    <%= hidden_field_tag 'task_id', task.id %>
+                    <%= hidden_field_tag 'lead_id', task.lead.id %>
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag 'Make Note', class: 'btn btn-xs btn-success should-load' %>
+                    <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="completeSurgery<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Complete Surgery</h4>
+              </div>
+              <%= form_tag complete_surgery_path, :method => 'post', class: 'form-inline no-margin' do %>
+                  <div class="modal-body">
+                    <div class="alert alert-success">
+                      Did <%= task.lead.name %> complete their surgery?
+                    </div>
+
+                    <%= hidden_field_tag 'lead_id', task.lead.id %>
+
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag 'Complete Surgery', class: 'btn btn-xs btn-success should-load' %>
+                    <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="booked_consult_<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Book Consult</h4>
+              </div>
+              <%= form_tag book_consult_path, :method => 'post', class: 'form-inline no-margin' do %>
+                  <div class="modal-body">
+                    <% if task.lead %>
+                        <div class="alert alert-success">
+                          Is <%= task.lead.name.titleize %> ready to book their consultation?
+                        </div>
+                    <% end %>
+                    <p>
+                      <label>Consultation Date</label><br>
+                    <div class="input-group col-md-4">
+                      <input name="consultation_date" type="text" value="<%= Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <%= hidden_field_tag 'lead_id', task.lead.id %>
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag 'Book Consult', class: 'btn btn-xs btn-success should-load' %>
+                    <button href="#finalTask<%= task.id %>" class="btn btn-xs btn-danger" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="booked_surgery_<%= task.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Book Surgery</h4>
+              </div>
+              <%= form_tag book_surgery_path, :method => 'post', class: "form-group" do %>
+                  <div class="modal-body">
+                    <div class="alert alert-success">
+                      Is <%= task.lead.name %> ready to book their surgery?<br> Be sure to set the
+                      <strong>Procedure Date</strong> and <strong>Procedure Cost</strong>.
+                    </div>
+                    <label class=" control-label">Procedure Date</label>
+                    <div class="input-group col-md-4">
+                      <input name="procedure_date" type="text" value="<%= Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <div class="seperator"></div>
+                    <label class=" control-label">Procedure Cost</label>
+                    <div class="input-group col-md-4">
+                      <span class="input-group-addon">$</span>
+                      <input type="text" name="procedure_cost" class="form-control">
+                      <span class="input-group-addon">.00</span>
+                    </div>
+                    <%= hidden_field_tag "lead_id", task.lead.id %>
+                  </div>
+                  <div class="modal-footer">
+                    <%= submit_tag "Book Surgery", class: "btn btn-xs btn-success should-load" %>
+                    <button href="#finalTask<%= task.id %>" class="btn btn-xs btn-danger" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+                  </div>
+              <% end %>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    <% end %>
+<% end %>
+
+<script>
+  $(document).ready(function () {
+
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    }).on('changeDate', function (e) {
+      if (e.viewMode === 'days') {
+        removeErrors();
+      }
+    });
+  });
+
+  function removeErrors() {
+    $(".datepicker").removeAttr("style");
+    $("#error-text").hide();
+  }
+
+
+  $(function () {
+    $request = null;
+    $('.pagination li a').on("click", function () {
+      $.get(this.href, function (data) {
+        $("#task-list").html(data);
+      });
+      return false;
+    });
+  });
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($("#today").is(':checked')) {
+      $('.search_date').attr('disabled', true);
+      $('.search_date').val("");
+      $('#old').attr('disabled', true);
+    }
+    else if ($("#old").is(':checked')) {
+      $('.search_date').attr('disabled', true);
+      $('.search_date').val("");
+      $('#today').attr('disabled', true);
+    }
+
+    $('#today').click(function () {
+      if ($(this).prop("checked") == true) {
+        $('.search_date').attr('disabled', true);
+        $('.search_date').val("");
+        $('#old').attr('disabled', true);
+      }
+      else if ($(this).prop("checked") == false) {
+        $('.search_date').attr('disabled', false);
+        $('#old').attr('disabled', false);
+      }
+    });
+
+    $('#old').click(function () {
+      if ($(this).prop("checked") == true) {
+        $('.search_date').attr('disabled', true);
+        $('.search_date').val("");
+        $('#today').attr('disabled', true);
+      }
+      else if ($(this).prop("checked") == false) {
+        $('.search_date').attr('disabled', false);
+        $('#today').attr('disabled', false);
+      }
+    });
+
+  });
+</script>

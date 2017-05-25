@@ -1,0 +1,59 @@
+<h1>All Stages</h1>
+<ul class="tabs">
+  <li class="tabs__list-item"><a href="#leads">Lead Stages</a></li>
+  <li class="tabs__list-item"><a href="#deals">Deal Stages</a></li>
+  <li class="tabs__list-item"><a href="#tasks">Task Stages</a></li>
+</ul>
+<div class="tabs__content">
+  <div id="leads" class="tabs__panel">
+    <h1>Lead Stages</h1>
+    <%= link_to 'Add Lead Stage', new_business_stage_path(type: 'lead') %>
+    <ol>
+      <% @lead_stages.each do |stage| %>
+        <li class="card">
+          <%= link_to stage.name, stage %>
+          <p>ID: <%= stage.stage_id %></p>
+          <p>Position: <%= stage.position %></p>
+        </li>
+      <% end %>
+    </ol>
+
+      <% if @lead_stages.empty? %>
+        <p>No Lead Stages</p>
+      <% end %>
+  </div>
+  <div id="tasks" class="tabs__panel">
+    <h1>Task Stages</h1>
+    <%= link_to 'Add Task Stage', new_business_stage_path(type: 'task') %>
+    <ol>
+      <% @task_stages.each do |stage| %>
+        <li class="card">
+          <%= link_to stage.name, stage %><br>
+          <%= link_to 'Delete Stage', business_stage_path(stage.id), :method => :delete %>
+          <p>ID: <%= stage.stage_id %></p>
+          <p>Position: <%= stage.position %></p>
+        </li>
+      <% end %>
+    </ol>
+
+      <% if @lead_stages.empty? %>
+        <p>No Lead Stages</p>
+      <% end %>
+  </div>
+  <div id="deals" class="tabs__panel">
+    <h1>Deal Stages</h1>
+    <%= link_to 'Add Deal Stage', new_business_stage_path(type: 'deal') %>
+    <ol>
+    <% @deal_stages.each do |stage| %>
+      <li class="card">
+        <%= link_to stage.name, stage %>
+        <p>ID: <%= stage.stage_id %></p>
+        <p>Position: <%= stage.position %></p>
+      </li>
+    <% end %>
+    </ol>
+    <% if @deal_stages.empty? %>
+      <p>No Deal Stages</p>
+    <% end %>
+  </div>
+</div>

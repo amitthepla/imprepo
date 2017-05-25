@@ -1,0 +1,34 @@
+<div class="col-md-12">
+  <div class="panel fadeInUp animation-delay2 panel-default">
+    <div class="panel-heading"><i class="fa fa-user-md fa-1x"></i> Medical Info</div>
+    <div class="panel-body">
+      <strong class="text-info">Medication(s):</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.medications.blank? ? 'N/A' : @contact.questionnaire.medications -%>
+      <br>
+      <strong class="text-info">Medical Condition(s):</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.medical_conditions.blank? ? 'N/A' : @contact.questionnaire.medical_conditions -%>
+      <br>
+      <strong class="text-info">Surgical History:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.surgical_history.blank? ? 'N/A' : @contact.questionnaire.surgical_history -%>
+      <br>
+      <strong class="text-info">Allergies:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.allergies.blank? ? 'N/A' : @contact.questionnaire.allergies -%>
+      <br>
+      <strong class="text-info">Smoker:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.smoker.blank? ? 'N/A' : @contact.questionnaire.smoker -%>
+      <br>
+      <strong class="text-info">Children:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.children.blank? ? 'N/A' : @contact.questionnaire.children -%>
+      <br>
+      <strong class="text-info">Last Pregnancy Date:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.last_pregnancy_date.blank? ? 'N/A' : @contact.questionnaire.last_pregnancy_date -%>
+      <br>
+      <strong class="text-info">Previous Cosmetics Procedure:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.previous_cosmetics_procedure.blank? ? 'N/A' : @contact.questionnaire.previous_cosmetics_procedure -%>
+      <br>
+      <strong class="text-info">Previous Cosmetics Procedure Year:</strong>
+      <%= @contact.questionnaire.blank? || @contact.questionnaire.previous_cosmetics_year.blank? ? 'N/A' : @contact.questionnaire.previous_cosmetics_year -%>
+      <br>
+    </div>
+  </div>
+</div>

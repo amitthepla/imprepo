@@ -1,0 +1,285 @@
+<!--  Face Modal Male  -->
+<div class="modal fade" id="faceProceduresModalMale" tabindex="-1" role="dialog" aria-labelledby="faceProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Face Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Face', gender: 'M'}).first %>
+        <% organization.procedures.where({type: 'Face', :procedure_for.in => %w(M B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Face Modal Female  -->
+<div class="modal fade" id="faceProceduresModalFemale" tabindex="-1" role="dialog" aria-labelledby="faceProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Face Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Face', gender: 'F'}).first %>
+        <% organization.procedures.where({type: 'Face', :procedure_for.in => %w(F B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Body Modal Male  -->
+<div class="modal fade" id="bodyProceduresModalMale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Body Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Body', gender: 'M'}).first %>
+        <% organization.procedures.where({:type.in => %w(Body Breast), :procedure_for.in => %w(M B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Body Modal Female  -->
+<div class="modal fade" id="bodyProceduresModalFemale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Body Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Body', gender: 'F'}).first %>
+        <% organization.procedures.where({type: 'Body', :procedure_for.in => %w(F B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Breast Modal Female  -->
+<div class="modal fade" id="breastProceduresModal" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Breast Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Breast', gender: 'F'}).first %>
+        <% organization.procedures.where({type: 'Breast', :procedure_for.in => %w(F B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Butt Modal Female -->
+<div class="modal fade" id="buttProceduresModalFemale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Butt Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Butt', gender: 'F'}).first %>
+        <% organization.procedures.where({type: 'Butt', :procedure_for.in => %w(F B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Butt Modal Female -->
+<div class="modal fade" id="buttProceduresModalMale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Butt Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Butt', gender: 'M'}).first %>
+        <% organization.procedures.where({type: 'Butt', :procedure_for.in => %w(M B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Leg Modal Male  -->
+<div class="modal fade" id="legProceduresModalMale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Leg Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Leg', gender: 'M'}).first %>
+        <% organization.procedures.where({type: 'Leg', :procedure_for.in => %w(M B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Leg Modal Female  -->
+<div class="modal fade" id="legProceduresModalFemale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Leg Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Leg', gender: 'F'}).first %>
+        <% organization.procedures.where({type: 'Leg', :procedure_for.in => %w(F B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Arm Modal Male  -->
+<div class="modal fade" id="armProceduresModalMale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Arm Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Arm', gender: 'M'}).first %>
+        <% organization.procedures.where({type: 'Arm', :procedure_for.in => %w(M B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Arm Modal Female  -->
+<div class="modal fade" id="armProceduresModalFemale" tabindex="-1" role="dialog" aria-labelledby="bodyProcedures">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Arm Procedures</h4>
+      </div>
+      <div class="modal-body">
+        <%#- pm = Business::ProcedureMapping.where({name: 'Arm', gender: 'M'}).first %>
+        <% organization.procedures.where({type: 'Arm', :procedure_for.in => %w(F B)}).each do |procedure| %>
+            <%= check_box_tag procedure.name, procedure.slug_value %>
+            <%= label_tag procedure.name %>
+            <br/>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-danger procedure-error" style="display: none"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="checkProcedures(this)">Add Procedures</button>
+      </div>
+    </div>
+  </div>
+</div>

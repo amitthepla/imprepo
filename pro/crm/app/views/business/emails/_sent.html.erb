@@ -1,0 +1,47 @@
+<!-- Sent Contents -->
+<ul class="list-group">
+  <%- @emails.each do |email| %>
+      <li class="list-group-item clearfix inbox-item" data-id="<%= email[:id] %>">
+        <label class="label-checkbox inline">
+          <input type="checkbox" class="chk-item" data-id="<%= email[:id] %>">
+          <span class="custom-checkbox"></span>
+        </label>
+        <span class="<%= email[:starred] ? 'starred' : 'not-starred' %>" data-starred="<%= email[:starred] %>"><%=params[:provider] == 'google' ? "<i class='fa fa-star fa-lg star'></i>".html_safe : ''%></span>
+        <span class="view-message <%= email[:unread] ? 'unread' : '' %>">
+          <span class="from"><%= email[:to].present? ? email[:to].split('<').first.strip : ''%></span>
+
+          <span class="detail"><%= email[:subject] %></span>
+          <span class="inline-block pull-right">
+            <span class="attachment"><%= email[:attachment] ? "<i class='fa fa-paperclip fa-lg'></i>".html_safe : '' %></i></span>
+            <span class="time">
+              <% received = Time.at(email[:received]) %>
+              <%= (received < Date.today) ? received.strftime('%b %e') : received.strftime('%H:%M') %>
+            </span>
+          </span>
+        </span>
+      </li>
+  <%- end %>
+</ul><!-- /list-group -->
+
+
+<script type="text/javascript">
+  $(function () {
+    next_page_token = "<%= @next_page_token %>";
+    if (next_page_token != "" && $.inArray(next_page_token, pageToken) == -1){
+      pageToken.push(next_page_token);
+    }
+
+    $(".view-message").on("click", function () {
+      var id = $(this).parent("li").data("id");
+      $.ajax({
+        url: "/emails/<%=params[:provider]%>/sent/" + id,
+        data: {provider: '<%=params[:provider]%>'},
+        type: 'GET',
+        success: function (res) {
+          $("#email-content").html(res);
+          $(".mail-option").hide();
+        }
+      });
+    });
+  });
+</script>

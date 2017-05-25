@@ -1,0 +1,62 @@
+<%= form_for(@permission, url: admin_update_permissions_path(id: @role.id), method: :post) do |f| %>
+    <div class="card">
+      <h3>Permissions</h3>
+      <div>
+        <table class="tbl-role">
+          <tr>
+            <td class="left-td"><span class="hdr">Lead Stages</span></td>
+            <td>
+              <% @lead_stages.each do |stage| %>
+                  <%= check_box_tag 'stages[]', stage.id, (@permission.stages.present? && @permission.stages.include?(stage.id.to_s) ? true : false), :id => stage.id %>
+                  <label for='<%= stage.id %>'> <%= stage.name %></label><br>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <table class="tbl-role">
+          <tr>
+            <td class="left-td"><span class="hdr">Deal Stages</span></td>
+            <td>
+              <% @deal_stages.each do |stage| %>
+                  <%= check_box_tag 'stages[]', stage.id, (@permission.stages.present? && @permission.stages.include?(stage.id.to_s) ? true : false), :id => stage.id %>
+                  <label for='<%= stage.id %>'> <%= stage.name %></label><br>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <table class="tbl-role">
+          <tr>
+            <td class="left-td"><span class="hdr">Task Stages</span></td>
+            <td>
+              <% @task_stages.each do |stage| %>
+                  <%= check_box_tag 'stages[]', stage.id, (@permission.stages.present? && @permission.stages.include?(stage.id.to_s) ? true : false), :id => stage.id %>
+                  <label for='<%= stage.id %>'>  <%= stage.name %></label><br>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <table class="tbl-role">
+          <tr>
+            <td class="left-td"><span class="hdr">Visibility</span></td>
+            <td>
+              <%= f.radio_button :task_visibility, 'own', id: 'task_visibility_own', name: 'task_visibility', :checked => @permission.visibility == 'own' ? true : false %>
+              <label for="task_visibility_own"> Own</label>
+              <%= f.radio_button :task_visibility, 'public', id: 'task_visibility_public', name: 'task_visibility', :checked => @permission.visibility == 'public' ? true : false %>
+              <label for="task_visibility_public"> Public</label>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Update Permissions', :class => 'btn btn-primary' %>
+    </div>
+
+<% end %>

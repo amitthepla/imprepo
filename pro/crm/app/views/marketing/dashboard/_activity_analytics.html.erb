@@ -1,0 +1,125 @@
+<div class="row fadeInDown animation-delay1">
+  <br>
+  <div class="col-md-8 col-md-offset-2 alert alert-info"> <center>The Activity Analytics display will represent all activity in the given date range regardless of when the lead inquired.</center></div>
+  <br>
+  <div class="col-md-12 text-center referral-sources">
+   <a data-target="#internet_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="internet"><%= source_count_check(@sources["Internet"]) -%></span><span>Internet</span></a>
+   <a data-target="#referral_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="referral"><%= source_count_check(@sources["Referral"]) -%></span><span>Referral</span></a>
+   <a data-target="#social_media_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:8%"><span id="relations"><%= source_count_check(@sources["Social Media"]) -%></span><span>Social Media</span></a>
+   <a data-target="#traditional_media_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:8%"><span id="print"><%= source_count_check(@sources["Traditional Media"]) -%></span><span>Traditional</span></a>
+   <a data-target="#event_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="events"><%= source_count_check(@sources["Events"]) -%></span><span>Events</span></a>
+   <a data-target="#telemarketing_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="outdoor"><%= source_count_check(@sources["Telemarketing"]) -%></span><span>Telemarketing</span></a>
+   <a data-target="#walk_in_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:9%"><span id="walkin"><%= source_count_check(@sources["Walk-In"]) -%></span><span>Walk In</span></a>
+   <a data-target="#other_sources" role="button" data-toggle="modal" class="btn btn-default quick-btn" style="width:8%"><span id="other"><%= source_count_check(@sources["Other"]) -%></span><span>Other</span></a>
+ </div>
+ <div style="clear:both;"> </div>
+ <br>
+</div>
+
+<div class="row fadeInDown animation-delay2">
+  <div class="col-md-4 col-md-offset-2">
+    <a data-target="#phone_leads" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-warning">
+        <div id="phone-calls" class="value"><%= @phone_leads_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Phone</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+  <div class="col-md-4 ">
+    <a data-target="#internet_leads" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-info">
+        <div id="internet" class="value"><%= @web_leads_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Internet</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+</div>
+
+<div class="row fadeInDown animation-delay3">
+  <div class="col-md-8 col-md-offset-2">
+    <a data-target="#leads" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-success">
+        <div id="total-leads" class="value"><%= @leads_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Total Leads</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+</div>
+
+<div class="row fadeInDown animation-delay4">
+  <div class="col-md-8 col-md-offset-2">
+    <a data-target="#appts" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-orange">
+        <div id="appointments" class="value"><%= @appt_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Appointments</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div>
+</div><!-- /panel -->
+
+
+<div class="row fadeInDown animation-delay5">
+  <div class="col-md-8 col-md-offset-2">
+    <a data-target="#consults" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-amethyst">
+        <div id="consultations" class="value"><%= @consult_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Consultations</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+</div>
+
+<div class="row fadeInDown animation-delay6">
+  <div class="col-md-8 col-md-offset-2">
+    <a data-target="#surgeries" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-sky">
+        <div id="scheduled-surgeries" class="value"><%= @surgery_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Scheduled Surgeries</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+</div>
+
+<div class="row fadeInDown animation-delay7">
+  <div class="col-md-4 col-md-offset-2">
+    <a data-target="#completed_sx" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-success">
+        <div id="completed" class="value"><%= @completed_surgery_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Completed</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+
+  <div class="col-md-4">
+    <a data-target="#cancelled_sx" role="button" data-toggle="modal">
+      <div class="panel panel-default panel-stat1 bg-danger">
+        <div id="cancelled" class="value"><%= @cancelled_surgery_count %></div>
+        <div class="title">
+          <span class="m-left-xs">Cancelled</span>
+        </div>
+        <br>
+      </div>
+    </a>
+  </div><!-- /panel -->
+</div>

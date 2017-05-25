@@ -1,0 +1,22 @@
+<%- if params[:message].present? %>
+    <div style="position: absolute; margin-top: 10%;" class="col col-lg-12 text-center">
+      <strong class="text-danger">We are unable to connect with selected email provider. Access denied.</strong>
+    </div>
+<%- end %>
+
+<div class="col col-md-8 col-md-offset-2" style="margin-top: 15%;">
+  <div class="col col-md-4 col-md-offset-2">
+    <%= link_to '/auth/google', title: 'Login with Gmail' do %>
+        <div class="img img-thumbnail">
+          <%= image_tag 'emails/gmail_logo.png', alt: 'Gmail' %>
+        </div>
+    <% end %>
+  </div>
+  <div class="col col-md-4 col-md-offset-2">
+    <%= link_to Business::EmailHelper::Outlook::get_outlook_url do %>
+        <div class="img img-thumbnail">
+          <%= image_tag 'emails/outlook_logo.png', alt: 'Outlook' %>
+        </div>
+    <% end %>
+  </div>
+</div>

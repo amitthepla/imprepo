@@ -1,0 +1,33 @@
+<h1>Update Status</h1>
+<%= link_to 'Back to All Statuses', business_statuses_path %>
+<% if @status.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@status.errors.count, "error")%>
+            prohibited this Doc from being saved:
+        </h2>
+        <p>There were problems with the following fields:</p>
+        <ul>
+        <% @status.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+
+<% end %>
+<%= form_for(@status, :html => {:class => ""} ) do |f| %>
+    <div class="input-wrapper">
+        <%= f.label :description,"Description"  %>
+        <%= f.text_field :description %>
+    </div>
+    <div class="input-wrapper">
+        <%= f.label :icon,"Icon"  %>
+        <%= f.text_field :icon %>
+    </div>
+        <div class="input-wrapper">
+        <%= f.label :color,"Color"  %>
+        <%= f.color_field :color %>
+    </div>
+  <%= f.submit "Update Status", :class => "btn" %>
+
+<% end %>

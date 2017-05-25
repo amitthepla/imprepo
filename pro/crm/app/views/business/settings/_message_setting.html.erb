@@ -1,0 +1,21 @@
+<%= form_tag auto_messaging_path, :method => 'post', class: 'form-inline no-margin' do %>
+
+  <div class="input-group col-md-4">
+    <label class=" control-label">Second Email and Text Message</label>
+    <%= number_field_tag :second, @message_setting[0] ,class: ' form-control' %>
+  </div>
+  <br><br>
+  <div class="input-group col-md-4">
+    <label class=" control-label">Third Email and Text Message</label>
+    <%= number_field_tag :third, @message_setting[1] ,class: ' form-control' %>
+  </div>
+  <br><br>
+  <div class="input-group col-md-4">
+    <label class=" control-label">Number of days before migrating Unresponsive leads.</label>
+    <%= number_field_tag :migrate_time, @message_setting[2] ,class: ' form-control' %>
+  </div>
+  <br><br>
+
+  <%= submit_tag 'Update Message Settings', class: 'btn btn-sm btn-primary should-load' %>
+
+<% end %>

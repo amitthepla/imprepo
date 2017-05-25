@@ -1,0 +1,250 @@
+<table class="table table-striped" id="responsiveTable" style="margin-bottom: 60px;">
+  <thead>
+    <tr>
+  <th><%= sortable "first_name", "First Name" %></th>
+  <th><%= sortable "last_name", "Last Name" %></th>
+  <th><%= sortable "interested_in", "Procedure"%></th>
+  <th><%= sortable "user", "Coordinator" %></th>
+  <th>Consult Note</th>
+  <th><%= sortable "consultation_date", "Consultation Date" %></th>
+  <th><%= sortable "procedure_cost", "Quoted Price" %></th>
+  <th>Action</th>
+</tr>
+  </thead>
+  <tbody>
+    <%@leads.each do |lead| %>
+    <tr >
+      <td><%= link_to lead.first_name.titleize, business_lead_path(lead), class: " should-load" %></td>
+      <td><%= lead.last_name.titleize %></td>
+      <td><%= lead.interested_in ? lead.interested_in.upcase : 'Not Specified'%></td>
+      <td><%= lead.user ? lead.user.first_name : 'Not Assigned'%></td>
+      <td><%= lead.consult_note%></td>
+      <td><%= lead.consultation_date ? lead.consultation_date.strftime("%m/%d/%Y") : "Not Specified" %></td>
+      <td><%= number_to_currency(lead.surgery_cost) %></td>
+      <td>
+        <div class="btn-group">
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#booked_surgery_<%=lead.id%>"class="text-success" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Book Surgery</a></li>
+                <li><a href="#reschedule_consult_<%=lead.id%>"class="text-warning" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Reschedule</a></li>
+                <li><a href="#cancel_consult_<%=lead.id%>"class="text-danger" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Cancel Consult</a></li>
+                <li><a href="#move_lead_<%=lead.id%>"class="text-danger" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Move Lead</a></li>
+                <li><a href="#consult_note_<%=lead.id%>"class="text-danger" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Note Consult</a></li>
+              </ul>
+            </div><!-- /btn-group -->
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<%@leads.each do |lead| %>
+
+<div class="modal fade" id="consult_note_<%= lead.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Consultation Note</h4>
+      </div>
+      <%= form_tag consult_note_path, :method => 'post', class: "form-inline no-margin" do %>
+      <div class="modal-body">
+
+      <div class="form-group">
+        <label class=" control-label">Note</label><br>
+        <%= select_tag :consult_note, options_for_select(["Financial", "Must Gain Weight", "Not a Candidate", "Shopping Around", "Red Flag"]), :include_blank => true, class: " form-control" %>
+      </div>
+      <br><br>
+      <div class="alert alert-info">
+			<strong>You can create a Consultation Note and move the lead to a new field or leave them in the Consult Stage.</strong>
+			</div>
+      <div class="form-group">
+      <label class="label-checkbox inline">
+        Move Lead?
+        <%= check_box_tag :move, 1 ,nil, id: "move_#{lead.id}",class: "form-control", style: "margin-right:20px !important"%>
+      </label>
+      </div>
+      <br><br>
+      <div class="form-group">
+        <label class=" control-label"> What stage would you like to move the lead to?</label><br/>
+        <%= select_tag :stage, options_from_collection_for_select(@current_org.stages.where(type: 'lead').asc(:position), "stage_id", "name"), :include_blank => true, class: " form-control", id: "stage_#{lead.id}", disabled: true %>
+      </div>
+        <%= hidden_field_tag "lead_id", lead.id %>
+
+            </div>
+            <div class="modal-footer">
+              <%= submit_tag "Create Consult Note", class: "btn btn-xs btn-default should-load" %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+        <% end %>
+
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+$(document).ready(function(){
+      if ($("<%= "#move_#{lead.id}"%>").is(':checked')){
+        $("<%= "#stage_#{lead.id}"%>").attr('disabled', false);
+      }
+      $("<%= "#move_#{lead.id}"%>").click(function(){
+          if($(this).prop("checked") == true){
+            $("<%= "#stage_#{lead.id}"%>").attr('disabled', false);
+
+          }
+          else if($(this).prop("checked") == false){
+            $("<%= "#stage_#{lead.id}"%>").attr('disabled', true);
+
+          }
+      });
+    });
+</script>
+
+<div class="modal fade" id="move_lead_<%= lead.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Move Lead</h4>
+      </div>
+      <%= form_tag move_lead_path, :method => 'post', class: "form-inline no-margin", id: "reschedule-consult-form_#{lead.id}" do %>
+      <div class="modal-body">
+
+        <label class=" control-label">Reason</label><br>
+        <div class="input-group col-md-4">
+          <textarea data-required="true" type="text" name="reason" value="" id="wysihtml5-textarea" placeholder="Why is this lead Disqualified?" class="form-control" rows="4"></textarea>
+        </div>
+      <br><br>
+      <div class="form-group">
+        <label class=" control-label"> What stage would you like to send the lead to?</label><br/>
+        <%= select_tag :stage, options_from_collection_for_select(@current_org.stages.where(type: 'lead').asc(:position), "stage_id", "name"), :include_blank => true, class: " form-control" %>
+      </div>
+        <%= hidden_field_tag "lead_id", lead.id %>
+
+            </div>
+            <div class="modal-footer">
+              <%= submit_tag "Move Lead", class: "btn btn-xs btn-default should-load", :onclick => "$('#reschedule-consult-form_#{lead.id}').submit(); return false;" %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+        <% end %>
+
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="reschedule_consult_<%= lead.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Reschedule Consult</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-primary">Is <%= lead.name.upcase %> rescheduling their consultation?</p>
+        <%= form_tag reschedule_consult_path, :method => 'post', class: "form-inline no-margin", id: "reschedule-consult-form_#{lead.id}" do %>
+
+            <label class=" control-label">Consultation Date</label>
+            <div class="input-group col-md-4">
+              <input name="consultation_date" type="text" value="<%= Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+            <%= hidden_field_tag "lead_id", lead.id %>
+
+            </div>
+            <div class="modal-footer">
+              <%= submit_tag "Reschedule Consult", class: "btn btn-xs btn-info should-load", :onclick => "$('#reschedule-consult-form_#{lead.id}').submit(); return false;" %>
+        <% end %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <div class="modal fade" id="cancel_consult_<%= lead.id %>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Cancel Consult</h4>
+          </div>
+          <div class="modal-body">
+            <p class="text-primary">Is <%= lead.name.upcase %> cancelling their consultation?</p>
+            <%= form_tag cancel_consult_path, :method => 'post', class: "form-inline no-margin", id: "cancel-consult-form_#{lead.id}" do %>
+
+            <label class=" control-label"> No Show
+            <%= check_box_tag 'no_show', 'checked', false %>
+            </label>
+            <br>
+            <label class=" control-label"> What stage would you like to send the lead to?</label>
+            <%= select_tag :stage, options_from_collection_for_select(Business::Stage.where(type: 'lead').asc(:position), "stage_id", "name"), :include_blank => true, class: " form-control" %>
+
+            <br>
+                <label class=" control-label">Reason</label>
+                <div class="input-group col-md-4">
+                  <textarea data-required="true" type="text" name="reason" value="" id="wysihtml5-textarea" placeholder="Why did this patient cancel?" class="form-control" rows="4"></textarea>
+                </div>
+
+                <%= hidden_field_tag "lead_id", lead.id %>
+
+                </div>
+                <div class="modal-footer">
+                  <%= submit_tag "Cancel Consult", class: "btn btn-xs btn-warning should-load", :onclick => "$('#cancel-consult-form_#{lead.id}').submit(); return false;" %>
+            <% end %>
+            <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+            </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="booked_surgery_<%= lead.id %>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Book Surgery</h4>
+          </div>
+          <div class="modal-body">
+            <p class="text-primary">Is <%= lead.name.titleize %> ready to book their surgery?</p>
+
+            <%= form_tag book_surgery_path, :method => 'post', class: "form-group", id: "booked-surgery-form_#{lead.id}" do %>
+
+                <label class=" control-label">Surgery Date</label>
+                <div class="input-group col-md-4">
+                  <input name="procedure_date" type="text" value="<%= Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+
+                <div class="seperator"></div>
+
+                <label class=" control-label">Procedure Cost</label>
+                <div class="input-group col-md-4">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" name="procedure_cost" class="form-control">
+                  <span class="input-group-addon">.00</span>
+                </div>
+                <%= hidden_field_tag "lead_id", lead.id %>
+
+                </div>
+                <div class="modal-footer">
+                  <%= submit_tag "Book Surgery", class: "btn btn-xs btn-success should-load", :onclick => "$('#booked-surgery-form_#{lead.id}').submit(); return false;" %>
+            <% end %>
+            <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+            </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <%end%>
+
+
+
+
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<div class="panel-footer clearfix">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <%= will_paginate @leads, renderer: BootstrapPaginationHelper::LinkRenderer %>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default panel-stat1 bg-info">
+      <div class="panel-body">
+        <div class="value"><%=new_lead_snapshot(@start_date, @end_date)%></div>
+        <div class="title">
+          <span class="m-left-xs"><small>Incoming</small></span>
+        </div>
+      </div>
+    </div><!-- /panel -->
+  </div><!-- /.col -->
+
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default panel-stat1 bg-sky">
+      <div class="panel-body">
+        <div class="value"><%=stage_snapshots('inquiry',@start_date, @end_date)%></div>
+        <div class="title">
+          <span class="m-left-xs"><small>Qualified</small></span>
+        </div>
+      </div>
+    </div><!-- /panel -->
+  </div><!-- /.col -->
+
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default panel-stat1 bg-orange">
+      <div class="panel-body">
+        <div class="value"><%=consultation_snapshot(@start_date, @end_date)%></div>
+        <div class="title">
+          <span class="m-left-xs"><small>Consultations</small></span>
+        </div>
+      </div>
+    </div><!-- /panel -->
+  </div><!-- /.col -->
+
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default panel-stat1 bg-success">
+      <div class="panel-body">
+        <div class="value"><%=surgery_snapshot(@start_date, @end_date)%></div>
+        <div class="title">
+          <span class="m-left-xs"><small>Surgeries</small></span>
+        </div>
+      </div>
+    </div><!-- /panel -->
+  </div><!-- /.col -->
+
+</div>

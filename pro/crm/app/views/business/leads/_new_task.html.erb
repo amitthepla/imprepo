@@ -1,0 +1,30 @@
+<div class="modal fade" id="newTask<%=task.id%>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Create New Task</h4>
+      </div>
+      <%= form_tag not_final_business_task_path, :method => 'post', class: "form-group" do %>
+      <div class="modal-body">
+        <p class="text-danger">This will complete the task and create a new task without promoting this lead.</p>
+        <label class=" control-label">Type</label>
+        <div class="input-group col-md-4">
+          <%= select_tag(:communication_method,options_for_select(["Call", "Email", "Text", "Follow Up"]), :include_blank => "--",:class=>":communication_method") %>
+        </div>
+        <label class=" control-label">Due Date</label>
+        <div class="input-group col-md-4">
+          <input name="due_date" type="text" value="<%= Date.today.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+        <%= hidden_field_tag "task_id", task.id %>
+        <%= hidden_field_tag "lead_id", task.lead.id %>
+      </div>
+      <div class="modal-footer">
+        <%= submit_tag "Create", class: "btn btn-xs btn-success should-load" %>
+        <button href="#completeTask<%=task.id%>" class="btn btn-xs btn-danger"  role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+      </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

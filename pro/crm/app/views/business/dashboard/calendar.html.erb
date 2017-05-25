@@ -1,0 +1,65 @@
+
+<div class="col-md-10">
+  <div class="panel panel-default">
+    <div class="panel-body" id="month-calendar">
+      <%= render partial: 'month_schedule' %>
+    </div>
+  </div>
+</div>
+<div class="col-md-2" id="legend-div">
+  <br>
+  <ul class="pieID legend">
+    <li style="border-left: 1.25em solid #B2D5DC;">
+      <em>Consults</em>
+      <span id="consult-count"><%=@consults.count%></span>
+    </li>
+    <li style="border-left: 1.25em solid #B2E7D3;">
+      <em>Surgeries</em>
+      <span id="procedure-count"><%=@procedures.count%></span>
+    </li>
+  </ul>
+</div>
+
+
+
+<style>
+
+  .day {
+    height: 200px !important;
+  }
+
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+  .alert{
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    padding-left: 2px !important;
+  }
+
+  .pieID {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .legend {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background: #FFF;
+    padding: 15px;
+    font-size: 13px;
+    box-shadow: 1px 1px 0 #DDD,
+                2px 2px 0 #BBB;
+  }
+  .legend li {
+    height: 1.25em;
+    margin-bottom: 0.7em;
+    padding-left: 0.5em;
+  }
+  .legend em {
+    font-style: normal;
+    margin-right: 10px;
+  }
+  .legend span {
+    float: right;
+  }
+</style>

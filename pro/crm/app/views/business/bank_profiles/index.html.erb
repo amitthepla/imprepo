@@ -1,0 +1,22 @@
+<p><strong>Link to send to Patients</strong>: https://crm.4beauty.net/bprofile?referral=<%= @current_account.initials %></p>
+
+<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @bank_profiles.each do |profile| %>
+        <tr>
+          <td><%= profile.first_name %></td>
+          <td><%= profile.last_name %></td>
+          <td><%= profile.email %></td>
+          <td><%= profile.score.map{|k,v| " <strong>#{k}</strong> #{v}"}.join().html_safe %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

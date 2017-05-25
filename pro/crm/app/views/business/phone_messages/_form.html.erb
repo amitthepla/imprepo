@@ -1,0 +1,27 @@
+
+  <div class="form-group">
+    <%= f.label :from,"Message From:"  %>
+    <%= f.text_field :from, class: "form-control"   %>
+  </div>
+  <div class="form-group">
+    <%= f.label :user,"To:"  %>
+    <%= f.select(:user,options_from_collection_for_select(@current_org.users.where(is_active: true).asc(:first_name),:id,:full_name),{},{class: "form-control chzn-select", style: "width:80% !important"}) %>
+  </div><br/>
+  <div class="form-group">
+    <%= f.label :callback_number,"Call Back Number"  %>
+    <%= f.text_field :callback_number, class: "form-control"   %>
+  </div><br/>
+  <div class="form-group">
+    <%= f.label :email,"Email"  %>
+    <%= f.text_field :email, class: "form-control"   %>
+  </div><br/>
+    <small>If applicable*</small><br/>
+    <div class="form-group">
+    <%= f.label :surgery_date,"Surgery Date"  %>
+    <%= f.date_field :surgery_date, class: "form-control input-sm date"  %>
+  </div>
+  <br/>
+  <div class="form-group">
+    <%= f.label :message,"Message"  %>
+    <%= f.text_area :message, class: "form-control"   %>
+  </div>

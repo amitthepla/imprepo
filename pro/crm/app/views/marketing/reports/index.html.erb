@@ -1,0 +1,136 @@
+<div class="main-header clearfix">
+	<div class="page-title">
+		<h3 class="no-margin">Advanced Reports</h3>
+		<span>Welcome back <%= @current_user.first_name%></span>
+	</div><!-- /page-title -->
+</div><!-- /main-header -->
+<hr>
+<div style="clear:both"></div>
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Request A New Report <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><%= link_to "New Health Check Report" , new_business_health_check_report_path, remote: true %></li>
+    <li><a style="cursor:pointer;" data-toggle="modal" data-target="#newAnalytics">New Analytics Report</a></li>
+    <li><a style="cursor:pointer;" data-toggle="modal" data-target="#newDiagnostic">New Diagnostic Report</a></li>
+  </ul>
+</div><!-- /btn-group -->
+<div style="clear:both"></div>
+<br>
+
+
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="<%=business_health_check_reports_path%>" aria-controls="home" role="tab" data-target="#health_check" data-remote="true" data-toggle="tab">Health Check</a></li>
+    <li role="presentation"><a href="<%=business_analytics_reports_path%>" aria-controls="profile" role="tab" data-target="#analytics" data-remote="true" data-toggle="tab">Analytics</a></li>
+    <li role="presentation"><a href="<%=business_diagnostic_reports_path%>" aria-controls="messages" role="tab" data-target="#diagnostic" data-remote="true" data-toggle="tab">Diagnostic</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content bg-white" style="border: solid 1px #ccc !important;">
+    <div role="tabpanel" class="tab-pane active" id="health_check">
+			<%= render partial: 'business/health_check_reports/index' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="analytics">
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="diagnostic">
+
+    </div>
+  </div>
+</div>
+
+<center>
+<div class="modal fade" tabindex="-1" role="dialog" id="newAnalytics" style="margin-top:10%;">
+  <div class="modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">New Analytics Report</h4>
+      </div>
+			<br>
+      <div class="modal-body">
+				<form id="filter-form" class="form-inline no-margin" style="text-align:center;" action="<%= new_business_analytics_report_path %>" data-remote="true">
+					<div class="input-group" style="margin-right:2%">
+						<input type="checkbox" name="analytics_type" checked data-label-text="Display" data-on-text="Activity" data-off-text="Funnel" data-off-color="success" data-on-color="info">
+					</div>
+					<div class="input-group" style="margin-right:2%">
+						<input type="text" name="start_date" value="<%= params[:start_date].present? ? params[:start_date] : Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control" style="z-index:100 !important;">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					</div>
+					<div class="input-group" style="margin-right:2%">
+						<input type="text" name="end_date" value="<%=  params[:end_date].present? ? params[:end_date] : Date.today.at_end_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control" style="z-index:100 !important;">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					</div>
+					<button type="submit" class="btn btn-primary btn-sm should-load"><i class="fa fa-filter"></i><span> Filter</span></button>
+				</form>
+      </div>
+			<br>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</center>
+<script>
+$("[name='analytics_type']").bootstrapSwitch();
+</script>
+
+
+<center>
+	<div class="modal fade" tabindex="-1" role="dialog" id="newDiagnostic" style="margin-top:10%;">
+		<div class="modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">New Analytics Report</h4>
+				</div>
+				<br>
+				<div class="modal-body">
+					<form class="form-inline no-margin filter-form" style="text-align:center;" action="<%=new_business_diagnostic_report_path%>" data-remote="true">
+						<div class="col-xs-6 col-md-3">
+							<center>Start of First Data Set</center>
+							<div class="input-group" style="margin-right:2%; margin-bottom:10px;">
+								<label for="then_start_date"></label>
+								<input type="text" id="then_start_date" name="first_start_date" placeholder="First Data Set Start" value="<%= params[:first_start_date] %>" class="datepicker form-control" style="z-index:999 !important;">
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<center>End of First Data Set</center>
+							<div class="input-group" style="margin-right:2%; margin-bottom:10px;">
+								<label for="then_end_date"></label>
+								<input type="text" id="then_end_date" name="first_end_date" placeholder="First Data Set End" value="<%= params[:first_end_date] %>" class="datepicker form-control" style="z-index:999 !important;">
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<center>Start of Second Data Set</center>
+							<div class="input-group" style="margin-right:2%; margin-bottom:10px;">
+								<label for="now_start_date"></label>
+								<input type="text" id="now_start_date" name="second_start_date" placeholder="Second Data Set Start" value="<%= params[:second_start_date] %>" class="datepicker form-control" style="z-index:999 !important;">
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<center>End of Second Data Set</center>
+							<div class="input-group" style="margin-right:2%; margin-bottom:10px;">
+								<label for="now_end_date"></label>
+								<input type="text" id="now_end_date" name="second_end_date" placeholder="Second Data Set End" value="<%= params[:second_end_date] %>" class="datepicker form-control" style="z-index:999 !important;">
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<br>
+							<button id="compare_button" type="submit" class="btn btn-md btn-primary" ><i class="fa fa-filter"></i><span> Compare Data</span></button>
+						</div>
+					</form>
+					<div class="col-md-12">
+						<p id="then-error-text" class="text-danger" style="margin-left: 4%; display: none;">Start date must be less than or equal to end date.</p>
+						<p id="now-error-text" class="text-danger" style="margin-left: 4%; display: none;">Start date must be less than or equal to end date.</p>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<br>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</center>

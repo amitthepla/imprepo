@@ -1,0 +1,70 @@
+<style>
+  .form-group {
+    display: inline-block;
+    width: 49%;
+  }
+</style>
+
+<div class="col-md-8 col-md-offset-2 panel panel-default">
+  <div class="panel-heading">
+    <h4>Update</h4>
+  </div>
+  <%= form_for(@user, :url => business_user_path, :html => {:class => '.form-horizontal'}) do |f| %>
+      <div class="panel-body">
+        <div class="form-group">
+          <%= f.label :first_name, 'First Name' %><br/>
+          <%= f.text_field :first_name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name, 'Last Name' %><br/>
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'Email' %><br/>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :twilio_phone, 'Twilio Phone Number' %><br/>
+          <%= f.text_field :twilio_phone, class: 'form-control' %>
+        </div>
+
+        <% if true_user.is_super_admin? %>
+            <div class="form-group">
+              <%= f.label :push_channel_id, 'Push ID' %><br/>
+              <%= f.text_field :push_channel_id, class: 'form-control' %>
+            </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :role, 'Role' %><br/>
+          <%= f.select(:roles, options_for_select(@current_org.roles.map { |role| [role.name, role.id] }, @user.roles), {}, {multiple: true, class: 'form-control chzn-select'}) %>
+        </div>
+        <hr>
+
+        <div class="card">
+          <h3>Permissions</h3>
+
+          <div class="form-group" style="width: 100% !important;">
+            <h5>Lead Stages</h5>
+            <% @lead_stages.each do |stage| %>
+                <%= check_box_tag 'stage[]', stage.id, (@user.stages.present? && @user.stages.include?(stage.id.to_s) ? true : false), :id => stage.id %>
+                <label for='<%= stage.id %>'> <%= stage.name %></label>
+            <% end %>
+          </div>
+
+          <div class="form-group" style="width: 100% !important;">
+            <h5>Task Visibility</h5>
+            <%= f.radio_button :task_visibility, 'own', :checked => @user.task_visibility == 'own' ? true : false %>
+            <label for="visibility_own"> Own</label>
+            <%= f.radio_button :task_visibility, 'public', :checked => @user.task_visibility == 'public' ? true : false %>
+            <label for="visibility_public"> Public</label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <%= f.submit 'Update Staff', :class => 'btn btn-sm btn-primary' %>
+      </div>
+
+  <% end %>
+</div><!-- /panel -->

@@ -1,0 +1,12 @@
+  $("#<%=@stage.stage_id%>").html("<%= j render(partial: 'leads_listing')%>");
+  $('.modal').modal('hide');
+  $('.modal-backdrop').remove();
+  $('body').removeClass('modal-open');
+
+  $.gritter.add({
+    title: '<i class="fa fa-check-circle"></i> Successfully Booked Surgery',
+    text: "You have succesfully booked <%=@lead.name%>'s surgery.",
+    sticky: false,
+    time: '5000',
+    class_name: 'gritter-success'
+  });

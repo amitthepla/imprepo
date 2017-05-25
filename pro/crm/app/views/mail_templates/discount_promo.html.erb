@@ -1,0 +1,44 @@
+<%= render :partial => "mail_templates/header" %>
+<tr>
+<td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<!-- BEGIN BODY // -->
+<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #FFFFFF;border-top: 0;border-bottom: 0;">
+<tbody><tr>
+<td valign="top" class="bodyContainer" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody class="mcnTextBlockOuter">
+<tr>
+<td valign="top" class="mcnTextBlockInner" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+<table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr>
+
+<td valign="top" class="mcnTextContent" style="padding-top: 9px;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
+
+<p class="p1" style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;"><span class="s1">Hello, <%= first_name %>, this is <%= coordinator_first_name %>, your coordinator with Dr. Mendieta. I know how excited you are to schedule your procedure and I have some wonderful news to share with you.</span></p>
+
+<p class="p1" style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">I am extending our exclusive Mother’s Day courtesy to you, through May! As you know Dr. Mendieta’s schedule fills up very quickly – but this incredible price is just in time for beach season!<br>
+<br>
+Your original quote of $<%= original_quote %>  is now an amazing <strong style="font-size:18px">$<%= discounted_quote %></strong>.<br>
+<br>
+This is such a wonderful opportunity, just in time for the summer; to finally look the way you have always dreamed!<br>
+<br>
+Please contact me to discuss either through email, or you can call me at <%= coordinator_phone %>, or text me at <%= coordinator_text %>.
+</p>
+
+</td>
+</tr>
+</tbody></table>
+
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody></table>
+<!-- // END BODY -->
+</td>
+</tr>
+<tr>
+<%= render :partial => "mail_templates/footer", :locals => {:name => coordinator_full_name ,:title => coordinator_title} %>

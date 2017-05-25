@@ -1,0 +1,110 @@
+  <% if @sites.empty? %>
+      <div class="text-center" style=" ">
+        <h3>Currently No Sites Available</h3>
+      </div>
+  <% else %>
+
+        <table class="table table-hover table-striped">
+          <thead style="">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Form Type</th>
+            <th>Form URL</th>
+            <th>Form Id</th>
+            <th>HTML Code</th>
+          </tr>
+          </thead>
+          <tbody style="max-height:50vh; overflow-x:auto;">
+          <% row_count = 0 %>
+          <% @sites.each do |site| %>
+            <% unless site.name == "/settings/sites"%>
+                <tr>
+                  <td style="vertical-align:middle;"><%= row_count += 1 %></td>
+                  <td style="vertical-align:middle;"><%= link_to site.name, site, class: '' %></td>
+                  <td style="vertical-align:middle;"><%= site.landing_page ? "Landing Page" : "Organic"%></td>
+                  <td style="vertical-align:middle;"><%= site.url %></td>
+                  <td style="vertical-align:middle;"><%= site.site_id %></td>
+                  <td style="vertical-align:middle;"><a href="#" class="generateForm" data-site-id="<%= site.site_id %>" data-toggle="modal" data-target="#formModal">Click here to get code</a></td>
+                </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+
+  <% end %>
+
+
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">HTML Form</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="code_data"></label>
+          <textarea id="code_data" class="form-control" style="height: 300px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newSite">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>New Website</h4>
+      </div>
+      <%= form_for(@site) do |f| %>
+      <div class="modal-body">
+        <div class="form-group">
+            <%= f.text_field :name, placeholder: "Site Name", class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.text_field :url, placeholder: "URL", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <span>Is this form for a landing page?</span>
+            <%= f.check_box :landing_page, {class: "form-control"}, true, false %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "New Site", :class => "btn btn-xs btn-success" %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+  $(document).ready(function () {
+    $(".generateForm").click(function () {
+      $("#code_data").val('');
+      var siteId = $(this).data('site-id');
+      $.ajax({
+        url: "/generate_html_form/" + siteId,
+        type: 'GET',
+        success: function (res) {
+          $("#code_data").val(res);
+        }
+      });
+    });
+
+    $("#code_data").click(function() {
+      $(this).select();
+    });
+  });
+</script>

@@ -1,0 +1,6 @@
+<%= link_to 'Update Staff', edit_business_user_path, :class => 'btn' %>
+<p><%= @user.first_name %> <%= @user.last_name %></p>
+<p><%= @user.email %></p>
+<% if @user.roles.present? %>
+    <p><%= @current_org.roles.find(@user.roles.first).name %></p>
+<% end %>

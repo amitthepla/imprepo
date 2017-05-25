@@ -1,0 +1,8 @@
+<a href="#book_surgery" role="button" data-toggle="modal" class="btn btn-default btn-sm pull-right" >
+  <i class="fa fa-stethoscope fa-1x" aria-hidden="true"></i>
+  <% if @lead.surgery.present? %>
+    Reschedule Surgery
+  <% else %>
+    Book Surgery
+  <% end %>
+</a>

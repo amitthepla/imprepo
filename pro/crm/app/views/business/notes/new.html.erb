@@ -1,0 +1,23 @@
+<h1>New Note</h1>
+<% if @note.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@note.errors.count, "error")%>
+            prohibited this Doc from being saved:
+        </h2>
+        <p>There were problems with the following fields:</p>
+        <ul>
+        <% @note.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+
+<% end %>
+<%= form_for(@note,:url => public_send("business_#{@subject_type}_notes_path"), :html => {:class => ""} ) do |f| %>
+  <%= f.label :body,"Body"  %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Save Note", :class => "btn" %>
+
+<% end %>

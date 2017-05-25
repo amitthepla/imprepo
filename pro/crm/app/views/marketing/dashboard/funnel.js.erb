@@ -1,0 +1,6 @@
+$("#analytics-graph").html("<%= j render(partial: 'funnel_analytics')%>");
+$("#analytics-data").html("<%= j render(partial: 'activity_data')%>");
+$("#analytics-modals").html("<%= j render(partial: 'drill_downs')%>");
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');

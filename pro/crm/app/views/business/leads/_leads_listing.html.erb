@@ -1,0 +1,110 @@
+<script src="https://use.fontawesome.com/00ab58e946.js"></script>
+<div class="panel" id="<%= @stage.stage_id %>" data-column-id="<%= @stage.stage_id %>" data-column-type="<%= @stage.type %>" style="">
+  <div class="panel-heading" style="background-color:white; border-bottom:2px solid red">
+    <div class="row">
+      <div class="text-left col-md-6">
+        <h1>
+          <%= @stage.name %>
+        </h1>
+        <%= @stage.description %>
+      </div>
+      <div class="text-right col-md-6">
+        <br>
+      </div>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+  <br>
+
+  <% if @leads.empty? %>
+      <div class="panel-body text-center" style=" ">
+        <h3>Currently No Leads</h3>
+      </div>
+  <% else %>
+      <div class="panel-body">
+        <table class="table table-condensed table-hover table-striped" style="text-align:center;margin-bottom: 60px;">
+          <thead >
+            <tr>
+              <%headers(@stage.stage_id).each do |header|%>
+                <th style="text-align:center;"><%= header %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody style="max-height:50vh; overflow-x:auto;">
+          <% cache @stage_leads do %>
+            <% @stage_leads.each do |lead| %>
+              <% cache lead do  %>
+                <center>
+                  <tr id="<%=lead.id%>">
+                    <% rows(@stage.stage_id, lead).each do |row| %>
+                      <%= row.html_safe %>
+                    <% end %>
+                  </tr>
+                </center>
+              <% end %>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <div class="panel-footer text-center" style="background-color:white; border-top:2px solid red; height: 100px;padding-bottom:10px">
+        <nav aria-label="Page navigation">
+          <ul class="pagination pagination-split">
+            <%= will_paginate @stage_leads, params: {stage_id: @stage.stage_id, controller: 'business/leads', action: 'stage_leads' }, remote: true, renderer: BootstrapPaginationHelper::LinkRenderer %>
+          </ul>
+        </nav>
+      </div>
+  <%- end %>
+</div>
+
+<div class="modal fade" id="modal">
+  <div class="modal-dialog" id="content">
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+  // date picker
+  $('.datepicker').datepicker({
+    format: "mm/dd/yyyy",
+    autoclose: true
+  }).on('changeDate', function (e) {
+    if (e.viewMode === 'days') {
+      removeErrors();
+    }
+  });
+
+  function removeErrors() {
+    $(".datepicker").removeAttr("style");
+    $("#error-text").hide();
+  }
+
+  $(function () {
+    $('.pagination li a').on("click", function () {
+      var stage_id = getUrlParameter(this.href, "stage_id");
+
+      $.get(this.href, function (data) {
+        $("#stage_" + stage_id).html(data);
+      });
+      return false;
+    });
+  });
+  var getUrlParameter = function getUrlParameter(url, sParam) {
+    var sPageURL = decodeURIComponent(url),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : sParameterName[1];
+      }
+    }
+  };
+</script>

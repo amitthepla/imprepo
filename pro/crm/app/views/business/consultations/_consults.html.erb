@@ -1,0 +1,31 @@
+<br>
+<table class="table table-striped" id="table" style="margin-bottom: 60px;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Coordinator</th>
+      <th>Date</th>
+      <th>Fee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@consultations.each do |con| %>
+    <tr>
+      <td><%= link_to con.lead.name, business_lead_path(con.lead), class: "should-load"  %></td>
+      <td><%= get_name(con.lead.user) %></td>
+      <td><%= con.date.strftime('%D') if con.date %></td>
+      <td><%= number_to_currency(con.cost) %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+<script>
+$(document).ready(function(){
+  if($('#table').length) {
+    $('#table').DataTable();
+  };
+});
+</script>

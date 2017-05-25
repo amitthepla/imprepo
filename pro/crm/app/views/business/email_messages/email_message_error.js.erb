@@ -1,0 +1,11 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$.gritter.add({
+  title: '<i class="fa fa-exclamation-triangle"></i> Error Updating Message',
+  text: "Unable to update email message. <%= @email_message_errors%>",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-danger'
+});

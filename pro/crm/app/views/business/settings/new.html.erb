@@ -1,0 +1,12 @@
+<h1>New Setting</h1>
+<%= form_for(@setting, :html => {:class => ".form-horizontal"} ) do |f| %>
+    <div class="input-wrapper">
+        <%= f.label :name,"Setting Name"  %>
+        <%= f.text_field :name %>
+    </div>
+        <div class="input-wrapper">
+        <%= f.label :data,"Setting Data"  %>
+        <%= f.text_field :data %>
+    </div>
+	<%= f.submit "Add Setting", :class => "btn btn-primary" %>
+<% end %>

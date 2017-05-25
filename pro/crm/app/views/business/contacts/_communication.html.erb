@@ -1,0 +1,80 @@
+<div class="padding-md">
+  <div id="timeline" class="timeline-wrapper">
+    <div class="timeline-item timeline-start">
+      <div class="panel bg-success">
+        <div class="panel-body text-center">
+          <div class="timeline-icon bg-success">
+            <i class="fa fa-bell"></i>
+          </div>
+          <strong class="font-14">
+            Created On
+          </strong>
+          <div class="time">
+            <%= @contact.created_at.strftime('%D') %>
+          </div>
+        </div>
+      </div><!-- /panel -->
+    </div><!-- /timeline-item -->
+
+    <% @messages.each do |message| %>
+        <div class="timeline-item" style="padding-left:20px;">
+          <div class="timeline-info">
+            <div class="timeline-icon bg-<%= message.reply ? "danger" : "success" %>">
+              <% if message.type == 'text' %>
+                  <i class="fa fa-mobile" aria-hidden="true"></i>
+              <% elsif message.type == 'phone' %>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+              <% else %>
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <% end %>
+
+            </div>
+            <div class="time">
+              <%= message.created_at.strftime('%D') %>
+            </div>
+          </div>
+          <div class="panel panel-default timeline-panel" style="width:50%;">
+            <div class="panel-heading">
+              <%= message.reply ? message.lead.name : message.user.full_name %>
+              <span class="pull-right text-muted">
+									<i class="fa fa-clock-o"></i> <%= (message.type == 'phone') ? message.call_time.strftime('%r') : message.created_at.strftime('%r') %>
+								</span>
+            </div>
+            <div class="panel-body">
+              <p>
+                <% if message.type == 'email' || message.type == "text" %>
+                    <%= raw message.body %>
+                <% elsif message.type == 'template' %>
+                    <span>Campaign Sent</span>
+                    <br/><br/>
+                    <a href="<%= campaign_template_path(message) %>" class="btn btn-primary" target="_blank">View Template</a>
+                <% elsif message.type == 'phone' %>
+                    <% if message.body.present? %>
+                        <audio controls>
+                          <source src="<%= "#{message.body}?access_token=#{@current_org.ringcentral_account.access_token}" %>" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+                    <% end %>
+                <% end %>
+              </p>
+              <br>
+              <% if message.type == 'phone' %>
+                  <span class="label label-md label-<%= (message.direction == 'Inbound') ? 'danger' : 'success' %>"><%= message.direction %></span>
+                  <span class="label label-md label-primary"><%= message.result %></span>
+                  <span class="label label-md label-info">Duration: <%= Time.at(message.duration.to_i).utc.strftime('%H:%M:%S') %></span>
+              <% else %>
+                  <span class="label label-md label-<%= message.reply ? 'danger' : 'success' %>"><%= message.reply ? 'Reply' : 'Sent' %></span>
+              <% end %>
+            </div>
+          </div><!-- /panel -->
+        </div><!-- /timeline-item -->
+    <% end %>
+    <div class="timeline-item clearfix" style="padding-left:20px;">
+      <div class="timeline-info">
+        <div class="timeline-icon bg-grey">
+          <i class="fa fa-pencil"></i>
+        </div>
+      </div>
+    </div><!-- /timeline-item -->
+  </div><!-- /timeline-wrapper -->
+</div><!-- /.padding -->

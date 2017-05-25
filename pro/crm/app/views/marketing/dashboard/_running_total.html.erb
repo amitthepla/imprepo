@@ -1,0 +1,53 @@
+<div class="panel panel-default" style="margin-bottom:0 !important;">
+	<div class="panel-heading clearfix">
+		<span class="pull-left h4">Running Total</span>
+		<ul class="tool-bar">
+			<li><a data-toggle="modal" data-target="#<%=@view%>-modal"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></a></li>
+		</ul>
+	</div>
+	<div class="panel-body no-padding">
+    <div id="running_total_<%=@view%>" class="" ></div>
+	</div>
+</div><!-- /panel -->
+<script>
+$(function () {
+  $('#running_total_<%=@view%>').highcharts({
+      title: {
+          text: 'Running Revenue',
+          x: -20 //center
+      },
+      subtitle: {
+          text: '4beauty Aesthetics',
+          x: -20
+      },
+      xAxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      },
+      yAxis: {
+          title: {
+              text: 'Revenue'
+          },
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }]
+      },
+      tooltip: {
+          valuePrefix: '$'
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+      },
+      series: eval(<%=running_total()%>),
+      credits: {
+        enabled: false
+      }
+
+  });
+});
+</script>

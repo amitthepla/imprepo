@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form id="filter-form" class="form-inline no-margin" style="text-align:center;" action="/marketing/analytics_data" data-remote="true">
+        <div class="input-group" style="margin-right:2%">
+          <input type="checkbox" name="analytics_type" checked data-label-text="Display" data-on-text="Activity" data-off-text="Funnel" data-off-color="success" data-on-color="info">
+        </div>
+        <div class="input-group" style="margin-right:2%">
+          <input type="text" name="start_date" value="<%= params[:start_date].present? ? params[:start_date] : Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control" style="z-index:100 !important;">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+        <div class="input-group" style="margin-right:2%">
+          <input type="text" name="end_date" value="<%=  params[:end_date].present? ? params[:end_date] : Date.today.at_end_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control" style="z-index:100 !important;">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm should-load"><i class="fa fa-filter"></i><span> Filter</span></button>
+        <!--<a class="btn btn-primary btn-sm"><i class="fa fa-filter"></i><span> Filter</span></a>-->
+      </form>
+    </div>
+    <p id="error-text" class="text-danger" style="margin-left: 16%; display: none;">Start date must be less than or equals to end date.</p>
+  </div><!-- /panel -->
+</div>
+
+<div class="modal fade" id="loading" data-backdrop="static" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <center>
+          <div class="loader"></div>
+          <br><br>
+          <div class="alert alert-info">We are analyzing the data in your requested date range...</div>
+        </center>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<script>
+$("[name='analytics_type']").bootstrapSwitch();
+</script>
+
+<style>
+#loading {
+  margin-top: 10%;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>

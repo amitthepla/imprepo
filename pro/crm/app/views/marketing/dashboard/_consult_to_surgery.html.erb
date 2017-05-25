@@ -1,0 +1,23 @@
+<div class="panel panel-default" style="margin-bottom:0 !important;">
+	<div class="panel-heading clearfix">
+		<span class="pull-left h4">Consult to Surgery</span>
+		<ul class="tool-bar">
+			<li><a data-toggle="modal" data-target="#<%=@view%>-modal"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></a></li>
+		</ul>
+	</div>
+	<div class="panel-body no-padding">
+		<div id="secondBarChart_<%=@view%>" style="height: 350px;"></div>
+	</div>
+</div><!-- /panel -->
+<script>
+Morris.Bar({
+	element: 'secondBarChart_<%=@view%>',
+	data: <%=raw consult_to_surgery_by_month()%>,
+	xkey: 'y',
+	ykeys: ['booked_consult', 'booked_surgery'],
+	grid: false,
+	labels: ['Booked Consult', 'Booked Surgery'],
+	barColors: ["#4B77BE", '#3BC894'],
+	gridTextColor : 'black'
+});
+</script>

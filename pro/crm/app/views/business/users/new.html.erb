@@ -1,0 +1,24 @@
+<h1>Invite Staff</h1>
+<%= form_for(@invite, :url => business_users_path, :html => {:class => ".form-horizontal"} ) do |f| %>
+  <div class="input-wrapper">
+    <%= f.label :first_name,"First Name"  %>
+    <%= f.text_field :first_name  %>
+  </div>
+  <div class="input-wrapper">
+    <%= f.label :last_name,"Last Name"  %>
+    <%= f.text_field :last_name  %>
+  </div>
+  <div class="input-wrapper">
+    <%= f.label :email,"Email"  %>
+    <%= f.text_field :email  %>
+  </div>
+  <div class="input-wrapper">
+    <%= f.label :role,"Role"  %>
+    <%= f.select(:role,options_from_collection_for_select(@current_org.roles,:id,:name)) %>
+  </div>
+
+<div class="form-actions">
+  <%= f.submit "Invite", :class => "btn btn-primary" %>
+</div>
+
+<% end %>

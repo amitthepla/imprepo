@@ -1,0 +1,67 @@
+<div class="panel panel-default" style="margin-bottom:0 !important;">
+	<div class="panel-heading clearfix">
+		<span class="pull-left h4">Source ROI</span>
+		<ul class="tool-bar">
+			<li><a data-toggle="modal" data-target="#<%=@view%>-modal"><i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i></a></li>
+		</ul>
+	</div>
+	<div class="panel-body no-padding">
+		<div id="source_roi_<%=@view%>" class=""></div>
+	</div>
+</div><!-- /panel -->
+<script>
+$(function () {
+    $('#source_roi_<%=@view%>').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Revenue by Source'
+        },
+        subtitle: {
+            text: 'Surgical Revenue'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Revenue by Source'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Surgical Revenue: <b>${point.y:.0f}</b>'
+        },
+        series: [{
+            name: 'Source',
+            data: eval(<%= raw surgical_revenue_data()%>),
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '${point.y:.0f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }],
+        credits: {
+          enabled: false
+        }
+    });
+});
+</script>

@@ -1,0 +1,53 @@
+[
+    {
+        "options": [
+            {
+                "title": "New Leads by Month",
+                "subTitle": "",
+                "yAxisLabel": "New Leads",
+                "tooltipValueSuffix": "",
+                "xAxisCategories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                "dataLabels": false,
+                "dataLabelsFormat": ""
+            }
+        ]
+    },
+    {
+        "series": [
+            {
+                "name": "2014",
+                "data": [
+                    338,
+                    345,
+                    341,
+                    301,
+                    351,
+                    458,
+                    308,
+                    258,
+                    290,
+                    278,
+                    181,
+                    114
+                ]
+            },
+            {
+                "name": "2015",
+                "data": [
+                    374,
+                    420,
+                    341,
+                    216,
+                    364,
+                    336,
+                    431,
+                    460,
+                    425,
+                    690,
+                    441,
+                    0
+                ]
+            }
+        ]
+    }
+]

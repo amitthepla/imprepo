@@ -1,0 +1,76 @@
+<div style="margin-top:10%;text-align:center;">
+	<% if params[:form_type] == 'questionnaire' %>
+		<div class="panel panel-default col-md-offset-3 col-md-6">
+			<div class="panel-body">
+				<% if @contact.preffered_language == 'es' %>
+					<p>Muchas gracias por tomar el tiempo y completar el perfil de belleza. Si tiene alguna pregunta o duda por favor no dude en contactarse con nosotros.</p>
+					<h3>Su Consultora de Belleza asignada es: <%= @contact.account_rep.full_name %></h3>
+					<br>
+					<a class="btn" href="mailto:<%= @contact.account_rep.email %>">E-mail <%= @contact.account_rep.first_name %></a>
+					<br><br>
+					<blockquote>Estamos ansiosos por presentarle a su nuevo cuerpo<cite><%=@contact.organization.company_name%> Staff</cite></blockquote>
+				<% else %>
+					<p>Thank you for taking the time and completing your beauty profile. If you have any questions in the meantime feel free to call us.</p>
+					<h3>Your assigned Beauty Consultant is: <%= @contact.account_rep.full_name %></h3>
+					<br>
+					<a class="btn btn-default btn-sm" href="mailto:<%= @contact.account_rep.email %>">E-mail <%= @contact.account_rep.first_name %></a>
+					<br><br>
+					<blockquote>We can’t wait to meet you and introduce you to the new you<cite><%=@contact.organization.company_name%> Staff</cite></blockquote>
+				<% end %>
+			</div>
+		</div>
+	<% elsif params[:form_type] == 'consultation' %>
+		<div class="panel panel-default col-md-offset-3 col-md-6">
+			<div class="panel-body">
+				<p>Thank you for taking the time and completing your consultation packet. If you have any questions in the meantime feel free to call us.</p>
+				<br><br>
+				<blockquote>We can’t wait to see you at your consultation<cite><%=@contact.organization.company_name%> Staff</cite></blockquote>
+			</div>
+		</div>
+	<% else %>
+		<div class="panel panel-default col-md-offset-3 col-md-6">
+			<div class="panel-body">
+				<p>Thank you for taking the time for completing this. If you have any questions in the meantime feel free to call us.</p>
+				<br><br>
+				<blockquote>We can’t wait to meet you and introduce you to the new you<cite><%=@contact.organization.company_name%> Staff</cite></blockquote>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<style>
+	blockquote {
+	  margin-top: 20px;
+	  border-left: none !important;
+	  font-family: Georgia, serif;
+	  font-size: 18px;
+	  font-style: italic;
+	  width: 500px;
+	  margin: 0.25em auto;
+	  padding: 0.25em 40px;
+	  line-height: 1.45;
+	  position: relative;
+	  color: #383838;
+	}
+
+	blockquote:before {
+	  display: block;
+	  content: "\201C";
+	  font-size: 80px;
+	  position: absolute;
+	  left: -20px;
+	  top: -20px;
+	  color: #7a7a7a;
+	}
+
+	blockquote cite {
+	  color: #999999;
+	  font-size: 14px;
+	  display: block;
+	  margin-top: 5px;
+	}
+
+	blockquote cite:before {
+	  content: "\2014 \2009";
+	}
+</style>

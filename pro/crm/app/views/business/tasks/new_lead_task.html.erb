@@ -1,0 +1,37 @@
+<% if @task.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(@task.errors.count, "error")%>
+    prohibited this TASK from being saved:
+  </h2>
+  <p>There were problems with the following fields:</p>
+  <ul>
+    <% @task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+
+<% end %>
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">New Task</div>
+    <div class="panel-body">
+      <%= form_for [@task] do |f| %>
+
+      <%= render :partial => 'form', :locals => { :f => f } %>
+
+      <div class="form-group">
+        <%= f.label :lead_id, "Assign To"  %><br/>
+        <%= @lead.name %>
+        <%= f.hidden_field :lead_id, :value => @lead.id%>
+      </div>
+    <br>
+
+      <div class="panel-footer">
+        <%= f.submit "Create Task", :class => "btn btn-sm btn-success" %>
+      </div>
+    </div>
+  </div><!-- /panel -->
+</div><!-- /.col -->
+<% end %>

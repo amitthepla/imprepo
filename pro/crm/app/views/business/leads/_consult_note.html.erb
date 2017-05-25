@@ -1,0 +1,41 @@
+<div class="modal fade" id="consult_note">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Consultation Note</h4>
+      </div>
+      <%= form_tag consult_note_path, :method => 'post', class: "form-inline no-margin" do %>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label class=" control-label">Note</label><br>
+          <%= select_tag :consult_note, options_for_select(["Financial", "Must Gain Weight", "Not a Candidate", "Shopping Around", "Red Flag"]), :include_blank => true, class: " form-control" %>
+        </div>
+        <br><br>
+        <div class="alert alert-info">
+          <strong>You can create a Consultation Note and move the lead to a new field or leave them in the Consult Stage.</strong>
+        </div>
+        <div class="form-group">
+          <label class="label-checkbox inline">
+            Move Lead?
+            <%= check_box_tag :move, 1 ,nil, id: "move_#{@lead.id}",class: "form-control", style: "margin-right:20px !important"%>
+          </label>
+        </div>
+        <br><br>
+        <div class="form-group">
+          <label class=" control-label"> What stage would you like to move the lead to?</label><br/>
+          <%= select_tag :stage, options_from_collection_for_select(@current_org.stages.where(type: 'lead').asc(:position), "stage_id", "name"), :include_blank => true, class: " form-control", id: "stage_#{@lead.id}", disabled: true %>
+        </div>
+        <%= hidden_field_tag "lead_id", @lead.id %>
+
+      </div>
+      <div class="modal-footer">
+        <%= submit_tag "Create Consult Note", class: "btn btn-xs btn-default should-load" %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+      <% end %>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

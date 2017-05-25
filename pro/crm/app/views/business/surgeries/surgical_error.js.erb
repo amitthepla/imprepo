@@ -1,0 +1,11 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$.gritter.add({
+  title: '<i class="fa fa-exclamation-triangle"></i> Error Booking Surgery',
+  text: "Unable to book <%=@lead.name%>'s surgery. <%= @surgery_errors%>",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-danger'
+});

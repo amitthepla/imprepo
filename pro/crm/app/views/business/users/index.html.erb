@@ -1,0 +1,13 @@
+<h1>All Staff</h1>
+<p><%= link_to 'Invite New Staff', new_business_user_path, {:class => 'btn'} %></p>
+<p><%= link_to 'View Current Invites', invites_business_users_path, {:class => 'btn'} %></p>
+<% @users.each do |user| %>
+  <div class="card">
+    <%= link_to user.email, [:business, user] %>
+  </div>
+<% end %>
+
+<% if @users.empty? %>
+  <p>No Staff</p>
+<% end %>
+

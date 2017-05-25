@@ -1,0 +1,7 @@
+<%= link_to 'Back to All Procedures', business_procedures_path %>
+<p><strong>Name:</strong> <%= @procedure.name %></p>
+<p><strong>Cost:</strong> <span style="font-weight: 600">$<%=@procedure.cost || 0%></span></p>
+<p><strong>Details:</strong> <span style="font-weight: 600"><%=@procedure.details || 0%></span></p>
+<p><strong>Slug:</strong> <%= @procedure.slug_value %></p>
+
+<%= link_to 'Edit Procedure', edit_business_procedure_path(@procedure), {:class => 'btn'} %>

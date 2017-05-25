@@ -1,0 +1,170 @@
+<h1>Sources</h1>
+<a href="#newSource" role="button" data-toggle="modal" class="btn btn-success btn-xs" style="margin-top:10px">New Source</a>
+<br><br>
+<% if @sources.empty? %>
+  <div class="text-center" style=" ">
+    <h3>Currently No Source Available</h3>
+  </div>
+<% else %>
+  <ul class="pagination-xs">
+    <%= will_paginate @sources, renderer: BootstrapAjaxPaginationHelper::LinkRenderer %>
+  </ul>
+  <table id="source-table" class="table table-hover table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Site Form Code</th>
+        <th>Category</th>
+        <th>Start date</th>
+        <th>End Date</th>
+        <th>Cost</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody style="max-height:50vh; overflow-x:auto;">
+      <% @sources.each do |src| %>
+        <%= render partial: 'source',  :locals => {:src => src}%>
+      <% end %>
+    </tbody>
+  </table>
+  <ul class="pagination-xs">
+    <%= will_paginate @sources, renderer: BootstrapAjaxPaginationHelper::LinkRenderer %>
+  </ul>
+<% end %>
+
+
+<div class="modal fade" id="newSource">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>New Source</h4>
+      </div>
+      <%= form_for(@new_source, html: {class: 'form-group ' }, remote: true) do |f| %>
+        <div class="modal-body">
+          <% selected_type = @new_source.source_type.present? ? @new_source.source_type.id.to_s : '' %>
+          <div class="form-group col-md-12">
+            <%= f.label :name, 'Campaign Name:' %>
+            <%= f.text_field :name, class: 'form-control', onblur: 'removeErrors(this)' %>
+          </div>
+          <div class="form-group col-md-12">
+            <%= f.label :source_type, 'Type:' %>
+            <%= f.select(:source_type, options_for_select(SourceType.all.map { |st| [st.name, st.id.to_s] }, selected_type), {}, {class: 'form-control chzn-select', style: 'width:80% !important'}) %>
+          </div>
+          <div class="form-group col-md-12">
+            <%= f.label :category, 'Category:' %>
+            <%= f.select(:category, options_for_select(Business::Source::CAT), {}, {class: 'form-control chzn-select', style: 'width:80% !important'}) %>
+          </div>
+          <br/>
+          <div class="form-group col-md-6">
+            <%= f.label :start_date, 'Start Date' %>
+            <div class="input-group">
+              <%= f.text_field :start_date, class: 'form-control input-sm date datepicker', value: @new_source.start_date.present? ? @new_source.start_date.strftime('%d/%m/%Y') : '', onblur: 'removeErrors(this)' %>
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label :end_date, 'End Date' %>
+            <div class="input-group">
+              <%= f.text_field :end_date, class: 'form-control datepicker', value: @new_source.end_date.present? ? @new_source.end_date.strftime('%d/%m/%Y') : '', onblur: 'removeErrors(this)' %>
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+          <br/>
+          <div class="form-group checkbox col-md-12">
+            <label>
+              <%= check_box_tag :landing_page, true, false, {class: "checkbox"}  %> Create Landing Page Form
+            </label>
+          </div>
+          <div class="form-gen form-group col-md-10 col-md-offset-2 hide">
+            <%= label_tag 'Name' %>
+            <%= text_field_tag :form_name,"", class: "form-control" %>
+          </div>
+          <div class="form-gen form-group col-md-10 col-md-offset-2 hide">
+            <%= label_tag 'Page Address' %>
+            <%= text_field_tag :url,"", class: "form-control" %>
+          </div>
+          <div class="form-group col-md-12">
+            <%= f.label :cost, 'Cost' %>
+            <%= f.number_field :cost, class: 'form-control', min: 0, onblur: 'removeErrors(this)' %>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="modal-footer">
+          <%= f.submit 'Create Source', :class => 'btn btn-xs btn-success' %>
+          <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="editSource">
+  <div class="modal-dialog" id="edit-modal">
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="sourceFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">HTML Form</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="code_data"></label>
+          <textarea id="code_data" class="form-control" style="height: 300px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(document).ready(function () {
+  // date picker
+  $('.datepicker').datepicker({
+    format: "mm/dd/yyyy",
+    autoclose: true
+  }).on('changeDate', function (e) {
+    removeErrors(this);
+  });
+
+
+  $('input[name=landing_page]').change(function() {
+    if(this.checked) {
+      $('.form-gen').removeClass('hide');
+    }
+    else {
+      $('.form-gen').addClass('hide');
+    }
+  });
+
+  $(".generateForm").click(function () {
+    $("#code_data").val('');
+    var siteId = $(this).data('site-id');
+    $.ajax({
+      url: "/generate_html_form/" + siteId,
+      type: 'GET',
+      success: function (res) {
+        $("#code_data").val(res);
+      }
+    });
+  });
+
+  $("#code_data").click(function() {
+    $(this).select();
+  });
+});
+
+function removeErrors(inputNode) {
+  $(inputNode).removeAttr("style");
+}
+</script>

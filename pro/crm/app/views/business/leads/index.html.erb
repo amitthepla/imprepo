@@ -1,0 +1,115 @@
+<div class="main-header clearfix">
+
+  <div class="page-title">
+    <h3 class="no-margin">All Leads</h3>
+    <span>Welcome back <%= @current_account.first_name %></span>
+  </div><!-- /page-title -->
+
+  <ul class="page-stats">
+    <li>
+      <%= link_to 'Add New Lead', new_business_lead_path, class: 'btn btn-sm btn-success' %>
+    </li>
+    <li>
+      <%= link_to 'All Leads', business_leads_path, class: 'btn btn-sm btn-info' %>
+    </li>
+  </ul><!-- /page-stats -->
+</div><!-- /main-header -->
+
+<br>
+<% if @current_account.is_super_admin? %>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="col-md-12 text-center">
+        <div class="row">
+          <%= form_tag business_leads_path, :method => 'get', :id => 'consults_by_coordinator', class: 'form-inline no-margin' do %>
+              <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control', style: 'margin-right:20px' %>
+              <!-- <div class="input-group " style="margin-right:2%">
+                <input type="text" name="start_date" placeholder="Date Range Start" value="<%= params[:start_date] %>" class="datepicker  form-control" style="z-index:100 !important;">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              </div>
+              <div class="input-group " style="margin-right:2%">
+                <input type="text" name="end_date" placeholder="Date Range End" value="<%= params[:end_date] %>" class="datepicker  form-control" style="z-index:100 !important;">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              </div> -->
+              <%= select_tag :coordinator, options_from_collection_for_select(@coordinators, 'id', 'first_name', :selected => params[:coordinator]), :prompt => '-- Coordinator --', class: 'form-control', style: 'margin-right:20px' %>
+              <%= select_tag :created_by, options_from_collection_for_select(@current_org.users, 'id', 'full_name', :selected => params[:created_by]), :prompt => '-- Created By --', class: 'form-control', style: 'margin-right:20px' %>
+              <%= submit_tag 'Search', class: 'btn btn-sm btn-info' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<br>
+
+<ul class=" col-md-11 col-md-offset-1 nav nav-tabs" id="myTab" style="cursor:pointer">
+  <% @stages.each do |stage| %>
+      <% count = @leads.where(stage: stage.stage_id).count %>
+      <% name = stage.name.upcase %>
+      <% if stage.name == @stages[0].name %>
+          <li class="active">
+            <a data-target="#stage_<%= stage.stage_id %>" data-toggle="tab" data-stage-id="<%= stage.stage_id %>" onclick="displayContent(this)"><%= name %>
+              <span class="badge badge-success bounceIn animation-delay2 m-left-xs"><%= count %></span>
+            </a>
+          </li>
+      <% else %>
+          <li>
+            <a data-target="#stage_<%= stage.stage_id %>" data-toggle="tab" data-stage-id="<%= stage.stage_id %>" onclick="displayContent(this)"><%= name %>
+              <span class="badge badge-success bounceIn animation-delay4 m-left-xs"><%= count %></span>
+            </a>
+          </li>
+      <% end %>
+  <% end %>
+</ul>
+
+<center>
+  <br><br>
+  <div id="loader"><%= image_tag 'loader.gif', alt: 'Loading...' %></div>
+</center>
+
+<div class="tab-content">
+  <% @stages.each do |stage| %>
+      <div id="stage_<%= stage.stage_id %>" class="col-md-12 tab-pane <%= 'active' if stage.name == @stages[0].name %>" style=''>
+        <% if stage.name == @stages[0].name %>
+            <% stage_leads = @leads.where(stage: stage.stage_id) %>
+            <% @stage_leads_count = stage_leads.count %>
+            <% @stage_leads = stage_leads.page(params[:page]) %>
+            <% @stage = stage %>
+            <%= render 'leads_listing' %>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+
+<hr style="clear:both;">
+
+<script>
+
+  // date picker
+  $('.datepicker').datepicker({
+    format: "mm/dd/yyyy",
+    autoclose: true
+  }).on('changeDate', function (e) {
+    if (e.viewMode === 'days') {
+      removeErrors();
+    }
+  });
+
+  function removeErrors() {
+    $(".datepicker").removeAttr("style");
+    $("#error-text").hide();
+  }
+
+  function displayContent(inputNode) {
+    var stageId = $(inputNode).data("stage-id");
+    $("#stage_" + stageId).html("");
+    $("#loader").show();
+    var formData = $("#consults_by_coordinator").serializeArray();
+    var url = '/leads/stage_leads?stage_id=' + stageId;
+    $.get(url, formData, function (data) {
+      $("#loader").hide();
+      $("#stage_" + stageId).html(data);
+    });
+  }
+
+</script>

@@ -1,0 +1,11 @@
+$('.modal').modal('hide')
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Edited Message',
+  text: "You have succesfully edited your email message.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

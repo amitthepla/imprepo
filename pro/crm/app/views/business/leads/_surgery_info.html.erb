@@ -1,0 +1,20 @@
+
+<strong class="font-12"><span class="text-info">Procedure: </span><%= @surgery.procedure.titleize if @surgery.procedure %></strong><br/>
+<strong class="font-12"><span class="text-info">Procedure Date: </span><%= @surgery.date.strftime('%D') if @surgery.date %></strong><br/>
+<strong class="font-12"><span class="text-info">Surgery Cost: </span><%= number_to_currency(@surgery.cost) %></strong><br/>
+<strong class="font-12"><span class="text-info">Physician: </span><%= get_name(@current_org.users.where(id: @surgery.physician_id).first)%></strong><br/>
+<strong class="font-12"><span class="text-info">Status: </span><%= ("Completed" if @surgery.completed) || ("Cancelled" if @surgery.cancelled) || "Pending" %></strong><br/>
+<br>
+<% if @surgery.cancelled %>
+  <%= form_for @surgery,method: 'put', remote: true do |f| %>
+    <%= f.hidden_field :cancelled, value: false%>
+    <%= f.hidden_field :lead_id, value: @lead.id %>
+    <%= f.submit "Reinstate Surgery" ,class:"btn btn-xs btn-primary" %>
+  <% end %>
+<% else %>
+  <%= form_for @surgery,method: 'put', remote: true do |f| %>
+    <%= f.hidden_field :cancelled, value: true %>
+    <%= f.hidden_field :lead_id, value: @lead.id %>
+    <%= f.submit "Cancel Surgery" ,class:"btn btn-xs btn-danger" %>
+  <% end %>
+<% end %>

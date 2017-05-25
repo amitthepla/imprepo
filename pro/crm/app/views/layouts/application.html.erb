@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Conversion Doctor</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header class="l-header">
+      <a href="#" class="logo">4 Beauty</a>
+    </header>
+    <header class="page-header">
+      <h2 class="page-title">Settings</h2>
+      <div>
+        <p><% if current_user != true_user %>
+        You (<%= true_user.first_name %>) are signed in as <%= current_user.first_name %>
+        <%= link_to "Back to marketing", stop_impersonating_admin_users_path %>
+        <% end %></p>
+        <a href="#"><span class="user-avatar"></span><span class="user-name"><%= @current_account.first_name %></span></a>
+            <ul>
+              <li><%= link_to 'Settings', account_path %></li>
+              <li><%= link_to 'Sign Out', logout_path %></li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+  <aside class="l-sidebar">
+    <nav>
+      <ul class="l-nav">
+        <li class="nav__list-item"><%= link_to 'Dashboard', business_leads_path %></li>
+        <li class="nav__list-item"><%= link_to 'Leads', business_leads_path %></li>
+        <li class="nav__list-item"><%= link_to 'Deals', business_deals_path %></li>
+        <li class="nav__list-item"><%= link_to 'Contacts', business_contacts_path %></li>
+        <li class="nav__list-item"><%= link_to 'Staff', business_users_path %></li>
+      </ul>
+    </nav>
+    <footer class="l-footer">
+      <nav>
+        <ul class="social-nav">
+          <!-- <li class="social-nav__list-item"><a href="#">Github</a></li> -->
+          <% if true_user.is_super_admin? %>
+            <li><%= link_to 'Marketing', marketing_dashboard_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <p>&copy; 2015; All Rights Reserved.</p>
+    </footer>
+  </aside>
+  <main class="l-main">
+    <section class="page-content">
+      <%= yield %>
+    </section>
+  </main>
+<%= render 'shared/pusher' %>
+</body>
+</html>

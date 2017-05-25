@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.first_name %></td>
+        <td><%= invite.last_name %></td>
+        <td><%= invite.email %></td>
+        <td><%= @current_org.roles.where(:id => invite.role).first.name %></td>
+        <td><%= invite.is_active? ? 'Yes' : 'No' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

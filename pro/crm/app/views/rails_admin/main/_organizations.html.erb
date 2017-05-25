@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-4">
+    <%- selected_id = @object.organization.id.to_s %>
+    <p>
+      <%= select_tag 'user_organization_id', options_for_select(Business::Organization.all.collect { |org| [org.company_name.titleize, org.id.to_s] }, selected_id), class: 'form-control', name: 'user[organization_id]' %>
+    </p>
+  </div>
+</div>

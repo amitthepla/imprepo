@@ -1,0 +1,563 @@
+<div class="form-wrapper">
+	<header> <a href="#" class="logo"><%= image_tag("logo_white.png", alt: "4Beauty Aesthetics") %></a></header>
+	<div class="sub-heading">
+		<ul class="step-title">
+			<li>
+				<div></div>
+				<p></p>
+			</li>
+	
+			<li>
+				<div></div>
+				<p></p>
+			</li>
+			<li>
+				<div></div>
+				<p></p>
+			</li>
+			<li>
+				<div></div>
+				<p></p>
+			</li>
+			<li>
+				<div></div>
+				<p></p>
+			</li>
+		
+		</ul>
+		<div class="step-process"></div>
+	</div>
+	<%= form_tag(bprofile_submission_path) do %>
+		<div class="step step-intro is-active">
+			<h1>Hi there! Let's get started with this survey.</h1>
+			<p><strong>Select a number from 1 to 5 for each question.</strong></p>
+			<p>5 = true of you 80 to 100% of the time (almost always)</p>
+			<p>4 = true of you 60 to 79% of the time (often)</p>
+			<p>3 = true of you 40 to 59% of the time (about half)</p>
+			<p>2 = true of you 20 to 39% of the time (sometimes)</p>
+			<p>1 = true of you 0 to 19% of the time (never or rarely)</p>
+			<button>Begin</button>
+		</div>
+		<div class="step step-1">
+			<div class="step-inputs">
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am optimistic and see the positive in everything.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I enjoy designing solutions and solving highly complex problems.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I value stability and resist change.</label>
+				</div>
+
+				<div class="form-input">				
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I seek a deep connection with others and value authentic relationships.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I like to cut to the chase and get to the bottom line.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am irritated by incompetence.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I make heart-based decisions and follow my intuition.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am at the forefront of science and technology.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am a perfectionist and like things done right.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I enjoy charitable work and making a difference.</label>
+				</div>
+			</div>
+			<button>Continue</button>
+		</div>
+		<div class="step step-2">
+			<div class="step-inputs">
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I engage best when I am the center of attention.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I avoid making snap decisions.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am passionate about supporting a leader with a  cause.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I calculate my risks and rely on a proven track record. </label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I thrive on competition and play to win.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am uncomfortable with excessive emotion.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I respect titles, ranks, and authority.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I like to make rules, rather than follow them.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I like being involved and working as a team.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I make and keep my commitments.</label>
+				</div>
+			</div>
+			<button>Continue</button>
+		</div>
+		<div class="step step-3">
+			<div class="step-inputs">
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I embrace risk and opportunity.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I prefer being alone or with one or two colleagues.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am spontaneous and make quick decisions.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am very organized and detailed oriented.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I exude confidence and like to be the leader.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am very diplomatic and seek harmony.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am disciplined and like to follow protocols, guidelines and timelines.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am an avid learner and have an insatiable appetite for information.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I look for opportunities to serve an help others.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I make decisions based on data and logic.</label>
+				</div>
+
+			</div>
+			<button>Continue</button>
+		</div>
+		<div class="step step-4">
+			<div class="step-inputs">
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am more purpose-driven than money-driven.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I take pride in my image and like having the best.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am punctual and like my time respected.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am methodical and conceptual in my processes.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I crave stimulation and excitement.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="3">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I value personal development in order to fulfill my higher purpose.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I am more comfortable teaching than selling.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="1">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I like having a plan and a system to follow.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="2">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I need freedom and flexibility to do it my way.</label>
+				</div>
+
+				<div class="form-input">					
+					<select data-column="4">
+						<option value="0"></option>
+						<option value="5">5 - Almost always</option>
+						<option value="4">4 - Often</option>
+						<option value="3">3 - About Half</option>
+						<option value="2">2 - Sometimes</option>
+						<option value="1">1 - Never or Rarely</option>
+					</select>
+					<label>I like to analyze and think things through before taking action.</label>
+				</div>
+			</div>
+			<button>Continue</button>
+		</div>
+		<div class="step step-5">
+			<div class="step-inputs">
+				<div class="input-wrapper">
+				<label>First Name</label>
+				<input name="business_bank_profile[first_name]" type="text">
+				</div>
+
+				<div class="input-wrapper">
+				<label>Last Name</label>
+				<input name="business_bank_profile[last_name]" type="text">
+				</div>
+
+				<div class="input-wrapper">
+				<label>Email</label>
+				<input name="business_bank_profile[email]" type="text">
+				</div>
+
+			</div>
+			<input type="submit" />
+		</div>
+		<input id="score" name="business_bank_profile[score]" type="hidden">
+		<input name="business_bank_profile[referral]" type="hidden" value="<%= params[:referral] if params[:referral] %>">
+	<% end %>
+</div>

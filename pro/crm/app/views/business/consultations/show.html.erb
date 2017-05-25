@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lead:</strong>
+  <%= @consultation.lead %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @consultation.date %>
+</p>
+
+<p>
+  <strong>Cancelled:</strong>
+  <%= @consultation.cancelled %>
+</p>
+
+<p>
+  <strong>No show:</strong>
+  <%= @consultation.no_show %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @consultation.cost %>
+</p>
+
+<%= link_to 'Edit', edit_consultation_path(@consultation) %> |
+<%= link_to 'Back', consultations_path %>

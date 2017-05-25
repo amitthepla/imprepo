@@ -1,0 +1,9 @@
+$("#profile_<%=@lead.id%>").html("<span class='label label-md label-warning'>Request Sent</span>");
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Requested Profile',
+  text: "You have succesfully requested <%=@lead.name%>'s Beauty Profile.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

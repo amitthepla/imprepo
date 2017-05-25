@@ -1,0 +1,271 @@
+<div class="container" style="width:95%">
+  <h1>Organization Settings</h1>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#campaign">Campaign Management</a></li>
+    <li><a data-toggle="tab" href="#staff">Staff</a></li>
+    <li><a data-toggle="tab" href="#workflow">Coordinator Rotation</a></li>
+    <li><a data-toggle="tab" href="#messaging">Message Settings</a></li>
+    <li><a data-toggle="tab" href="#procedures">Procedures</a></li>
+    <li><a data-toggle="tab" href="#email-account">Email Account</a></li>
+    <li><a data-toggle="tab" href="#ringcentral-account">Ringcentral</a></li>
+    <li><a data-toggle="tab" href="#mailchimp-account">Mailchimp</a></li>
+  </ul>
+
+  <div class="tab-content bg-white">
+    <div id="campaign" class="tab-pane fade in active">
+      <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="<%= business_sites_path %>" data-target="#website" data-remote="true">Website Forms</a></li>
+        <li><a data-toggle="tab" href="<%= business_sources_path %>" data-target="#sources" data-remote="true">Campaign Sources</a></li>
+      </ul>
+      <div class="tab-content bg-white">
+        <div id="DEFAULT" class="tab-pane fade in active">
+          <center><h3>Start by selecting Sources or Site Form</h3></center>
+        </div>
+        <div id="website" class="tab-pane fade">
+
+        </div>
+        <div id="sources" class="tab-pane fade">
+
+        </div>
+      </div>
+    </div>
+
+    <div id="messaging" class="tab-pane fade">
+      <h1>Automated Messaging</h1>
+      <br>
+      <ul class="nav nav-tabs">
+        <li><a href="<%=business_email_messages_path%>" data-target="#all_messages" data-remote="true">All Messages</a></li>
+        <li><a href="#auto_message">Message Send Timing</a></li>
+      </ul>
+
+      <div class="tab-content bg-white">
+        <div id="DEFAULT" class="tab-pane fade in active">
+          <center><h3>Start by selecting All Messages or Message Send Timing</h3></center>
+        </div>
+        <div id="auto_message" class="tab-pane fade">
+          <%= render :partial => 'message_setting' %>
+        </div>
+        <div id="all_messages" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-6" id="message-table"></div>
+            <div class="col-md-6">
+              <a href="<%=new_business_email_message_path()%>" data-target="#newMsg" class="btn btn-sm btn-success"  role="button" data-remote="true" data-toggle="modal">New Email Message</a>
+              <div class="modal fade" id="newMsg">
+                <div class="modal-lg">
+                  <div class="modal-content" id="new-msg">
+
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="staff" class="tab-pane fade">
+      <h1>All Staff</h1>
+      <p><%= link_to 'Invite New Staff', new_business_user_path, {:class => 'btn btn-sm btn-default'} %> <%= link_to 'View Current Invites', invites_business_users_path, {:class => 'btn btn-sm btn-default'} %></p>
+      <%= render :partial => 'staff_table' %>
+    </div>
+    <div id="workflow" class="tab-pane fade bg-white">
+      <%= render :partial => 'coordinator_rotation' %>
+    </div>
+
+    <div id="procedures" class="tab-pane fade">
+      <h1>Procedures</h1>
+      <a href="#newProcedure" role="button" data-toggle="modal" class="btn btn-success btn-xs" style="margin-top:10px">New
+        Procedure</a>
+      <a href="#newProduct" role="button" data-toggle="modal" class="btn btn-success btn-xs" style="margin-top:10px">New
+        Product</a>
+      <br><br>
+      <%= render :partial => 'procedure_table' %>
+    </div>
+
+    <div id="email-account" class="tab-pane fade">
+      <h1>Email Account</h1>
+      <% if @current_org.email_account.present? %>
+          <div class="text-left">
+            Following email account has been configured for this organization.
+          </div>
+          <table class="table">
+
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Added On</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td><%= @current_org.email_account.email %></td>
+              <td><%= @current_org.email_account.created_at.strftime('%b %d, %Y') %></td>
+              <td><%= link_to 'Revoke Access', business_revoke_email_path, class: 'btn btn-danger btn-xs', method: :delete %></td>
+            </tr>
+            </tbody>
+          </table>
+      <% else %>
+          <div class="text-left">
+            No email account configured for this organization.
+          </div>
+
+          <div class="row" style="margin-top: 25px;">
+            <div class="col col-md-2">
+              <%= link_to '/auth/notes', title: 'Login with Gmail', class: 'btn btn-success btn-xs' do %>
+                  Add Google Account
+              <% end %>
+            </div>
+          </div>
+
+      <% end %>
+      <br><br>
+    </div>
+
+    <div id="ringcentral-account" class="tab-pane fade">
+      <h1>RingCentral Account</h1>
+      <% if @ringcentral_account.present? %>
+          <div class="text-left">
+            Following ringcentral account has been configured for this organization.
+          </div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Phone Number</th>
+              <th>Added On</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><%= @ringcentral_account.phone %></td>
+              <td><%= @ringcentral_account.created_at.strftime('%b %d, %Y') %></td>
+              <td><%= link_to 'Remove', business_destroy_ringcentral_path, class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure?"} %></td>
+            </tr>
+            </tbody>
+          </table>
+      <% else %>
+          <div class="text-left">
+            No ringcentral account configured for this organization.
+          </div>
+
+          <div class="row" style="margin: 25px 0;">
+            <%= form_for(Business::RingcentralAccount.new, :url => business_create_ringcentral_path, :html => {:class => 'form-inline no-margin'}) do |f| %>
+                <div class="input-group col-md-4">
+                  <label class=" control-label">Access Key</label>
+                  <%= f.text_field :access_key, class: ' form-control', required: true %>
+                </div>
+                <br><br>
+                <div class="input-group col-md-4">
+                  <label class=" control-label">Secret Key</label>
+                  <%= f.text_field :secret_key, class: ' form-control', required: true %>
+                </div>
+                <br><br>
+                <div class="input-group col-md-4">
+                  <label class=" control-label">Phone Number</label>
+                  <%= f.text_field :phone, class: ' form-control', required: true %>
+                </div>
+                <br><br>
+                <div class="input-group col-md-4">
+                  <label class=" control-label">Password</label>
+                  <%= f.password_field :password, class: ' form-control', required: true %>
+                </div>
+                <br><br>
+                <%= f.submit 'Save', class: 'btn btn-sm btn-primary should-load' %>
+            <% end %>
+            <!-- <div class="col col-md-2">
+              <%#= link_to RingCentralClient::RingCentral.new.authorize_url, title: 'Login with Gmail', class: 'btn btn-success btn-xs' do %>
+                   Add Ringcentral Account
+              <%# end %>
+            </div> -->
+          </div>
+
+      <% end %>
+      <br><br>
+    </div>
+    <div id="mailchimp-account" class="tab-pane fade">
+      <h1>Mailchimp Account</h1>
+      <% if @mailchimp_account.present? %>
+          <div class="text-left">
+            Following mailchimp account has been configured for this organization.
+          </div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>API Key</th>
+              <th>Added On</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><%= @mailchimp_account.api_key %></td>
+              <td><%= @mailchimp_account.created_at.strftime('%b %d, %Y') %></td>
+              <td><%= link_to 'Remove', business_destroy_mailchimp_path, class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+            </tbody>
+          </table>
+      <% else %>
+          <div class="text-left">
+            No mailchimp account configured for this organization.
+          </div>
+
+          <div class="row" style="margin: 25px 0;">
+            <%= form_for(Business::MailchimpAccount.new, :url => business_create_mailchimp_path, :html => {:class => 'form-inline no-margin'}) do |f| %>
+                <div class="input-group col-md-4">
+                  <label class=" control-label">Access Key</label>
+                  <%= f.text_field :api_key, class: 'form-control', required: true %>
+                </div>
+                <br><br>
+                <%= f.submit 'Save', class: 'btn btn-sm btn-primary should-load' %>
+            <% end %>
+          </div>
+
+      <% end %>
+      <br><br>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .tab-content > .tab-pane {
+    display: none;
+  }
+
+  .tab-content > .active {
+    display: block;
+  }
+
+  .tab-pane {
+    border: solid 1px #ddd;
+    padding: 20px;
+  }
+  .modal-lg{
+    margin:0 auto;
+    margin-top: 15px;
+  }
+</style>
+<script>
+    $(document).ready(function () {
+        // date picker
+        $('.datepicker').datepicker({
+            format: "mm/dd/yyyy",
+            autoclose: true
+        }).on('changeDate', function (e) {
+            removeErrors(this);
+        });
+
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+
+    function removeErrors(inputNode) {
+        $(inputNode).removeAttr("style");
+        $("#error-text").hide();
+    }
+
+</script>

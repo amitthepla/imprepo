@@ -1,0 +1,24 @@
+<h1>New Role</h1>
+<%= link_to 'Back to All Roles', business_roles_path %>
+<% if @role.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@role.errors.count, "error")%>
+            prohibited this Doc from being saved:
+        </h2>
+        <p>There were problems with the following fields:</p>
+        <ul>
+        <% @role.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+
+<% end %>
+<%= form_for(@role, :html => {:class => ""} ) do |f| %>
+  <%= f.label :name,"Name"  %>
+  <%= f.text_field :name %>
+
+  <%= f.submit "Save Role", :class => "btn" %>
+
+<% end %>

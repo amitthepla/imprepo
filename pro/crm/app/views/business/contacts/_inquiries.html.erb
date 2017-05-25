@@ -1,0 +1,28 @@
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">All Leads</h3>
+		</div>
+		<table class="table table-bordered table-condensed table-hover table-striped">
+			<thead>
+        <tr>
+          <th>Procedure</th>
+          <th>Inquiry Date</th>
+          <th>Current Stage</th>
+          <th>Coordinator</th>
+        </tr>
+			</thead>
+			<tbody>
+        <% @leads.each do |lead| %>
+          <tr>
+            <td><%= link_to confirm_info(lead.interested_in).titleize, lead %></td>
+            <td><%= lead.created_at.strftime('%D') %></td>
+            <td><span class="label label-<%=stage_label(lead.stage)%>"><%= confirm_info(lead.stage).titleize %></span></td>
+            <td><%= confirm_info(lead.user.full_name).titleize %></td>
+          </tr>
+        <% end %>
+			</tbody>
+		</table>
+    <div class="panel-footer"></div>
+	</div><!-- /panel -->
+</div><!-- /.col -->

@@ -1,0 +1,49 @@
+<!-- <p><%#= link_to 'Add New Consult', new_business_event_path, {:class => 'btn'} %></p>
+<div class="column">
+  <div class="column__header">
+    <h1>All Consults</h1>
+  </div>
+  <div class="column__list">
+    <%# @events.each do |event| %>
+      <div class="column__item">
+        <%#= link_to event, event %>
+      </div>
+    <%# end %>
+  </div>
+</div>
+
+<%# if @events.empty? %>
+  <p>No Consults</p>
+<%# end %> -->
+<div class="fr" style="margin-bottom:20px;">
+  Filter :
+  <select onchange="refetch_calendar($(this).val());">
+    <option value="All">All</option>
+    <%@stages.each do |stage|%>
+      <option value="<%=stage.stage_id%>" >  <%=stage.name%></option>
+    <%end%>
+  </select>
+</div>
+
+<div class="cb">
+<div id="calendar"></div>
+<div id="new-event"></div>
+<input id='event-source' type="hidden">
+<div id="eventContent" title="Event Details" class="modal-box">
+  <header>
+    <a href="#" class="js-modal-close close">×</a>
+    <h3><div id="eventTitle"></div></h3>
+  </header>
+  <div class="modal-body">
+    <table>
+      <tr><td>Description:</td><td><div id="eventInfo"></div></td></tr>
+      <tr><td>Start:</td><td><div id="eventStart">fffffffffffffffff</div></td></tr>
+      <tr><td>End:</td><td><div id="eventEnd">eeeeeeeeeeeeeeeee</div></td></tr>
+      <tr><td>Stage:</td><td><div id="eventStage"></div></td></tr>
+      
+    </table>
+  </div>
+  <footer>
+    <a href="#" class="js-modal-close">Close</a>
+  </footer>
+</div>

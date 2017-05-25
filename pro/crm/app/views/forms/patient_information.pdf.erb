@@ -1,0 +1,85 @@
+<style type="text/css">
+h1 {
+  font-size: 1.8em;
+}
+h1 span {
+background-color: #000;
+color: #fff;
+padding: 8px 8px 4px 8px;
+}
+.page-wrapper .left-panel p, .page-wrapper .right-panel p {
+  font-size: 14px;
+}
+.left-panel {
+  float: left;
+  width: 49%;
+  overflow: hidden;
+}
+.right-panel {
+  float: left;
+  width: 49%;
+  overflow: hidden;
+  margin-left: 4px;
+}
+.page-wrapper p, .page-wrapper .left-panel p, .page-wrapper .right-panel p {
+  font-size: 13px;
+  padding-bottom: 0;
+  margin-bottom: 8px;
+}
+</style>
+<div class="page-wrapper">
+  <h1><span>P</span> A T I E N T &nbsp; I N F O R M A T I O N &nbsp; F O R M</h1>
+  <p><strong>*PLEASE TAKE TIME TO COMPLETE AND CORRECT THE FOLLOWING INFORMATION!</strong></p>
+  <div class="left-panel">
+    <p>Name: <strong><%= contact.full_name %></strong></p>
+      <p>Address 1: <strong><%= contact.address %></strong></p> 
+      <p>Address 2: <strong></strong></p>
+        <p>City: <strong><%= contact.city %></strong> State: <strong><%= contact.state %></strong> Zip: <strong><%= contact.zip %></strong></p> 
+      <p>Physician: <strong>Constantino Mendieta, M.D.</strong></p>
+      <p>E-Mail Address: <strong> <%= contact.email %></strong></p>
+    <p>Insurance: Yes ( ) No ( )</p>
+    <br/>
+    <p>Employer. <input type="text" value="<%= contact.employer%>"/></p>
+    <p>Driver's License #: <input type="text" value="<%= contact.driver_license_number %>" /></p>
+    <p>Marital Status: <input type="text" value="<%= contact.marital_status %>" /></p>
+    <p>Emergency Contact: <input type="text" value="<%= "#{contact.emergency_contact_first_name} #{contact.emergency_contact_last_name} - #{contact.emergency_contact_phone} - #{contact.emergency_contact_relationship}" if contact.emergency_contact_first_name %>" /></p>
+    <p>Specific Reason for visit: <input type="text" value="<%= contact.leads.last.interested_in %>" /></p>
+  </div>
+  <div class="right-panel">
+    <p>Birthdate:<strong> <%= contact.dob %></strong></p>
+    <p>Social Security Number:<strong></strong></p>
+    <p>Home Phone: <strong></strong></p>
+    <p>Work Phone: <strong><%= contact.business_phone %></strong></p>
+    <p>Cell Phone: <strong><%= contact.phone %></strong></p>
+    <p>Coordinator: <strong><%= contact.account_rep.full_name if !contact.account_rep.nil? %></strong></p>
+    <p>Chart Number: <strong> <%= contact.external_record_id %></strong></p>
+    <p>Referred by: <strong><%= contact.referral %></strong></p>
+    <p>Occupation: <input type="text" value="<%= contact.occupation %>"/></p>
+    <p>State: <input type="text" value="<%= contact.driver_license_state %>"/></p>
+    <p>Spouse Name: <input type="text"/></p>
+    <p>Phone: <input type="text"/></p>
+  </div>
+  <div style="clear:both"></div>
+ <p>How did you hear about our practice? If more than one referral source applies, please list all:</p>
+
+<p>
+May we send correspondence to the above address? [] Yes [] No 
+</p>
+ <p>Would you like to receive our email newsletter and other special promotions? [] Yes [] No
+</p>
+<p>
+I, __________________________________ represent to the physicians and staff that Iam at
+least 18 (eighteen) years of age or, if not, am accompanied by a legal guardian. Ihereby consent to and authorize examination and treatment by my doctor and such assistant or staff as may be assigned by him/her.
+</p>
+<p>
+"To the best of my knowledge, the information Ihave provided above and on the following page, regarding my medications, past medical history, allergies and smoking history is accurate, complete and honest. Iunderstand that failure to completely disclose this information may be detrimental to my condition and treatment and Iaccept full responsibility for any omissions."
+</p>
+<p>
+I understand that photography is a necessary part of planning and evaluating cosmetic surgery. I authorize that taking of photographs at the direction of (insert field surgeon) and under such conditions as may be approved by (insert field him/her). These photographs will be used solely for documentation purposes and will be kept confidential.
+</p>
+<p>
+A copy of this authorization shall be considered as valid as the original.
+</p>
+<p>SIGNATURE: _______________________________ Date: ______________________</p>
+<p>RELATIONSHIP: (circle one) PATIENT &nbsp; SPOUSE &nbsp; PARENT &nbsp; GUARDIAN</p>
+</div>

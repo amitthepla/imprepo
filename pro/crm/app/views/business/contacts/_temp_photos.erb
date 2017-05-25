@@ -1,0 +1,10 @@
+<% @temp_photos.each do |temp| %>
+    <div id="temp_photo_<%= temp.id %>" style="float: left; margin: 20px 0px;">
+      <%= link_to 'javascript:', :onclick => "deleteTempPhoto('#{temp.id}')", :title => 'Delete', :style => 'margin: -10px 0 0 2px; position:absolute; color:red; font-weight:bold;' do %>
+          <%= image_tag('cross.png') %>
+      <% end %>
+      <%= link_to temp.image.url(:large), :rel => 'group', :class => 'fancybox' do %>
+          <%= image_tag(temp.image.url(:thumb), :alt => 'photo', :style => 'padding: 0 10px;') %>
+      <% end %>
+    </div>
+<% end %>

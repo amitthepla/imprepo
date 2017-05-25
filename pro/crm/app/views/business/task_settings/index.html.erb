@@ -1,0 +1,32 @@
+<div class="tabs__content">
+  <div id="leads" class="tabs__panel">
+    <h1>Task Settings</h1>    
+    <%= link_to 'Add Task Setting', new_business_task_setting_path %>
+    <% @lead_stages.each do |s| %>
+      <h2><%= s.name%></h2>  
+      <% @task_settings = @current_org.task_settings.where(stage: s.name)%>
+      <ol>
+        <% @task_settings.each do |task| %>
+          <li class="card">
+            <div>
+                <div class= "fl" style="width:250px;">Name: <%= task.name %></div>
+                <div class= "fl" style="padding-left:5%;">Auto Create Task: <%= task.auto_create %></div>
+                <div class="fr"><%= link_to 'Edit Task Setting', edit_business_task_setting_path(task), {:class => 'btn'}%>
+                </div>
+            </div>
+            <div class="cb"></div>
+            <div>
+              <div class= "fl" style="width:250px;">Duration: <%= task.duration %> hrs</div>
+              <div class= "fl" style="padding-left:5%;">Auto Email Send: <%= task.auto_email %></div>
+            </div>
+            <div class="cb"></div>
+            <p>Description: <%= task.description %></p>
+          </li>
+        <% end %>
+      </ol>    
+      <% if @task_settings.empty? %>
+        <p>No Task Settings</p>
+      <% end %>
+      <% end %>
+  </div>
+</div>

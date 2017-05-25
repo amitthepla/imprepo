@@ -1,0 +1,165 @@
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"/>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+<% admin = is_admin?(true_user) %>
+
+
+<div class="padding-md">
+  <div class="row">
+
+    <div class="col-md-2 col-sm-3">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading h5">
+            <i class="fa fa-info-circle fa-1x"></i> Patient Information
+          </div>
+          <div class="panel-body">
+            <strong class="font-12"><span class="text-info">Name: </span><%= confirm_info(@contact.full_name) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Email: </span><%= confirm_info(@contact.email).downcase %></strong><br/>
+            <strong class="font-12"><span class="text-info">Phone: </span><%= number_to_phone(@contact.phone) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Date of Birth: </span> <%= @contact.date_of_birth.strftime('%D') if @contact.date_of_birth %></strong><br/>
+            <strong class="font-12"><span class="text-info">Age: </span><%= @contact.age %></strong><br/>
+            <strong class="font-12"><span class="text-info">Bra Size: </span><%= confirm_info(@contact.bra_size) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Weight: </span><%= confirm_info(@contact.weight) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Height: </span><%= confirm_info(@contact.height) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Gender: </span><%= confirm_info(@contact.gender) %></strong><br/>
+            <div class="seperator"></div>
+            <strong class="font-12"><span class="text-info">Patient Coordinator: </span><%= account_rep_contact(@contact) %></strong><br/>
+            <strong class="font-12"><span class="text-info">Patient Inquiries: </span><span class="badge badge-success"><%= @contact.leads.count %></span></strong><br/>
+          </div><!-- /.col -->
+        </div>
+
+        <div class="seperator"></div>
+
+        <center>
+          <a href="/send_beauty_profile/<%=@contact.leads.last.id%>" class='btn btn-sm btn-primary block' data-remote ='true'>Request Beauty Profile</a>
+          <div class="seperator"></div>
+          <%= link_to 'Clone New Lead', clone_lead_path(@contact.leads.last.id), {:class => 'btn btn-sm btn-warning block'} %>
+          <div class="seperator"></div>
+          <%= link_to 'Edit Patient', edit_business_contact_path(@contact), {:class => 'btn btn-sm btn-info block'} %>
+          <div class="seperator"></div>
+          <%= link_to "Send Consult Pack", business_contact_consult_packet_path(@contact, :pdf), class: "btn btn-sm btn-danger block", :target => '_blank' %>
+        </center>
+
+        <div class="seperator"></div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading h5">
+            <i class="fa fa-clock-o fa-1x"></i> Reminders
+          </div>
+          <ul class="list-group">
+            <% unless reminders(@contact).empty? %>
+            <div class="container-fluid">
+              <div class="row">
+                 <div class="col-md-6 text-center"><h6> Due Date</h6></div>
+                 <div class="col-md-6 text-center"> <h6>Lead Stage</h6></div>
+               </div>
+             </div>
+              <%reminders(@contact).each do |task|%>
+                 <%=link_to business_lead_path(task.lead), class:"list-group-item" do %>
+                 <div class="container-fluid">
+                   <div class="row">
+                      <div class="col-md-6 text-center"><i class="fa fa-clock-o" aria-hidden="true"></i> <%=task.due_date.strftime("%D")%></div>
+                      <div style="border-left: solid #E6E6E6 1px;" class="col-md-6 text-center"><span class="label label-<%=stage_label(task.lead.stage)%>"> <%= confirm_info(task.lead.stage).titleize %></span></div>
+                    </div>
+                  </div>
+                 <%end%>
+              <% end%>
+            <%else%>
+              <a class="list-group-item">No Reminders</a>
+            <% end %>
+           </ul>
+           <div class="panel-footer"></div>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.col -->
+
+    <div class="col-md-10 col-sm-9">
+      <ul class="tab-bar grey-tab">
+
+        <li class="active">
+          <a href="#overview" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-home fa-2x"></i>
+            </span>
+            Overview
+          </a>
+        </li>
+
+        <!-- <li>
+          <a href="#profile" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-smile-o fa-2x"></i>
+            </span>
+            Profile
+          </a>
+        </li> -->
+
+        <li>
+          <a href="#communication" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-comments fa-2x"></i>
+            </span>
+            Communication
+          </a>
+        </li>
+
+        <li>
+          <a href="#medical" data-toggle="tab">
+            <span class="block text-center">
+              <i class="fa fa-medkit fa-2x"></i>
+            </span>
+            Medical
+          </a>
+        </li>
+      </ul>
+      <br>
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="overview">
+          <div class="container-fluid">
+            <div class="row">
+              <%= render partial: 'inquiries' %>
+              <%= render partial: 'converted_inquiries' %>
+            </div>
+          </div>
+        </div>
+
+        <div id="profile" class="tab-pane fade">
+          <%= render partial: 'profile_info'%>
+        </div>
+
+        <div id="communication" class="tab-pane fade">
+          <%= render partial: 'communication'%>
+        </div>
+
+        <div id="injection-procedures" class="tab-pane fade">
+          <%= render partial: 'injection_procedure' %>
+        </div>
+
+        <div id="medical" class="tab-pane fade">
+          <%= render partial: 'medical_info' %>
+        </div>
+
+
+        <% if admin %>
+        <div id="debug" class="tab-pane fade">
+          <div class="col-md-12">
+            <div class="panel fadeInUp animation-delay2 panel-default">
+              <div class="panel-heading"><i class="fa fa-bug fa-1x"></i> Debug</div>
+              <div class="panel-body">
+                <h2>Debug Informaton</h2>
+                <p>Search Keys: <%= @contact.search_keys %></p>
+                <p>Public Token: <%= @contact.public_token %></p>
+                <p>Questionnaire Sent: <%= @contact.questionnaire.questionnaire_sent? ? 'Yes' : 'No' %></p>
+                <p>Questionnaire Viewed: <%= @contact.questionnaire.questionnaire_viewed? ? 'Yes' : 'No' %></p>
+                <p>Questionnaire Filled Out: <%= @contact.questionnaire.questionnaire_filled? ? 'Yes' : 'No' %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+
+        </div>
+      </div><!-- /tab1 -->
+    </div>
+  </div>

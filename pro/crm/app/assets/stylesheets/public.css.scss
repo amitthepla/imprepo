@@ -1,0 +1,422 @@
+/*
+  *= require bootstrap
+  *= require font-awesome.min
+  *= require endless
+  *= require datepicker
+  *= require bootstrap-slider
+*/
+
+// Place all the styles related to the public controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// @import 'normalize';
+//
+// *, *:before, *:after {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+//
+// body {
+//   background-color: #ecf0f1;
+// }
+// .digg_pagination {
+//   background: white;
+//   cursor: default;
+//   /* self-clearing method: */ }
+//   .digg_pagination a, .digg_pagination span, .digg_pagination em {
+//     padding: 0.2em 0.5em;
+//     display: block;
+//     float: left;
+//     margin-right: 1px; }
+//   .digg_pagination .disabled {
+//     color: #999999;
+//     border: 1px solid #dddddd; }
+//   .digg_pagination .current {
+//     font-style: normal;
+//     font-weight: bold;
+//     background: #2e6ab1;
+//     color: white;
+//     border: 1px solid #2e6ab1; }
+//   .digg_pagination a {
+//     text-decoration: none;
+//     color: #105cb6;
+//     border: 1px solid #9aafe5; }
+//     .digg_pagination a:hover, .digg_pagination a:focus {
+//       color: #000033;
+//       border-color: #000033; }
+//   .digg_pagination .page_info {
+//     background: #2e6ab1;
+//     color: white;
+//     padding: 0.4em 0.6em;
+//     width: 22em;
+//     margin-bottom: 0.3em;
+//     text-align: center; }
+//     .digg_pagination .page_info b {
+//       color: #000033;
+//       background: #6aa6ed;
+//       padding: 0.1em 0.25em; }
+//   .digg_pagination:after {
+//     content: ".";
+//     display: block;
+//     height: 0;
+//     clear: both;
+//     visibility: hidden; }
+//   * html .digg_pagination {
+//     height: 1%; }
+//   *:first-child + html .digg_pagination {
+//     overflow: hidden; }
+//
+// .pagination {
+//   padding:5px;
+//   margin: 5px;
+// }
+// .sign-in-wrapper {
+//   width: 488px;
+//   margin: 100px auto;
+//   padding: 50px;
+//   border-radius: 4px;
+//   background-color: #fff;
+//   box-shadow: 0 1px 2px rgba(38,21,92,1);
+//
+//   & > div {
+//     display: inline-block;
+//     vertical-align: top;
+//   }
+// }
+//
+// .sign-in-form {
+//   height: 363px;
+//   padding: 34px;
+//
+//   h3 {
+//     font-size: 24px;
+//     color: #28272C;
+//     text-align: center;
+//   }
+//
+//   input[type="text"],
+//   input[type="password"] {
+//     height: 44px;
+//     width: 315px;
+//     padding: 15px;
+//     border: 1px solid #979797;
+//     border-radius: 2px;
+//     margin-bottom: 30px;
+//   }
+//
+//   input[type="submit"] {
+//     padding: 10px 20px;
+//     float: right;
+//
+//     &:hover {
+//       opacity: 0.7;
+//     }
+//   }
+//   ::-webkit-input-placeholder { /* WebKit browsers */
+//       color:    #7B7979;
+//   }
+//   :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+//       color:    #7B7979;
+//       opacity:  1;
+//   }
+//   ::-moz-placeholder { /* Mozilla Firefox 19+ */
+//       color:    #7B7979;
+//       opacity:  1;
+//   }
+//   :-ms-input-placeholder { /* Internet Explorer 10+ */
+//       color:    #7B7979;
+//   }
+// }
+//
+// .step {
+//   position: relative;
+//   padding: 40px 40px 75px 40px;
+//   min-height: 400px;
+//   overflow: hidden;
+//   display: none;
+//
+//   .input-wrapper {
+//     margin: 6px;
+//   }
+// }
+// .step button,
+// .step input[type="submit"] {
+//     position: absolute;
+//     bottom: 35px;
+//     right: 40px;
+//   }
+// button,
+// input[type="submit"],
+// .btn {
+//   display: inline-block;
+//   padding: 10px 20px;
+//   margin-bottom: 0;
+//   margin-top: 5px;
+//   font-size: 14px;
+//   font-weight: 400;
+//   line-height: 1.42857143;
+//   text-align: center;
+//   white-space: nowrap;
+//   vertical-align: middle;
+//   -ms-touch-action: manipulation;
+//   touch-action: manipulation;
+//   cursor: pointer;
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   -ms-user-select: none;
+//   user-select: none;
+//   background-image: none;
+//   border: 1px solid transparent;
+//   border-radius: 2px;
+//   background-color: #16a085;
+//   color: #fff;
+//   text-decoration: none;
+//   -webkit-transition: all .2s;
+//   &:hover {
+//     opacity: 0.7;
+//   }
+// }
+// .step.is-active {
+//   display: block;
+// }
+//
+// .step-inputs,
+// .step-description {
+//     float: left;
+// }
+// .step-inputs {
+//     width: 55%;
+//     border-right: 1px solid #ddd;
+//     &.step-full-length {
+//       width: auto;
+//       border: none;
+//     }
+// }
+// .step-description {
+//   width: 45%;
+//   padding-left: 60px;
+// }
+//
+// .step-intro {
+//   text-align: center;
+//
+// }
+//
+// .consultation {
+//   .step-inputs {
+//     float: none;
+//     width: auto;
+//     border: none;
+//   }
+//   .input-wrapper {
+//     select {
+//       min-width: 197px;
+//     }
+//     input {
+//       width: 197px;
+//     }
+//   }
+//   .step-2 {
+//     .input-wrapper {
+//       select {
+//         width: 186px;
+//       }
+//     }
+//   }
+//   select + select {
+//     margin-left: 13px;
+//   }
+// }
+//
+// //Forms
+// .input-wrapper {
+//   display: inline-block;
+//   position: relative;
+//   label {
+//     position: absolute;
+//     top: 8px;
+//     font-size: 11px;
+//     left: 12px;
+//     color: #ACACAC;
+//     text-transform: uppercase;
+//   }
+//   input,
+//   select,
+//   textarea {
+//     width: auto;
+//     height: auto;
+//     margin: 0;
+//     border-radius: 0;
+//     -webkit-appearance: none;
+//     padding: 25px 10px 5px 10px;
+//     font-size: 16px;
+//     color: #555;
+//     background-color: #fff;
+//     border: 1px solid #999;
+//     &:focus,
+//     &:active {
+//       background-color: #DDEBF8;
+//       border-color: #A2B1C0;
+//       outline: none;
+//     }
+//   }
+//   select {
+//     min-width: 225px;
+//   }
+//   textarea {
+//     width: 410px;
+//     height: 125px;
+//     padding-top: 45px;
+//   }
+// }
+//
+// .form-wrapper {
+//   width: 960px;
+//   margin: 180px auto;
+//   background-color: #fff;
+//   overflow: hidden;
+//   border: 1px solid #D8D8D8;
+//   color: #4F4F4F;
+//
+//   header {
+//     background-color: #2c3e50;
+//     padding: 10px 25px;
+//     color: #fff;
+//     font-size: 1.5em;
+//   }
+//   .logo img {
+//     max-width: 30%;
+//     vertical-align: middle;
+//   }
+// }
+//
+// .sub-heading {
+//   border-bottom: 1px solid #eee;
+// }
+// .step-process {
+//   height: 8px;
+//   background-color: #16a085;
+//   width: 15%;
+// }
+// .step-title {
+//   padding: 0;
+//   margin: 0;
+//   list-style-type: none;
+//   font-size:0;
+//   li {
+//     vertical-align: top;
+//     width: 14.285714286%;
+//     text-align: center;
+//     display: inline-block;
+//     font-size: 12px;
+//     padding: 10px;
+//     color: #aaa;
+//     p {
+//       margin-bottom: 0;
+//     }
+//     &.is-active {
+//       color: #333;
+//       font-weight: 600;
+//     }
+//   }
+// }
+// .silicon-form .step-title {
+//   li {
+//     width: 12.5%;
+//   }
+// }
+// .step-intro {
+//   h1 {
+//     margin: 45px 0 60px 0;
+//   }
+// }
+// .step-1 {
+//   .input-wrapper {
+//   }
+// }
+// .step-2,
+// .step-5,
+// .step-6 {
+//   .input-wrapper {
+//     select {
+//       width: 410px;
+//     }
+//   }
+// }
+// .step-2 {
+//   small {
+//     display: block;
+//     margin-top: 75px;
+//     opacity: 0.7;
+//   }
+// }
+// .step-3 {
+//   .input-wrapper {
+//     select[data="dob-month"] {
+//       min-width: inherit;
+//       width: 125px;
+//     }
+//     input[data="dob-day"],
+//     input[data="dob-year"] {
+//       width: 75px;
+//     }
+//   }
+// }
+//
+// .form-wrapper {
+// blockquote {
+//   font-style: italic;
+//   font-size: 20px;
+//   color: #B2B1B1;
+//   line-height: 1.5;
+// }
+// }
+//
+// .thank_you,.calendar {
+//   .form-wrapper {
+//     div {
+//       padding: 50px;
+//       text-align: center;
+//     }
+//   }
+// }
+//
+//
+//
+//
+// .alt-form-wrapper {
+//   width: 450px;
+//   & > div {
+//     padding: 20px;
+//   }
+//   .input-wrapper {
+//     margin: 4px;
+//   }
+//   .btn {
+//     float: right;
+//     margin: 20px 5px 20px 0;
+//   }
+// }
+//
+// .questionnaire .logo {
+//   img {
+//     width: 20%;
+//   }
+// }
+//
+// .bank_profile {
+//   .step-title li {
+//     width: 20%;
+//   }
+//   .step-inputs {
+//     width: auto;
+//     border: none;
+//   }
+//   .form-input {
+//     margin-bottom: 20px;
+//     label {
+//       margin-left: 20px;
+//     }
+//   }
+// }

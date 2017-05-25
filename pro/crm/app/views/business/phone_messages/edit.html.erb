@@ -1,0 +1,15 @@
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">Edit Message</div>
+    <div class="panel-body">
+      <%= form_for(@phone_message, :html => {:class => "form-group"} ) do |f| %>
+
+      <%= render :partial => 'form', :locals => { :f => f } %>
+
+      <div class="panel-footer">
+        <%= f.submit "Update Message", :class => "btn btn-sm btn-success" %>
+      </div>
+    </div>
+  </div><!-- /panel -->
+</div><!-- /.col -->
+<% end %>

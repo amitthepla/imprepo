@@ -1,0 +1,15 @@
+$("#message-table").html(
+  "<%= j render(partial: 'index')%>"
+);
+
+$('.modal').modal('hide')
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Created Message',
+  text: "You have succesfully created a new email message.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

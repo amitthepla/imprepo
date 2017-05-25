@@ -1,0 +1,26 @@
+<table class="table table-striped" id="responsiveTable" style="margin-bottom: 60px;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Procedure</th>
+      <th>Date</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@surgeries.each do |sx| %>
+    <tr>
+      <td><%= link_to sx.lead.name, business_lead_path(sx.lead), class: "should-load"  %></td>
+      <td><%= sx.procedure %></td>
+      <td><%= sx.date.strftime('%D') %></td>
+      <td><%= number_to_currency(sx.cost) %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <%= will_paginate @leads, renderer: BootstrapPaginationHelper::LinkRenderer %>
+  </ul>
+</nav>

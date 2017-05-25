@@ -1,0 +1,36 @@
+<h1>Task Setting</h1>
+<div class="card">
+<%= form_tag business_task_setting_path, :html => {:class => ".form-horizontal"}  do  %>
+    <div >
+		<table class="tbl-role">
+    		<tr>
+    			<td class="left-td"><span class="hdr">Task Type</span></td>
+    			<td>
+		
+					<%=radio_button_tag :task_setting,"universal",false ,:id=>"type_universal"%><label for="type_universal"> Universally</label>
+					<%=radio_button_tag :task_setting,"local",false,:id=>"type_local" %><label for="type_local"> Locally</label>
+		 		</td>
+		 		<td></td>
+			</tr> 
+		</table>   
+	</div>
+	<span class="hdr">Deal Stages</span>
+	<table class="tbl-role">
+    	
+	<%@deal_stages.each do |deal_stage|%>
+		<tr>
+			<td><%=deal_stage.name%></td>
+			<td>
+				<%= check_box_tag "task_type[]" ,"first_call",  ,:id=>"first_call"%><label for='first_call'> First Call</label>
+				<%= check_box_tag "task_type[]" ,"second",  ,:id=>"second_call"%><label for='second_call'> Second Call</label>
+			</td>
+
+
+    	</tr>
+    <% end %>
+    </table>
+	
+    <input type="submit" value="Save Task Setting" class = "btn btn-primary">
+	
+<% end %>
+</div>

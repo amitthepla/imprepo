@@ -1,0 +1,22 @@
+<div class="form-wrapper">
+	<header> <a href="#" class="logo"><%= image_tag("logo_white.png", alt: "4Beauty Aesthetics") %></a></header>
+	<div>
+		<h3>Hi <%= @contact.first_name.titleize %>, these are some upcoming dates that I have available for consultations:</h3>
+		<%= form_tag(calendar_submission_path) do %>
+		<select name="selected_date">
+		<% upcoming = DateTime.now.next_week.next_day(3) + 7.days %>
+		<% (0..182).step(7) do |n| %>
+			<option value="<%= (upcoming + n.days) %>"><%= (upcoming + n.days).strftime("%A, %B %d, %Y") %></option>
+		<% end %>
+		</select>
+		<select name="selected_timeframe">
+			<option value="Morning">Morning</option>
+			<option value="Afternoon">Afternoon</option>
+		</select>
+		<br/>
+		<br/>
+		<input type="hidden" value="<%= params[:token] %>" name="token">
+		<input type="submit" class="btn" value="Request this day">
+		<% end %>
+	</div>
+</div>

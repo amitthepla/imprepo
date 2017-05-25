@@ -1,0 +1,217 @@
+<%= form_for(@lead, :html => {:class => ""} ) do |f| %>
+<div class="panel-default panel col-md-7">
+  <div class="panel-heading"><h3>Lead Details</h3></div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :stage,"Stage"  %>
+      <%= f.select(:stage,options_from_collection_for_select(@current_org.stages.where(type: 'lead'),:stage_id,:name, @lead.stage),{:include_blank => ''}, class: 'chzn-select form-control') %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :source,"Source"  %>
+      <%= f.select :source,options_from_collection_for_select(@current_org.sources,:id,:name, (f.object.source.nil? ? '' : f.object.source.id)),{:include_blank => 'Source'}, class: 'chzn-select form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :referral,"Referral"  %>
+      <%= f.text_field :referral ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :user,"Sales Coordinator"  %>
+      <%= f.select(:user,options_from_collection_for_select(@sales_coordinators,:id,:full_name, (f.object.user.nil? ? '' : f.object.user.id)), {:include_blank => 'Coordinator'}, class: 'chzn-select form-control') %>
+    </div>
+  </div>
+</div>
+
+<div class="panel-default panel col-md-7">
+  <div class="panel-heading"><h3>Personal</h3></div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :first_name,"First Name"  %>
+      <%= f.text_field :first_name ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name,"Last Name"  %>
+      <%= f.text_field :last_name ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email,"Email"  %>
+      <%= f.text_field :email ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone,"Phone"  %>
+      <%= f.text_field :phone ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :note,"Note"  %>
+      <%= f.text_field :note ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address,"Address"  %>
+      <%= f.text_field :address ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :city,"City"  %>
+      <%= f.text_field :city ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :state,"State"  %>
+      <%= f.text_field :state ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :zip,"Zip"  %>
+      <%= f.text_field :zip ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bra_size,"Bra Size"  %>
+      <%= f.text_field :bra_size ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :weight,"Weight"  %>
+      <%= f.text_field :weight ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :height,"Height"  %>
+      <%= f.text_field :height ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <label class=" control-label">Date of Birth</label>
+      <div class="input-group">
+        <input name="business_lead[date_of_birth]" type="text" value="<%= @lead.date_of_birth.present? ? @lead.date_of_birth.strftime('%m/%d/%Y') : " " %>" class="datepicker form-control">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-default panel col-md-7">
+  <div class="panel-heading"><h3>Medical</h3></div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :medications,"Medication(s)"  %>
+      <%= f.text_field :medications ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :medical_conditions,"Medical Condition(s)"  %>
+      <%= f.text_field :medical_conditions ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :surgical_history,"Surgical History"  %>
+      <%= f.text_field :surgical_history ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :allergies,"Allergies"  %>
+      <%= f.text_field :allergies ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :smoker,"Smoker"  %>
+      <%= f.text_field :smoker ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :children,"Children"  %>
+      <%= f.text_field :children ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_pregnancy_date,"Last Pregnancy Date"  %>
+      <%= f.text_field :last_pregnancy_date ,class: "form-control"%>
+    </div>
+  </div>
+</div>
+
+<div class="panel-default panel col-md-7">
+  <div class="panel-heading"><h3>Financing</h3></div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :financing,"Financing"  %>
+      <%= f.text_field :financing ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :budget,"Budget"  %>
+      <%= f.text_field :budget ,class: "form-control"%>
+    </div>
+  </div>
+</div>
+
+<div class="panel-default panel col-md-7">
+  <div class="panel-heading"><h3>Procedure</h3></div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :interested_in,"First Procedure of Interest"  %>
+      <%= f.select :interested_in,options_for_select(@current_org.procedures.map{|proc| [proc.name ,proc.slug_value]},@lead.interested_in),{:selected=>@lead.interested_in,:include_blank => " "}, {class: 'chzn-select form-control', id: 'interested_in'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :second_interest,"Second Procedure of Interest"  %>
+      <%= f.select :second_interest, options_for_select(@current_org.procedures.map{|proc| [proc.name,proc.slug_value]}, @lead.second_interest), {:selected=>@lead.second_interest,:include_blank => " "}, {class: 'chzn-select form-control',id: 'second_interest'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :interest_level,"Interest Level"  %>
+      <%= f.text_field :interest_level ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :motivation,"Motivation"  %>
+      <%= f.text_field :motivation ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :expectations,"Expectations"  %>
+      <%= f.text_field :expectations ,class: "form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :extra_questions,"Extra Questions"  %>
+      <%= f.text_field :extra_questions ,class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :consultation_date,"Consultation Date"  %><br>
+      <%= f.date_field :consultation_date%>
+    </div>
+    <div class="form-group">
+      <%= f.label :procedure_date,"Procedure Date"  %><br>
+      <%= f.date_field :procedure_date %>
+    </div>
+    <div class="form-group">
+      <%= f.label :surgery_cost,"Cost of Booked Surgery"  %>
+      <%= f.text_field :surgery_cost ,class: "form-control" %>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <%= f.submit "Update Lead", :class => "btn btn-sm btn-success" %>
+    <% if true_user.is_super_admin? %>
+    <%= link_to 'Delete Lead',  @lead,  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %>
+    <% end %>
+  </div>
+</div>
+
+<% end %>
+<br>
+<br>
+
+<style>
+.form-group{
+  width: 49%;
+  display: inline-block;;
+}
+</style>

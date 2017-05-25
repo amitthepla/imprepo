@@ -1,0 +1,179 @@
+<div class="chat-outer">
+  <div class="row margin-0">
+    <div class="col-lg-12 pad-0">
+      <div class="chat-wrapper">
+        <div class="col-lg-4 lft-panel pad-0">
+          <div class="admin-section">
+            <div class="admin-section-inner">
+								<span class="admin-pf-img">
+                  <%= image_tag 'chat/man.png', width: '30', height: '30' %>
+								</span>
+              <strong><%= @current_account.first_name %> <%= @current_account.last_name %></strong>
+            </div>
+          </div>
+          <div class="search-section relative">
+            <input id="search-users" type="search" placeholder="Search Users" onkeyup="searchUsers(event, 'chat-people');">
+          </div>
+          <div class="tab-section">
+            <ul>
+              <li id="all-tab" class="li-tabs active" onclick="displaymembers(this);">All</li>
+              <li id="group-tab" class="li-tabs" onclick="displaymembers(this);">Groups</li>
+            </ul>
+          </div>
+
+          <div id="chat-people" class="online-people chat-people">
+            <%= render partial: 'shared/chat_member' %>
+          </div>
+
+        </div>
+        <div class="col-lg-8 rht-panel pad-0">
+          <div class="minimize-close">
+
+
+            <div class="top-header-pf-name row">
+
+              <div id="chat-header" class="col-sm-7">
+                <div class="top-header-pf-fname"></div>
+              </div>
+
+              <div class="col-sm-3" id="ctrl-btns"></div>
+
+              <div class="col-sm-2 text-right" id="chat-header">
+                <span onclick="closeChat();">
+                  <img width="10" height="10" src="/assets/chat/cancel.png" alt="Cancel">
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="list-section">
+            <div class="row auto-margin" style="">
+              <div class="col-sm-10">
+                <div id="sample-group-members"></div>
+              </div>
+              <div class="col-sm-2">
+                <span id="btn-create-group" title="Create Group">
+                  <img width="30" height="30" src="/assets/chat/group.png" onclick="showGroupChatPopup();" alt="Group">
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="chat-body" class="chat-body" style="display: block">
+            <div class="chat-loader"></div>
+            <div id="chat-messages" class="chat-messages" data-uuid="">
+              <div id="default-chat-div" class="default-chat-div">
+                <p>Welcome to CRM4Beauty Chat</p>
+                <p>Click on a member to start conversation</p>
+              </div>
+            </div>
+            <div class="send-message" style="display:none;">
+              <textarea id="message-text" placeholder="Type your message here" onkeypress="return sendMessageText(event);" style="width:70%;"></textarea>
+              <div id="upload-chat">
+                <label for="upload-photo" class="upload-clk">
+                  <span class="chat-file" onclick="$('#fileupload').click();"></span>
+                </label>
+                <form action="" enctype="multipart/form-data" method="post" id="form-chat-file" style="display:none">
+                  <input id="fileupload" type="file" name="attachment" style="visibility:hidden;"></form>
+              </div>
+              <a href="javascript:" id="send-message" class="send-btn" data-channel="" data-uuid="" data-msgType="" onclick="sendMessage(this);">Send</a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="groupPopup">
+          <input id="group-members" type="hidden" value=""/>
+          <div class="groupItemsListing">
+            <div class="search-section relative">
+              <input type="search" placeholder="Search Users" class="member-search" onkeyup="searchUsers(event, 'group-people');">
+            </div>
+
+            <div class="online-people group-people">
+              <ul>
+                <% @collection.each do |item| %>
+                    <li class="individual" style="cursor: pointer" data-channel="<%= item[:id] %>" onclick="addToNewGroupMembers(this);">
+                      <div class="pf-letter relative">
+                        <span class="bg-rnd-npf bgrnd-clr-<%= (0..9).to_a.sample %>"><%= item[:full_name].first.upcase %></span>
+                      </div>
+                      <div class="pf-name"><%= item[:full_name] %></div>
+                      <span><i id="chk_<%= item[:id] %>" class="pull-right chk-group-member fa fa-lg"></i></span>
+                    </li>
+                <%- end %>
+              </ul>
+            </div>
+
+          </div>
+          <div class="groupFooter text-center">
+            <button onclick="createGroup();" id="create-group" class="btn cmn_size btn_cmn_efect cmn_bg btn-info btn-fixed-width" disabled="disabled">Create
+              Group
+            </button>
+            <button onclick="discardChanges();" class="btn btn-default btn-fixed-width">Cancel</button>
+          </div>
+        </div>
+
+        <div class="group-members-popup">
+          <div class="groupItemsListing">
+            <div id="all-group-members" class="online-people group-people"></div>
+          </div>
+          <div class="groupFooter text-center">
+            <button onclick="$('.group-members-popup').hide();" class="btn btn-default btn-fixed-width">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="file_content"></div>
+
+<script type="text/javascript">
+  var isValidFile = true;
+  var maxUploadFileSize = <%= ENV['MAX_CHAT_UPLOAD_FILE_SIZE'].present? ? ENV['MAX_CHAT_UPLOAD_FILE_SIZE'].to_i : 10485760 %>;
+
+  $(function () {
+    $("#fileupload").fileupload({
+      dataType: 'json',
+      url: "/upload_attachment",
+      change: function (e, data) {
+        $.each(data.files, function (index, file) {
+          isValidFile = (file.size < maxUploadFileSize);
+        });
+      },
+      add: function (e, data) {
+        if (isValidFile) {
+          var chatBody = $("#chat-messages");
+          chatBody.append(generateLoaderHtml(e.timeStamp));
+          chatBody.animate({scrollTop: chatBody.prop("scrollHeight")}, 1000);
+          var jqXHR = data.submit()
+              .success(function (result, textStatus, jqXHR) {
+                $("#loader-html-" + e.timeStamp).remove();
+                sendAttachment(result);
+              })
+              .error(function (result) {
+                //  Handle error event
+                $("#loader-html-" + e.timeStamp).find(".reciver").html("Failed to send the uploaded file. Please try again.");
+              })
+        }
+        else {
+          alert("Maximum allowed file size is " + formatBytes(maxUploadFileSize, 2));
+        }
+      }
+    });
+
+    function generateLoaderHtml(timeStamp) {
+      return "<div class='sender-part' id='loader-html-" + timeStamp + "'>\
+        <div class='pull-left reciver'>\
+          <div class='text-center'>\
+            <i class='fa fa-refresh fa-3x fa-spin'></i>\
+          </div>\
+        </div>\
+        <div class='pull-right pf-image'>\
+          <img src='/images/man.png'>\
+        </div>\
+        <div class='clearfix'></div>\
+      </div>";
+    }
+  });
+</script>

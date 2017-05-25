@@ -1,0 +1,25 @@
+$('.modal').modal('hide')
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+<% if @status == true %>
+  // $("#<%=@stage.stage_id%>").html(
+  //   "<%= j render(partial: 'leads_listing')%>"
+  // );
+  $.gritter.add({
+    title: '<i class="fa fa-check-circle"></i> Successfully Booked Consult',
+    text: "You have succesfully booked <%=@lead.name%>'s consultation.",
+    sticky: false,
+    time: '5000',
+    class_name: 'gritter-success'
+  });
+<% else%>
+  $.gritter.add({
+    title: '<i class="fa fa-exclamation-triangle"></i> Error Booking Consult',
+    text: "Unable to book <%=@lead.name%>'s consultation. <%= @errors %>",
+    sticky: false,
+    time: '5000',
+    class_name: 'gritter-danger'
+  });
+
+<%end%>

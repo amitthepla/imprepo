@@ -1,0 +1,290 @@
+// Place all the styles related to the business/dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .dashboard{
+// 	  height: 100%;
+//   min-height: 100%;
+//   overflow: hidden;
+//   cursor: -webkit-grab;
+// 	.wrapper {
+// 	  height: 100%;
+// 	  width: 100%;
+// 	  overflow: hidden;
+// 	}
+// 	.widget-display {
+// 		width: 100%;
+// 		height: 65%;
+// 		position: absolute;
+// 		top: 65px;
+// 		left: 8px;
+// 		z-index: 1;
+// 	  &.loading {
+// 	    background-color: rgba(0,0,0,0.5);
+// 	  }
+// 	  &.loading:after {
+// 	    content: 'Loading...';
+// 	    display: block;
+// 	    position: absolute;
+// 	    top: 50%;
+// 	    left: 50%;
+// 	    width: 50px;
+// 	    height: 50px;
+// 	    color: #fff;
+// 	  }
+// 	}
+// 	.widget-chart {
+// 	  min-width: 70%;
+// 	  display: inline-block;
+// 	  height: 90%;
+// 	  margin: 20px 0 0 25px;
+// 	  vertical-align: top;
+// 	  background-color: #fff;
+// 	}
+// 	.widget-stats {
+// 	  width: 25%;
+// 	  display: inline-block;
+// 	  height: 80%;
+// 	  .widget-stats-wrapper {
+// 	    padding-left: 25px;
+// 	    margin: 20px 0 0 0;
+// 	    & > li {
+// 	      list-style-type: none;
+// 	      width: 100%;
+// 	      min-height: 150px;
+// 	      background-color: #fff;
+// 	      margin: 10px 0;
+// 	      padding: 15px;
+// 	      color: #868686;
+// 	      & ul > li {
+// 	      	list-style-type: none;
+// 	      	margin-left: -60px;
+// 	      	& span {
+// 	      		font-size: 55px;
+//
+// 	      	}
+// 	      }
+// 	    }
+//
+// 	  }
+// 	}
+// 	.drop-zone {
+// 	  width: 100%;
+// 	  height: 70%;
+// 	  position: relative;
+// 	  z-index: 10;
+// 	  pointer-events: none;
+// 	  &.ui-state-hover {
+// 	    background-color:rgba(255,255,255,0.7);
+// 	    &:after {
+// 	      content: 'Drop Widget';
+// 	      display: block;
+// 	      position: absolute;
+// 	      top: 50%;
+// 	      left: 50%;
+// 	      width: 150px;
+// 	      height: 150px;
+// 	      color: #444;
+// 	    }
+// 	  }
+// 	}
+// 	.widget-list {
+// 	  height: 30%;
+// 	  ul {
+// 	    padding: 0;
+// 	    list-style: none;
+// 	  }
+// 	  li {
+// 	    display: inline-block;
+// 	    background-color: #fff;
+// 	    width: 300px;
+// 	    margin: 0 15px;
+// 	    position: relative;
+// 	    text-align: center;
+// 	    border-radius: 2px;
+// 	    border: 1px solid #ccc;
+// 	    color: #868686;
+// 	    overflow: hidden;
+// 	    box-shadow: 0 2px 0 rgba(172, 172, 172, 0.4);
+// 	    &.facebook-widget {
+// 	      background-color: #3b5998;
+// 	      color: #fff;
+// 	      .pep {
+// 	      	color: #fff;
+// 	      }
+// 	    }
+// 	    &.twitter-widget {
+// 	      background-color: #55acee;
+// 	      color: #fff;
+// 	      .pep {
+// 	      	color: #fff;
+// 	      }
+// 	    }
+// 	    p {
+// 	    	margin: 5px 0;
+// 	    }
+// 	  }
+// 	}
+// 	    .pep {
+// 	      width: 300px;
+// 	      height: 150px;
+// 	      z-index: 100;
+// 	      color: #868686;
+// 	      text-align: center;
+// 	    }
+//
+//
+//
+//
+// 	    .panel {
+// 	      display: none;
+// 	      height: 100%;
+// 	      &.is-active {
+// 	        display: block;
+// 	      }
+// 	    }
+//
+// 	    .js-counter {
+// 	      font-size: 72px;
+// 	      display: block;
+// 	      text-align: center;
+// 	    }
+// 	    [data-format="currency"]:before {
+// 	      content: '$';
+// 	    }
+//
+// 	.performance-stat {
+// 	  font-size: 72px;
+// 	  display: block;
+// 	  text-align: center;
+// 	    &.negative {
+// 	      color: #B10000;
+// 	    }
+// 	    &.positive {
+// 	      color: #00B116;
+// 	    }
+// 	  .iconic[data-glyph]:before {
+// 	    font-size: 50px;
+// 	    vertical-align: middle;
+// 	    padding-top: 0px;
+// 	  }
+// 	}
+//
+// 	.iconic[data-glyph]:before {
+// 	  font-size: 72px;
+// 	  vertical-align: top;
+// 	  padding-top: 32px;
+// 	}
+//
+// 	.btn-hidden {
+// 	  position: absolute;
+// 	  z-index: 10000;
+// 	  background: none;
+// 	  border: 1px solid #fff;
+// 	  border-radius: 3px;
+// 	  color: #fff;
+// 	  right: 0;
+// 	  top: 10px;
+// 	  opacity: 0;
+// 	}
+//
+// 	.ui-draggable-dragging {
+// 	  cursor: -webkit-grabbing;
+// 	}
+// }
+// body.is-fullscreen .page-header,
+// body.is-fullscreen .l-sidebar,
+// body.is-fullscreen .l-header {
+//     display: none;
+// }
+// body.is-fullscreen .l-main,
+// body.is-fullscreen .page-content {
+//     margin: 0;
+// }
+// body.is-fullscreen .btn-hidden {
+//     opacity: 0;
+// }
+//
+// .pep.ui-draggable-dragging {
+//   width: 300px;
+//   height: 150px;
+//   background-color: #fff;
+//   z-index: 100;
+//   color: #868686;
+//   opacity: 0.7;
+//   text-align: center;
+//  	.iconic[data-glyph]:before {
+// 	  font-size: 72px;
+// 	  vertical-align: top;
+// 	  padding-top: 32px;
+// 	}
+// }
+//
+// #pinPanel {
+// 	display: none;
+// 	width: 100%;
+// 	height: 100%;
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: 100;
+// 	background: rgba(0,0,0,0.5);
+//
+// 	.pinWrapper {
+// 		width: 310px;
+// 		margin: 125px auto;
+// 		text-align: center;
+// 		color: #fff;
+// 		background: rgba(0, 0, 0, 0.5);
+// 		padding: 10px 0;
+// 	}
+//
+// 	.pinIndicators {
+// 		list-style-type: none;
+// 		padding: 0;
+//
+// 		li {
+// 			display: inline-block;
+// 			width: 20px;
+// 			height: 20px;
+// 			border-radius: 50%;
+// 			margin: 10px;
+// 			border: 1px solid rgba(255,255,255,0.6);
+// 		}
+// 	}
+//
+// 	.pinPad {
+// 		width: 310px;
+// 		padding: 0;
+// 		list-style-type: none;
+// 		border-radius: 2px;
+//
+// 		li {
+// 			width: 80px;
+// 			display: inline-block;
+// 			height: 80px;
+// 			text-align: center;
+// 			border: 1px solid rgba(255,255,255,0.6);
+// 			border-radius: 50%;
+// 			margin: 10px;
+// 			font-size: 36px;
+// 			padding-top: 22px;
+// 			color: #fff;
+// 			-webkit-transition: all 0.2s;
+// 			cursor: pointer;
+//
+// 			&:hover {
+// 				background-color: rgba(255,255,255,0.6);
+// 				color: rgba(0,0,0,0.5);
+// 			}
+//
+// 			// &:last-child {
+// 			// 	margin-left: 114px;
+// 			// }
+// 		}
+// 	}
+// }
+//
+// .is-blurry {
+// 	-webkit-filter: blur(25px);
+// }

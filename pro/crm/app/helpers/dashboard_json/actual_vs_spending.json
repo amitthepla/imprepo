@@ -1,0 +1,54 @@
+[
+    {
+        "options": [
+            {
+                "title": "2014 Actual vs Projected Surgical Revenue",
+                "subTitle": "",
+                "yAxisLabel": "Total",
+                "tooltipValueSuffix": "",
+                "xAxisCategories": ["January","Febuary","March","April","May","June","July","August","September","October","November","December"],
+                "dataLabels": false,
+                "dataLabelsFormat": ""
+
+            }
+        ]
+    },
+    {
+        "series": [
+            {
+                "name": "Actual",
+                "data": [
+                    394550,
+                    293950,
+                    472000,
+                    477950,
+                    450600,
+                    510500,
+                    601050,
+                    381600,
+                    340350,
+                    383850,
+                    null,
+                    null
+                ]
+            },
+            {
+                "name": "Projected",
+                "data": [
+                    389943,
+                    359128,
+                    341432,
+                    407944,
+                    349746,
+                    434767,
+                    458285,
+                    471023,
+                    349314,
+                    336169,
+                    354948,
+                    312447
+                ]
+            }
+        ]
+    }
+]

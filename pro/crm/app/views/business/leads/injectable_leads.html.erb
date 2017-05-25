@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+	<div class="panel-heading" style="border-bottom: red 2px solid;"><span class="h3">Injectable Leads</span><br><br><p class="text-info">These leads are all interested in Injectable Procedures.</p></div>
+	<div class="panel-body">
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Procedure</th>
+					<th>Inquired On</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @leads.each do |lead|%>
+				<tr>
+					<td><%= link_to lead.name, lead %></td>
+					<td><%= lead.interested_in.titleize || "Not Specified" %></td>
+					<td><%= lead.created_at.strftime('%D') %></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>

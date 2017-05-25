@@ -1,0 +1,50 @@
+<table class="table table-responsive table-condensed table-striped table-hover">
+
+	<thead id="table-header">
+		<th style="width:7%">First Name</th>
+		<th style="width:7%">Last Name</th>
+		<th style="width:7%">DOB</th>
+		<th style="width:7%">Phone 1</th>
+		<th style="width:7%">Email</th>
+		<th style="width:7%">Procedure</th>
+		<th style="width:7%">Source</th>
+		<th style="width:7%">Consult Date</th>
+		<th style="width:7%">Stage</th>
+		<th style="width:7%">Coordinator</th>
+		<th style="width:11%">Comments</th>
+	</thead>
+
+	<tbody>
+		<%= form_tag import_lead_path do %>
+		<% @leads.each do |row| %>
+		<% lead = OpenStruct.new(row) %>
+		 <%= fields_for 'imported_leads[]', lead do |p| %>
+		<tr>
+			<td style="width:8%"><%=p.text_field :first_name, value: row[:first_name], class: "form-control"%></td>
+			<td style="width:8%"><%=p.text_field :last_name, value: row[:last_name], class: "form-control"%></td>
+			<td style="width:8%"><%=p.text_field :date_of_birth, value: row[:date_of_birth], class: "form-control"%></td>
+
+			<%=p.hidden_field :address, value: row[:address], class: "form-control"%>
+			<%=p.hidden_field :city, value: row[:city], class: "form-control"%>
+			<%=p.hidden_field :state, value: row[:state], class: "form-control"%>
+			<%=p.hidden_field :zip, value: row[:zip], class: "form-control"%>
+
+			<td style="width:8%"><%=p.text_field :phone, value: row[:phone_1], class: "form-control"%></td>
+			<td style="width:8%"><%=p.text_field :email, value: row[:email], class: "form-control"%></td>
+			<td style="width:8%"><%=p.select(:call_type, options_from_collection_for_select(@procedures, :slug_value, :name),{include_blank: row[:call_type]}, class: "form-control chzn-select") %></td>
+			<td style="width:8%"><%=p.select(:marketing_source, options_for_select([['buttsbymendieta.com', 'buttsbymendieta.com'], ['constantinomendieta.com', 'constantinomendieta.com'], ['4beauty.net', '4beauty.net'], ['themendietatechnique.com', 'themendietatechnique.com'], ['RealSelf', 'RealSelf'], ['Google', 'Google'], ['Other Search Engine', 'Other Search Engine']], row[:marketing_source]),{}, class: "form-control chzn-select") %></td>
+			<td style="width:8%"><%=p.text_field :consult_date, value: row[:"appointment_date/time"],placeholder: "MM-DD-YYYY", class: "form-control" %></td>
+			<td style="width:8%"><%=p.select(:stage, options_from_collection_for_select(@current_org.stages.where(type: 'lead').asc(:position), :stage_id, :name, 'inquiry') ,{}, class: "form-control chzn-select")%></td>
+			<td style="width:8%"><%=p.select(:coordinator, options_from_collection_for_select(@coordinators, "id", "first_name") ,{include_blank: "Coordinator"}, class: "form-control chzn-select")%></td>
+			<td style="width:20%"><%=p.text_area :note, value: row[:comments], class: "form-control"%></td>
+
+		<tr>
+			<% end %>
+		<% end %>
+		<div class="actions">
+	    <%= submit_tag "Import", class: "btn-sm btn btn-success", style: "margin:10px"%>
+	  </div>
+	<% end %>
+	</tbody>
+
+</table>

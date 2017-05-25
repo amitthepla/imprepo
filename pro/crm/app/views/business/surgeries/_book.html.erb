@@ -1,0 +1,42 @@
+<%= form_for @surgery, html: {class: 'form-group sx-form', remote: true} do |f| %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4>Book Surgery</h4>
+    </div>
+    <div class="modal-body">
+      <p class="text-primary">Is <%= @lead.name %> ready to book their surgery?</p>
+      <div class="field">
+        <label class=" control-label">Procedure Cost</label>
+        <div class="input-group col-md-4">
+          <span class="input-group-addon">$</span>
+          <%= f.text_field :cost, class: "form-control" %>
+          <span class="input-group-addon">.00</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label "Procedure Date" %><br>
+        <%= f.date_field :date %>
+      </div>
+      <div class="field">
+        <%= f.label :procedure %><br>
+        <%= f.select :procedure,options_for_select(@current_org.procedures.map{|proc| [proc.name ,proc.slug_value]}),{:include_blank => "-- Procedure --"}, {class: 'chzn-select form-control'} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :physician %><br>
+        <%= f.select :physician_id, options_for_select(@physicians.map {|usr| [usr.full_name, usr.id]}), {:include_blank => "-- Physician --"}, {class: "chzn-select form-control"} %>
+      </div>
+      <%= f.hidden_field :lead_id, value: @lead.id %>
+
+    </div>
+    <div class="modal-footer">
+
+      <%= f.submit "Submit" ,class:"btn btn-xs btn-success" %>
+
+
+      <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
+  </div><!-- /.modal-content -->
+<% end %>

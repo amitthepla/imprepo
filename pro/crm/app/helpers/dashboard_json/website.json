@@ -1,0 +1,67 @@
+[
+    {
+        "options": [
+            {
+                "title": "Website Visits",
+                "subTitle": "",
+                "yAxisLabel": "Total Website Visits",
+                "tooltipValueSuffix": " hits"
+            }
+        ]
+    },
+    {
+        "series": [
+            {
+                "name": "ConstantinoMendieta.com",
+                "data": [
+                    8162,
+                    6079,
+                    6794,
+                    6408,
+                    6109,
+                    5403,
+                    5979,
+                    5479,
+                    5724,
+                    5359,
+                    5657,
+                    5581
+                ]
+            },
+            {
+                "name": "ButtsbyMendieta.com",
+                "data": [
+                    19670,
+                    14688,
+                    15922,
+                    16345,
+                    15615,
+                    14177,
+                    14468,
+                    14145,
+                    14416,
+                    16516,
+                    19489,
+                    20168
+                ]
+            },
+            {
+                "name": "TheMendietaTechnique.com",
+                "data": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    187,
+                    512,
+                    480,
+                    471,
+                    511
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,119 @@
+<div class="panel panel-default table-responsive">
+					<div class="panel-heading">
+						Consultation Log
+						<span class="label label-info pull-right"><%=@leads.count%></span>
+					</div>
+
+					<div class="panel-body">
+						<div class="row">
+              <form id="filter-form" class="form-inline no-margin" style="text-align:center;" action="/marketing/log_filter">
+                <div class="input-group" style="margin-right:2%">
+                  <input type="text" name="start_date" value="<%= Date.today.at_beginning_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+                <div class="input-group" style="margin-right:2%">
+                  <input type="text" name="end_date" value="<%= Date.today.at_end_of_month.strftime('%m/%d/%Y') %>" class="datepicker form-control">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i><span> Filter</span></button>
+                <!--<a class="btn btn-primary btn-sm"><i class="fa fa-filter"></i><span> Filter</span></a>-->
+              </form>
+              <p id="error-text" class="text-danger" style="margin-left: 16%; display: none;">Start date must be less than or
+                equals to end date.</p>
+              <div class="col-md-4 col-sm-4">
+								<!-- <select class="input-sm form-control inline" style="width:130px;"> -->
+									<!-- <option value="0">All</option> -->
+                  <%#@coordinators.each do |coordinator|%>
+									<!-- <option value="<%#coordinator.id%>"><%#coordinator.first_name%></option> -->
+                  <%#end%>
+
+								<!-- </select> -->
+								<!-- <a class="btn btn-default btn-sm">Apply</a> -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div>
+					<table class="table table-striped" id="responsiveTable">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Procedure</th>
+								<th>Time Frame</th>
+								<th>Coordinator</th>
+								<th>Budget</th>
+                <th>Consult Date</th>
+								<th>Sx Date</th>
+                <th>Quoted Cost</th>
+                <th>Actual Cost</th>
+
+							</tr>
+						</thead>
+						<tbody>
+              <%@leads.each do |lead| %>
+							<tr>
+								<td><%= lead.name %></td>
+								<td><%= lead.interested_in ? lead.interested_in.titleize : 'Not Specified'%></td>
+								<td><%= lead.contact.questionnaire.planned_surgery_date%></td>
+								<td><%= lead.user ? lead.user.first_name : 'Not Assigned'%></td>
+								<td><%= lead.budget%></td>
+                <td><%= lead.consultation_date.strftime('%a %d %b %Y') %></td>
+								<td><%= lead.procedure_date.strftime('%a %d %b %Y') %></td>
+                <td><%= number_to_currency(lead.procedure_cost) %></td>
+                <td class="text-success"><%= number_to_currency(lead.surgery_cost) %></td>
+							</tr>
+              <%end%>
+						</tbody>
+					</table>
+
+
+					<nav aria-label="Page navigation">
+				    <ul class="pagination">
+				      <%= will_paginate @leads, renderer: BootstrapPaginationHelper::LinkRenderer %>
+				    </ul>
+				  </nav>
+				</div><!-- /panel -->
+
+
+
+<script>
+$(document).ready(function () {
+
+  // date picker
+  $('.datepicker').datepicker({
+    format: "mm/dd/yyyy"
+  }).on('changeDate', function (e) {
+    if (e.viewMode === 'days') {
+      $(this).datepicker('hide');
+      removeErrors();
+    }
+  });
+
+  $("#filter-form").on("submit", function (event) {
+    event.preventDefault();
+    var formData = $(this).serializeArray();
+    var start = formData[0].value.split("/");
+    var end = formData[1].value.split("/");
+    var fromDate = new Date(start[2], start[0] - 1, start[1]);
+    var toDate = new Date(end[2], end[0] - 1, end[1]);
+    if (fromDate > toDate) {
+      $(".datepicker").css("border-color", "red");
+      $("#error-text").show();
+      return;
+    }
+    $("#overlay").show();
+    $.ajax({
+      url: "/marketing/log_filter",
+      type: "GET",
+      data: formData,
+      success: function (result) {
+        // replaceFilteredData(result.data);
+        $("#overlay").hide();
+      }
+    });
+  });
+});
+
+function removeErrors() {
+  $(".datepicker").removeAttr("style");
+  $("#error-text").hide();
+}
+</script>

@@ -1,0 +1,705 @@
+
+  <div class="modal fade" id="first_other_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Other Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-otherSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Other"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Other"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_walk_in_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Walk In Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-walk-inSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Walk-In"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Walk-In"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_telemarketing_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-telemarketingSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Telemarketing"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Telemarketing"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_event_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-eventSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Events"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Events"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_traditional_media_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Traditional Media Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-traditionalSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Traditional Media"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Traditional Media"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_social_media_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Social Media Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-socialSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Social Media"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Social Media"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_referral_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Referral Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-referralSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Referral"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Referral"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_internet_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Internet Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first-internetSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@first_sources["Internet"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @first_source_counts["Internet"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <div class="modal fade" id="second_other_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Other Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-otherSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Other"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Other"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_walk_in_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Walk In Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-walk-inSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Walk-In"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Walk-In"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_telemarketing_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-telemarketingSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Telemarketing"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Telemarketing"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_event_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-eventSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Events"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Events"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_traditional_media_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Traditional Media Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-traditionalSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Traditional Media"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Traditional Media"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_social_media_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Social Media Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-socialSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Social Media"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Social Media"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_referral_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Referral Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-referralSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Referral"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Referral"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_internet_sources">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Internet Sources</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second-internetSources" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Generated Inquiries</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% source_check(@second_sources["Internet"]).each do |src| %>
+              <tr>
+                <td><%= src.name.titleize %></td>
+                <% if src.start_date.present? && src.end_date.present? %>
+                <td><%= src.start_date.strftime('%D') %></td>
+                <td><%= src.end_date.strftime('%D') %></td>
+                <% else %>
+                <td>Perpetual</td>
+                <td>Perpetual</td>
+                <% end %>
+                <td><%= @second_source_counts["Internet"][src.id.to_s] %></td>
+                <td><%= number_to_currency(src.cost) if src.cost %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+         
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

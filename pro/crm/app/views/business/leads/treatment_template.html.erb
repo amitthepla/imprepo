@@ -1,0 +1,387 @@
+<div id="injection-procedures" class="tab-pane fade">
+  <h2>Injection Procedures</h2>
+  <div class="col-lg-5">
+    <button class="btn btn-success" id="add-treatment">Add New Treatment</button>
+    <div id="treatment-side-panel">
+      <div id="new-treatment-form" style="display: none;">
+        <br>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form role="form" id="treatment-form" action="<%= save_treatment_path(@lead) %>" method="post" name="treatment">
+              <input type="hidden" id="treatment-coordinates" name="treatment_coordinates" value="">
+              <input type="hidden" id="treatment-quantity" name="treatment_quantity" value="">
+              <input type="hidden" id="treatment-procedures" name="treatment_procedures" value="">
+              <div class="form-group">
+                <label for="treatment-name">Treatment Name*</label>
+                <input type="text" placeholder="Treatment Name" id="treatment-name" class="form-control input-sm" name="treatment_name" required="required">
+              </div><!-- /form-group -->
+
+              <div class="form-group">
+                <label for="treatment-date">Treatment Date*</label>
+                <input type="text" placeholder="Treatment Date" id="treatment-date" class="form-control input-sm datepicker" name="treatment_date" required="required">
+              </div><!-- /form-group -->
+
+              <div class="form-group">
+                <label for="treatment-user">Administered By*</label>
+                <%= select_tag :user, options_from_collection_for_select(@current_org.users, :_id.to_s, :full_name), class: 'form-control input-sm', id: 'treatment-user' %>
+
+                <%# select_tag :user, options_from_collection_for_select(@current_org.users.where(:roles.in => ["57e55956a814450003000001", "57e55948a814450003000000"]), :_id.to_s, :full_name), class: 'form-control input-sm', id: 'treatment-user' %>
+              </div><!-- /form-group -->
+
+              <div class="form-group">
+                <label for="treatment-note">Note</label>
+                <textarea placeholder="Note" id="treatment-note" class="form-control input-sm" name="treatment_note" style="height: 76px;"></textarea>
+              </div><!-- /form-group -->
+
+              <button class="btn btn-success btn-sm" type="submit">Save</button>
+              <button class="btn btn-default btn-sm" id="cancel-treatment">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="previous-procedures">
+        <% if @lead.treatment %>
+            <ul class="timeline">
+              <% treatment = @lead.treatment %>
+                  <li class="timeline-inverted">
+                    <div class="timeline-badge warning btn-treatment" data-id="<%= treatment.id.to_s %>">
+                      <span class="date-text"><%= treatment.treatment_date.strftime('%d') %></span>
+                      <span class="month-text"><%= treatment.treatment_date.strftime('%b') %></span>
+                    </div>
+                    <div class="timeline-panel">
+                      <div class="timeline-heading">
+                        <h4 class="timeline-title"><%= treatment.name.titleize %></h4>
+                      </div>
+                      <div class="timeline-body">
+                        <p>Date: <%= treatment.treatment_date.strftime('%b %d, %Y') %></p>
+                        <p>Injector: <%= treatment.created_by.full_name %></p>
+                        <% if treatment.note.present? %>
+                            <p>Note: <%= treatment.note %></p>
+                        <%- end %>
+                      </div>
+                    </div>
+                  </li>
+            </ul>
+        <%- else %>
+            <br/>
+            <p>This lead has not gone through any treatment.</p>
+        <%- end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-7" id="ip-div" style="opacity: 0;">
+    <p class="text-info text-center" id="into-text" style="display: none;">Click on the image to capture
+      coordinates.</p>
+    <img id="face-injection-procedure" class="img img-responsive face-image" src="" alt="Face" title="Click on the image to capture coordinates"/>
+  </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modalInjectionProcedure" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Injection Procedure Details</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="email-cc" class="col-lg-2 control-label">Product Name</label>
+          <div class="col-lg-10">
+            <%= select_tag :procedure_id, options_from_collection_for_select(@current_org.injection_products, :_id.to_s, :product_name), class: 'form-control' %>
+          </div>
+        </div>
+        <div style="clear:both !important;"></div>
+        <br>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Quantity</label>
+          <div class="col-lg-6">
+            <%= text_field_tag :quantity , "0",class: 'form-control' %>
+          </div>
+          <div class="col-lg-2">
+            <%= select_tag :measurement, options_for_select(["mL","Units","cc"]), class: 'form-control' %>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-send" id="btn-done">Proceed</button>
+        <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+  var taggd, x, y, firstLoad = true;
+  var options = {
+    align: {
+      x: 'center',
+      y: 'center'
+    },
+    offset: {
+      left: 0,
+      top: 30
+    },
+    handlers: {
+      mouseenter: 'show',
+      mouseleave: 'hide'
+    }
+  };
+
+  $(document).on("ready page:load load turbolinks:load",function () {
+    $request = null;
+
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    });
+
+
+    injectionProcedure.click(function (e) {
+      if (firstLoad) {
+        return false;
+      }
+      var offset = $(this).offset();
+      x = ((e.pageX - offset.left) / $(this).width());
+      y = ((e.pageY - offset.top) / $(this).height());
+      $("#modalInjectionProcedure").modal("show");
+    });
+
+    $("#btn-done").on("click", function (e) {
+      e.preventDefault();
+      var procedure_id = $("#procedure_id");
+      var treatment_procedures = $("#treatment-procedures");
+      var treatment_coordinates = $("#treatment-coordinates");
+      var treatment_quantity = $("#treatment-quantity");
+      var quantity = $("#quantity").val();
+      var unit = $("#measurement").find("option:selected").text();
+      treatment_procedures.val(treatment_procedures.val() + "," + procedure_id.val());
+      treatment_coordinates.val(treatment_coordinates.val() + "&" + (x + "," + y));
+      treatment_quantity.val(treatment_quantity.val() + "," + quantity + ":" + unit);
+      $("#modalInjectionProcedure").modal("hide");
+      taggd.addData({x: x, y: y, text: procedure_id.find("option:selected").text(), quantity: quantity, unit: unit});
+      $("#quantity").val('');
+      $("#measurement").val('');
+    });
+
+    $("#cancel-treatment").on("click", function (e) {
+      e.preventDefault();
+      $("#into-text").hide();
+      $(".timeline-panel").removeClass("active-panel");
+      taggd.setData([]);
+      $("#new-treatment-form").hide();
+      $("#treatment-form")[0].reset();
+      $("#treatment-procedures").val('');
+      $("#treatment-coordinates").val('');
+      $("#treatment-quantity").val('');
+      $("#quantity").val('');
+      $("#measurement").val('');
+      $("#previous-procedures").show();
+    });
+
+    $("#add-treatment").on("click", function (e) {
+      e.preventDefault();
+      firstLoad = false;
+      $("#ip-div").css("opacity", 1);
+      $("#into-text").show();
+      taggd.setData([]);
+      $("#previous-procedures").hide();
+      $("#new-treatment-form").show();
+    });
+
+    $(".btn-treatment").on("click", function (e) {
+      e.preventDefault();
+      firstLoad = false;
+      $("#ip-div").css("opacity", 1);
+      $(".timeline-panel").removeClass("active-panel");
+      $(this).next(".timeline-panel").addClass("active-panel");
+      taggd.setData([]);
+      var id = $(this).data("id");
+      $.ajax({
+        url: "/get_coordinates/" + id,
+        type: 'GET',
+        success: function (res) {
+          $.each(JSON.parse(res.data), function (index, value) {
+            taggd.addData(value);
+          });
+
+        }
+      });
+    });
+
+    //  Load image using Image object. This is necessary for chrome browser.
+    var photo = document.getElementById('face-injection-procedure');
+    var img = new Image();
+    img.addEventListener('load', function () {
+      taggd = $(photo).taggd(options, []);
+    });
+    img.src = '/images/human/face/face_400.jpg';
+    photo.src = img.src;
+    //  End
+
+  });
+
+
+
+</script>
+<style>
+.timeline {
+  list-style: none;
+  padding: 20px 0 20px;
+  position: relative;
+}
+
+.timeline:before {
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 3px;
+  background-color: #eeeeee;
+  left: 10%;
+  margin-left: -1.5px;
+}
+
+.timeline > li {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+  content: " ";
+  display: table;
+}
+
+.timeline > li:after {
+  clear: both;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+  content: " ";
+  display: table;
+}
+
+.timeline > li:after {
+  clear: both;
+}
+
+.timeline > li > .timeline-panel {
+  width: 80%;
+  float: left;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+
+.timeline > li.timeline-inverted + li:not(.timeline-inverted),
+.timeline > li:not(.timeline-inverted) + li.timeline-inverted {
+  margin-top: -60px;
+}
+
+.timeline > li > .timeline-panel:before {
+  position: absolute;
+  top: 26px;
+  right: -15px;
+  display: inline-block;
+  border-top: 15px solid transparent;
+  border-left: 15px solid #ccc;
+  border-right: 0 solid #ccc;
+  border-bottom: 15px solid transparent;
+  content: " ";
+}
+
+.timeline > li > .timeline-panel:after {
+  position: absolute;
+  top: 27px;
+  right: -14px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #fff;
+  border-right: 0 solid #fff;
+  border-bottom: 14px solid transparent;
+  content: " ";
+}
+
+.timeline > li > .timeline-badge {
+  cursor: pointer;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  left: 10%;
+  margin-left: -25px;
+  background-color: #999999;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.timeline > li.timeline-inverted > .timeline-panel {
+  /*float: right;*/
+  left: 23%;
+}
+
+.timeline > li.timeline-inverted > .timeline-panel:before {
+  border-left-width: 0;
+  border-right-width: 15px;
+  left: -15px;
+  right: auto;
+}
+
+.timeline > li.timeline-inverted > .timeline-panel:after {
+  border-left-width: 0;
+  border-right-width: 14px;
+  left: -14px;
+  right: auto;
+}
+
+.timeline-badge.warning {
+  background-color: #f0ad4e !important;
+}
+
+.timeline-title {
+  margin-top: 0;
+  color: inherit;
+}
+
+.timeline-body > p,
+.timeline-body > ul {
+  margin-bottom: 0;
+}
+
+.timeline-body > p + p {
+  margin-top: 5px;
+}
+
+.date-text {
+  position: absolute;
+  top: -10px;
+  font-size: 1.2em;
+  left: 13px;
+}
+
+.month-text {
+  position: relative;
+  font-size: 0.9em;
+  top: 8px;
+}
+
+.active-panel {
+  color: green;
+}
+</style>

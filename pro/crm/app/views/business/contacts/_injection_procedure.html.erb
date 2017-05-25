@@ -1,0 +1,76 @@
+<h2>Injection Procedures</h2>
+<div class="col-lg-5">
+  <button class="btn btn-success" id="add-treatment">Add New Treatment</button>
+  <div id="treatment-side-panel">
+    <div id="new-treatment-form" style="display: none;">
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form role="form" id="treatment-form" action="<%= save_treatment_path(@contact) %>" method="post" name="treatment">
+            <input type="hidden" id="treatment-coordinates" name="treatment_coordinates" value="">
+            <input type="hidden" id="treatment-quantity" name="treatment_quantity" value="">
+            <input type="hidden" id="treatment-procedures" name="treatment_procedures" value="">
+            <div class="form-group">
+              <label for="treatment-name">Treatment Name*</label>
+              <input type="text" placeholder="Treatment Name" id="treatment-name" class="form-control input-sm" name="treatment_name" required="required">
+            </div><!-- /form-group -->
+
+            <div class="form-group">
+              <label for="treatment-date">Treatment Date*</label>
+              <input type="text" placeholder="Treatment Date" id="treatment-date" class="form-control input-sm datepicker" name="treatment_date" required="required">
+            </div><!-- /form-group -->
+
+            <div class="form-group">
+              <label for="treatment-user">Administered By*</label>
+              <%= select_tag :user, options_from_collection_for_select(@current_org.users.where(:roles.in => ["57e55956a814450003000001", "57e55948a814450003000000"]), :_id.to_s, :full_name), class: 'form-control input-sm', id: 'treatment-user' %>
+            </div><!-- /form-group -->
+
+            <div class="form-group">
+              <label for="treatment-note">Note</label>
+              <textarea placeholder="Note" id="treatment-note" class="form-control input-sm" name="treatment_note" style="height: 76px;"></textarea>
+            </div><!-- /form-group -->
+
+            <button class="btn btn-success btn-sm" type="submit">Save</button>
+            <button class="btn btn-default btn-sm" id="cancel-treatment">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="previous-procedures">
+      <% if @injection_leads.count > 0 %>
+          <ul class="timeline">
+            <% @injection_leads.order_by(created_at: :desc).each do |lead| %>
+              <% if lead.treatment %>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge warning btn-treatment" data-id="<%= lead.treatment.id.to_s %>">
+                    <span class="date-text"><%= lead.treatment.treatment_date.strftime('%d') %></span>
+                    <span class="month-text"><%= lead.treatment.treatment_date.strftime('%b') %></span>
+                  </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title"><%= lead.treatment.name.titleize %></h4>
+                    </div>
+                    <div class="timeline-body">
+                      <p>Date: <%= lead.treatment.treatment_date.strftime('%b %d, %Y') %></p>
+                      <p>Injector: <%= lead.treatment.created_by.full_name %></p>
+                      <% if lead.treatment.note.present? %>
+                          <p>Note: <%= lead.treatment.note %></p>
+                      <%- end %>
+                    </div>
+                  </div>
+                </li>
+                <% end %>
+            <%- end %>
+          </ul>
+      <%- else %>
+          <br/>
+          <p>This lead has not gone through any treatment.</p>
+      <%- end %>
+    </div>
+  </div>
+</div>
+<div class="col-lg-7" id="ip-div" style="opacity: 0;">
+  <p class="text-info text-center" id="into-text" style="display: none;">Click on the image to capture
+    coordinates.</p>
+  <img id="face-injection-procedure" class="img img-responsive face-image" src="" alt="Face" title="Click on the image to capture coordinates"/>
+</div>

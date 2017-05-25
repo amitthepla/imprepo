@@ -1,0 +1,3 @@
+<h2>Is this your final task?</h2>
+<%= link_to 'YES', @task.lead, {:class => 'btn'} %>
+<%= link_to 'NO', new_business_task_path(@task.lead), {:class => 'btn'} %>

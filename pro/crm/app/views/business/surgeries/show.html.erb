@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @business_surgery.cost %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @business_surgery.date %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @business_surgery.completed %>
+</p>
+
+<p>
+  <strong>Cancelled:</strong>
+  <%= @business_surgery.cancelled %>
+</p>
+
+<p>
+  <strong>Procedure:</strong>
+  <%= @business_surgery.procedure %>
+</p>
+
+<%= link_to 'Edit', edit_business_surgery_path(@business_surgery) %> |
+<%= link_to 'Back', business_surgeries_path %>

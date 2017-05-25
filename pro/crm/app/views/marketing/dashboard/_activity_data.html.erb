@@ -1,0 +1,126 @@
+<div class="col-md-10 fadeInDown animation-delay3" style="margin-top:5%;">
+  <div class="panel bg-default">
+    <div class="panel-body text-center">
+      <span class="h6 block m-bottom-sm text-success">Inquiry to Appointment</span>
+      <div class="m-top-sm">
+        <span class="h3 text-success"><span id="ita"> <%= @leads_count == 0 ? 0 : ((@consult_count.to_f / @leads_count) * 100).round(2)  %></span>
+          <i class="fa fa-percent "></i></span>
+      </div>
+    </div>
+    <div class="panel-body bg-default" style="border-top:solid 1px black">
+      <div class="row text-center">
+        <% if @web_consults > 0 %>
+        <div class="col-xs-6 text-success" style="border-right:solid 1px black">
+          Internet
+          <strong class="block"><span id="email-percent"> <%= @web_leads_count == 0 ? 0 : ((@web_consults.to_f / @web_leads_count) * 100).round(2) %>%</span>
+            <!--<i class="fa fa-percent"></i>-->
+          </strong>
+        </div>
+        <% end %>
+        <% if @phone_consults > 0 %>
+        <div class="col-xs-6 text-success">
+          Phone
+          <strong class="block">
+            <span id="phone-percent"> <%= @phone_leads_count == 0 ? 0 : ((@phone_consults.to_f / @phone_leads_count) * 100).round(2) %>%</span>
+            <!--<i class="fa fa-percent"></i>-->
+          </strong>
+        </div>
+        <%end%>
+      </div>
+    </div>
+    <div class="panel-body" style="overflow:auto; max-height:20vh">
+      <div id="ita-individual">
+        <table class="table table-striped table-borderless">
+          <tbody>
+          <% @ita_users.each do |k, v| -%>
+              <tr>
+                <td><%= k.to_s.titleize -%></td>
+                <td><span><%= v -%>%</span></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /panel -->
+  </div>
+</div>
+
+<div class="col-md-10 fadeInDown animation-delay4" style="margin-top:5%;">
+  <div class="panel bg-default">
+    <div class="panel-body text-center">
+      <div class="col-md-6" style="border-right:solid black 1px">
+        <span class="h6 block m-bottom-sm text-danger" style="margin-bottom: 23px">No Show</span>
+        <div class="m-top-sm">
+          <span class="h3 text-danger"><span id="no-show-rate"> <%= @no_show_consult_count  %></span></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <span class="h6 block m-bottom-sm text-danger" style="margin-bottom: 23px">Cancelled Consultation</span>
+        <div class="m-top-sm">
+      <span class="h3 text-danger"><span id="cancelled-consultations"> <%= @cancelled_consult_count %></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-10 fadeInDown animation-delay5" style="margin-top:5%;">
+  <div class="panel bg-default">
+    <div class="panel-body text-center text-success">
+      <span class="h6 block m-bottom-sm">Closing Rate</span>
+      <div class="m-top-sm">
+        <span class="h3 text-success"><span id="closing-rate"> <%= @consult_count == 0 ? 0 : ((@surgery_count.to_f / @consult_count) * 100).to_i  %></span>
+          <i class="fa fa-percent "></i></span>
+      </div>
+    </div>
+    <div class="panel-body" style="overflow:auto; max-height:20vh; border-top:black 1px solid">
+      <div id="closing-rate-individual">
+        <table class="table table-striped table-borderless">
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Consults</th>
+            <th>Surgeries</th>
+            <th>Rate</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @cr_users.each do |k, v| %>
+              <tr>
+                <td><%= k.to_s.titleize -%></td>
+                <td><span><%= @cr_users[k][:consults] %></span></td>
+                <td><span><%= @cr_users[k][:surgeries] %></span></td>
+                <td><span><%= @cr_users[k][:rate] %>%</span></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /panel -->
+  </div>
+</div>
+
+<div class="col-md-10 fadeInDown animation-delay6" style="margin-top:5%;">
+  <div class="panel bg-default">
+    <div class="panel-body text-center">
+      <span class="h6 block m-bottom-sm text-danger">Cancel Rate</span>
+      <div class="m-top-sm">
+        <span class="h3 text-danger"><span id="cancel-rate"> <%= @surgery_count == 0 ? 0 : ((@cancelled_surgery_count.to_f / @surgery_count) * 100).to_i %></span>
+          <i class="fa fa-percent "></i></span>
+      </div>
+    </div>
+    <div class="panel-body bg-default" style="border-top:solid 1px black">
+      <div class="row text-center">
+        <div class="col-xs-6 text-success" style="border-right:solid 1px black">
+          Earned Revenue
+          <strong id="earned-revenue" class="block"> <%= number_to_currency(@earned_revenue) %></strong>
+        </div>
+
+        <div class="col-xs-6 text-danger">
+          Lost Revenue
+          <strong id="lost-revenue" class="block"> <%= number_to_currency(@lost_revenue) %></strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

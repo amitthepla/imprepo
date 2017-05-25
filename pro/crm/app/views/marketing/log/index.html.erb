@@ -1,0 +1,48 @@
+<div class="main-header clearfix">
+  <div class="page-title">
+    <h3 class="no-margin">Consultation Log</h3>
+    <span>Use the Consultation log to review all scheduled, completed, cancelled and no show consultations.</span>
+  </div><!-- /page-title -->
+</div><!-- /main-header -->
+<div class="panel">
+  <div class="panel-body">
+    <div class="col-md-12 text-center">
+      <div class="row">
+        <%= form_tag marketing_log_path, :method => 'get',  class: 'form-inline no-margin' do %>
+            <div class="input-group " style="margin-right:2%">
+              <input type="text" name="start_date" placeholder="Date Range Start" value="<%= params[:start_date] %>" class="datepicker  form-control" style="z-index:100 !important;">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+            <div class="input-group " style="margin-right:2%">
+              <input type="text" name="end_date" placeholder="Date Range End" value="<%= params[:end_date] %>" class="datepicker  form-control" style="z-index:100 !important;">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+            <%= submit_tag 'Search', class: 'btn btn-sm btn-info' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="padding:10px;">
+  <div class="col-md-12">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs con" id="myTab" style="cursor:pointer">
+      <li id="scheduled" class="active">
+        <a  href="log?status=scheduled&start_date=<%= params[:start_date] %>&end_date=<%= params[:end_date] %>" data-remote="true"><i class="text-info fa fa-clock-o" aria-hidden="true"></i> <span>Scheduled</span></a>
+      </li>
+      <li id="booked" >
+        <a  class="tab" href="log?status=booked&start_date=<%= params[:start_date] %>&end_date=<%= params[:end_date] %>"  data-remote="true" ><i class="text-success fa fa-check" aria-hidden="true"></i> <span>Booked Surgery</span></a>
+      </li>
+      <li id="cancelled" >
+        <a  class="tab" href="log?status=cancelled&start_date=<%= params[:start_date] %>&end_date=<%= params[:end_date] %>" data-remote="true" ><i class="text-danger fa fa-times" aria-hidden="true"></i> <span>Cancelled</span></a>
+      </li>
+      <li id="no_show" >
+        <a  class="tab" href="log?status=no_show&start_date=<%= params[:start_date] %>&end_date=<%= params[:end_date] %>" data-remote="true" ><i class="text-warning fa fa-question" aria-hidden="true"></i> <span>No Show</span></a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div id="consults" style="background-color:white;padding:10px;border:solid 1px #DDDDDD;">
+        <%= render partial: 'consults'%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<br>
+<table class="table table-striped" id="table" style="margin-bottom: 60px;">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Coordinator</th>
+      <th>Procedure</th>
+      <th>Date</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@surgeries.each do |sx| %>
+    <tr>
+      <td><%= link_to sx.lead.first_name.titleize , business_lead_path(sx.lead), class: "should-load"  %></td>
+      <td><%= link_to sx.lead.last_name.titleize , business_lead_path(sx.lead), class: "should-load"  %></td>
+      <td><%= get_name(sx.lead.user) %></td>
+      <td><%= sx.procedure.titleize if sx.procedure %></td>
+      <td><%= sx.date.strftime('%D') if sx.date %></td>
+      <td><%= number_to_currency(sx.cost) %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+<script>
+  $(document).ready(function(){
+    if($('#table').length) {
+      $('#table').DataTable();
+    };
+  });
+</script>

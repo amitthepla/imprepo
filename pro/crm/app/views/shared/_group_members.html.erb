@@ -1,0 +1,23 @@
+<%- if params[:list_type] == 'sample' %>
+    <%- @collection.each_with_index do |item, index| %>
+        <span class="bg-rnd-npf bgrnd-clr-<%= (0..9).to_a.sample %>" title="<%= item.full_name %>" style="cursor: pointer;"><%= item.full_name.first.upcase %></span>
+        <!--  Display 7 entries as sample  -->
+        <% break unless index < 6 %>
+    <%- end %>
+    <span style="margin-left: 10px;">
+      <a href="javascript:" onclick="displaGroupMembers('<%= @conversation_group.id.to_s %>', 'all');">Show More</a>
+    </span>
+<%- else params[:list_type] == 'all'%>
+    <ul>
+      <% @collection.each do |item| %>
+          <li class="individual" style="cursor: pointer">
+            <div class="pf-letter relative">
+              <span class="bg-rnd-npf bgrnd-clr-<%= (0..9).to_a.sample %>"><%= item.full_name.first.upcase %></span>
+            </div>
+            <div class="pf-name"><%= item.full_name %></div>
+          </li>
+      <%- end %>
+    </ul>
+<%- end %>
+
+

@@ -1,0 +1,162 @@
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#surgical">Surgical Procedures</a></li>
+  <li><a href="#med">Med Spa Procedures</a></li>
+  <li><a href="#products">Med Spa Products</a></li>
+</ul>
+
+<div class="tab-content bg-white">
+  <div id="surgical" class="tab-pane fade in active">
+    <table class="table table-hover table-bordered table-condensed table-striped">
+      <thead>
+        <tr>
+          <thead>
+            <th><h5>Procedure</h5></th>
+            <th><h5>Type</h5></th>
+            <th><h5>Gender</h5></th>
+            <th><h5>Details</h5></th>
+            <th><h5>Cost</h5></th>
+          </thead>
+        </tr>
+      </thead>
+      <tbody>
+        <% @surgical_procedures.each do |procedure| %>
+        <tr>
+          <td ><%= link_to procedure.name.titleize, procedure %></td>
+          <td ><%= procedure.type %></td>
+          <td ><%= procedure.procedure_for %></td>
+          <td ><%= procedure.details.present? ? procedure.details.humanize : "" %></td>
+          <td ><%= number_to_currency(procedure.cost) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="med" class="tab-pane fade ">
+    <table class="table table-hover table-bordered table-condensed table-striped">
+      <thead>
+        <tr>
+          <thead>
+            <th><h5>Procedure</h5></th>
+            <th><h5>Type</h5></th>
+            <th><h5>Gender</h5></th>
+            <th><h5>Details</h5></th>
+            <th><h5>Cost</h5></th>
+          </thead>
+        </tr>
+      </thead>
+      <tbody>
+        <% @medspa_procedures.each do |procedure| %>
+        <tr>
+          <td ><%= link_to procedure.name.titleize, procedure %></td>
+          <td ><%= procedure.type %></td>
+          <td ><%= procedure.procedure_for %></td>
+          <td ><%= procedure.details.present? ? procedure.details.humanize : "" %></td>
+          <td ><%= number_to_currency(procedure.cost) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="products" class="tab-pane fade ">
+    <table class="table table-hover table-bordered table-condensed table-striped">
+      <thead>
+        <tr>
+          <thead>
+            <th><h5>Product</h5></th>
+            <th><h5>Hex Color</h5></th>
+          </thead>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+        <tr>
+          <td ><%= product.product_name %></td>
+          <td ><%= product.hex_color %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="newProcedure">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>New Procedure</h4>
+      </div>
+      <%= form_for(@procedure) do |f| %>
+      <div class="modal-body">
+        <div class="form-group has-success">
+          <%= f.label :name, "Procedure"%><br/>
+          <%= f.text_field :name, placeholder: "Name" , class: "form-control" %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :details, "Details"%><br/>
+          <%= f.text_area :details , placeholder: "Details", class: "form-control"%>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :cost, "Cost"%><br/>
+          <%= f.text_field :cost , placeholder: "100", class: "form-control"%>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :surgical, "Is this a Surgical Procedure?"%>
+          <%= f.check_box :surgical , class: "form-control"%>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :medspa, "Is this a MedSpa Procedure?"%>
+          <%= f.check_box :medspa, class: "form-control"%>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :type, 'Type' %><br/>
+          <%= f.select(:type, ([%w(Body Body), %w(Face Face), %w(Butt Butt), %w(Breast Breast), %w(Leg Leg), %w(Arm Arm)]), {:include_blank => 'Type'}, {class: 'chzn-select form-control'}) %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :procedure_for, 'Gender' %><br/>
+          <%= f.select(:procedure_for, ([%w(Male M), %w(Female F), %w(Both B)]), {}, {class: 'chzn-select form-control'}) %>
+        </div>
+      </div>
+      <div class="modal-footer">
+         <%= f.submit "Save Procedure", :class => "btn btn-xs btn-success should-load" %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="newProduct">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>New Product</h4>
+      </div>
+      <%= form_for(@product) do |f| %>
+      <div class="modal-body">
+        <div class="form-group has-success">
+          <%= f.label :product_name, "Product Name"%><br/>
+          <%= f.text_field :product_name, placeholder: "Name" , class: "form-control" %>
+        </div>
+
+        <div class="form-group has-success">
+          <%= f.label :hex_color, "Hex Color"%><br/>
+          <%= f.text_field :hex_color , placeholder: "#fdfdfd", class: "form-control"%>
+        </div>
+      </div>
+      <div class="modal-footer">
+         <%= f.submit "Save Product", :class => "btn btn-xs btn-success should-load" %>
+        <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

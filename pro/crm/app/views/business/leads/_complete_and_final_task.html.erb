@@ -1,0 +1,62 @@
+<div class="modal fade" id="completeTask<%=task.id%>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Complete Task</h4>
+      </div>
+      <div class="modal-body">
+        <%if task.lead %>
+        <div class="alert alert-info">
+          You can choose to complete this task and move <%=task.lead.name%> to another stage or create a new <%=task.lead.stage.upcase%> task for <%=task.lead.name%>.
+        </div>
+
+        <strong class="font-14 block"><%= task.lead.name %> </strong>
+        <%if task.lead.stage %>
+        <strong class="font-12 text-info block">Current Stage: <%= task.lead.stage.titleize %> </strong>
+        <%end%>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <a href="#finalTask<%=task.id%>" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true" class="btn btn-default btn-xs">Move Lead</a>
+        <a href="#newTask<%=task.id%>" role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true" class="btn btn-default btn-xs">Create New Task</a>
+        <button class="btn btn-xs btn-danger"data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="finalTask<%=task.id%>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Move Lead</h4>
+      </div>
+      <div class="modal-body">
+        <%if task.lead %>
+        <div class="alert alert-info">
+          This will move <%=task.lead.name%> to the selected stage. A task will be created automitcally for <%=task.lead.name%> when you move them.
+        </div>
+        <%end%>
+        <label>What stage would you like to move <%=task.lead.name%> to? </label><br/><br>
+        <div class="btn-group">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"> Stages  <span class="caret"></span></button>
+          <ul class="dropdown-menu slidedown">
+            <li><%= link_to 'Inquiry', final_business_task_path(task.id, 'inquiry', task.lead.id) ,class: "should-load"%></li>
+            <li><%= link_to 'Inquiry', final_business_task_path(task.id, 'inquiry', task.lead.id) ,class: "should-load"%></li>
+            <li><a href="#booked_consult_<%=task.id%>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Booked Consult</a></li>
+            <li><a href="#booked_surgery_<%=task.id%>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Booked Surgery</a></li>
+            <li><%= link_to "Pre Op", promote_lead_path(task.lead.id, "pre_op") ,class: "should-load"%></li>
+            <li><a href="#cold_<%=task.id%>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Cold</a></li>
+            <li><a href="#dq_<%=task.id%>" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Disqualified</a></li>
+          </ul>
+        </div><!-- /btn-group -->
+
+      </div>
+      <div class="modal-footer">
+        <button href="#completeTask<%=task.id%>" class="btn btn-xs btn-danger"  role="button" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Back</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

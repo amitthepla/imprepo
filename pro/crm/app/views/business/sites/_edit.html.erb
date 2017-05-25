@@ -1,0 +1,24 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4>Update Website Form</h4>
+  </div>
+  <%= form_for(@site, remote: true) do |f| %>
+  <div class="modal-body">
+    <div class="form-group">
+        <%= f.text_field :name,  class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.text_field :url,  class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :source, 'Source:' %>
+      <%= f.select(:source_id, options_for_select(@current_org.sources.map { |st| [st.name, st.id.to_s] }, @site.source_id), {}, {class: 'form-control chzn-select', style: 'width:80% !important'}) %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit "Update Site Form", :class => "btn btn-xs btn-success" %>
+    <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>
+  <% end %>
+</div><!-- /.modal-content -->

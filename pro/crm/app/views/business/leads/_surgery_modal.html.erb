@@ -1,0 +1,60 @@
+<div class="modal fade" id="booked_surgery_<%= lead.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Book Surgery</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-primary">Is <%= lead.name.titleize %> ready to book their surgery?</p>
+
+        <%= form_tag book_surgery_path, :method => 'post', class: "form-group", id: "booked-surgery-form_#{lead.id}", remote: true do %>
+        <div class="container">
+          <div class="row">
+            <label class=" control-label">Surgery Date</label>
+            <div class="input-group col-md-4">
+              <input name="procedure_date" type="text" class="datepicker form-control" style="position: relative; z-index: 100000 !important;">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+            <div class="seperator"></div>
+            <div class="row">
+              <label class=" control-label">Procedure Cost</label>
+              <div class="input-group col-md-4">
+                <span class="input-group-addon">$</span>
+                <input type="text" name="procedure_cost" class="form-control" >
+                <span class="input-group-addon">.00</span>
+              </div>
+            </div>
+            <div class="seperator"></div>
+            <div class="row">
+              <label class=" control-label">Procedure</label>
+              <br>
+              <div class="col-md-6">
+                <%= select_tag :procedure, options_from_collection_for_select(@current_org.procedures, "slug_value", "name", lead.interested_in), :include_blank => "-- Procedure --", class: " form-control" %>
+              </div>
+            </div>
+            <div class="seperator"></div>
+            <div class="row">
+              <label class=" control-label">Physician</label>
+              <br>
+              <div class="col-md-6">
+                <%= select_tag :physician_id, options_from_collection_for_select(@physicians, "id", "full_name"), :include_blank => "-- Physician --", class: " form-control" %>
+              </div>
+            </div>
+            <div class="seperator"></div>
+            <%= hidden_field_tag "page", @stage_leads.current_page %>
+            <%= hidden_field_tag "stage_id", @stage.stage_id %>
+            <%= hidden_field_tag "lead_id", lead.id %>
+          </div>
+        </div>
+        <div class="modal-footer">
+
+          <%= submit_tag "Book Surgery", class: "btn btn-xs btn-success should-load", :onclick => "$('#booked-surgery-form_#{lead.id}').submit(); return false;" %>
+
+          <% end %>
+          <button class="btn btn-xs btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

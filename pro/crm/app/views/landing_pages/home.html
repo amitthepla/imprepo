@@ -1,0 +1,339 @@
+<!-- Overlay Div -->
+	<div id="overlay" class="transparent"></div>
+
+	<div id="wrapper" class="preload">
+		<header class="navbar navbar-fixed-top bg-white">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="" class="navbar-brand"><span class="text-danger">Conversion</span> Doctor</a>
+				</div>
+				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#landing-content" class="top-link">Home</a>
+						</li>
+						<li>
+							<a href="#feature" class="top-link">Features</a>
+						</li>
+						<li>
+							<a href="#pricing" class="top-link">Pricing</a>
+						</li>
+						<li>
+							<a href="#contact" class="top-link">Contact us</a>
+						</li>
+            <li>
+              <a href="/login" class="top-link">Login</a>
+						</li>
+            <li>
+              <a href="/sign_up" class="top-link">Sign Up</a>
+            </li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<div id="landing-content">
+      <div id="main-slider" class="carousel slide bg-dark" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#main-slider" data-slide-to="0" class="active"></li>
+					<li data-target="#main-slider" data-slide-to="1"></li>
+					<li data-target="#main-slider" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+            <%= image_tag("landing_pages/AdobeStock_104491281.jpg", alt: "conversion doctor", :class => 'img-background') %>
+						<div class="row">
+							<div class="col-md-6 text-right">
+								<h2 class="m-top-lg m-right-md text-white fadeInDownLarge animation-delay3">The Most Flexible & Lightweight</h2>
+								<p class="text-white fadeInUpLarge animation-delay6 m-right-md hidden-xs">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>
+									Vestibulum auctor suscipit lobortis.
+								</p>
+								<a href="#feature" class="btn btn-default btn-lg fadeInLeftLarge animation-delay8 m-bottom-lg m-right-md">Find Out More</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+            <%= image_tag("landing_pages/AdobeStock_76205552.jpeg", alt: "conversion doctor", :class => 'img-background', style: "max-height:800px") %>
+
+            <div class="row">
+							<div class="col-xs-6 text-right">
+							</div>
+							<div class="col-xs-6">
+								<h2 class="m-top-lg text-black fadeInDownLarge animation-delay3" style="color:black;">Fully Responsive Design</h2>
+								<p style="color:black;" class="text-black fadeInUpLarge animation-delay6 hidden-xs">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>
+									Vestibulum auctor suscipit lobortis.
+								</p>
+								<a href="#feature" class="btn btn-danger btn-lg fadeInRightLarge animation-delay8">Live Preview <i class="fa fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+            <%= image_tag("landing_pages/AdobeStock_104491281.jpg", alt: "conversion doctor", :class => 'img-background') %>
+
+            <div class="row text-center">
+							<h2 class="m-top-lg text-white fadeInDownLarge animation-delay3">Powerful Template with Clean Design</h2>
+							<p class="text-white fadeInUpLarge animation-delay6 hidden-xs">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>
+								Vestibulum auctor suscipit lobortis.
+							</p>
+							<a href="#pricing" class="btn btn-default btn-lg fadeInLeftLarge animation-delay8">Get It Now</a>
+							<a href="#feature" class="btn btn-danger btn-lg fadeInRightLarge animation-delay8">Find Out More</a>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#main-slider" data-slide="prev">
+					<span class="fa fa-chevron-left"></span>
+				</a>
+				<a class="right carousel-control" href="#main-slider" data-slide="next">
+					<span class="fa fa-chevron-right"></span>
+				</a>
+			</div>
+
+      <div class="bg-white text-center content-padding">
+        <div class="container">
+          <h3>A Plastic Surgeon’s Sales Tool</h3>
+          <h5 class="text-muted">Lead Management and Sales Accountability</h5>
+          <div class="seperator"></div>
+          <div class="seperator"></div>
+          <p>
+            Plastic surgeon Dr. Constantino Mendieta and practice specialist Nina Mendieta have designed a lead management tool focused on results. Based on the strategies they have implemented at their own practice, they have designed a plastic surgery sales tool focused on growth and accountability. Plastic and cosmetic sales is special industry that improves a patient’s quality of life. Finally we have a digital tool focused on Plastic surgery sales.
+          </p>
+          <a href="#pricing" class="btn btn-lg btn-success animated-element fadeInUp  ">PURCHASE NOW</a>
+          <hr/>
+          <%= image_tag("landing_pages/Screen Shot 2016-05-20 at 4.44.16 PM.png", alt: "Surgeon Dashboard", :class => 'fadeInRightLarge animated-element m-top-md animation-delay1') %>
+
+        </div>
+      </div>
+
+			<div class=" padding-md" id="feature">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-4 content-padding">
+							<div class="feature-icon text-center ">
+								<i class="fa fa-sitemap fa-4x"></i>
+							</div>
+							<div class="text-center font-lg">
+								<h3>Lead Management</h3>
+							</div>
+							<p class="text-center">Lead capture. Lead tracking. Effective communication protocol. Nurturing leads for sales team conversion. </p>
+						</div><!-- /.col -->
+						<div class="col-sm-4 content-padding">
+							<div class="feature-icon text-center">
+								<i class="fa fa-bar-chart fa-4x"></i>
+							</div>
+							<div class="text-center font-lg">
+								<h3>Measure Everything</h3>
+							</div>
+							<p class="text-center">Real time data analysis. Measure sales team effectiveness. Track marketing campaigns.</p>
+						</div><!-- /.col -->
+						<div class="col-sm-4 content-padding">
+							<div class="feature-icon text-center">
+								<i class="fa fa-phone fa-4x"></i>
+							</div>
+							<div class="text-center font-lg">
+								<h3>Can't Hear You</h3>
+							</div>
+							<p class="text-center">Custom communications. Automated text and email. Talk to your patients on their time. </p>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div>
+			</div>
+<hr>
+			<div class="padding-md">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-4 content-padding">
+							<div class="feature-icon text-center">
+								<i class="fa fa-tablet fa-4x"></i>
+							</div>
+							<div class="text-center font-lg">
+								<h3>Automation</h3>
+							</div>
+							<p class="text-center">Communication automation. Sales rep reminders and milestones. Date based workflow. </p>
+						</div><!-- /.col -->
+						<div class="col-sm-4 content-padding">
+							<div class="feature-icon text-center">
+								<i class="fa fa-magic fa-4x"></i>
+							</div>
+							<div class="text-center font-lg">
+								<h3>Sales Accountability</h3>
+							</div>
+							<p class="text-center">Individualized sales member data. Role based usage. Track sales member effectiveness. </p>
+						</div><!-- /.col -->
+						<div class="col-sm-4 content-padding">
+							<div class="feature-icon text-center">
+								<i class="fa fa-medkit fa-4x"></i>
+							</div>
+							<div class="text-center font-lg">
+								<h3>Surgeon's Dashboard</h3>
+							</div>
+							<p class="text-center">Your data at your fingertips. Compare sales performance across time, sales member or source. </p>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div>
+			</div>
+
+
+
+			<div class="bg-white" id="pricing">
+				<div class="container">
+					<div class="padding-md">
+						<div class="section-header">
+							<hr class="left visible-lg">
+							<span>
+								PRICING PLAN
+							</span>
+							<hr class="right visible-lg">
+						</div>
+					</div><!-- /.padding -->
+
+					<div class="row row-merge">
+						<div class="col-md-4 col-md-offset-1 col-sm-6" >
+							<div class="pricing-widget fadeInUp animated-element  ">
+								<div class="pricing-head">
+									Basic
+								</div>
+								<div class="pricing-body">
+									<div class="pricing-cost">
+										<strong class="block">$19</strong>
+										<small>per month</small>
+									</div>
+									<ul class="pricing-list text-center">
+										<li><a class="btn btn-sm btn-default">Start your free trial!</a></li>
+										<li>Amount of space <strong>10 GB</strong></li>
+										<li>Bandwidth per month <strong>100 GB</strong></li>
+										<li>No. of email accounts <strong>1</strong></li>
+										<li>No. of MySql database <strong>1</strong></li>
+										<li>24/7 Unlimited Support <strong>YES</strong></li>
+										<li>Support Tickets per month <strong>1</strong></li>
+										<li class="text-center"><a href="/sign_up" class="btn btn-default btn-success">Buy Now</a></li>
+									</ul>
+								</div>
+							</div><!-- /pricing-widget -->
+						</div><!-- /.col -->
+
+
+						<div class="col-md-4 col-md-offset-2 col-sm-6">
+							<div class="pricing-widget fadeInUp animated-element ">
+								<div class="pricing-head">
+									Premium
+								</div>
+								<div class="pricing-body">
+									<div class="pricing-cost">
+										<strong class="block">$79</strong>
+										<small>per month</small>
+									</div>
+									<ul class="pricing-list text-center">
+										<li><a class="btn btn-sm btn-default">Start your free trial!</a></li>
+										<li>Amount of space <strong>200 GB</strong></li>
+										<li>Bandwidth per month <strong>800 GB</strong></li>
+										<li>No. of email accounts <strong>100</strong></li>
+										<li>No. of MySql database <strong>80</strong></li>
+										<li>24/7 Unlimited Support <strong>YES</strong></li>
+										<li>Support Tickets per month <strong>8</strong></li>
+										<li class="text-center"><a href="/sign_up" class="btn btn-default btn-success">Buy Now</a></li>
+									</ul>
+								</div>
+							</div><!-- /pricing-widget -->
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+          <br>
+				</div><!-- /.container -->
+			</div><!-- /pricing -->
+
+
+			<div class="">
+				<div class="text-center content-padding" id="contact">
+					<div class="container">
+						<h3>NEWSLETTER SIGNUP</h3>
+						<p class="m-bottom-md">Subscribing to our newsletter you will always be update with the latest news from us.</p>
+
+						<form class="form-inline content-padding" action="http://4beauty.us9.list-manage2.com/subscribe/post" method="post">
+              <input type="hidden" name="u" value="3df8aaf3bc91143da1e523155">
+              <input type="hidden" name="id" value="ba24606000">
+							<div class="form-group">
+								<label class="sr-only">Email address</label>
+                <input class="form-control input-lg" type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="">
+								<!-- <input type="text"  placeholder="Email Address" id="newsletter"> -->
+							</div>
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3df8aaf3bc91143da1e523155_ba24606000" tabindex="-1" value=""></div>
+                <input type="submit" class="btn btn-lg btn-info"  name="submit" value="Subscribe" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!-- /landing-content -->
+
+		<footer style="margin-left: 0 !important;background-color:#504F63;color: #d5d4dd;">
+    	<div class="container">
+				<div class="row">
+					<div class="col-sm-3 padding-md">
+						<p class="font-lg">About Our Company</p>
+						<p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.</small></p>
+					</div><!-- /.col -->
+					<div class="col-sm-3 padding-md">
+						<p class="font-lg">Useful Links</p>
+						<ul class="list-unstyled useful-link">
+							<li>
+								<a href="">
+									<small><i class="fa fa-chevron-right"></i> Our Profile</small>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<small><i class="fa fa-chevron-right"></i> New Products</small>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<small><i class="fa fa-chevron-right"></i> Support Portal</small>
+								</a>
+							</li>
+						</ul>
+					</div><!-- /.col -->
+					<div class="col-sm-3 padding-md">
+						<p class="font-lg">Stay Connected</p><br/>
+						<a href="" class="social-connect tooltip-test facebook-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+						<a href="" class="social-connect tooltip-test twitter-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+						<a href="" class="social-connect tooltip-test google-plus-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Google Plus"><i class="fa fa-google-plus"></i></a>
+						<a href="" class="social-connect tooltip-test rss-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Rss feed"><i class="fa fa-rss"></i></a>
+            <br><br>
+						<a href="" class="social-connect tooltip-test tumblr-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Tumblr"><i class="fa fa-tumblr"></i></a>
+						<a href="" class="social-connect tooltip-test dribbble-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Dribbble"><i class="fa fa-dribbble"></i></a>
+						<a href="" class="social-connect tooltip-test linkedin-hover pull-left m-right-xs" data-toggle="tooltip" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a>
+						<a href="" class="social-connect tooltip-test pinterest-hover pull-left" data-toggle="tooltip" data-original-title="Pinterest"><i class="fa fa-pinterest"></i></a>
+					</div><!-- /.col -->
+					<div class="col-sm-3 padding-md">
+						<p class="font-lg">Contact Us</p><br/>
+					support@conversiondoctor.com
+						<div class="seperator"></div>
+						<!-- <a class="btn btn-info"><i class="fa fa-envelope"></i> Contact support</a> -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</footer>
+	</div><!-- /wrapper -->
+
+	<a href="" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
+
+  <script>
+  $(function()	{
+    $('.animated-element').waypoint(function() {
+
+      $(this).removeClass('no-animation');
+
+    }, { offset: '70%' });
+
+    $('.nav').localScroll({duration:800});
+    $('.container').localScroll({duration:800});
+    $('.item').localScroll({duration:800});
+  });
+</script>

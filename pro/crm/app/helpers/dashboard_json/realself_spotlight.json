@@ -1,0 +1,71 @@
+[
+    {
+        "options": [
+            {
+                "title": "Real Self Spotlight",
+                "subTitle": "",
+                "yAxisLabel": "Total",
+                "tooltipValueSuffix": " Month"
+            }
+        ]
+    },
+    {
+                "series": [
+            {
+                "name": "Total Reviews",
+                "colorByPoint": true,
+                "data": [
+                    {
+                        "name": "January",
+                        "y": 14365
+                    },
+                    {
+                        "name": "Febuary",
+                        "y": 13698
+                    },
+                    {
+                        "name": "March",
+                        "y": 28572
+                    },
+                    {
+                        "name": "April",
+                        "y": 28554
+                    },
+                    {
+                        "name": "May",
+                        "y": 43617
+                    },
+                    {
+                        "name": "June",
+                        "y": 92973
+                    },
+                    {
+                        "name": "July",
+                        "y": 110287
+                    },
+                    {
+                        "name": "August",
+                        "y": 116705
+                    },
+                    {
+                        "name": "September",
+                        "y": 119518
+                    },
+                    {
+                        "name": "October",
+                        "y": 25202
+                    },
+                    {
+                        "name": "November",
+                        "y": 0
+                    },
+                    {
+                        "name": "December",
+                        "y": 0
+                    }
+                ]
+                
+            }
+        ]
+    }
+]

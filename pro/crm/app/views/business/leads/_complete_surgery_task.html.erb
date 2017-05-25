@@ -1,0 +1,24 @@
+<div class="modal fade" id="completeSurgery<%=task.id%>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Complete Surgery</h4>
+      </div>
+      <%= form_tag complete_surgery_path, :method => 'post', class: "form-inline no-margin" do %>
+      <div class="modal-body">
+        <div class="alert alert-success">
+          Did <%= task.lead.name %> complete their surgery?
+        </div>
+
+        <%= hidden_field_tag "lead_id", task.lead.id %>
+
+      </div>
+      <div class="modal-footer">
+        <%= submit_tag "Complete Surgery", class: "btn btn-xs btn-success should-load" %>
+        <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

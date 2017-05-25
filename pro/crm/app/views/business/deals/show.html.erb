@@ -1,0 +1,54 @@
+<p><%= link_to 'Edit Deal', edit_business_deal_path(@deal), {:class => 'btn'} %></p>
+<%= form_for(@deal, :html => {:class => ""} ) do |f| %>
+    <div class="input-wrapper">
+        <%= f.label :status,"Status"  %>
+        <%= f.text_field :status %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :stage,"Stage"  %>
+        <%= f.select(:stage,options_from_collection_for_select(@current_org.stages.where(type: 'deal'),:stage_id,:name, @deal.stage)) %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :score,"Score"  %>
+        <%= f.text_field :score %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :source,"Source"  %>
+        <%= f.text_field :source %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :value,"Value"  %>
+        <%= f.text_field :value %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :account_rep_id,"Account Rep"  %>
+        <%= f.text_field :account_rep_id %>
+    </div>
+
+    <div class="input-wrapper">
+        <%= f.label :sales_rep_id,"Sales Rep"  %>
+        <%= f.text_field :sales_rep_id %>
+    </div>
+
+<% end %>
+
+<h2>Notes:</h2>
+<ul>
+<% @notes.each do |note| %>
+  <li><%= note.body %></li>
+<% end %>
+</ul>
+
+<h2>Add Note</h2>
+<%= form_for(@note,:url => business_deal_notes_path(@deal), :html => {:class => ""} ) do |f| %>
+  <%= f.label :body,"Note Body:"  %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Add Note", :class => "btn" %>
+
+<% end %>

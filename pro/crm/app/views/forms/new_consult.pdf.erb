@@ -1,0 +1,221 @@
+<style type="text/css">
+  html {
+      font-family: 'helvetica','arial','sans-serif';
+      font-size: 14px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    hr {
+      margin-bottom: 18px;
+      background-color: #000;
+      border-style:solid;
+    }
+    h4 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    h4 .caution-label {
+      font-style: italic;
+      font-family: script;
+    }
+    label {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid #333;
+      font-size: 13px;
+    }
+    .input-wrapper:last-child .alt-label + input,
+    input + input {
+      margin: 8px 0px;
+    }
+    .input-wrapper {
+      margin-bottom: 8px;
+    }
+    .inline-wrapper .input-wrapper {
+      display: inline-block;
+    }
+
+    .sm-input {
+      width: 85px;
+    }
+    .alt-label {
+      color: #037dc4;
+    }
+    .caution-label {
+      color: #ba3790;
+    }
+    small {
+      display: block;
+      margin-top: 25px;
+    }
+    small strong {
+      display: block;
+      text-align:center;
+    }
+</style>
+<div class="page-wrapper">
+  <header>
+    <h4>Constantino G Mendieta, MD. F.A.C.S. <span class="caution-label">Board Certified Plastic Surgeon</span></h4>
+    <hr>
+  </header>
+  <div>
+      <div class="input-wrapper">
+        <label>Date:</label>
+        <input type="text"/>
+      </div>
+    <div class="inline-wrapper">
+    
+   <div class="input-wrapper">
+      <label>Name:</label>
+      <input type="text" value="<%= contact.full_name %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>D.O.B:</label>
+      <input type="text" class="sm-input" value="<%= contact.dob %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Age:</label>
+      <input type="text" class="sm-input" value="<%= contact.age %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>Sex:</label>
+      <input type="text" class="sm-input" value="<%= contact.gender %>"/>
+    </div>
+</div>
+    
+   <div class="input-wrapper">
+      <label>RESPONSIBLE PARTY (IF A MINOR):</label>
+      <input type="text"/>
+    </div>
+<div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label>Address:</label>
+      <input type="text" value="<%= contact.address %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>City:</label>
+      <input type="text" value="<%= contact.city %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>State:</label>
+      <input type="text" class="sm-input" value="<%= contact.state %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Zip:</label>
+      <input type="text" class="sm-input" value="<%= contact.zip %>" />
+    </div>
+    </div>
+    <div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label>Phone:</label>
+      <input type="text" value="<%= contact.phone %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>Alt Phone:</label>
+      <input type="text" value="<%= contact.alt_phone %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>Email:</label>
+      <input type="text" value="<%= contact.email %>" />
+    </div>
+    </div>
+   <div class="input-wrapper">
+      <label>Marital Status:</label>
+      <input type="text" value="<%= contact.marital_status %>" />
+    </div>
+    <div class="inline-wrapper">
+    <div class="input-wrapper">
+      <label>Employed By:</label>
+      <input type="text" value="<%= contact.employer %>" />
+    </div>
+
+   <div class="input-wrapper">
+      <label>Occupation:</label>
+      <input type="text" value="<%= contact.occupation %>" />
+    </div>
+   <div class="input-wrapper">
+      <label>Work Phone:</label>
+      <input type="text" value="<%= contact.business_phone %>" />
+    </div>
+  </div>
+   <div class="input-wrapper">
+      <label>Spouse (or Responsible Party) Name:</label>
+      <input type="text"/>
+    </div>
+    <div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label>Occupation:</label>
+      <input type="text"/>
+    </div>
+   <div class="input-wrapper">
+      <label>Work Phone:</label>
+      <input type="text"/>
+    </div>
+    </div>
+     <div class="inline-wrapper">   
+   <div class="input-wrapper">
+      <label>Who is responsible for this account?:</label>
+      <input type="text"/>
+    </div>
+    
+   <div class="input-wrapper">
+      <label>Relationship To Patient:</label>
+      <input type="text"/>
+    </div>
+    </div>
+  <div class="inline-wrapper">
+   <div class="input-wrapper">
+      <label>In case of an Emergency, Who should be notified?:</label>
+      <input type="text" value="<%=  "#{contact.emergency_contact_first_name} #{contact.emergency_contact_last_name} - #{contact.emergency_contact_relationship}" %>"/>
+    </div>
+
+   <div class="input-wrapper">
+      <label>Phone:</label>
+      <input type="text" value="<%= contact.emergency_contact_phone %>"/>
+    </div>
+    </div>    
+    <hr>
+     <div class="input-wrapper">
+      <label>Procedure Desired?:</label>
+      <input type="text" value="<%= contact.leads.last.interested_in %>"/>
+    </div>    
+    
+   <div class="input-wrapper">
+      <label>When were you thinking of having surgery?:</label>
+      <input type="text" value="<%= contact.leads.last.planned_surgery_date %>"/>
+    </div>  
+   <div class="input-wrapper">
+      <label>Are you interested in financing?:</label>
+      <input type="text" value="<%= contact.leads.last.financing %>"/>
+    </div>
+   <div class="input-wrapper">
+      <label>How Did you hear about Dr. Constantino G. Mendieta?:</label>
+      <input type="text" value="<%= contact.leads.last.referral %>"/>
+    </div>
+    <hr>
+    <p>I understand and I am financially responsible to Dr. Constantino G Mendieta for any and all charges incurred and that such payment is not contingent upon any settlement, judgment or insurance payment.</p>
+  <div class="inline-wrapper">
+     <div class="input-wrapper">
+      <input type="text"/>
+      <label>Signature of Patient/Responsible Party</label>
+    </div>
+       <div class="input-wrapper">
+      <input type="text"/>
+      <label>Date</label>
+    </div>
+  </div>
+    
+  </div>
+  <small>
+<strong>2310 South Dixie Hwy-Coconut Grove-Fl 33133 / Phone (305)860-0717 Fax (305)860-0769</strong>
+  </small>
+</div>

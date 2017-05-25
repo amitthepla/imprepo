@@ -1,0 +1,593 @@
+[
+    {
+        "options": [
+            {
+                "title": "Emerit Reviews",
+                "subTitle": "Click on each month to get a detailed breakdown",
+                "yAxisLabel": "Total Reviews by Month"
+            }
+        ]
+    },
+    {
+        "series": [
+            {
+                "name": "Total Reviews",
+                "colorByPoint": true,
+                "data": [
+                    {
+                        "name": "January",
+                        "y": 3,
+                        "drilldown": "jan"
+                    },
+                    {
+                        "name": "Febuary",
+                        "y": 0,
+                        "drilldown": "feb"
+                    },
+                    {
+                        "name": "March",
+                        "y": 1,
+                        "drilldown": "mar"
+                    },
+                    {
+                        "name": "April",
+                        "y": 8,
+                        "drilldown": "apr"
+                    },
+                    {
+                        "name": "May",
+                        "y": 11,
+                        "drilldown": "may"
+                    },
+                    {
+                        "name": "June",
+                        "y": 4,
+                        "drilldown": "jun"
+                    },
+                    {
+                        "name": "July",
+                        "y": 4,
+                        "drilldown": "jul"
+                    },
+                    {
+                        "name": "August",
+                        "y": 6,
+                        "drilldown": "aug"
+                    },
+                    {
+                        "name": "September",
+                        "y": 21,
+                        "drilldown": "sept"
+                    },
+                    {
+                        "name": "October",
+                        "y": 3,
+                        "drilldown": "oct"
+                    },
+                    {
+                        "name": "November",
+                        "y": 0,
+                        "drilldown": "nov"
+                    },
+                    {
+                        "name": "December",
+                        "y": 0,
+                        "drilldown": "dec"
+                    }
+                ]
+                
+            }
+        ]
+    },
+    {
+        "drillDown": [
+            {
+                "name": "January",
+                "id": "jan",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "Febuary",
+                "id": "feb",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "March",
+                "id": "mar",
+                "data": [
+                    [
+                        "Google+",
+                        2
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "April",
+                "id": "apr",
+                "data": [
+                    [
+                        "Google+",
+                        2
+                    ],
+                    [
+                        "CitySearch",
+                        1
+                    ],
+                    [
+                        "Vitals",
+                        3
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "May",
+                "id": "may",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        1
+                    ],
+                    [
+                        "Vitals",
+                        3
+                    ],
+                    [
+                        "HealthGrades",
+                        3
+                    ],
+                    [
+                        "eDoctorReviews",
+                        3
+                    ],
+                    [
+                        "RealSelf",
+                        2
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "June",
+                "id": "jun",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        2
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        1
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "July",
+                "id": "jul",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        1
+                    ],
+                    [
+                        "Vitals",
+                        2
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        1
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "August",
+                "id": "aug",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+
+                ]
+            },
+            {
+                "name": "September",
+                "id": "sept",
+                "data": [
+                    [
+                        "Google+",
+                        1
+                    ],
+                    [
+                        "CitySearch",
+                        2
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        1
+                    ],
+                    [
+                        "eDoctorReviews",
+                        2
+                    ],
+                    [
+                        "RealSelf",
+                        1
+                    ],
+                    [
+                        "YellowPages",
+                        4
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        3
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        5
+                    ]
+
+                ]
+            },
+            {
+                "name": "October",
+                "id": "oct",
+                "data": [
+                    [
+                        "Google+",
+                        2
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        1
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        1
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "November",
+                "id": "nov",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        0
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            },
+            {
+                "name": "December",
+                "id": "dec",
+                "data": [
+                    [
+                        "Google+",
+                        0
+                    ],
+                    [
+                        "CitySearch",
+                        0
+                    ],
+                    [
+                        "Vitals",
+                        0
+                    ],
+                    [
+                        "HealthGrades",
+                        0
+                    ],
+                    [
+                        "eDoctorReviews",
+                        0
+                    ],
+                    [
+                        "RealSelf",
+                        0
+                    ],
+                    [
+                        "YellowPages",
+                        0
+                    ],
+                    [
+                        "DoctorsWebsite",
+                        0
+                    ],
+                    [
+                        "UCompareHealthCare",
+                        0
+                    ]
+                ]
+            }
+            
+        ]
+    }
+]

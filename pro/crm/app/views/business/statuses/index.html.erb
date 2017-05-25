@@ -1,0 +1,7 @@
+<h1>All Statuses</h1>
+<%= link_to 'Add New Status', new_business_status_path %>
+<% @statuses.each do |status| %>
+    <div class="card">
+    <%= link_to status.description, status %>
+  </div>
+<% end %>

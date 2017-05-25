@@ -1,0 +1,49 @@
+<div class="form-wrapper alt-form-wrapper">
+  <header><h1>4Beauty - Signup</h1></header>
+  <div>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@user.errors.count, 'error') %>
+            prohibited this Doc from being saved:
+          </h2>
+          <p>There were problems with the following fields:</p>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= form_for(@user, :html => {:class => ".form-horizontal", method: :post}) do |f| %>
+        <div>
+          <div class="input-wrapper">
+            <%= f.label :first_name, "First Name" %>
+            <%= f.text_field :first_name, value: @invite.nil? ? '' : @invite.first_name %>
+          </div>
+          <div class="input-wrapper">
+            <%= f.label :last_name, "Last Name" %>
+            <%= f.text_field :last_name, value: @invite.nil? ? '' : @invite.last_name %>
+          </div>
+        </div>
+        <div>
+          <div class="input-wrapper">
+            <%= f.label :email, "Email" %>
+            <%= f.text_field :email, value: @invite.nil? ? '' : @invite.email %>
+          </div>
+          <div class="input-wrapper">
+            <%= f.label :password, "New Password" %>
+            <%= f.password_field :password %>
+          </div>
+          <div class="input-wrapper">
+            <%= f.label :password_confirmation, "Retype Password" %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <%= f.hidden_field :invite_token, value: params[:id] %>
+        </div>
+
+        <%= f.submit "Sign Up", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

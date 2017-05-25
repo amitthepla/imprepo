@@ -1,0 +1,78 @@
+<h1>Website Forms</h1>
+<% if @sites.empty? %>
+    <div class="text-center" style=" ">
+      <h3>Currently No Forms Available</h3>
+    </div>
+<% else %>
+  <ul class="pagination">
+    <%= will_paginate @sites, renderer: BootstrapAjaxPaginationHelper::LinkRenderer %>
+  </ul>
+  <table class="table table-hover table-striped table-bordered">
+    <thead style="">
+    <tr>
+      <th>Name</th>
+      <th>Source Name</th>
+      <th>Form Type</th>
+      <th>Form URL</th>
+      <th>Form Id</th>
+      <th>HTML Code</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody style="max-height:50vh; overflow-x:auto;">
+      <% @sites.each do |site| %>
+        <%= render partial: 'site', :locals => {:site => site}%>
+      <% end %>
+    </tbody>
+  </table>
+
+  <ul class="pagination">
+    <%= will_paginate @sites, renderer: BootstrapAjaxPaginationHelper::LinkRenderer %>
+  </ul>
+<% end %>
+
+<div class="modal fade" id="siteFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">HTML Form</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="code_data"></label>
+          <textarea id="code_data" class="form-control" style="height: 300px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editSite">
+  <div class="modal-dialog" id="edit-site-modal">
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+  $(document).ready(function () {
+    $(".generateForm").click(function () {
+      $("#code_data").val('');
+      var siteId = $(this).data('site-id');
+      $.ajax({
+        url: "/generate_html_form/" + siteId,
+        type: 'GET',
+        success: function (res) {
+          $("#code_data").val(res);
+        }
+      });
+    });
+
+    $("#code_data").click(function() {
+      $(this).select();
+    });
+  });
+</script>

@@ -1,0 +1,17 @@
+<tr id="<%= src.id%>">
+  <td><%= src.name.titleize %></td>
+  <td><%= src.source_type.name.titleize %></td>
+  <td><% if src.site %><a href="#" class="generateForm" data-site-id="<%= src.site.site_id %>" data-toggle="modal" data-target="#sourceFormModal">Click here to get code</a><%end%></td>
+  <td><%= src.category.titleize if src.category%></td>
+  <%= source_dates(src) %>
+  <td><%= number_to_currency(src.cost) %></td>
+  <td>
+    <a href="<%= edit_business_source_path(src)%>" data-target= "#editSource" data-toggle="modal" data-remote="true">
+      <i class="text-info fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+    </a>
+    &nbsp;&nbsp;
+    <%= link_to src, remote: true, method: :delete, data:{confirm: "Delete this contact?"} do %>
+    <i class="text-danger fa fa-trash-o fa-lg" aria-hidden="true"></i>
+    <% end %>
+  </td>
+</tr>

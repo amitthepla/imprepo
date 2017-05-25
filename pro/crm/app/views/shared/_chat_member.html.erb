@@ -1,0 +1,22 @@
+<ul>
+  <% @collection.each do |item| %>
+      <%- if item[:type] == 'individual' %>
+          <li id="<%= item[:id] +'_online' %>" class="individual" style="cursor: pointer" data-channel="<%= item[:id] %>" data-uuid="" onclick="individualClick(this);">
+            <div class="pf-letter relative">
+              <span class="<%= item[:is_online]? 'bg-rnd-pf' : 'bg-rnd-npf' %> bgrnd-clr-<%= (0..9).to_a.sample %>"><%= item[:full_name].first.upcase %></span>
+            </div>
+            <div class="pf-name"><%= item[:full_name] %></div>
+            <span class="badge badge-danger chat-badge" style="display: <%= item[:unread] > 0 ? '' : 'none' %>"><%= item[:unread] %></span>
+          </li>
+      <%- else %>
+          <li id="<%= item[:channel] +'_online' %>" class="individual" style="cursor: pointer" data-channel="<%= item[:channel] %>" data-uuid="" data-gid="<%= item[:id] %>" onclick="groupClick(this);">
+            <div class="pf-letter relative">
+              <span class="bg-rnd-npf bgrnd-clr-<%= (0..9).to_a.sample %>"><%= item[:name].first.upcase %></span>
+            </div>
+            <div class="pf-name"><%= item[:name] %></div>
+            <span class="badge badge-danger chat-badge" style="display: <%= item[:unread] > 0 ? '' : 'none' %>"><%= item[:unread] %></span>
+          </li>
+      <%- end %>
+
+  <%- end %>
+</ul>

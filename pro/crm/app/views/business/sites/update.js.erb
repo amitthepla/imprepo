@@ -1,0 +1,13 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$("#<%=@site.id%>").closest("tr").replaceWith("<%= j render(partial: 'site', locals: {site: @site})%>");
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Successfully Updated Site Form',
+  text: "You have succesfully update <%=@site.name.titleize%> as a Site Form.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

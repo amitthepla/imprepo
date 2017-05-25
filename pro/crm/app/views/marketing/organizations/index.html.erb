@@ -1,0 +1,11 @@
+<h1>All Organizations</h1>
+
+<% @orgs.each do |org| %>
+  <div class="card">
+    <%= link_to org.company_name, admin_organization_path(org) %>
+  </div>
+<% end %>
+
+<% if @orgs.empty? %>
+  <p>No Organizations</p>
+<% end %>

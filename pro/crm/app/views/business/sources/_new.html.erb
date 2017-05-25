@@ -1,0 +1,14 @@
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">New Source</div>
+    <div class="panel-body">
+      <%= form_for(@source, html: {class: 'form-group add-edit-form'}) do |f| %>
+          <%= render partial: 'form', locals: {f: f} %>
+          <div class="panel-footer">
+            <%= f.submit 'Create Source', :class => 'btn btn-sm btn-success' %>
+            <%= link_to 'Cancel', business_sources_path, :class => 'btn btn-sm btn-default' %>
+          </div>
+      <% end %>
+    </div>
+  </div><!-- /panel -->
+</div><!-- /.col -->

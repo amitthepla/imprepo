@@ -1,0 +1,22 @@
+<% if @current_account.roles.include?(@current_org.roles.where({name: 'Administrator'}).first.id.to_s) %>
+  <%= render 'edit_all_info' %>
+<% else %>
+  <%= render 'edit_basic_info' %>
+<% end %>
+<script>
+
+  // date picker
+  $('.datepicker').datepicker({
+    format: "mm/dd/yyyy"
+  }).on('changeDate', function (e) {
+    if (e.viewMode === 'days') {
+      $(this).datepicker('hide');
+      removeErrors();
+    }
+  });
+
+  function removeErrors() {
+    $(".datepicker").removeAttr("style");
+    $("#error-text").hide();
+  }
+  </script>

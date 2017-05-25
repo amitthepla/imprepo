@@ -1,0 +1,75 @@
+<% selected_type = @source.source_type.present? ? @source.source_type.id.to_s : '' %>
+
+<div class="form-group">
+  <%= f.label :name, 'Source Name:' %>
+  <%= f.text_field :name, class: 'form-control', onblur: 'removeErrors(this)' %>
+</div>
+<div class="form-group">
+  <%= f.label :source_type, 'Type:' %>
+  <%= f.select(:source_type, options_for_select(SourceType.all.map { |st| [st.name, st.id.to_s] }, selected_type), {}, {class: 'form-control chzn-select', style: 'width:80% !important'}) %>
+</div>
+<br/>
+
+<div class="form-group">
+  <%= f.label :start_date, 'Start Date' %>
+  <div class="input-group">
+    <%= f.text_field :start_date, class: 'form-control input-sm date datepicker', value: @source.start_date.present? ? @source.start_date.strftime('%m/%d/%Y') : '', onblur: 'removeErrors(this)' %>
+    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+  </div>
+</div>
+<br/>
+
+<div class="form-group">
+  <%= f.label :end_date, 'End Date' %>
+  <div class="input-group">
+    <%= f.text_field :end_date, class: 'form-control datepicker', value: @source.end_date.present? ? @source.end_date.strftime('%m/%d/%Y') : '', onblur: 'removeErrors(this)' %>
+    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+  </div>
+</div>
+<br/>
+
+<div class="form-group">
+  <%= f.label :cost, 'Cost' %>
+  <%= f.number_field :cost, class: 'form-control', min: 0, onblur: 'removeErrors(this)' %>
+</div>
+
+<script>
+  $(document).ready(function () {
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    }).on('changeDate', function (e) {
+      if (e.viewMode === 'days') {
+        removeErrors(this);
+      }
+    });
+
+    $(".add-edit-form").on("submit", function (e) {
+      e.preventDefault();
+      var is_valid = true;
+      var source = $("#business_source_name"),
+          cost = $("#business_source_cost");
+
+      if ($.trim(source.val()) == "") {
+        is_valid = false;
+        source.css("border-color", "red");
+      }
+
+      if ($.trim(cost.val()) == "") {
+        is_valid = false;
+        cost.css("border-color", "red");
+      }
+
+      if (is_valid) {
+        this.submit();
+      }
+
+    });
+  });
+
+  function removeErrors(inputNode) {
+    $(inputNode).removeAttr("style");
+  }
+
+</script>

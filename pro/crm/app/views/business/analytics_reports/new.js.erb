@@ -1,0 +1,11 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('body').removeClass('modal-open');
+
+$.gritter.add({
+  title: '<i class="fa fa-check-circle"></i> Analytics',
+  text: "You have succesfully requested a new Analytics report. You will be notified once the report is ready.",
+  sticky: false,
+  time: '5000',
+  class_name: 'gritter-success'
+});

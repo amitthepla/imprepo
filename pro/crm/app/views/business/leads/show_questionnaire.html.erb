@@ -1,0 +1,42 @@
+<div class="input-wrapper questionnaire-preview">
+	<textarea class="js-select-all">
+	Patient Name: <%= @lead.contact.first_name %> <%= @lead.contact.last_name %>
+	Interested In: <%= @lead.interested_in.upcase %>
+	Status: <%= @current_org.statuses.find_by(id: @lead.status).description if !@lead.status.blank? %>
+	Score: <%= @lead.score %>
+	Source: <%= @lead.source %>
+	Referral: <%= @lead.referral %>
+	Value: <%= @lead.value %>
+	Coordinator: <%= @lead.user.full_name if @lead.user %>
+	Appointment Type: <%= @lead.appointment_type %>
+	Appointment Timeframe: <%= @lead.appointment_timeframe %>
+	Appointment Time of Day: <%= @lead.appointment_time_of_day %>
+	Email: <%= @lead.contact.email %>
+	Phone: <%= @lead.contact.phone %>
+	Address: <%= @lead.contact.address %>
+	City: <%= @lead.contact.city %>
+	Sate: <%= @lead.contact.state %>
+	Zip: <%= @lead.contact.zip %>
+	Date of Birth: <%= @lead.contact.dob %>
+	Age: <%= @lead.contact.age %>
+	Bra Size: <%= @lead.contact.bra_size %>
+	Weight: <%= @lead.contact.weight %>
+	Height: <%= @lead.contact.height %>
+	Gender: <%= @lead.contact.gender %>
+	Medications: <%= @lead.contact.questionnaire.medications %>
+	Medical Conditions: <%= @lead.contact.questionnaire.medical_conditions %>
+	Surgical History: <%= @lead.contact.questionnaire.surgical_history %>
+	Allergies: <%= @lead.contact.questionnaire.allergies %>
+	Smoker: <%= @lead.contact.questionnaire.smoker %>
+	Children: <%= @lead.contact.questionnaire.children %>
+	Last Pregnancy Date: <%= @lead.contact.questionnaire.last_pregnancy_date %>
+	Financing: <%= @lead.financing %>
+	Budget: <%= @lead.budget %>
+	Planned Surgery Date: <%= @lead.planned_surgery_date %>
+	Interest Level: <%= @lead.interest_level %>
+	Motivation: <%= @lead.motivation %>
+	Expectations: <%= @lead.expectations %>
+	Extra Questions: <%= @lead.extra_questions %>
+	Notes: <%= @lead.note %>
+	</textarea>
+</div>

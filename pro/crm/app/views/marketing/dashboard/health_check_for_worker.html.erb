@@ -1,0 +1,2480 @@
+<style>
+.panel {
+  margin:15px !important;
+}
+</style>
+
+<div style="clear:both"></div>
+<center>
+<div class="alert-message"> <h4> Revenue is <%=lead_review(@earned_revenue - @first_earned_revenue)%> last month and <%=lead_review(@earned_revenue - @second_earned_revenue)%> last year. &nbsp; &nbsp; Leads are <%=lead_review(@leads_count - @first_leads_count)%> last month and <%=lead_review(@leads_count - @second_leads_count)%> last year.</h4></div>
+</center>
+<div class="col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-heading h4">Monthly Health Check</div>
+    <div class="panel-body">
+      <h6>Start with step 1 to review your Monthly Health Check.</h6>
+      <div class="divs">
+        <h5 class="text-success">Marketing & Revenue</h5>
+        <div class="steps"><b>Step 1</b> Lead Generation <span class="pull-right"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 2</b> Source Productivity <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 3</b> Inquiry to Appoinment <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 4</b> Appointments <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 5</b> Appointment to Surgery <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 6</b> Surgeries <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 7</b> Earned and Lost Revenue <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <h5 class="text-success">Staff Performance</h5>
+        <div class="steps"><b>Step 8</b> Receptionist Inquiry to Appointment <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 9</b> Coordinator Communication <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 10</b> Coordinator Closing Rates <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+        <div class="steps"><b>Step 11</b> Coordinator Revenue <span class="pull-right" style="display:none;"><i class="fa fa-check text-success" aria-hidden="true"></i></span></div>
+
+      </div>
+      <br>
+      <button class="btn btn-success btn-sm disabled" id="prevStep" disabled>Previous</button>
+      <button type="submit" class="btn btn-sm btn-success" id="nextStep">Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-9">
+  <div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="h4"><%=@current_org.company_name%>'s Vitals</span>
+            <div class="pull-right" style="width:30%;margin-bottom:5px;">
+              <div style="height:20px;" class="progress progress-striped active m-top-sm m-bottom-none">
+                <div class="progress-bar progress-bar-success" id="wizardProgress" style="width:9%;"></div>
+              </div>
+            </div>
+            <div style="clear:both;"></div>
+					</div>
+					<div class="panel-tab">
+						<ul class="wizard-steps" id="wizardTab">
+							<li class="active">
+								<a href="#wizardContent1" data-toggle="tab">Step 1</a>
+							</li>
+							<li>
+								<a href="#wizardContent2" data-toggle="tab">Step 2</a>
+							</li>
+							<li>
+								<a href="#wizardContent3" data-toggle="tab">Step 3</a>
+							</li>
+              <li>
+                <a href="#wizardContent4" data-toggle="tab">Step 4</a>
+              </li>
+              <li>
+                <a href="#wizardContent5" data-toggle="tab">Step 5</a>
+              </li>
+              <li>
+                <a href="#wizardContent6" data-toggle="tab">Step 6</a>
+              </li>
+              <li >
+                <a href="#wizardContent7" data-toggle="tab">Step 7</a>
+              </li>
+              <li>
+                <a href="#wizardContent8" data-toggle="tab">Step 8</a>
+              </li>
+              <li>
+                <a href="#wizardContent9" data-toggle="tab">Step 9</a>
+              </li>
+              <li>
+                <a href="#wizardContent10" data-toggle="tab">Step 10</a>
+              </li>
+              <li>
+                <a href="#wizardContent11" data-toggle="tab">Step 11</a>
+              </li>
+						</ul>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="wizardContent1">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Lead Generation
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class=" in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        Review this Lead Generation table to determine if there is an issue with the quantity of leads being generated. If there is a large discrepancy review the sources that would directly influence the inquiry type.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Inquiry Type</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Web Inquiry</td>
+                            <td><%= @first_web_leads_count -%></td>
+                            <td><%= @web_leads_count -%></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@web_leads_count - @first_web_leads_count )%>">
+                                <%=  @web_leads_count - @first_web_leads_count%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@web_leads_count - @first_web_leads_count)%>">
+                                <%= ((@web_leads_count - @first_web_leads_count) / zero_safe_guard(@web_leads_count)) * 100 %> %
+                              </span>
+                            </td>
+                            <td><%= @second_web_leads_count -%></td>
+                            <td><%= @web_leads_count -%></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@web_leads_count - @second_web_leads_count )%>">
+                                <%=  @web_leads_count - @second_web_leads_count%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@web_leads_count - @second_web_leads_count)%>">
+                                <%= ((@web_leads_count - @second_web_leads_count) / zero_safe_guard(@web_leads_count)) * 100 %> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Phone Call/ Walk In</td>
+                            <td><%= @first_phone_leads_count -%></td>
+                            <td><%= @phone_leads_count -%></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@phone_leads_count - @first_phone_leads_count )%>">
+                                <%=  @phone_leads_count - @first_phone_leads_count%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@phone_leads_count - @first_phone_leads_count)%>">
+                                <%= ((@phone_leads_count - @first_phone_leads_count) / zero_safe_guard(@phone_leads_count)) * 100 %> %
+                              </span>
+                            </td>
+                            <td><%= @second_phone_leads_count -%></td>
+                            <td><%= @phone_leads_count -%></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@phone_leads_count - @second_phone_leads_count )%>">
+                                <%=  @phone_leads_count - @second_phone_leads_count%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@phone_leads_count - @second_phone_leads_count)%>">
+                                <%= ((@phone_leads_count - @second_phone_leads_count) / zero_safe_guard(@phone_leads_count)) * 100 %> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Total</td>
+                            <td><%= @first_leads_count -%></td>
+                            <td><%= @leads_count -%></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@leads_count - @first_leads_count )%>">
+                                <%=  @leads_count - @first_leads_count%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@leads_count - @first_leads_count)%>">
+                                <%= ((@leads_count - @first_leads_count) / zero_safe_guard(@leads_count)) * 100 %> %
+                              </span>
+                            </td>
+                            <td><%= @second_leads_count -%></td>
+                            <td><%= @leads_count -%></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@leads_count - @second_leads_count )%>">
+                                <%=  @leads_count - @second_leads_count%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@leads_count - @second_leads_count)%>">
+                                <%= ((@leads_count - @second_leads_count) / zero_safe_guard(@leads_count)) * 100 %> %
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+							</div>
+							<div class="tab-pane fade" id="wizardContent2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Source Productivity
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;width:100%;">
+                        Use the Source Productivity table to review your Source Types. You can determine which Source Type has generated the most leads.
+                      </div>
+                      <table class="table table-hover  table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Source</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Internet</td>
+                            <td><a data-target="#first_internet_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Internet"]) -%></a></td>
+                            <td><a data-target="#internet_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Internet"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Internet"]) - source_count_check(@first_sources["Internet"]))) %>">
+                                <%= source_count_check(@sources["Internet"]) - source_count_check(@first_sources["Internet"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Internet"]) - source_count_check(@first_sources["Internet"]))) %>">
+                                <%= ((source_count_check(@sources["Internet"]) - source_count_check(@first_sources["Internet"])) / zero_safe_guard(source_count_check(@sources["Internet"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_internet_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Internet"])  -%></a></td>
+                            <td><a data-target="#internet_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Internet"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Internet"]) - source_count_check(@second_sources["Internet"])) ) %>">
+                                <%= source_count_check(@sources["Internet"]) - source_count_check(@second_sources["Internet"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Internet"]) - source_count_check(@second_sources["Internet"])) ) %>">
+                                <%= ((source_count_check(@sources["Internet"]) - source_count_check(@second_sources["Internet"])) / zero_safe_guard(source_count_check(@sources["Internet"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Referral</td>
+                            <td><a data-target="#first_referral_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Referral"]) -%></a></td>
+                            <td><a data-target="#referral_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Referral"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(source_count_check(@sources["Referral"]) - source_count_check(@first_sources["Referral"])) %>">
+                                <%= source_count_check(@sources["Referral"]) - source_count_check(@first_sources["Referral"]) -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(source_count_check(@sources["Referral"]) - source_count_check(@first_sources["Referral"])) %>">
+                                <%= (source_count_check(@sources["Referral"]) - source_count_check(@first_sources["Referral"]) / zero_safe_guard(source_count_check(@sources["Referral"]))) * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_referral_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Referral"]) -%></a></td>
+                            <td><a data-target="#referral_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Referral"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(source_count_check(@sources["Referral"]) - source_count_check(@second_sources["Referral"])) %>">
+                                <%= source_count_check(@sources["Referral"]) - source_count_check(@second_sources["Referral"]) -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?(source_count_check(@sources["Referral"]) - source_count_check(@second_sources["Referral"])) %>">
+                                <%= (source_count_check(@sources["Referral"]) - source_count_check(@second_sources["Referral"]) / zero_safe_guard(source_count_check(@sources["Referral"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Social Media</td>
+                            <td><a data-target="#first_social_media_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Social Media"]) -%></a></td>
+                            <td><a data-target="#social_media_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Social Media"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Social Media"]) - source_count_check(@first_sources["Social Media"]))) %>">
+                                <%= source_count_check(@sources["Social Media"]) - source_count_check(@first_sources["Social Media"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Social Media"]) - source_count_check(@first_sources["Social Media"]))) %>">
+                                <%= ((source_count_check(@sources["Social Media"]) - source_count_check(@first_sources["Social Media"])) / zero_safe_guard(source_count_check(@sources["Social Media"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_social_media_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Social Media"])  -%></a></td>
+                            <td><a data-target="#social_media_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Social Media"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Social Media"]) - source_count_check(@second_sources["Social Media"])) ) %>">
+                                <%= source_count_check(@sources["Social Media"]) - source_count_check(@second_sources["Social Media"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Social Media"]) - source_count_check(@second_sources["Social Media"])) ) %>">
+                                <%= ((source_count_check(@sources["Social Media"]) - source_count_check(@second_sources["Social Media"])) / zero_safe_guard(source_count_check(@sources["Social Media"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Traditional Media</td>
+                            <td><a data-target="#first_traditional_media_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Traditional Media"]) -%></a></td>
+                            <td><a data-target="#traditional_media_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Traditional Media"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Traditional Media"]) - source_count_check(@first_sources["Traditional Media"]))) %>">
+                                <%= source_count_check(@sources["Traditional Media"]) - source_count_check(@first_sources["Traditional Media"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Traditional Media"]) - source_count_check(@first_sources["Traditional Media"]))) %>">
+                                <%= ((source_count_check(@sources["Traditional Media"]) - source_count_check(@first_sources["Traditional Media"])) / zero_safe_guard(source_count_check(@sources["Traditional Media"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_traditional_media_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Traditional Media"])  -%></a></td>
+                            <td><a data-target="#traditional_media_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Traditional Media"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Traditional Media"]) - source_count_check(@second_sources["Traditional Media"])) ) %>">
+                                <%= source_count_check(@sources["Traditional Media"]) - source_count_check(@second_sources["Traditional Media"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Traditional Media"]) - source_count_check(@second_sources["Traditional Media"])) ) %>">
+                                <%= ((source_count_check(@sources["Traditional Media"]) - source_count_check(@second_sources["Traditional Media"])) / zero_safe_guard(source_count_check(@sources["Traditional Media"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Events</td>
+                            <td><a data-target="#first_events_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Events"]) -%></a></td>
+                            <td><a data-target="#events_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Events"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Events"]) - source_count_check(@first_sources["Events"]))) %>">
+                                <%= source_count_check(@sources["Events"]) - source_count_check(@first_sources["Events"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Events"]) - source_count_check(@first_sources["Events"]))) %>">
+                                <%= ((source_count_check(@sources["Events"]) - source_count_check(@first_sources["Events"])) / zero_safe_guard(source_count_check(@sources["Events"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_events_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Events"])  -%></a></td>
+                            <td><a data-target="#events_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Events"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Events"]) - source_count_check(@second_sources["Events"])) ) %>">
+                                <%= source_count_check(@sources["Events"]) - source_count_check(@second_sources["Events"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Events"]) - source_count_check(@second_sources["Events"])) ) %>">
+                                <%= ((source_count_check(@sources["Events"]) - source_count_check(@second_sources["Events"])) / zero_safe_guard(source_count_check(@sources["Events"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Telemarketing</td>
+                            <td><a data-target="#first_telemarketing_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Telemarketing"]) -%></a></td>
+                            <td><a data-target="#telemarketing_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Telemarketing"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Telemarketing"]) - source_count_check(@first_sources["Telemarketing"]))) %>">
+                                <%= source_count_check(@sources["Telemarketing"]) - source_count_check(@first_sources["Telemarketing"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Telemarketing"]) - source_count_check(@first_sources["Telemarketing"]))) %>">
+                                <%= ((source_count_check(@sources["Telemarketing"]) - source_count_check(@first_sources["Telemarketing"])) / zero_safe_guard(source_count_check(@sources["Telemarketing"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_telemarketing_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Telemarketing"])  -%></a></td>
+                            <td><a data-target="#telemarketing_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Telemarketing"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Telemarketing"]) - source_count_check(@second_sources["Telemarketing"])) ) %>">
+                                <%= source_count_check(@sources["Telemarketing"]) - source_count_check(@second_sources["Telemarketing"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Telemarketing"]) - source_count_check(@second_sources["Telemarketing"])) ) %>">
+                                <%= ((source_count_check(@sources["Telemarketing"]) - source_count_check(@second_sources["Telemarketing"])) / zero_safe_guard(source_count_check(@sources["Telemarketing"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Walk-In</td>
+                            <td><a data-target="#first_walk_in_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Walk-In"]) -%></a></td>
+                            <td><a data-target="#walk_in_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Walk-In"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Walk-In"]) - source_count_check(@first_sources["Walk-In"]))) %>">
+                                <%= source_count_check(@sources["Walk-In"]) - source_count_check(@first_sources["Walk-In"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Walk-In"]) - source_count_check(@first_sources["Walk-In"]))) %>">
+                                <%= ((source_count_check(@sources["Walk-In"]) - source_count_check(@first_sources["Walk-In"])) / zero_safe_guard(source_count_check(@sources["Walk-In"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_walk_in_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Walk-In"])  -%></a></td>
+                            <td><a data-target="#walk_in_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Walk-In"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Walk-In"]) - source_count_check(@second_sources["Walk-In"])) ) %>">
+                                <%= source_count_check(@sources["Walk-In"]) - source_count_check(@second_sources["Walk-In"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Walk-In"]) - source_count_check(@second_sources["Walk-In"])) ) %>">
+                                <%= ((source_count_check(@sources["Walk-In"]) - source_count_check(@second_sources["Walk-In"])) / zero_safe_guard(source_count_check(@sources["Walk-In"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Other</td>
+                            <td><a data-target="#first_other_sources" role="button" data-toggle="modal"><%= source_count_check(@first_sources["Other"]) -%></a></td>
+                            <td><a data-target="#other_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Other"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Other"]) - source_count_check(@first_sources["Other"]))) %>">
+                                <%= source_count_check(@sources["Other"]) - source_count_check(@first_sources["Other"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Other"]) - source_count_check(@first_sources["Other"]))) %>">
+                                <%= ((source_count_check(@sources["Other"]) - source_count_check(@first_sources["Other"])) / zero_safe_guard(source_count_check(@sources["Other"])))  * 100 -%> %
+                              </span>
+                            </td>
+                            <td><a data-target="#second_other_sources" role="button" data-toggle="modal"><%= source_count_check(@second_sources["Other"])  -%></a></td>
+                            <td><a data-target="#other_sources" role="button" data-toggle="modal"><%= source_count_check(@sources["Other"]) -%></a></td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Other"]) - source_count_check(@second_sources["Other"])) ) %>">
+                                <%= source_count_check(@sources["Other"]) - source_count_check(@second_sources["Other"])  -%>
+                              </span>
+                            </td>
+                            <td>
+                              <span class="<%= positive_or_negative?((source_count_check(@sources["Other"]) - source_count_check(@second_sources["Other"])) ) %>">
+                                <%= ((source_count_check(@sources["Other"]) - source_count_check(@second_sources["Other"])) / zero_safe_guard(source_count_check(@sources["Other"]))) * 100 -%> %
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+							</div>
+							<div class="tab-pane fade" id="wizardContent3">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Inquiry to Appointment
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        Use the Inquiry to Appointment table to review the lead types that converted to an appointment. You also have the Inquiry to Appointment rates for each of your reception staff.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th Class="text-center"><h5><%= @current_org.company_name %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Total</td>
+                            <td> <%= ((@first_consult_count.to_f / zero_safe_guard(@first_leads_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@consult_count.to_f / zero_safe_guard(@leads_count)) * 100).round(2) %>%</td>
+                            <td>
+                              <span class="<%= positive_or_negative?(((@consult_count.to_f / zero_safe_guard(@leads_count)) * 100)-((@first_consult_count.to_f / zero_safe_guard(@first_leads_count)) * 100)) %>">
+                                <%= (((@consult_count.to_f / zero_safe_guard(@leads_count)) * 100)-((@first_consult_count.to_f / zero_safe_guard(@first_leads_count)) * 100)).round(2) -%> %
+                              </span>
+                            </td>
+                            <td> <%= ((@second_consult_count.to_f / zero_safe_guard(@second_leads_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@consult_count.to_f / zero_safe_guard(@leads_count)) * 100).round(2) %>%</td>
+                            <td>
+                              <span class="<%= positive_or_negative?(((@consult_count.to_f / zero_safe_guard(@leads_count)) * 100)-((@second_consult_count.to_f / zero_safe_guard(@second_leads_count)) * 100)) %>">
+                                <%= (((@consult_count.to_f / zero_safe_guard(@leads_count)) * 100)-((@second_consult_count.to_f / zero_safe_guard(@second_leads_count)) * 100)).round(2) -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Phone / Walk In</td>
+                            <td> <%= ((@first_phone_consult_count.to_f / zero_safe_guard(@first_phone_leads_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@phone_consult_count.to_f / zero_safe_guard(@phone_leads_count)) * 100).round(2) %>%</td>
+                            <td>
+                              <span class="<%= positive_or_negative?(((@phone_consult_count.to_f / zero_safe_guard(@phone_leads_count)) * 100)-((@first_phone_consult_count.to_f / zero_safe_guard(@first_phone_leads_count)) * 100)) %>">
+                                <%= (((@phone_consult_count.to_f / zero_safe_guard(@phone_leads_count)) * 100)-((@first_phone_consult_count.to_f / zero_safe_guard(@first_phone_leads_count)) * 100)).round(2) -%> %
+                              </span>
+                            </td>
+                            <td> <%= ((@second_phone_consult_count.to_f / zero_safe_guard(@second_phone_leads_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@phone_consult_count.to_f / zero_safe_guard(@phone_leads_count)) * 100).round(2) %>%</td>
+                            <td>
+                              <span class="<%= positive_or_negative?(((@phone_consult_count.to_f / zero_safe_guard(@phone_leads_count)) * 100)-((@second_phone_consult_count.to_f / zero_safe_guard(@second_phone_leads_count)) * 100)) %>">
+                                <%= (((@phone_consult_count.to_f / zero_safe_guard(@phone_leads_count)) * 100)-((@second_phone_consult_count.to_f / zero_safe_guard(@second_phone_leads_count)) * 100)).round(2) -%> %
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Web</td>
+                            <td> <%= ((@first_web_consult_count.to_f / zero_safe_guard(@first_web_leads_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@web_consult_count.to_f / zero_safe_guard(@web_leads_count)) * 100).round(2) %>%</td>
+                            <td>
+                              <span class="<%= positive_or_negative?(((@web_consult_count.to_f / zero_safe_guard(@web_leads_count)) * 100)-((@first_web_consult_count.to_f / zero_safe_guard(@first_web_leads_count)) * 100)) %>">
+                                <%= (((@web_consult_count.to_f / zero_safe_guard(@web_leads_count)) * 100)-((@first_web_consult_count.to_f / zero_safe_guard(@first_web_leads_count)) * 100)).round(2) -%> %
+                              </span>
+                            </td>
+                            <td> <%= ((@second_web_consult_count.to_f / zero_safe_guard(@second_web_leads_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@web_consult_count.to_f / zero_safe_guard(@web_leads_count)) * 100).round(2) %>%</td>
+                            <td>
+                              <span class="<%= positive_or_negative?(((@web_consult_count.to_f / zero_safe_guard(@web_leads_count)) * 100)-((@second_web_consult_count.to_f / zero_safe_guard(@second_web_leads_count)) * 100)) %>">
+                                <%= (((@web_consult_count.to_f / zero_safe_guard(@web_leads_count)) * 100)-((@second_web_consult_count.to_f / zero_safe_guard(@second_web_leads_count)) * 100)).round(2) -%> %
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+							</div>
+              <div class="tab-pane fade" id="wizardContent4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Appointments
+                    </h4>
+                  </div>
+                  <div id="collapseFour" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see leads who scheduled, cancelled or no showed their Appointments.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr >
+                            <th class="text-center"><h5>Appointment Status</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Total</td>
+                            <td><%= @first_consult_count -%></td>
+                            <td><%= @consult_count -%></td>
+                            <td class="<%= positive_or_negative?(@consult_count - @first_consult_count) %>">
+                              <%= @consult_count - @first_consult_count %>
+                            </td>
+                            <td><%= @second_consult_count -%></td>
+                            <td><%= @consult_count -%></td>
+                            <td class="<%= positive_or_negative?(@consult_count - @second_consult_count) %>">
+                              <%= @consult_count - @second_consult_count %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cancelled</td>
+                            <td><%= @first_cancelled_consult_count -%></td>
+                            <td><%= @cancelled_consult_count -%></td>
+                            <td class="<%= positive_or_negative?(@cancelled_consult_count - @first_cancelled_consult_count) %>">
+                              <%= @cancelled_consult_count - @first_cancelled_consult_count %>
+                            </td>
+                            <td><%= @second_cancelled_consult_count -%></td>
+                            <td><%= @cancelled_consult_count -%></td>
+                            <td class="<%= positive_or_negative?(@cancelled_consult_count - @second_cancelled_consult_count) %>">
+                              <%= @cancelled_consult_count - @second_cancelled_consult_count %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>No Show</td>
+                            <td><%= @first_no_show_consult_count -%></td>
+                            <td><%= @no_show_consult_count -%></td>
+                            <td class="<%= positive_or_negative?(@no_show_consult_count - @first_no_show_consult_count) %>">
+                              <%= @no_show_consult_count - @first_no_show_consult_count %>
+                            </td>
+                            <td><%= @second_no_show_consult_count -%></td>
+                            <td><%= @no_show_consult_count -%></td>
+                            <td class="<%= positive_or_negative?(@no_show_consult_count - @second_no_show_consult_count) %>">
+                              <%= @no_show_consult_count - @second_no_show_consult_count %>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Appointment Rates</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>No Show Consultation</td>
+                            <td><%= ((@first_no_show_consult_count.to_f / zero_safe_guard(@first_consult_count)) * 100).round(2)  %>%</td>
+                            <td><%= ((@no_show_consult_count.to_f / @consult_count) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@no_show_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@first_no_show_consult_count.to_f / zero_safe_guard(@first_consult_count)) * 100)))%>">
+                              <%= (((@no_show_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@first_no_show_consult_count.to_f / zero_safe_guard(@first_consult_count)) * 100))).round(2) %>%
+                            </td>
+                            <td><%= ((@second_no_show_consult_count.to_f / zero_safe_guard(@second_consult_count)) * 100).round(2)  %>%</td>
+                            <td><%= ((@no_show_consult_count.to_f / @consult_count) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@no_show_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@second_no_show_consult_count.to_f / zero_safe_guard(@second_consult_count)) * 100)))%>">
+                              <%= (((@no_show_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@second_no_show_consult_count.to_f / zero_safe_guard(@second_consult_count)) * 100))).round(2) %>%
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cancelled Consultation</td>
+                            <td><%= ((@first_cancelled_consult_count.to_f / zero_safe_guard(@first_consult_count)) * 100).round(2)  %>%</td>
+                            <td><%= ((@cancelled_consult_count.to_f / @consult_count) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@cancelled_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@first_cancelled_consult_count.to_f / zero_safe_guard(@first_consult_count)) * 100)))%>">
+                              <%= (((@cancelled_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@first_cancelled_consult_count.to_f / zero_safe_guard(@first_consult_count)) * 100))).round(2) %>%
+                            </td>
+                            <td><%= ((@second_cancelled_consult_count.to_f / zero_safe_guard(@second_consult_count)) * 100).round(2)  %>%</td>
+                            <td><%= ((@cancelled_consult_count.to_f / @consult_count) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@cancelled_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@second_cancelled_consult_count.to_f / zero_safe_guard(@second_consult_count)) * 100)))%>">
+                              <%= (((@cancelled_consult_count.to_f / zero_safe_guard(@consult_count)) * 100) - (((@second_cancelled_consult_count.to_f / zero_safe_guard(@second_consult_count)) * 100))).round(2) %>%
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent5">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Appointment to Surgery
+                    </h4>
+                  </div>
+                  <div id="collapseFive" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        This table displays the Closing rate for the practice as well ass closing rates for each of your Sales Coordinators.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center">User</th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><%= @current_org.company_name %></td>
+                            <td> <%= ((@first_surgery_count.to_f / zero_safe_guard(@first_consult_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@surgery_count.to_f / zero_safe_guard(@consult_count)) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@surgery_count.to_f / zero_safe_guard(@consult_count)) * 100) - ((@first_surgery_count.to_f / zero_safe_guard(@first_consult_count)) * 100))%>">
+                              <%=(((@surgery_count.to_f / zero_safe_guard(@consult_count)) * 100) - ((@first_surgery_count.to_f / zero_safe_guard(@first_consult_count)) * 100)).round(2) %> %
+                            </td>
+                            <td> <%= ((@second_surgery_count.to_f / zero_safe_guard(@second_consult_count)) * 100).round(2) %>%</td>
+                            <td> <%= ((@surgery_count.to_f / zero_safe_guard(@consult_count)) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@surgery_count.to_f / zero_safe_guard(@consult_count)) * 100) - ((@second_surgery_count.to_f / zero_safe_guard(@second_consult_count)) * 100))%>">
+                              <%=(((@surgery_count.to_f / zero_safe_guard(@consult_count)) * 100) - ((@second_surgery_count.to_f / zero_safe_guard(@second_consult_count)) * 100)).round(2) %> %
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Surgeries
+                    </h4>
+                  </div>
+                  <div id="collapseSix" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see leads who scheduled, completed and cancelled surgery.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Surgery Status</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Scheduled</td>
+                            <td><a data-target="#first_surgeries" role="button" data-toggle="modal"><%= @first_surgery_count -%></a></td>
+                            <td><a data-target="#surgeries" role="button" data-toggle="modal"><%= @surgery_count -%></a></td>
+                            <td class="<%= positive_or_negative?(@surgery_count - @first_surgery_count) %>">
+                              <%= @surgery_count - @first_surgery_count %>
+                            </td>
+                            <td><a data-target="#second_surgeries" role="button" data-toggle="modal"><%= @second_surgery_count -%></a></td>
+                            <td><a data-target="#surgeries" role="button" data-toggle="modal"><%= @surgery_count -%></a></td>
+                            <td class="<%= positive_or_negative?(@surgery_count - @second_surgery_count) %>">
+                              <%= @surgery_count - @second_surgery_count %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Completed</td>
+                            <td><%= @first_completed_surgery_count -%></td>
+                            <td><%= @completed_surgery_count -%></td>
+                            <td class="<%= positive_or_negative?(@completed_surgery_count - @first_completed_surgery_count) %>">
+                              <%= @completed_surgery_count - @first_completed_surgery_count %>
+                            </td>
+                            <td><%= @second_completed_surgery_count -%></td>
+                            <td><%= @completed_surgery_count -%></td>
+                            <td class="<%= positive_or_negative?(@completed_surgery_count - @second_completed_surgery_count) %>">
+                              <%= @completed_surgery_count - @second_completed_surgery_count %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cancelled</td>
+                            <td><%= @first_cancelled_surgery_count -%></td>
+                            <td><%= @cancelled_surgery_count -%></td>
+                            <td class="<%= positive_or_negative?(@cancelled_surgery_count - @first_cancelled_surgery_count) %>">
+                              <%= @cancelled_surgery_count - @first_cancelled_surgery_count %>
+                            </td>
+                            <td><%= @second_cancelled_surgery_count -%></td>
+                            <td><%= @cancelled_surgery_count -%></td>
+                            <td class="<%= positive_or_negative?(@cancelled_surgery_count - @second_cancelled_surgery_count) %>">
+                              <%= @cancelled_surgery_count - @second_cancelled_surgery_count %>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Surgical Rates</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Cancelled Surgery</td>
+                            <td><%= ((@first_cancelled_surgery_count.to_f / zero_safe_guard(@first_surgery_count)) * 100).round(2)  %>%</td>
+                            <td><%= ((@cancelled_surgery_count.to_f / @surgery_count) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@cancelled_surgery_count.to_f / zero_safe_guard(@surgery_count)) * 100) - (((@first_cancelled_surgery_count.to_f / zero_safe_guard(@first_surgery_count)) * 100)))%>">
+                              <%= (((@cancelled_surgery_count.to_f / zero_safe_guard(@surgery_count)) * 100) - (((@first_cancelled_surgery_count.to_f / zero_safe_guard(@first_surgery_count)) * 100))).round(2) %>%
+                            </td>
+                            <td><%= ((@second_cancelled_surgery_count.to_f / zero_safe_guard(@second_surgery_count)) * 100).round(2)  %>%</td>
+                            <td><%= ((@cancelled_surgery_count.to_f / @surgery_count) * 100).round(2) %>%</td>
+                            <td class="<%=positive_or_negative?(((@cancelled_surgery_count.to_f / zero_safe_guard(@surgery_count)) * 100) - (((@second_cancelled_surgery_count.to_f / zero_safe_guard(@second_surgery_count)) * 100)))%>">
+                              <%= (((@cancelled_surgery_count.to_f / zero_safe_guard(@surgery_count)) * 100) - (((@second_cancelled_surgery_count.to_f / zero_safe_guard(@second_surgery_count)) * 100))).round(2) %>%
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent7">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Earned and Lost Revenue
+                    </h4>
+                  </div>
+                  <div id="collapseSeven" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center"><h5>Category</h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Earned Revenue</td>
+                            <td><%= number_to_currency(@first_earned_revenue) %></td>
+                            <td><%= number_to_currency(@earned_revenue) %></td>
+                            <td class="<%=positive_or_negative?(@earned_revenue - @first_earned_revenue)%>">
+                              <%= number_to_currency(@earned_revenue - @first_earned_revenue)%>
+                            </td>
+                            <td><%= number_to_currency(@second_earned_revenue) %></td>
+                            <td><%= number_to_currency(@earned_revenue) %></td>
+                            <td class="<%=positive_or_negative?(@earned_revenue - @second_earned_revenue)%>">
+                              <%= number_to_currency(@earned_revenue - @second_earned_revenue)%>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Lost Revenue</td>
+                            <td><%= number_to_currency(@first_lost_revenue) %></td>
+                            <td><%= number_to_currency(@lost_revenue) %></td>
+                            <td class="<%=positive_or_negative?(@lost_revenue - @first_lost_revenue)%>">
+                              <%= number_to_currency(@lost_revenue - @first_lost_revenue)%>
+                            </td>
+                            <td><%= number_to_currency(@second_lost_revenue) %></td>
+                            <td><%= number_to_currency(@lost_revenue) %></td>
+                            <td class="<%=positive_or_negative?(@lost_revenue - @second_lost_revenue)%>">
+                              <%= number_to_currency(@lost_revenue - @second_lost_revenue)%>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent8">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Receptionist Inquiry to Appointment
+                    </h4>
+                  </div>
+                  <div id="collapseEight" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead class="bg-success">
+                          <tr>
+                            <th class="text-center">User</th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @first_ita_users.each do |k, v| -%>
+                          <tr>
+                            <td><%= k.to_s.titleize %></td>
+                            <td><span><%= v %>%</span></td>
+                            <td><span><%= @ita_users[k] %>%</span></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@ita_users[k] - v)%>">
+                                <%= @ita_users[k] - v %>%
+                              </span>
+                            </td>
+                            <td><span><%= @second_ita_users[k] %>%</span></td>
+                            <td><span><%= @ita_users[k] %>%</span></td>
+                            <td>
+                              <span class="<%= positive_or_negative?(@ita_users[k] - @second_ita_users[k])%>">
+                                <%= @ita_users[k] - @second_ita_users[k] %>%
+                              </span>
+                            </td>
+                          </tr>
+                          <%- end -%>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Coordinator Communication
+                    </h4>
+                  </div>
+                  <div id="collapseNine" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="2" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                          <tr class="bg-info">
+                            <th class="text-center"></th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                            <th class="text-center">Messages</th>
+                            <th class="text-center">Leads</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @message_users.each do |k, v| -%>
+                          <tr>
+                            <td><%= k.to_s.titleize %></td>
+                            <!-- historic -->
+                            <td><span><%= @second_message_users[k][:messages] %></span></td>
+                            <td><span><%= @second_message_users[k][:leads] %></span></td>
+                            <td><span><%= v[:messages] %></span></td>
+                            <td><span><%= v[:leads] %></span></td>
+                            <td class="<%= positive_or_negative?(v[:messages] - @second_message_users[k][:messages])%>">
+                              <span><%=  v[:messages] - @second_message_users[k][:messages]%></span>
+                            </td>
+                            <td class="<%= positive_or_negative?(v[:leads] - @second_message_users[k][:leads])%>">
+                              <span><%= v[:leads] - @second_message_users[k][:leads] %></span>
+                            </td>
+                            <td><span><%= @first_message_users[k][:messages] %></span></td>
+                            <td><span><%= @first_message_users[k][:leads] %></span></td>
+                            <td><span><%= v[:messages] %></span></td>
+                            <td><span><%= v[:leads] %></span></td>
+                            <td class="<%= positive_or_negative?(v[:messages] - @first_message_users[k][:messages])%>">
+                              <span><%=  v[:messages] - @first_message_users[k][:messages]%></span>
+                            </td>
+                            <td class="<%= positive_or_negative?(v[:leads] - @first_message_users[k][:leads])%>">
+                              <span><%= v[:leads] - @first_message_users[k][:leads] %></span>
+                            </td>
+                          </tr>
+                          <%- end -%>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent10">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Coordinator Closing Rates
+                    </h4>
+                  </div>
+                  <div id="collapseTen" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th colspan="3" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th colspan="3" class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="3" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                          <tr class="bg-info">
+                            <th class="text-center"></th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @cr_users.each do |k, v| -%>
+                          <tr>
+                            <td><%= k.to_s.titleize %></td>
+                            <!-- historic -->
+                            <td><span><%= @second_cr_users[k][:surgeries] %></span></td>
+                            <td><span><%= @second_cr_users[k][:consults] %></span></td>
+                            <td><span><%= @second_cr_users[k][:rate].round(2) %>%</span></td>
+                            <td><span><%= v[:surgeries] %></span></td>
+                            <td><span><%= v[:consults] %></span></td>
+                            <td><span><%= v[:rate].round(2) %>%</span></td>
+                            <td class="<%= positive_or_negative?(v[:surgeries] - @second_cr_users[k][:surgeries])%>">
+                              <span><%=  v[:surgeries] - @second_cr_users[k][:surgeries]%></span>
+                            </td>
+                            <td class="<%= positive_or_negative?(v[:consults] - @second_cr_users[k][:consults])%>">
+                              <span><%= v[:consults] - @second_cr_users[k][:consults] %></span>
+                            </td>
+                            <td class="<%= positive_or_negative?(v[:rate] - @second_cr_users[k][:rate])%>">
+                              <span><%= v[:rate] - @second_cr_users[k][:rate] %>%</span>
+                            </td>
+                          </tr>
+                          <%- end -%>
+                        </tbody>
+                      </table>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th colspan="3" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th colspan="3" class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th colspan="3" class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                          <tr class="bg-info">
+                            <th class="text-center"></th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Surgeries</th>
+                            <th class="text-center">Consults</th>
+                            <th class="text-center">Rate</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @cr_users.each do |k, v| -%>
+                          <tr>
+                            <td><%= k.to_s.titleize %></td>
+                            <!-- historic -->
+                            <td><span><%= @first_cr_users[k][:surgeries] %></span></td>
+                            <td><span><%= @first_cr_users[k][:consults] %></span></td>
+                            <td><span><%= @first_cr_users[k][:rate].round(2) %>%</span></td>
+                            <td><span><%= v[:surgeries] %></span></td>
+                            <td><span><%= v[:consults] %></span></td>
+                            <td><span><%= v[:rate].round(2) %>%</span></td>
+                            <td class="<%= positive_or_negative?(v[:surgeries] - @first_cr_users[k][:surgeries])%>">
+                              <span><%=  v[:surgeries] - @first_cr_users[k][:surgeries]%></span>
+                            </td>
+                            <td class="<%= positive_or_negative?(v[:consults] - @first_cr_users[k][:consults])%>">
+                              <span><%= v[:consults] - @first_cr_users[k][:consults] %></span>
+                            </td>
+                            <td class="<%= positive_or_negative?(v[:rate] - @first_cr_users[k][:rate])%>">
+                              <span><%= v[:rate] - @first_cr_users[k][:rate] %>%</span>
+                            </td>
+                          </tr>
+                          <%- end -%>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+              <div class="tab-pane fade" id="wizardContent11">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Coordinator Revenue
+                    </h4>
+                  </div>
+                  <div id="collapseEleven" class="in">
+                    <div class="panel-body no-padding">
+                      <div class="padding-md" style="border-bottom: solid #65cea7 1px;border-top: solid #65cea7 1px;">
+                        You can see the no show and cancel rate for the practice and how those affect the revenue.
+                      </div>
+                      <table class="table table-hover table-striped text-center table-bordered">
+                        <thead >
+                          <tr class="bg-success">
+                            <th class="text-center">User</th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.year).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                            <th class="text-center"><h5><%= (Date.today.beginning_of_month - 1.month).strftime('%b %Y') %> - <%= Date.today.beginning_of_month.strftime('%b %Y') %></h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @revenue_users.each do |k, v| -%>
+                          <tr>
+                            <td><%= k.to_s.titleize %></td>
+                            <!-- historic -->
+                            <td><span><%= number_to_currency(@second_revenue_users[k]) %></span></td>
+                            <td><span><%= number_to_currency(v) %></span></td>
+                            <td class="<%= positive_or_negative?(v - @second_revenue_users[k])%>">
+                              <span><%=  number_to_currency(v - @second_revenue_users[k])%></span>
+                            </td>
+                            <td><span><%= number_to_currency(@first_revenue_users[k]) %></span></td>
+                            <td><span><%= number_to_currency(v) %></span></td>
+                            <td class="<%= positive_or_negative?(v - @first_revenue_users[k])%>">
+                              <span><%=  number_to_currency(v - @first_revenue_users[k])%></span>
+                            </td>
+                          </tr>
+                          <%- end -%>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div><!-- /panel -->
+              </div>
+						</div>
+					</div>
+				</div><!-- /panel -->
+      </div>
+
+        <div class="modal fade" id="first_other_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Other Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-otherSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Other"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Other"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_walk_in_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Walk In Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-walk-inSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Walk-In"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Walk-In"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_telemarketing_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-telemarketingSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Telemarketing"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Telemarketing"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_event_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-eventSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Events"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Events"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_traditional_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Traditional Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-traditionalSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Traditional Media"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Traditional Media"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_social_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Social Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-socialSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Social Media"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Social Media"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_referral_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Referral Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-referralSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Referral"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Referral"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="first_internet_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Internet Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="first-internetSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@first_sources["Internet"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @first_source_counts["Internet"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <div class="modal fade" id="second_other_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Other Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-otherSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Other"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Other"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_walk_in_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Walk In Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-walk-inSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Walk-In"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Walk-In"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_telemarketing_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-telemarketingSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Telemarketing"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Telemarketing"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_event_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Event Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-eventSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Events"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Events"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_traditional_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Traditional Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-traditionalSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Traditional Media"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Traditional Media"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_social_media_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Social Media Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-socialSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Social Media"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Social Media"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_referral_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Referral Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-referralSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Referral"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Referral"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="second_internet_sources">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Internet Sources</h3>
+              </div>
+              <div class="modal-body">
+                <table id="second-internetSources" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Generated Inquiries</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% source_check(@second_sources["Internet"]).each do |src| %>
+                    <tr>
+                      <td><%= src.name.titleize %></td>
+                      <% if src.start_date.present? && src.end_date.present? %>
+                      <td><%= src.start_date.strftime('%D') %></td>
+                      <td><%= src.end_date.strftime('%D') %></td>
+                      <% else %>
+                      <td>Perpetual</td>
+                      <td>Perpetual</td>
+                      <% end %>
+                      <td><%= @second_source_counts["Internet"][src.id.to_s] %></td>
+                      <td><%= number_to_currency(src.cost) if src.cost %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+               
+              <div class="modal-footer">
+                <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+  <div class="modal fade" id="phone_leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Phone Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="phoneLeads" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @phone_leads.each do |lead| %>
+              <tr>
+                <td><%= link_to lead.cached_name , "leads/#{lead.id}"%></td>
+                <td><%= lead.cached_user_name %></td>
+                <td><%= lead.cached_created_at.strftime('%D')%></td>
+                <td><span class="label label-<%=stage_label(lead.cached_stage)%>"><%= confirm_info(lead.cached_stage).titleize %></span></td>
+                <td><%= lead.cached_source_name %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="internet_leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Web Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="webLeads" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @web_leads.each do |lead| %>
+              <tr>
+                <td><%= link_to lead.cached_name , "leads/#{lead.id}"%></td>
+                <td><%= lead.cached_user_name %></td>
+                <td><%= lead.cached_created_at.strftime('%D')%></td>
+                  <td><span class="label label-<%=stage_label(lead.cached_stage)%>"><%= confirm_info(lead.cached_stage).titleize %></span></td>
+                  <td><%= lead.cached_source_name %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="leads">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Inquiries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="leadsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Coordinator</th>
+                <th>Inquiry Date</th>
+                <th>Stage</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @leads.each do |lead| %>
+              <tr>
+                <td><%= link_to lead.cached_name , "leads/#{lead.id}"%></td>
+                <td><%= lead.cached_user_name %></td>
+                <td><%= lead.cached_created_at.strftime('%D')%></td>
+                  <td><span class="label label-<%=stage_label(lead.cached_stage)%>"><%= confirm_info(lead.cached_stage).titleize %></span></td>
+                  <td><%= lead.cached_source_name %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="consults">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Consultations</h3>
+        </div>
+        <div class="modal-body">
+          <table id="consultsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @consults.each do |appt| %>
+              <tr>
+                <td><%= link_to appt.lead.cached_name , "leads/#{appt.lead.id}"%></td>
+                <td><%= appt.date.strftime('%D')%></td>
+                <td><%= number_to_currency(appt.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="appts">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Appointments</h3>
+        </div>
+        <div class="modal-body">
+          <table id="appointmentsTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @appointments.each do |appt| %>
+              <tr>
+                <td><%= link_to appt.lead.cached_name , "leads/#{appt.lead.id}"%></td>
+                <td><%= appt.date.strftime('%D')%></td>
+                <td><%= number_to_currency(appt.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="cancelled_sx">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Cancelled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="cancelledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cancelled_surgeries.each do |sx| %>
+              <tr>
+                <td><%= link_to sx.lead.cached_name , "leads/#{sx.lead.id}"%></td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="completed_sx">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Completed Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="completedSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @completed_surgeries.each do |sx| %>
+              <tr>
+                <td><%= link_to sx.lead.cached_name , "leads/#{sx.lead.id}"%></td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @surgeries.each do |sx| %>
+              <tr>
+                <td>
+                  <%if sx.lead.present?%>
+                    <%= link_to sx.lead.cached_name , "leads/#{sx.lead.id}"%>
+                  <%else%>
+                    <%= sx.id %>
+                  <%end%>
+                </td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="first_surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="first_scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @first_surgeries.each do |sx| %>
+              <tr>
+                <td>
+                  <%if sx.lead.present?%>
+                    <%= link_to sx.lead.cached_name , "leads/#{sx.lead.id}"%>
+                  <%else%>
+                    <%= sx.id %>
+                  <%end%>
+                </td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="second_surgeries">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Scheduled Surgeries</h3>
+        </div>
+        <div class="modal-body">
+          <table id="second_scheduledSurgery" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @second_surgeries.each do |sx| %>
+              <tr>
+                <td>
+                  <%if sx.lead.present?%>
+                    <%= link_to sx.lead.cached_name , "leads/#{sx.lead.id}"%>
+                  <%else%>
+                    <%= sx.id %>
+                  <%end%>
+                </td>
+                <td><%= sx.procedure.titleize%></td>
+                <td><%= sx.date.strftime('%D')%></td>
+                <td><%= number_to_currency(sx.cost)%></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-xs btn-danger"  data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+  <script>
+  $(document).ready(function(){
+    if($('#first-internetSources').length) {
+      $('#first-internetSources').DataTable();
+    };
+    if($('#first-referralSources').length) {
+      $('#first-referralSources').DataTable();
+    };
+    if($('#first-socialSources').length) {
+      $('#first-socialSources').DataTable();
+    };
+    if($('#first-traditionalSources').length) {
+      $('#first-traditionalSources').DataTable();
+    };
+    if($('#first-eventSources').length) {
+      $('#first-eventSources').DataTable();
+    };
+    if($('#first-telemarketingSources').length) {
+      $('#first-telemarketingSources').DataTable();
+    };
+    if($('#first-walk-inSources').length) {
+      $('#first-walk-inSources').DataTable();
+    };
+    if($('#first-otherSources').length) {
+      $('#first-otherSources').DataTable();
+    };
+    if($('#second-internetSources').length) {
+      $('#second-internetSources').DataTable();
+    };
+    if($('#second-referralSources').length) {
+      $('#second-referralSources').DataTable();
+    };
+    if($('#second-socialSources').length) {
+      $('#second-socialSources').DataTable();
+    };
+    if($('#second-traditionalSources').length) {
+      $('#second-traditionalSources').DataTable();
+    };
+    if($('#second-eventSources').length) {
+      $('#second-eventSources').DataTable();
+    };
+    if($('#second-telemarketingSources').length) {
+      $('#second-telemarketingSources').DataTable();
+    };
+    if($('#second-walk-inSources').length) {
+      $('#second-walk-inSources').DataTable();
+    };
+    if($('#second-otherSources').length) {
+      $('#second-otherSources').DataTable();
+    };
+    $('#second_scheduledSurgery').DataTable();
+    $('#first_scheduledSurgery').DataTable();
+    $('#scheduledSurgery').DataTable();
+
+
+    // date picker
+    $('.datepicker').datepicker({
+      format: "mm/dd/yyyy",
+      autoclose: true
+    }).on('changeDate', function (e) {
+      if (e.viewMode === 'days') {
+        $(this).datepicker('hide');
+        removeErrors();
+      }
+    });
+
+    $("#next").click(function(){
+      if ($(".divs div span:visible").last().parent().next().is('div')){
+      $(".divs div span:visible").last().parent().next().children('span').show();
+      }else{
+        $(".divs div span:visible").last().parent().next().next().children('span').show();
+      }
+      $(".divs div span:visible").last().parent().children('a').trigger( "click" );
+      if ($(".divs div").last().children('span').is(":visible")) {
+        $("#next").hide();
+        $("#print").show();
+      }
+      return false;
+    });
+});
+
+  </script>
+  <script>
+  $(function	()	{
+    var currentStep = 1;
+
+    $('#wizardTab li a').click(function()	{
+      return false;
+    });
+
+    $('#nextStep').click(function()	{
+
+      currentStep++;
+
+      if(currentStep == 2)	{
+        $('#wizardTab li:eq(1) a').tab('show');
+        $(".divs div:eq(1) span").show();
+        $('#wizardProgress').css("width","18%");
+
+        $('#prevStep').attr('disabled',false);
+        $('#prevStep').removeClass('disabled');
+      }
+      else if(currentStep == 3)	{
+        $('#wizardTab li:eq(2) a').tab('show');
+        $(".divs div:eq(2) span").show();
+        $('#wizardProgress').css("width","27%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 4)	{
+        $('#wizardTab li:eq(3) a').tab('show');
+        $(".divs div:eq(3) span").show();
+        $('#wizardProgress').css("width","36%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 5)	{
+        $('#wizardTab li:eq(4) a').tab('show');
+        $(".divs div:eq(4) span").show();
+        $('#wizardProgress').css("width","45%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 6)	{
+        $('#wizardTab li:eq(5) a').tab('show');
+        $(".divs div:eq(5) span").show();
+        $('#wizardProgress').css("width","54%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 7)	{
+        $('#wizardTab li:eq(6) a').tab('show');
+        $(".divs div:eq(6) span").show();
+        $('#wizardProgress').css("width","63%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 8)	{
+        $('#wizardTab li:eq(7) a').tab('show');
+        $(".divs div:eq(7) span").show();
+        $('#wizardProgress').css("width","72%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 9)	{
+        $('#wizardTab li:eq(8) a').tab('show');
+        $(".divs div:eq(8) span").show();
+        $('#wizardProgress').css("width","81%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 10)	{
+        $('#wizardTab li:eq(9) a').tab('show');
+        $(".divs div:eq(9) span").show();
+        $('#wizardProgress').css("width","90%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 11)	{
+        $('#wizardTab li:eq(10) a').tab('show');
+        $(".divs div:eq(10) span").show();
+        $('#wizardProgress').css("width","100%");
+
+        $('#nextStep').attr('disabled',true);
+        $('#nextStep').addClass('disabled');
+        $('#nextStep').hide();
+        $("#print").show();
+      }
+
+      return false;
+    });
+
+    $('#prevStep').click(function()	{
+
+      currentStep--;
+
+      if(currentStep == 1)	{
+
+        $('#wizardTab li:eq(0) a').tab('show');
+        $('#wizardProgress').css("width","9%");
+
+        $('#prevStep').attr('disabled',true);
+        $('#prevStep').addClass('disabled');
+
+      }
+      else if(currentStep == 2)	{
+        $('#wizardTab li:eq(1) a').tab('show');
+        $(".divs div:eq(2) span").hide();
+        $('#wizardProgress').css("width","18%");
+
+        $('#prevStep').attr('disabled',false);
+        $('#prevStep').removeClass('disabled');
+      }
+      else if(currentStep == 3)	{
+        $('#wizardTab li:eq(2) a').tab('show');
+        $(".divs div:eq(3) span").hide();
+        $('#wizardProgress').css("width","27%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 4)	{
+        $('#wizardTab li:eq(3) a').tab('show');
+        $(".divs div:eq(4) span").hide();
+        $('#wizardProgress').css("width","36%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 5)	{
+        $('#wizardTab li:eq(4) a').tab('show');
+        $(".divs div:eq(5) span").hide();
+        $('#wizardProgress').css("width","45%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 6)	{
+        $('#wizardTab li:eq(5) a').tab('show');
+        $(".divs div:eq(6) span").hide();
+        $('#wizardProgress').css("width","54%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 7)	{
+        $('#wizardTab li:eq(6) a').tab('show');
+        $(".divs div:eq(7) span").hide();
+        $('#wizardProgress').css("width","63%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 8)	{
+        $('#wizardTab li:eq(7) a').tab('show');
+        $(".divs div:eq(8) span").hide();
+        $('#wizardProgress').css("width","72%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 9)	{
+        $('#wizardTab li:eq(8) a').tab('show');
+        $(".divs div:eq(9) span").hide();
+        $('#wizardProgress').css("width","81%");
+
+        $('#nextStep').attr('disabled',false);
+      }
+      else if(currentStep == 10)	{
+        $('#wizardTab li:eq(9) a').tab('show');
+        $(".divs div:eq(10) span").hide();
+        $('#wizardProgress').css("width","90%");
+
+        $('#nextStep').attr('disabled',false);
+        $('#nextStep').removeClass('disabled');
+        $('#nextStep').show();
+        $("#print").hide();
+      }
+      else if(currentStep == 11)	{
+        $('#wizardTab li:eq(10) a').tab('show');
+        $('#wizardProgress').css("width","100%");
+
+        $('#nextStep').attr('disabled',true);
+        $('#nextStep').addClass('disabled');
+      }
+
+      return false;
+    });
+  });
+  </script>
+
+  <style>
+  a {
+    cursor: pointer !important;
+  }
+  </style>

@@ -1,0 +1,63 @@
+<div class="panel panel-default col-md-8 col-xs-12 col-lg-6">
+  <div class="panel-heading">New Procedure</div>
+  <div class="panel-body">
+    <%if @procedure.errors.any? %>
+    <h4 class="text-danger">Your Procedure was unable to be saved.</h4>
+    <%end%>
+    <%= form_for(@procedure, :html => {:class => ""} ) do |f| %>
+
+    <% if @procedure.errors[:name].present? %>
+    <div class="form-group has-error">
+      <%= f.label :name, "Procedure", class: "text-danger"%><br/>
+      <%= f.text_field :name, placeholder:  @procedure.errors[:name].first.titleize, value: "", class: "form-control " %>
+    </div>
+    <%else%>
+    <div class="form-group has-success">
+      <%= f.label :name, "Procedure"%><br/>
+      <%= f.text_field :name, placeholder: "Name" , class: "form-control" %>
+    </div>
+    <%end%>
+
+    <% if @procedure.errors[:details].present? %>
+    <div class="form-group has-error">
+      <%= f.label :details, "Details", class: "text-danger"%><br/>
+      <%= f.text_area :details , placeholder: @procedure.errors[:details].first.titleize, value: "", class: "form-control"%>
+    </div>
+    <%else%>
+    <div class="form-group has-success">
+      <%= f.label :details, "Details"%><br/>
+      <%= f.text_area :details , placeholder: "Details", class: "form-control"%>
+    </div>
+    <%end%>
+
+    <% if @procedure.errors[:cost].present? %>
+    <div class="form-group has-error">
+      <%= f.label :cost, "Cost", class: "text-danger"%><br/>
+      <%= f.text_field :cost , placeholder: @procedure.errors[:cost].first.titleize, value: "", class: "form-control"%>
+    </div>
+    <%else%>
+    <div class="form-group has-success">
+      <%= f.label :cost, "Cost"%><br/>
+      <%= f.text_field :cost , placeholder: "100", class: "form-control"%>
+    </div>
+    <%end%>
+
+    <% if @procedure.errors[:type].present? %>
+    <div class="form-group has-error">
+      <%= f.label :type, "Type", class: "text-danger"%><br/>
+      <%= f.select(:type,([["Body","Body"],["Face","Face"],["Butt","Butt"],["Breast","Breast"]]),{:include_blank => "Type"}, {class: "chzn-select form-control"}) %> <%= @procedure.errors[:name].first.titleize %>
+    </div>
+    <%else%>
+    <div class="form-group has-success">
+      <%= f.label :type, "Type"%><br/>
+      <%= f.select(:type,([["Body","Body"],["Face","Face"],["Butt","Butt"],["Breast","Breast"]]),{:include_blank => "Type"}, {class: "chzn-select form-control"}) %>
+    </div>
+    <%end%>
+
+    <div class="form-group">
+      <%= f.submit "Save Procedure", :class => "btn btn-sm btn-success" %>
+    </div>
+
+    <% end %>
+  </div>
+</div>

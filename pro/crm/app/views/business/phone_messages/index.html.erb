@@ -1,0 +1,127 @@
+<div class="main-header clearfix">
+  <div class="page-title">
+    <h3 class="no-margin">Messages</h3>
+    <span>Welcome back <%= @current_user.first_name%></span>
+
+  </div><!-- /page-title -->
+
+  <ul class="page-stats">
+    <li>
+      <p><%= link_to 'Send New Message', new_business_phone_message_path, {:class => 'btn btn-sm btn-success'} %></p>
+    </li>
+  </ul><!-- /page-stats -->
+</div><!-- /main-header -->
+<hr>
+
+<!-- SENT MESSAGES -->
+<ul class=" col-md-11 col-md-offset-1 nav nav-tabs" id="myTab" style="cursor:pointer">
+      <li class="active"><a data-target="#inbox" data-toggle="tab">RECEIVED<span class="badge badge-success bounceIn animation-delay2 m-left-xs"><%=@phone_messages.count%></span></a></li>
+      <li><a data-target="#outbox" data-toggle="tab">SENT <span class="badge badge-success bounceIn animation-delay4 m-left-xs"><%=@created_phone_messages.count%></span></a></li>
+</ul>
+  <div class="tab-content">
+<div id="inbox" class="tab-pane active panel panel-default col-lg-10 col-lg-offset-1 col-sm-12">
+  <div class="panel-heading h3">
+    Received Messages
+  </div>
+
+  <div class="panel-body" style="max-height:60vh; overflow: auto;">
+    <ul class="list-group">
+      <% if @phone_messages.empty? %>
+      <li class="list-group-item clearfix">
+        <div class="pull-left m-left-sm">
+          <span>Inbox is Empty</span><br/>
+        </div>
+      </li>
+      <% else %>
+      <% @phone_messages.each do |message| %>
+      <li class="list-group-item clearfix">
+
+                <div class="activity-icon bg-success small col-sm-2">
+                  <i class="fa fa-comment"></i>
+                </div>
+
+                <div class="col-sm-8">
+                  To: <%= message.user.first_name if message.user%><br/>
+                  From: <%= message.from.titleize if message.from%><br/>
+                  <small class="text-muted"><i class="fa fa-clock-o"></i> Received <%=message.created_at.strftime('%D %r')%></small><br>
+                  <a href="#collapseWidget_read_<%=message.id%>" data-toggle="collapse"><i class="fa fa-sort-down fa-lg"></i>  Read</a>
+
+                </div>
+
+                <div class="col-sm-2">
+                  <!-- <%# link_to "Forward", business_phone_message_path(message), class: "btn btn-xs btn-info"%><br/> <br> -->
+                  <%= link_to "Mark Read", business_phone_message_mark_complete_path(message.id), class: "btn btn-xs btn-warning"  %><br/><br>
+                </div>
+
+                <div class="col-sm-12 no-padding collapse " id="collapseWidget_read_<%=message.id%>">
+                  <div class="padding-md">
+                    <small><p style="white-space: normal !important;"><%= message.message %></p></small>
+                  </div>
+                </div>
+
+
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="panel-footer">
+  </div>
+</div>
+
+
+
+
+<div id="outbox" class="tab-pane panel panel-default col-lg-10 col-lg-offset-1 col-sm-12" >
+  <div class="panel-heading h3">
+    Sent Messages
+  </div>
+
+  <div class="panel-body" style="max-height:60vh; overflow:auto;">
+    <ul class="list-group">
+      <% if @created_phone_messages.empty? %>
+      <li class="list-group-item clearfix">
+        <div class="pull-left m-left-sm">
+          <span>Outbox is Empty</span><br/>
+        </div>
+      </li>
+      <% else %>
+      <% @created_phone_messages.each do |message| %>
+      <li class="list-group-item clearfix">
+
+        <div class="activity-icon bg-success small col-sm-2">
+          <i class="fa fa-comment"></i>
+        </div>
+
+        <div class="col-sm-8">
+          To: <%= message.user.first_name if message.user %><br/>
+          From: <%= message.from.titleize if message.user %><br/>
+          <small class="text-muted"><i class="fa fa-clock-o"></i> Sent <%=message.created_at.strftime('%D %r')%></small><br>
+          <a href="#collapseWidget_<%=message.id%>" data-toggle="collapse"><i class="fa fa-sort-down fa-lg"></i>  Read</a>
+
+        </div>
+
+        <div class="col-sm-2">
+          <br><%= link_to "Update", edit_business_phone_message_path(message), class: "btn btn-xs btn-info" %><br/><br>
+          <%= link_to "Archive", archive_message_path(message.id), class: "btn btn-xs btn-warning"%><br/>
+
+        </div>
+
+        <div class="col-sm-12 no-padding collapse " id="collapseWidget_<%=message.id%>">
+          <div class="padding-md">
+            <small><p style="white-space: normal !important;"><%= message.message %></p></small>
+          </div>
+        </div>
+
+
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+
+  </div>
+  <div class="panel-footer">
+  </div>
+</div>
+</div>
+<!-- RECEIVED MESSAGES -->

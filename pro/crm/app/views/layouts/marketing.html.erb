@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marketing</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body class="overflow-hidden <%= 'alert-is-visible' if current_user != true_user %>">
+
+<div id="overlay" class="transparent"></div>
+<div id="chat-panel" style="display: none;"></div>
+<a href="" id="theme-setting-icon"><i class="fa fa-cog fa-lg"></i></a>
+<div id="theme-setting">
+  <div class="title">
+    <strong class="no-margin">Skin Color</strong>
+  </div>
+  <div class="theme-box">
+    <a class="theme-color" style="background:#323447" id="default"></a>
+    <a class="theme-color" style="background:#efefef" id="skin-1"></a>
+    <a class="theme-color" style="background:#a93922" id="skin-2"></a>
+    <a class="theme-color" style="background:#3e6b96" id="skin-3"></a>
+    <a class="theme-color" style="background:#635247" id="skin-4"></a>
+    <a class="theme-color" style="background:#3a3a3a" id="skin-5"></a>
+    <a class="theme-color" style="background:#495B6C" id="skin-6"></a>
+  </div>
+  <div class="title">
+    <strong class="no-margin">Sidebar Menu</strong>
+  </div>
+  <div class="theme-box">
+    <label class="label-checkbox">
+      <input type="checkbox" checked id="fixedSidebar">
+      <span class="custom-checkbox"></span>
+      Fixed Sidebar
+    </label>
+  </div>
+</div><!-- /theme-setting -->
+
+<!-- ######################################################### -->
+
+<div id="wrapper" class="preload">
+  <div id="top-nav" class="skin-6 fixed">
+    <div class="brand">
+      <span>Conversion</span>
+      <span class="text-toggle"> Doctor</span>
+    </div><!-- /brand -->
+    <button type="button" class="navbar-toggle pull-left" id="sidebarToggle">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <button type="button" class="navbar-toggle pull-left hide-menu" id="menuToggle">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <ul class="nav-notification clearfix">
+
+      <li class="dropdown">
+        <%= link_to new_business_lead_path, class: 'dropdown-toggle' do %>
+            <i class="fa fa-plus fa-lg"></i>
+        <% end %>
+      </li>
+
+      <li class="dropdown">
+        <a id="chat-icon" href="javascript:" title="Chats">
+          <i class="fa fa-comment fa-lg"></i>
+          <span id="chat-icon-badge" class="notification-label bounceIn animation-delay4 <%= @unread_channels.count > 0 ? '' : 'hidden-badge'%>"><%= @unread_channels.count %></span>
+        </a>
+      </li>
+
+      <li class="dropdown hidden-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-tasks fa-lg"></i>
+          <span class="notification-label bounceIn animation-delay5"><%= @current_account.tasks.all.count %></span>
+        </a>
+        <ul class="dropdown-menu task dropdown-2">
+          <li>You have <%= @current_account.tasks.all.count %> new tasks.</li>
+          <% @current_account.tasks.all.each do |task| %>
+              <li>
+                <%= link_to business_tasks_path(task), class: 'clearfix' do %>
+                    <div class="detail">
+                      <strong><%= task.title.titleize %></strong>
+                      <strong><%= task.communication.titleize %></strong>
+                      <p class="no-margin">
+                        <%= task.description.titleize %>
+                      </p>
+                      <small class="text-muted"><i class="fa fa-check text-success"></i> <%= task.due_date.to_date %>
+                      </small>
+                    </div>
+                <% end %>
+              </li>
+          <% end %>
+          <li><a href="#">View all tasks</a></li>
+        </ul>
+      </li>
+
+      <li class="profile dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <strong><%= current_user.first_name.titleize %> <%= current_user.last_name.titleize %></strong>
+          <span><i class="fa fa-chevron-down"></i></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="clearfix">
+              <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png" alt="User Avatar">
+              <div class="detail">
+                <strong><%= current_user.first_name.titleize %> <%= current_user.last_name.titleize %></strong>
+                <p class="grey"><%= current_user.email %></p>
+              </div>
+            </a>
+          </li>
+
+
+          <li class="divider"></li>
+
+          <li><%= link_to logout_path, class: 'main-link logoutConfirm_open' do %>
+                <i class="fa fa-lock fa-lg"></i> Sign Out
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /top-nav-->
+
+  <aside class="fixed skin-6">
+    <div class="sidebar-inner scrollable-sidebars">
+      <div class="size-toggle">
+        <a class="btn btn-sm" id="sizeToggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="btn btn-sm pull-right logoutConfirm_open" href="#logoutConfirm">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </div><!-- /size-toggle -->
+      <div class="user-block clearfix">
+        <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png" alt="User Avatar">
+        <div class="detail">
+          <strong><%= current_user.first_name.titleize %> <%= current_user.last_name.titleize %></strong>
+        </div>
+      </div><!-- /user-block -->
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <%= link_to marketing_dashboard_path do %>
+          <span class="menu-icon">
+            <i class="fa fa-desktop fa-lg"></i>
+          </span>
+                <span class="text">
+            Dashboard
+          </span>
+                <span class="menu-hover"></span>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to marketing_log_path do %>
+          <span class="menu-icon">
+            <i class="fa fa-list fa-lg"></i>
+          </span>
+                <span class="text">
+            Consult Log
+          </span>
+                <span class="menu-hover"></span>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to remarket_path do %>
+              <span class="menu-icon">
+                <i class="fa fa-bullhorn fa-lg" aria-hidden="true"></i>
+              </span>
+              <span class="text">
+                Remarketing
+              </span>
+              <span class="menu-hover"></span>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to marketing_reports_path do %>
+              <span class="menu-icon">
+                <i class="fa fa-line-chart fa-lg"></i>
+              </span>
+              <span class="text">
+                Reports
+              </span>
+              <span class="menu-hover"></span>
+            <% end %>
+          </li>
+
+        </ul>
+
+        <div class="alert alert-info">
+          <%= link_to business_leads_path do %>
+        <span class="menu-icon">
+          <i class="fa fa-star fa-lg"></i>
+        </span>
+              <span class="text">
+          Business
+        </span>
+              <span class="menu-hover"></span>
+          <% end %>
+        </div>
+      </div><!-- /main-menu -->
+    </div><!-- /sidebar-inner -->
+  </aside>
+
+  <div id="main-container">
+    <% if current_user != true_user %>
+        <div class="alert">
+          You (<%= true_user.first_name %>) are signed in as <%= current_user.first_name %>
+          <%= link_to 'Back to Settings', stop_impersonating_marketing_users_path %>
+        </div>
+    <% end %>
+    <% flash.each do |key, value| %>
+        <center>
+          <div style="margin-top:10px; width:90%; " class="alert alert-<%= key %>">
+            <span class="h5"><%= value.titleize %></span></div>
+        </center>
+    <% end %>
+    <section class="page-content" style="padding:15px">
+      <%= yield %>
+    </section>
+  </div><!-- /main-container -->
+</div><!-- /wrapper -->
+
+<!-- ######################################################### -->
+
+<a href="" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
+
+<!-- Logout confirmation -->
+<div class="custom-popup width-100" id="logoutConfirm">
+  <div class="padding-md">
+    <h4 class="m-top-none"> Do you want to logout?</h4>
+  </div>
+
+  <div class="text-center">
+    <%= link_to 'Logout', logout_path, class: 'btn btn-success m-right-sm' %>
+    <a class="btn btn-danger logoutConfirm_close">Cancel</a>
+  </div>
+</div>
+
+<div class="search-page is-hidden">
+  <button class="close-search">Close Search</button>
+  <div class="search-content">
+    <%= yield :search %>
+  </div>
+  <div id="search-results"></div>
+</div>
+
+<%= render 'shared/pusher' %>
+<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+     role="dialog" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="fa fa-hourglass-o fa-1x" aria-hidden="true"></i> Please Wait
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info
+                  progress-bar-striped active"
+               style="width: 100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<% group_ids = group_conversations(@current_account.id.to_s).map { |gr| gr.conversation.channel}.join(',') %>
+
+<script>
+  $(function () {
+    initializeWebSocket("<%= @current_account.id.to_s %>", ("org_" + "<%= @current_org.id.to_s %>"), "<%= group_ids %>", "<%= @unread_channels.join(',') %>");
+  })
+</script>

@@ -1,0 +1,15 @@
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Converted Leads</h3></div>
+    <ul class="list-group">
+      <% unless converted_inquiries(@contact).empty? %>
+        <%converted_inquiries(@contact).each do |lead|%>
+           <%=link_to lead.interested_in, business_lead_path(lead), class:"list-group-item"%>
+        <% end%>
+      <%else%>
+        <a class="list-group-item">No Procedures Booked</a>
+      <% end %>
+     </ul>
+     <div class="panel-footer"></div>
+  </div>
+</div>
