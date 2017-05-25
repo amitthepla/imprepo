@@ -1,0 +1,385 @@
+\\192.168.2.170\suman\salkmetabolic\Suman\salkmetabolic\lib\tasks\generate_weekly_report_of_participant.rake
+\\192.168.2.170\suman\salkmetabolic\Suman\salkmetabolic\app\models\pdf_generator.rb
+\\192.168.2.170\suman\salkmetabolic\Suman\salkmetabolic\lib\tasks\calculate_and_update_weeks_of_all_participants.rake
+
+
+
+For Every participant 
+
+In WEB if the intervention date is finished, then in web after the intervention end date no feedogram is displaying
+
+In WEB Food Log section foods are not displaying after the Intervention end date over
+
+Feeogram history is not displaying on mobile if intervention end date is over
+
+
+When the Intervention date is over than the feedogram details are not displaying till date
+
+
+If the Intervention date is not not over, then feedogram is displaying on WEB as well as in Mobile.
+
+When the Intervention end date is over feedogram details are displaying on Mobile, but it's not reflecting on the web
+
+
+
+
+
+Number of participants who signed up - 3110
+
+Participant.count
+Participant.includes(:user).where("users.gender = ?", "Male").count
+Participant.includes(:user).where("users.gender = ?", "Female").count
+Participant.where("device_type like ?","%Android%").count
+Participant.where("device_type like ?","%ios%").count
+Participant.includes(:user).where("users.age >= ? AND users.age <= ?", 18, 21 ).count
+Participant.includes(:user).where("users.age >= ? AND users.age <= ?", 21,30 ).count
+Participant.includes(:user).where("users.age >= ? AND users.age <= ?", 30,40 ).count
+Participant.includes(:user).where("users.age >= ? AND users.age <= ?", 40,50 ).count
+Participant.includes(:user).where("users.age >= ? AND users.age <= ?", 50,60 ).count
+Participant.includes(:user).where("users.age >= ? ",60).count
+Participant.includes(:bmi_logs).where("participant_bmi_logs.bmi <= ?",18).count
+Participant.includes(:bmi_logs).where("participant_bmi_logs.bmi >= ? and participant_bmi_logs.bmi <= ?",18, 22).count
+Participant.includes(:bmi_logs).where("participant_bmi_logs.bmi >= ? and participant_bmi_logs.bmi <= ?",22,25).count
+Participant.includes(:bmi_logs).where("participant_bmi_logs.bmi >= ? and participant_bmi_logs.bmi <= ?",25,30).count
+Participant.includes(:bmi_logs).where("participant_bmi_logs.bmi >= ? and participant_bmi_logs.bmi <= ?",30,35).count
+Participant.includes(:bmi_logs).where("participant_bmi_logs.bmi >= ? ",35).count
+
+Participant.where(:app_activated => true).count
+Participant.joins(:foodstuffs).group("participants.id").having("count(participants.id) = ?",1).count.length
+Participant.joins(:foodstuffs).group("participants.id").having("count(participants.id) <= ?",50).count.length
+
+Number of participants who logged at least 3 food/beverages for at least 10 days during the baseline
+=================================================================
+ParticipantFoodstuff.find_by_sql("select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at between pr.baseline_start and pr.baseline_end  group by participant_id,research_info_id,DATE(created_at ) having count(*) >= 3 ) fd group by fd.participant_id,fd.research_info_id having count(dt) >=10").count
+
+Number of participants who logged at least 50 food/beverages  during baseline
+=====================================================================================
+ParticipantFoodstuff.find_by_sql("SELECT count(*),pf.participant_id,pf.research_info_id FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at between pr.baseline_start and pr.baseline_end  group by participant_id,research_info_id having count(*) >= 50 ").count
+
+Number of participatns who logged at least 50 food/beverages  after baseline
+==========================================================
+
+ParticipantFoodstuff.find_by_sql("SELECT count(*),pf.participant_id,pf.research_info_id FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at > pr.baseline_end  group by participant_id,research_info_id having count(*) >= 50 ").count
+
+
+
+Number of participants who logged at least 50 food/beverages during baseline AND 50 food/beverages after baseline
+
+
+ParticipantFoodstuff.find_by_sql("SELECT count(*),pf.participant_id,pf.research_info_id, sum(case when  pf.created_at < pr.baseline_end then 1 else 0 end) as beforebaseline , sum(case when  pf.created_at > pr.baseline_end then 1 else 0 end) as afterbaseline   FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id group by participant_id,research_info_id  having beforebaseline >=50 and afterbaseline   >=50 order by participant_id desc").count
+
+
+Number of participants who logged at least 3 food/beverage items per day for at least 50 days during the entire study period (since activating the app)
+
+ParticipantFoodstuff.find_by_sql("select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at >= pr.baseline_start  group by participant_id,research_info_id,DATE(created_at ) having count(*) >= 3 ) fd group by fd.participant_id,fd.research_info_id having count(dt) >=50").count
+
+
+
+
+Number of participants who completed 12 weeks of intervention - they were at least logging 3 items/day for at least 5 days during the last week of intervention. 
+=================
+ ParticipantFoodstuff.find_by_sql("select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,pf.created_at dt FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pr.intervention_end < CURDATE() AND pf.created_at between  DATE_SUB(pr.intervention_end,INTERVAL 6 DAY) AND pr.intervention_end  group by pf.participant_id,pf.research_info_id,DATE(pf.created_at ) having count(*) >= 3)  fd group by fd.participant_id,fd.research_info_id having count(dt) >=5").count
+
+
+Number of participants who logged at least one body weight measurement 10 weeks after activating the app. 
+===================================
+ParticipantBmiLog.find_by_sql("SELECT * FROM  `participant_bmi_logs`  pbmi, participant_researches pr where pr.participant_id = pbmi.participant_id and pr.research_info_id = pbmi.research_info_id ").count
+
+
+Number of participants who logged at least 7 days of sleep data during the baseline
+=====================================
+ParticipantSleepTimeLog.find_by_sql("select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_sleep_time_logs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.measured_date  between pr.baseline_start and pr.baseline_end group by participant_id,research_info_id,DATE(measured_date)) fd group by fd.participant_id,fd.research_info_id having count(dt) >= 7").count
+
+Number of participants who logged at least 7 days of sleep data during intervention
+======================================
+
+ParticipantSleepTimeLog.find_by_sql("select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_sleep_time_logs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.measured_date  between pr.intervention_start and pr.intervention_end group by participant_id,research_info_id,DATE(measured_date)) fd group by fd.participant_id,fd.research_info_id having count(dt) >= 7").count
+
+Number of participants from California
+===========================================
+Participant.includes(:user).where("users.time_zone like ?", "%Pacific%").count
+
+
+
+============================================================================================================================================================
+
+SELECT count(*),pf.participant_id,pf.research_info_id,DATE(pf.created_at ) FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at between pr.baseline_start and pr.baseline_end  group by participant_id,research_info_id,DATE(created_at ) 
+having count(*) >= 3
+order by participant_id desc,DATE(created_at ) desc
+
+
+
+find which are enter more than 3 times in baseline period
+---------------------------
+SELECT count(*),pf.participant_id,pf.research_info_id,DATE(pf.created_at ) FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at between pr.baseline_start and pr.baseline_end  group by participant_id,research_info_id,DATE(created_at ) having count(*) >= 3 order by participant_id desc,DATE(created_at ) desc
+
+
+Number of participants who logged at least 3 food/beverages for at least 10 days during the baseline
+------------------------
+
+select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at between pr.baseline_start and pr.baseline_end  group by participant_id,research_info_id,DATE(created_at ) having count(*) >= 3 ) fd group by fd.participant_id,fd.research_info_id having count(dt) >=10
+
+
+Number of participants who logged at least 50 food/beverages  during baseline
+-----------------
+SELECT count(*),pf.participant_id,pf.research_info_id FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at between pr.baseline_start and pr.baseline_end  group by participant_id,research_info_id having count(*) >= 50 order by participant_id desc
+
+Number of participatns who logged at least 50 food/beverages  after baseline
+--------------
+SELECT count(*),pf.participant_id,pf.research_info_id FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at > pr.baseline_end  group by participant_id,research_info_id having count(*) >= 50 order by participant_id desc
+
+Number of participants who logged at least 50 food/beverages during baseline AND 50 food/beverages after baseline
+----------------
+SELECT count(*),pf.participant_id,pf.research_info_id,
+sum(case when  pf.created_at < pr.baseline_end then 1 else 0 end) as beforebaseline , 
+sum(case when  pf.created_at > pr.baseline_end then 1 else 0 end) as afterbaseline   
+FROM `participant_foodstuffs` pf, participant_researches pr 
+where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id 
+group by participant_id,research_info_id 
+ having beforebaseline >=15 and afterbaseline   >=15
+order by participant_id desc
+
+
+Number of participants who logged at least 3 food/beverage items per day for at least 50 days during the entire study period (since activating the app)
+--------------
+select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.created_at >= pr.baseline_start  group by participant_id,research_info_id,DATE(created_at ) having count(*) >= 3 ) fd group by fd.participant_id,fd.research_info_id having count(dt) >=50
+
+
+Number of participants who completed 12 weeks of intervention - they were at least logging 3 items/day for at least 5 days during the last week of intervention. 
+
+--------------
+select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,pf.created_at dt FROM `participant_foodstuffs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pr.intervention_end < CURDATE() AND pf.created_at between DATE_SUB(pr.intervention_end,INTERVAL 6 DAY) AND pr.intervention_end group by pf.participant_id,pf.research_info_id,DATE(pf.created_at ) having count(*) >= 3) fd group by fd.participant_id,fd.research_info_id having count(dt) >=5
+
+
+Number of participants who logged at least one body weight measurement 10 weeks after activating the app. 
+
+SELECT * FROM  `participant_bmi_logs`  pbmi, participant_researches pr where pr.participant_id = pbmi.participant_id and pr.research_info_id = pbmi.research_info_id 
+and pbmi.measured_date >  DATE_ADD(pr.baseline_start , INTERVAL 10 WEEK) group by pbmi.participant_id,pbmi.research_info_id,DATE(pbmi.measured_date ) having count(*) >= 1
+
+
+Number of participants who logged at least 7 days of sleep data during the baseline
+
+
+seselect count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_sleep_time_logs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.measured_date	between pr.baseline_start and pr.baseline_end group by participant_id,research_info_id,DATE(measured_date	)) fd group by fd.participant_id,fd.research_info_id having count(dt) >=7
+
+
+select count(dt),fd.participant_id,fd.research_info_id from (SELECT count(*) foods,pf.participant_id,pf.research_info_id,DATE(pf.created_at ) dt FROM `participant_sleep_time_logs` pf, participant_researches pr where pr.participant_id = pf.participant_id and pr.research_info_id = pf.research_info_id and pf.measured_date	between pr.baseline_start and pr.baseline_end group by participant_id,research_info_id,DATE(measured_date	)) fd group by fd.participant_id,fd.research_info_id having count(dt) >=7
+
+
+Number of participants who logged at least 7 days of sleep data during intervention
+Number of participants from California
+
+
+
+
+
+
+* UTC -11:00 *
+American Samoa
+International Date Line West
+Midway Island
+
+* UTC -10:00 *
+Hawaii
+
+* UTC -09:00 *
+Alaska
+
+* UTC -08:00 *
+Pacific Time (US & Canada)
+Tijuana
+
+* UTC -07:00 *
+Arizona
+Chihuahua
+Mazatlan
+Mountain Time (US & Canada)
+
+* UTC -06:00 *
+Central America
+Central Time (US & Canada)
+Guadalajara
+Mexico City
+Monterrey
+Saskatchewan
+
+* UTC -05:00 *
+Bogota
+Eastern Time (US & Canada)
+Indiana (East)
+Lima
+Quito
+
+* UTC -04:30 *
+Caracas
+
+* UTC -04:00 *
+Atlantic Time (Canada)
+Georgetown
+La Paz
+
+* UTC -03:30 *
+Newfoundland
+
+* UTC -03:00 *
+Brasilia
+Buenos Aires
+Greenland
+Santiago
+
+* UTC -02:00 *
+Mid-Atlantic
+
+* UTC -01:00 *
+Azores
+Cape Verde Is.
+
+* UTC +00:00 *
+Casablanca
+Dublin
+Edinburgh
+Lisbon
+London
+Monrovia
+UTC
+
+* UTC +01:00 *
+Amsterdam
+Belgrade
+Berlin
+Bern
+Bratislava
+Brussels
+Budapest
+Copenhagen
+Ljubljana
+Madrid
+Paris
+Prague
+Rome
+Sarajevo
+Skopje
+Stockholm
+Vienna
+Warsaw
+West Central Africa
+Zagreb
+
+* UTC +02:00 *
+Athens
+Bucharest
+Cairo
+Harare
+Helsinki
+Istanbul
+Jerusalem
+Kyiv
+Pretoria
+Riga
+Sofia
+Tallinn
+Vilnius
+
+* UTC +03:00 *
+Baghdad
+Kuwait
+Minsk
+Moscow
+Nairobi
+Riyadh
+St. Petersburg
+Volgograd
+
+* UTC +03:30 *
+Tehran
+
+* UTC +04:00 *
+Abu Dhabi
+Baku
+Muscat
+Tbilisi
+Yerevan
+
+* UTC +04:30 *
+Kabul
+
+* UTC +05:00 *
+Ekaterinburg
+Islamabad
+Karachi
+Tashkent
+
+* UTC +05:30 *
+Chennai
+Kolkata
+Mumbai
+New Delhi
+Sri Jayawardenepura
+
+* UTC +05:45 *
+Kathmandu
+
+* UTC +06:00 *
+Almaty
+Astana
+Dhaka
+Novosibirsk
+Urumqi
+
+* UTC +06:30 *
+Rangoon
+
+* UTC +07:00 *
+Bangkok
+Hanoi
+Jakarta
+Krasnoyarsk
+
+* UTC +08:00 *
+Beijing
+Chongqing
+Hong Kong
+Irkutsk
+Kuala Lumpur
+Perth
+Singapore
+Taipei
+Ulaan Bataar
+
+* UTC +09:00 *
+Osaka
+Sapporo
+Seoul
+Tokyo
+Yakutsk
+
+* UTC +09:30 *
+Adelaide
+Darwin
+
+* UTC +10:00 *
+Brisbane
+Canberra
+Guam
+Hobart
+Magadan
+Melbourne
+Port Moresby
+Solomon Is.
+Sydney
+Vladivostok
+
+* UTC +11:00 *
+New Caledonia
+
+* UTC +12:00 *
+Auckland
+Fiji
+Kamchatka
+Marshall Is.
+Wellington
+
+* UTC +13:00 *
+Nuku'alofa
+Samoa
+Tokelau Is.

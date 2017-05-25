@@ -1,0 +1,2707 @@
+CRM4Beauty
+----------
+CRM4BeautyNOteProduction:
+https://crm.4beauty.net/auth/google/notes/callback
+Name: CRM4Beauty Client
+Authorised redirect URIs: https://crm.4beauty.net/auth/google/notes/callback
+
+Client ID for Web application 
+ Client ID
+28653104886-3d8e8bcbk41bbaho6gvqmm71qh2iftvi.apps.googleusercontent.com 
+
+152705391209-r6oj3lgls8rf8q8f6e114am5cecn37vs.apps.googleusercontent.com
+
+
+ Client secret
+UzRTOZGHJJL7s1h4uY2SCvXB 
+
+nlCDoBO0Ne_s_vBrV6QOGgrJ
+
+==========================
+
+CRM4BeautyNoteStaging:
+ Client ID
+719192059187-nto5pi5g044en8qd0euqgr6ar7ik4qrh.apps.googleusercontent.com
+Client secret
+zXR1IZ0JB4JlVQY2WYs4dxdf 
+https://crm-4beauty-staging.herokuapp.com/auth/google/notes/callback
+
+
+CRM4BeautyProduction:
+ Client ID: 478742408963-sl80vskvc03upt5afg059d7tbk139i9m.apps.googleusercontent.com
+	239436796651-55m7kbb737d20gdf9lugj18dqbotbgkf.apps.googleusercontent.com
+ 
+ Client secret: NzMyrjvM5mXCyNQ-KhaqEtEH 
+	XbGpbvEMNMoT_Q0iIhYpVzUc
+	
+	
+Name: CRM OAuth Client 1
+Authorised redirect URIs: https://crm.4beauty.net/auth/google/callback
+
+
+https://theconversiondoctor.herokuapp.com/auth/google/callback
+
+
+https://crm.4beauty.net/auth/google/callback
+
+conversiondoctor
+=================
+GOOGLE_CLIENT_ID: 286911036243-rilnaaro70hoch9bufiliuekg4hgc253.apps.googleusercontent.com
+	14843592371-kg1atqthvv89b98s33ogrngfd9o3gta1.apps.googleusercontent.com
+
+
+GOOGLE_CLIENT_SECRET: 9F-aMc08l0yRAEhi5i0uPHa0
+	QwVhmtvnCbtacIBbr7IZaATX
+
+GOOGLE_NOTES_CLIENT_ID: 719192059187-nto5pi5g044en8qd0euqgr6ar7ik4qrh.apps.googleusercontent.com
+GOOGLE_NOTES_CLIENT_SECRET: zXR1IZ0JB4JlVQY2WYs4dxdf
+
+
+
+notify4 beauty credentials
+===========================
+/\4beauty/\-NOTIFY
+notify@4beauty.net
+
+
+
+CRM local:
+
+
+Custom Form
+============
+https://www.screencast.com/t/mxoOPn0NSE
+http://bootsnipp.com/forms
+
+https://github.com/frappe/bootstrap-form-builder
+https://github.com/dobtco/formrenderer-base
+http://www.jqueryrain.com/?UBmD_Kix
+
+Heroku commands
+================ 
+git remote add heroku https://git.heroku.com/conversiondoctor.git
+
+
+=== anurag.pattnaik@andolasoft.com Apps ======================
+fanzoos-dev
+theconversiondoctor
+wp-example
+young-fortress-84727
+zippyar
+
+=== Collaborated Apps
+conversiondoctor  marketing@4beauty.net
+crm-4beauty       marketing@4beauty.net
+hirmand-staging   gideon@metronome3.com
+metro92-staging   gideon@metronome3.com
+refinery-66-main  lcole@66main.com
+
+
+
+
+The Gmail API lets you view and manage Gmail mailbox data like threads, messages, and labels.
+
+======================================================================================================
+
+
+401. That’s an error.
+
+Error: deleted_client
+
+The OAuth client was deleted.
+Request Details
+
+That’s all we know.
+
+
+https://developers.google.com/gmail/api/guides/
+https://developers.google.com/api-client-library/ruby/apis/gmail/v1
+http://stackoverflow.com/questions/33171769/gmail-api-in-reply-to-not-workinggoogle-not-handling-on-one-side
+
+https://developers.google.com/gmail/api/v1/reference/users/threads/list
+
+important:
+----------
+https://developers.google.com/gmail/api/v1/reference/users/messages/get
+https://developers.google.com/gmail/api/v1/reference/users/messages/send
+http://stackoverflow.com/questions/32589476/how-to-send-a-reply-with-gmail-api
+https://developers.google.com/gmail/api/v1/reference/users/drafts/send
+https://mail.google.com/mail/u/0/#inbox/159bc52e2a435f54
+
+http://stackoverflow.com/questions/31626069/mime-headers-not-making-it-through-gmail-api
+https://www.sitepoint.com/sending-emails-gmail-javascript-api/
+
+
+Task break down of gmail reply and forward
+=============================================================================================
+Email reply relies on the email threads. We need to have the thread information to reply on a particular email. So we must switch from individual message view to thread view in order to reply a particular email.
+
+Switch to thread view
+ >> Make API call to get available threads. 
+ >> Make API call with thread id to get details of thread. 
+ >> Parse the thread and last message of thread to get preview and message snippet. 
+ >> Modify UI for inbox for thread view compatibility. 
+
+ >> Affected modules 
+ --------------------------
+  >> Read/unread messages.
+  >> Delete messages
+  >> Star/Unstar messages
+  >> Move messages. (Change labels)
+
+Message Details Page
+ >> Make API call with thread id to get details of thread. 
+ >> Parse the thread and sample messages inside the thread to generate data for preview. 
+ >> Create UI to display preview of all messages inside thread. 
+ >> Make API call and create UI and add functionality to display last message in the thread by default. 
+ >> Make API call to get message details and display when an individual message is clicked. 
+
+Reply To Email
+ >> Set the subject header for reply email. 
+ >> Set In-Reply-To header to identify the parent message. 
+ >> Add thread information to identify the message thread.
+ >> Prefill the recipients in message header for reply to all option
+
+Forward Email
+ >> Make API call and get the message details.
+ >> Generate forward text and append to message body. 
+ >> Prefill the message body with auto generated message content.
+
+=============================================================
+:subject: Test Email for reply
+:from: Amit Mohanty <mohanty.amit888@gmail.com>
+:to: amit.mohanty@andolasoft.co.in
+:received: 1485239388
+:snippet: Hey please reply me on this email thread ᐧ
+:attachment: false
+:unread: false
+:starred: false
+:id: 159cf2a891e1de07
+:msg_id: "<CAG_trFju7EwEOqnagK40iJ9=hA08eu8nquUTNjx2dQJjHk6yoQ@mail.gmail.com>"
+:in_reply_to: Amit Mohanty <mohanty.amit888@gmail.com>
+
+=======================================================================================================
+
+    def build_mail(options)
+      begin
+        email = Mail.new
+        # email.from = @email
+        email.to = 'mohanty.amit888@gmail.com' #options[:to]
+        # email.cc = options[:cc]
+        email.subject = 'Re: Reply' #options[:subject]
+        email.in_reply_to = 'CAG_trFjcnXCdEpAt2njnSg0iM-k3TisZf_jSQQ3_uq25CFvqWA@mail.gmail.com'
+        # email.date = Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')
+
+        html_part = Mail::Part.new do
+          content_type('text/html; charset=UTF-8')
+          body(options[:body].gsub("\n", ''))
+        end
+
+        email.html_part = html_part
+        (options['files'] || []).each do |file|
+          email.attachments[file.original_filename] = {:mime_type => file.content_type, :content => file.read}
+          # email.add_file({filename: file.original_filename, content: file.read})
+        end
+        email
+      rescue
+        nil
+      end
+    end
+ 
+ 
+ 
+
+
+
+
+=======================================================================================================
+
+preferred currency-name
+http://www.exchange-rate.com/Currency-List-sorted-by-currency-name.html
+
+
+
+Troubleshoot mongodb:
+---------------------
+sudo rm /var/lib/mongodb/mongod.lock   
+sudo -u mongodb mongod -f /etc/mongodb.conf --repair 
+sudo service mongodb start
+
+==================
+change version to 2.1.1
+
+Change the ruby version >> ruby '2.1.1'
+
+Create gemset >> rvmsudo rvm gemset create crm
+use   gemset  >> rvm gemset use crm
+
+Bundle install
+
+config/mongoid.yml
+===================
+development:
+  sessions:
+    default:
+      use_utc: false
+      use_activesupport_time_zone: true
+      database: crmbeauty-development
+      hosts:
+        - 0.0.0.0:27017
+  options:
+
+test:
+
+rake db:create
+
+Credentials:
+==============
+Id: it@4beauty.net
+Pass: !4beauty!-CRM
+
+mongorestore -d crmbeauty-development /var/www/crm_4beauty_db_dump/4beauty-crm-prod/
+
+
+mongorestore --db crm-staging /path/to/crm-staging
+
+
+sudo apt-get update
+ sudo apt-get install -y mongodb-org
+sudo service mongod start
+mongo
+mongorestore -d crmbeauty-development /var/www/crm_4beauty_db_dump/4beauty-crm-prod/
+
+git@github.com:4beauty/crm.git
+
+MongoDB restore and backup
+===========================
+225  mongodump --out /vagrant/mongobackups/
+226  mongorestore /vagrant/mongobackups/
+
+
+DT: Feb 2, 2015
+===================
+Error handling while email is sent during questionnaire
+Push the communication to live
+Prepare a document on how Max and we can work together through GIT
+
+I was looking at the production application and noticed that the registrations and schedules were not showing up on the mobile app, even though they are on the website.
+
+
+Communication issue update
+
+
+Hi Max,
+
+After investigation we found that the sales coordinator "vivian@4beauty.net" has an entry to patient table, where as a sales coordinaotr can not be a lead. This is the reason why the note saving functionality(sales coordinator opens a new email, not a reply, and mails a lead) is not working in case of vivian as sales coordinaotr.
+
+https://crm-4beauty-staging.herokuapp.com/patients/56995ecc3263650003b30000
+
+We checked other sales coordinator and found that they do not have entries to patient table, so the functionality is working fine for other sales coordinators.
+If you will delete the patient information of vivian, then the same will also work for vivian as a sales coordinator.
+
+
+Best,
+Amit
+
+
+/var/www/html/site_icons
+
+
+Issue:
+Drag drop of leads from various stages in lead listing page
+
+
+
+CRM MVP items
+================
+Login >> Forget password
+Leads
+Add new Lead
+Search Lead
+Lead sorting
+Slide drawer
+Task Listing
+
+
+http://www.invisionapp.com/
+
+stackshare.io
+
+
+https://crm-4beauty-staging.herokuapp.com
+http://www.invisionapp.com/
+
+Id: it@4beauty.net
+Pass: !4beauty!-CRM
+
+
+>> Regarding the design changes We  cloned the staging repo and ran it locally and it worked fine locally. I merged my branch with the staging branch and re pushed the staging branch to heroku. Im not sure what the problem is but im sure if you clone the staging branch and run it locally it will work for you too. Not sure whats messing it up at this point.
+
+
+ 
+>> The Tasks pagination is not working, The CRM keep crashing for me when I try and load the Tasks. I thought this was fixed - but it has returned.
+
+
+ 
+>> On the lead page, the New lead pages load properly, when I click on page 2 or 3 those pages load. But for all the other leads pages (Qualified, Booked Consult, etc) when I click on Page 2 for example, nothing loads. 
+
+
+
+
+
+>> Run the application in production mode >> fix the overlay issue  
+	>> FIXED, in local
+>> The Tasks pagination is not working, The CRM keep crashing for me when I try and load the Tasks. I thought this was fixed - but it has returned.
+	>> Fixed in production (Earlier directly fixed in prod, need to add it in staging)
+
+>> On the lead page, the New lead pages load properly, when I click on page 2 or 3 those pages load. But for all the other leads pages (Qualified, Booked Consult, etc) when I click on Page 2 for example, nothing loads. 
+	>> Need to fix
+
+
+	http://tympanus.net/Development/Multilevelpushmenu/index3.html
+	
+GMAIL_USERNAME
+GMAIL_PWD
+
+
+Fllowing logic we have written to calculate counts.
+
+leads = Business::Lead.where(organization: @current_org)
+start_date = params[:start_date].present? ? Date.strptime(params[:start_date], '%m/%d/%Y').to_time : Time.now - 1.month
+end_date = params[:end_date].present? ? Date.strptime(params[:end_date], '%m/%d/%Y').to_time : Time.now
+
+Total Leads Count
+-------------
+leads.where({created_at: {'$lte' => end_date, '$gte' => start_date}}).count
+
+Booked Surgeries Count
+------------------
+leads.where({stage_lifecycle: {'$elemMatch' => {:stage => 'booked_surgery'}}, :procedure_date => {'$lte' => end_date, '$gte' => start_date}}).count
+
+Booked Consults Count
+------------------
+leads.where({stage_lifecycle: {'$elemMatch' => {:stage => 'booked_consult', :timestamp => {'$lte' => end_date, '$gte' => start_date}}}}).count
+
+Completed Count
+-------------
+leads.where({stage_lifecycle: {'$elemMatch' => {:stage => 'completed', :timestamp => {'$lte' => end_date, '$gte' => start_date}}}}).count
+
+Cancelled Count
+----------------
+leads.where({stage_lifecycle: {'$elemMatch' => {:stage => 'cold', :timestamp => {'$lte' => end_date, '$gte' => start_date}}}}).count
+
+Phone Calls Count
+------------
+Business::Task.where({created_at: {'$lte' => end_date, '$gte' => start_date}, communication: 'Phone'}).count
+
+Emails Count
+----------
+Business::Task.where({created_at: {'$lte' => end_date, '$gte' => start_date}, communication: 'Email'}).count
+
+
+
+
+
+
+1. Need more information about headers like "Internet", "referral", "PR" etc
+2. Need data for phone calls, emails, and total leads.
+3.Need more information about "No Show" present on right side of the browser window.
+4. Need more information about cancel rate, earned revenue and lost revenue.
+
+
+Hi Max,
+
+Here are our meeting summary,
+
+Max will send all the information about headers like "Internet", "referral", "PR"..etc count
+Max will update the excelsheet for phone calls, emails, and total leads.
+Can you please tell us how to get data for,
+	"No Show" present on right side of the browser window
+	cancel rate, earned revenue and lost revenue
+	Understanding:
+	  cancel rate: Compared with booked procedure(or, with appointment)
+	  earned revenue: Total revebue - Marketing spent
+
+
+We have placed the new password for notify@4beauty.net, now the automatic saving of notes is working properly in staging server.
+Please verify and let us know your feedback.  
+	
+Best,
+Amit
+
+
+
+
+
+
+
+
+>> Dynamic data of admin dashoard with filters
+>> Datepicker shown for date range
+>> automatic store of notes
+    Not working since password is changed
+
+	
+
+@procedure_types = [["Body","Body"],["Face","Face"],["Butt","Butt"],["Breast","Breast"]]
+
+
+
+
+["57443d7714c1810003000002", "574d56a58b9f030003000002", "574d56fd8b9f030003000005"]
+
+CRM:
+
+Discussion on sales coordinator rotation
+
+>> Adding id into array become string when we update, which cause page break in beauty profile creation
+Suggestion: http://bootsnipp.com/snippets/featured/bootstrap-dual-list
+
+>> Source to be added in beautyprofile and lead creation form
+
+>> source_type, waiting from Max
+>> Should we add source dropdown in the html code
+	- We have found the referral hidden field 
+
+>> Can you give you the list of procedures available for specific body parts that are common
+	like , face - p1, p2
+		   Breast - p3, p4
+
+
+
+
+
+>> HTML form generation - 2
+>> Verify lead creation and questionnaire sent - 2
+>> Sales coordinator saving fix - array - 1
+>> Image storing of lead during questionnaire
+>> Image animation while choosing procedure
+
+
+
+
+Hi Max,
+
+We have completed the generation of unique code snippet according to sites and pushed the changes to staging server. We have also started working on the image saving part during questionnaire, and then will work on animation stuff while selecting procedure. Just a friendly reminder that we are waiting for the static image(which will highlight bodyparts), from your side.
+
+Here is the screenshot of htmlform,
+
+
+
+
+Please verify and let us know your feedback.
+
+
+Best,
+Amit
+
+
+
+8 
+
+Tentative Timeline => 30-35hrs
+
+Highlevel task breakdown are as follows:
+Admin Side:
+>> Integrate paperclip gem and upload two images for male and female
+>> Display seperate preview for two images based on gender and dropdown selected
+>> Tag(Face, Breast...etc) photo according to procedures 
+
+Beauty Profile:
+>> In beauty profile, display the image based on gender of lead where the lead can click on the body part to get available procedures
+>> Fetch all available procedures based on lead's gender and map those procedures with the displayed image
+>> Create popup containing available procedures for selected body part
+>> Add image upload functionality in beauty profile
+
+
+
+Meeting for today:
+
+>> Added source dropdown in beauty profile and create lead page
+	- Need to discuss the difference between source and source_type
+>> Added image upload during questionnaire 
+	- suggestion for preview and deleting image selected
+>> Displayed list of images in lead detail page
+	- suggestion to add zoom in effect
+>> Image animation in beauty profile
+
+>> Payment status of last invoice
+>> Discussion on starting of mobile app 
+
+
+https://theconversiondoctor.herokuapp.com/questionnaire/ec11b129-042a-434b-be39-7fd433a14f68
+
+
+Hi Max,
+
+As discussed, please have the tentative timeline and task break down as follows
+
+Beauty Profile form - Image preview and delete
+ > To store the images in temporary table 
+ > Display thumbnails after image upload
+ > Delete images from local storage after user successfully uploaded the image
+ 
+Lead detail - Displaying original image as popup on clicking the thumbnail photo
+
+Tentative timeline: 7-9hrs
+
+Please let us know if you want to proceed.
+
+Best,
+Amit
+
+
+
+Organization Communication email address >> The organization should be sending their emails from the Organization email
+Payment - 80hrs (Integration and unit testing)
+Ability to integrate Gmail/Yahoo or others so that users can email directly from the application - this may be the solution to the notify@4beauty question i had earlier.  84 Hours
+Ability to integrate mailchimp. using there api so that we can use it through the application and track campaigns. 24 Hours (Integration and unit testing)
+
+
+
+
+
+Meeting:
+
+Discussion on merging - tentative,  16-20hrs
+Discussion on search - 
+
+Lead index slowness issue
+Mobile app - we should start mobile app
+
+
+
+Discussion:
+
+Source and source type done
+Slider done
+Static image done
+Title added to sales coordinator rotation
+Lead detail - Displaying original image as popup on clicking the thumbnail photo
+Notify Max about addition of human type (Male/Female)
+
+-----------------------------------------------------------------------------------------
+Send notification to only Sales Coordinator like a status of the lead has uploaded image
+Mobile app need to start 
+
+
+Lead Details:
+----------------
+https://theconversiondoctor.herokuapp.com/leads/575ac2dd89e6ac0003000001
+
+
+Beauty Profile:
+------------------
+https://theconversiondoctor.herokuapp.com/questionnaire/08327eff-a18b-41ac-8571-0a2d6fb33837
+
+
+HTML form code generation in website site settings	(8*30)	$240
+List Box implementation in sales coordinator rotation	(10*30)	$300
+Beauty Profile Form >> Upload multiple image and static image animation while selecting procedure	(30*30)	$900
+
+
+
+
+
+Discussion:
+
+Source and source type done
+Slider done
+Static image done
+Title added to sales coordinator rotation
+Lead detail - Displaying original image as popup on clicking the thumbnail photo
+Notify Max about addition of human type (Male/Female)
+
+-----------------------------------------------------------------------------------------
+Send notification to only Sales Coordinator like a status of the lead has uploaded image
+Mobile app need to start 
+
+
+Lead Details:
+----------------
+https://theconversiondoctor.herokuapp.com/leads/575ac2dd89e6ac0003000001
+
+
+Beauty Profile:
+------------------
+https://theconversiondoctor.herokuapp.com/questionnaire/08327eff-a18b-41ac-8571-0a2d6fb33837
+
+
+HTML form code generation in website site settings - 8hrs
+List Box implementation in sales coordinator rotation -	10hrs
+Beauty Profile Form >> Upload multiple image and static image animation while selecting procedure -	30hrs
+
+48*30 = $1440
+
+
+
+Add arm and legs
+Slider color change >> Green and blue
+Procedure name selection display
+Data type changed to "integer"
+Merge staging with "conversion_doctor"
+Estimate on search 
+Lead index slowness
+
+
+https://theconversiondoctor.herokuapp.com/questionnaire/39de88f9-ad7e-4bd3-92a9-83aa990eb6ee
+
+https://elements.heroku.com/addons
+https://elements.heroku.com/addons/websolr
+https://elements.heroku.com/addons/searchbox
+https://devcenter.heroku.com/articles/websolr#sunspot-for-ruby-on-rails
+
+https://elements.heroku.com/addons/swiftype
+
+
+
+
+Hi Max,
+
+Please have the tentative timeline and highlevel task break downs to fix performance issues in Lead index page as follows,
+
+Lead index page -
+	Only load the "INCOMING" lead tab when user land to index page, along with count for other tabs and phone, email
+	Ajax request to render specific leads as per the tab selected 
+	Dynamically increse/decrease the tab count after "Move Lead"
+	Initializing the pagination in ajax requests
+	
+Tentative timeline: 16hrs
+
+After your approval we will work on the issue.
+
+Best,
+Amit
+
+
+>> multi highlight
+>> butt part - upto thigh
+>> Add butt part for male
+>> Send tentative timeline for lead index slowness issue
+>> Photo upload and preview
+
+https://docs.google.com/spreadsheets/d/1dZHxI9495FRuCEqI4eJZZ2VH-1HBnMVLcBN0YQ1_1Pc/edit#gid=0
+
+https://elements.heroku.com/addons
+https://elements.heroku.com/addons/websolr
+https://elements.heroku.com/addons/searchbox
+https://devcenter.heroku.com/articles/websolr#sunspot-for-ruby-on-rails
+
+https://elements.heroku.com/addons/swiftype
+
+
+
+
+
+Multiple procedure selection task breakdown with estimated timeline
+==========================================
+
+1. Remove second_procedure, second_interest_procedure and second_procedure_cost and its usege through out the application - 2 hrs
+2. Change datatype for interested_in from string to array of strings which will be helpful to capture multiple procedures- 0.5 hr
+3. Remove procedure_cost from model and it's dependencies throughout application. - 1hr
+4. Change datatype for interested_procedure from string to array of hashes which will store procedure name and procedure cost in key value pair. - 0.5 hr
+5. Remove existing callbacks for storing procedure and procedure cost and add new callbacks for storing procedure and procedure cost in new datastructure. 2 hrs
+6. Modify all form fields and functionality (In action methods) to store interested procedures. 2 hrs
+7. Modify lead show page and display interested procedures and costs in tabular format. - 1hr
+8. Unit testing and bug fixing - 2 hrs
+
+Total hours: 11 , 24hrs
+
+
+
+
+Meeting Agenda
+================
+Notify invoice sent
+Multiple procedure selection
+Discussion on search 
+Lead index performance issue fix
+Email integration
+
+
+
+https://theconversiondoctor.herokuapp.com/questionnaire/cc835b50-3a0b-4f20-99d9-fc0e50a455a8
+
+
+
+Multiple procedure selection highlevel task breakdown
+-----------------------------------------------------
+
+Remove second_procedure, second_interest_procedure and second_procedure_cost and its usege through out the application 
+Change datatype for interested_in from string to array of strings which will be helpful to capture multiple procedures
+Remove procedure_cost from model and it's dependencies throughout application
+Change datatype for interested_procedure from string to array of hashes which will store procedure name and procedure cost in key value pair
+Remove existing callbacks for storing procedure and procedure cost and add new callbacks for storing procedure and procedure cost in new datastructure
+Modify all form fields and functionality (In action methods) to store interested procedures
+Modify lead show page and display interested procedures and costs in tabular format
+Unit testing and bug fixing
+
+
+https://docs.google.com/spreadsheets/d/1dZHxI9495FRuCEqI4eJZZ2VH-1HBnMVLcBN0YQ1_1Pc/edit#gid=0
+
+https://elements.heroku.com/addons
+https://elements.heroku.com/addons/websolr
+https://elements.heroku.com/addons/searchbox
+https://devcenter.heroku.com/articles/websolr#sunspot-for-ruby-on-rails
+
+https://elements.heroku.com/addons/swiftype
+
+search - 16hrs
+Lead performance issue fix - 20-24hrs
+Google analytics integration - 
+
+
+Only load the "INCOMING" lead tab when user land to index page, along with count for other tabs and phone, email
+Ajax request to render specific leads as per the tab selected 
+Dynamically increase/decrease the tab count after "Move Lead"
+Initializing the pagination in ajax requests
+
+
+
+
+
+Mixed Content: The page at 'https://crm-4beauty-staging.herokuapp.com/marketing/dashboard' was loaded over HTTPS, but requested an insecure image 'http://colfusion.exp.sis.pitt.edu/colfusion/templates/wistie/images/right_arrow.png'. This content should also be served over HTTPS.
+
+
+
+Mixed Content: The page at 'https://crm-4beauty-staging.herokuapp.com/marketing/diagnostic' was loaded over HTTPS, but requested an insecure script 'http://localhost:35729/livereload.js'. This request has been blocked; the content must be served over HTTPS.
+
+
+
+http://stackoverflow.com/questions/21226357/rails-4-with-turbolinks-and-window-load
+
+
+
+Make sure to ask Max about the remaining payment during the meeting politely. You can mention about the ayment at the end. Also tell him that the fix we did is not chargeble though it took some time to figure out.
+
+
+
+
+
+Discussion:
+
+1. Apology for the mistake
+https://crm-4beauty-staging.herokuapp.com/leads/57944856165fe70003000028
+
+2. Query for getting lead stages by role is commented in Leads controller index action and stage_leads action. There is no settings page for assigning roles to stage. That's why we removed roles.
+
+
+We have commented the query for getting the lead stages by role in Leads controller index action and stage_leads action. because currently there is no settings page for assigning roles to stage. (You can easily verify it in production server, pagination is not working for 'POST-OP' stage)
+
+
+
+
+
+
+
+
+Open Source: 
+Cost effective, with a Strong Community. Can be Used in all Open Source Stacks
+
+Rapid Development: 
+Works faster, with more than 1,20,000 gems available for re-usage
+ 
+Robust Framework: 
+Ensured Data Safety, follows MVC Design pattern, strong focus on testing & comes with Integrated Testing tools 
+
+Standards: Follows convention like REST & MVC which makes codebase regularised
+
+Robust Framework:
+
+Ensures ******
+
+Android Studio was in early access preview stage starting from version 0.1 in May 2013, then entered beta stage starting from version 0.8 which was released in June 2014. The first stable build was released in December 2014
+
+
+
+
+P1 -> Analytics page count
+P2 -> Internal Chat
+P3 -> Email integration
+P4 -> Google Ad integration
+P5 -> Google Analytics page
+
+
+
+
+
+scheduled_surgeries: Lead has a valid procedure_date (procedure_date != nil)
+
+appointments: Lead has a valid consultation_date (consultation_date != nil)
+
+consultations: Leads from appointments that have cancelled_consult == false and no_show == false.
+
+cancelled_consultations: Leads from appointments that have cancelled_consult == true and no_show == false.
+
+cancelled_consultations percent: cancelled_consultations over consultations
+	(cancelled_consultations/consultations) * 100
+
+no_show: Leads from appointments that have no_show == true.
+
+no_show percent: no_show over consultations
+	(no_show/consultations) * 100
+
+closing_rate: total scheduled surgeries over consultations. And same logic for individual sales coordinators
+	(scheduled_surgeries / consultations) * 100
+	
+	
+	
+	
+Chat popup designs
+===================
+http://bootsnipp.com/snippets/featured/open-in-chat-popup-box-chat-popup
+
+Create an account in google developer console - 2 hrs
+Create a view page to display charts - 1 hr
+Modify route to display chart - 1 hr
+Implement UI for following for charts - 4 hrs
+Implement page views chart - 4 hrs
+Implement bounce rate chart - 4 hrs
+Implement unique users chart - 4 hrs
+
+
+Total: 20hrs
+
+
+
+
+Hi Max,
+
+Please have the tentative timeline and high level task breakdowns are as follow,
+
+Google Analytics chart integration (Estimation is only for page views, bounce rate, unique users count) [Tentative timeline (25-28hrs)]
+
+Creating an app in google developer console
+Integrating the credentials within the app 
+Authenticate google analytics account
+Generating charts for page views, bounce rate and unique users count
+
+Internal Chat integration [Tentative timeline 116hrs]
+
+We have break down the tasks in release wise that will also help us on invoicing too
+
+Release#1 
+
+Internal storage & DB design
+UI Build up
+Websocket chat server setup on Heroku
+Channel based subscriptions (Private - one to one)
+Display online status of user
+
+Release#2
+
+Offline data sync (When user is offline, store chat history. When user comes online display the offline chats)
+Channel based subscriptions (Group messages)
+Display unread message count per conversation to user
+Load more like functionality for chat history on chat window
+
+Release#3
+Add people to an existing conversation
+Send file as chat messages
+
+
+Please let us know your feedback.
+
+Best,
+Amit
+
+
+
+
+
+
+Internal storage & DB design	6 hrs
+UI Build up						16 hrs
+Websocket chat server setup on Heroku		8 hrs
+Channel based subscriptions (Private and Group messages)		24 hrs
+Offline data sync (When user is offline, store chat history. When user comes online display the offline chats)	12 hrs
+Load more like functionality for chat history on chat window	8 hrs
+Display unread message count per conversation to user		8 hrs
+Display online status of user								6 hrs
+Add people to an existing conversation						4 hrs
+Send file as chat messages									16 hrs
+
+
+
+108
+
+116hrs
+
+Release#1 
+
+Internal storage & DB design
+UI Build up
+Websocket chat server setup on Heroku
+Channel based subscriptions (Private - one to one)
+Display online status of user
+
+Release#2
+
+Offline data sync (When user is offline, store chat history. When user comes online display the offline chats)
+Channel based subscriptions (Group messages)
+Display unread message count per conversation to user
+Load more like functionality for chat history on chat window
+
+
+Release#3
+Add people to an existing conversation
+Send file as chat messages
+
+
+
+$3480
+
+$249
+$1200
+
+
+
+40
+
+
+
+
+
+
+Can you provide me an estimate for this
+
+I would like to make a small web app in Ruby for Automated Insights http://wordsmith.readme.io/v1/docs
+It will allow users to upload a CSV file, run the wordsmith API to produce the downloable report. Just that, no sign ups, no profiles, no worries about UX - just a white page with 3 buttons. Upload, Run, Download.
+
+
+
+
+
+Why you need Mobile app?
+
+Before we begin to implement mobile app, it is important that we define goals on what we want to achieve by having a mobile app. Sales team is the key personnel group that will be using the smart phone application daily.
+
+Your sales force rarely need access to complete functionality. Start out by providing only basic access that the teams use on a day to day basis. For example, creating/updating lead information, adding tasks against leads or updating contact information.
+
+CRM mobile app will allow sales team's access to customer data through a mobile app. The key benefit is to allow your sales force to access real time data while out in the fields meeting prospects and customers.
+
+
+
+
+
+
+Sir, can you please create the new email ids today
+
+>> Sambit Mohanty
+>> SOUMYA PRIYA NAYAK
+
+
+ror-grp@andolasoft.com
+========================
+
+amit.mohanty@andolasoft.co.in
+girijalaxmi.mishra@andolasoft.com
+krishna.sahoo@andolasoft.com
+deepak.dash@andolasoft.co.in
+ansuman.taria@andolasoft.co.in
+
+
+The enclosed proposal shows what we can do to help you along the way. The business proposal includes details of what we have done to help many clients. You will also find examples of the work we have done for other companies similar to yours.
+
+
+Hi Max,
+
+Hope you are doing good.
+
+We have attached proposal for native iOS app development, shows what we can do to help you along the way. The business proposal includes details of what we have done to help our clients. You will also find examples of the work we have done, along with the sample app screenshots of the mobile app.
+
+Please let us know if you need any additional details.
+
+Best,
+Amit
+
+
+
+
+
+
+
+https://www.cometchat.com/
+https://www.cometchat.com/ror-chat
+
+https://layer.com/
+
+
+
+We have SaaS based application where multiple organization will register in our application. And each organization will have their own user base. Our requirement is to make the chat organization specific. That means within the organization, users will have private chats as well as group chats. 
+
+How is the integration with Ruby on Rails? How to install?
+
+Can you give us some examples how you are accepting the user list for chat?
+
+could we have some demo or similar kind oh things?
+
+Immediate assistance is highly appreciated.
+
+
+
+
+>> sendpulse
+>> Auditnet docker
+>> 
+
+
+
+
+smbmohanty@gmail.com
+12345678
+	
+	
+superadmin@theconversiondoctor.com
+SuperAdmin@12345$
+
+Google Analytics
+======================
+
+http://stackoverflow.com/questions/18980456/how-to-pull-google-analytics-stats
+	
+	
+Release #1 - 34
+	Integrate IMAP for email processing. 6hrs
+	Integrate editor for email composition. 8 hrs
+	Create UI for inbox and add refresh button. 20 hrs
+
+Release #2 - 20
+	Fetch emails from inbox and display on page accordingly. 8 hrs
+	Highlight unread emails. 4 hrs
+	Mark read and unread emails. 4 hrs
+	Sync email on a particulat time interval. 2hrs
+	Delete inbox messages. 2hrs
+
+Release #3 - 24
+	Create UI for sent messages. 8 hrs
+	Fetch emails from sent messages and display on page accordingly. 4hrs
+	Delete sent messages. 2hrs
+	Add functionality for email attachments during compose mail. 10hrs
+
+		
+	
+	
+2520
+
+
+600
+600
+600
+720
+
+
+
+Hi Max,
+
+We have worked on the email integration and here are the details,
+
+Added "Emails" as menu items under business()
+Successfully authenticated user with gmail(token based authentication)
+Designed the UI of the email interface
+Fetch the inbox items using the token provided by gmail
+Highlighted the unread emails
+Highlighted the starred email messages
+Made the count dynamic in the left hand menu items(inbox, drafts and trash)
+Designed the compose email UI(Functionality not completed)
+
+Note:
+Currently after authentication user is being redirected to "inbox" page only. 
+We are also displaying only recent 10 items in inbox
+
+Next plan of action
+Adding of pagination in inbox page
+Displaying  email message detail page 
+Displaying respective pages for drafts, sent items and trash
+Mark email read/unread
+
+Best,
+Amit
+
+
+
+	
+
+
+https://dev.outlook.com/restapi/tutorial/ruby
+
+	
+Hello, could you please assist with the following. Add it to the current work order. 
+>
+> - Ajax requests from lead index when session is expired should redirect the whole page to the login. Currently it is rendering the login page as the request response on the same page.
+>
+> - We need to develop a new section of the lead show page dedicated to injection procedures. We have an image of a face and would like the be able to mark where the injection was administered on the image per injectable procedure. Leads should have an image for each treatment. Each treatment should have a date, coordinates of the marks, the treatment, the user who administered the treatment and notes. I have attached the image we would like you to use.
+>
+> - Integrate Docusign API for procedure forms.
+>
+> - Sometimes the leads show page will not remove the overlay after loading. Once the user manually refreshes the page it works. It doesn't happen all the time but it does happen often. I believe this is related to fancybox.js .
+>
+> - We also have an issue with the email parsing for notes. Its not very common but I believe that one of the emails we send out may not have valid html or isn't parsed correctly and when created as a note causes the html to be incorrect. All modals on the lead show page will open inside the notes panel behind the overlay. I will send you an example of this issue.
+>
+> - We have received complaints that the over all speed of the app is slow. Any thoughts on how to speed it up?
+>
+> - I would like to merge both multi-practice into the master branch. I think it will simplify a lot of the work we do now. We are currently writing code for two different code bases. We need to modify the code in the master branch so that the user role relationship works. This will also require us to make changes to the database structure. Do you have any thoughts on what would be the best way to do this?
+
+=============================================================================================================================================================
+I have gone through several links for implementing the inbox api for yahoo users but didn't find any support for it. Currently Yahoo not providing API access for fetching user's inbox. Also didnt get any response from their forum regarding it.
+
+While going through the Yahoo developer network here are the below permissions provided by Yahoo:
+  API Permissions
+    Contacts
+    Fantasy Sports
+    Yahoo Gemini Advertising
+    Messenger
+    Profiles (Social Directory)
+    Relationships (Social Directory)
+	
+
+
+>> Highlight sender for unread emails 
+>> Select all/Select none for inbox messages
+>> Star/Unstar messages
+>> Delete message
+>> Bulk delete messages
+>> Add control buttons on top
+
+
+>> Handle click events for left side menu
+>> Read/Unread messages
+>> Add pagination for inbox
+>> Add functionality to compose and send message
+>> Display message details
+Add attachment while sending message
+
+Integrate the template
+Draft 
+	
+	
+Meeting discussion:
+
+>> Fancybox issue solved, unable to get the ajax issue in lead index page
+>> give status on gmail and outlook, yahoo(https://developer.yahoo.com/mail/) can not be integrated
+	- outlook >> authentication done, token management done, inbox fetch
+	Challenges faced:
+	- body parsing
+	- pagination
+	- mail compose and send
+	
+
+>> Ask for template
+>> Discussion on the previous email
+>> Payment followup
+
+
+
+>> timeline of 
+
+
+
+========================
+Injection Procedures
+========================
+
+Injection Procedures: Tentatively- 18hrs
+
+Create new model to store coordinates and date for injection procedure
+Create a new tab in lead details page to save and display the injection procedure details
+Capture the coordinate of clicked area for injection procedure
+Create a form based popup containing the procedure name and procedure date after user captures coordinates
+Add action metods to store the procedures data and coordinates to DB
+After the data is saved >> display the procedure information on mouse over the image coordinates
+
+
+
+
+Outlook
+==============
+Implemented token based authentication
+Fetched and displayed inbox/sent/draft/trash messages
+Added snippet to outlook messages listing
+Displayed embedded image in the outlook mail details
+Fetched and displayed outlook message details page
+Implemented to display total numbers of messages for each outlook messages label
+
+Next plan of action
+---------------------
+Renew access token by sending refresh token to server
+handle authentication errors
+Delete messages
+Read/Unread messages
+Compose and send messages
+
+
+Gmail
+=========
+Authenticated gmail API with token
+Renewed access token by sending refresh token to gmail server
+Fetched details of inbox/sent/drafts/trash
+Designed UI for display messages for inbox/sent/drafts/trash
+Implemented functionality to display email threads on browser
+Implement functionality for select all/select none
+Parsed email body and displayed on browser
+Implemented functionality for Star/unstar messages
+Implemented functionality delete messages
+Added functionality for compose and send messages with and without attachments.
+
+
+Next plan of action
+---------------------
+Integrate templete for emails
+Bulk read/unread emails
+handle authentication errors
+merge code base of gmail and outlook.
+
+
+
+
+Gmail >> Integrate templete for emails - DONE
+Gmail >> merge code base of gmail and outlook - DONE
+Gmail >> handle authentication errors - DONE
+Outlook >> handle authentication errors - DONE
+Outlook >> Delete messages - DONE
+
+SMB:
+Gmail >> Bulk read/unread emails
+Outlook >> Read/Unread messages
+Outlook >> Compose and send messages
+
+ANS:
+Outlook >> Renew access token by sending refresh token to server
+Outlook >> inbox pagination
+
+
+
+Email Integration
+-------------------
+ANS:
+2. Mark message as read on clicking on message. (On message body open) - 30mins
+1. Fix issue in sumbitting the form with attachment in AJAX call for compose and send email - 2hrs
+
+SMB:
+>> Handle errors if the user deny the access rights from google/outlook
+>> Handle errors thrown by google/outlook
+>> Fix issue in displaying the mapping points for injection procedures on page load for chrome browser
+>> Email integration -> staging
+
+
+Hi Max, we are almost merged everything into one codebase, but need some discussion regarding user roles.
+
+Here is the concern,
+
+The roles association in existing crm4beauty app is one to one.That means one user can have only one role and the existing logic for rendering partial(app/layout/business.html.erb, line no-187) and other functionality for roles association are developed accordingly. 
+
+But the multiple-practice branch have one to many roles. That means one user can have more than one role. This is where we are facing problem while merging the branches.
+
+In staging branch, the left hand menu panels are in different partial according to different roles, assuming one user has one role. But if an user has many roles, then existing logic wont work, we need to display the links according to roles priority in one partial file, rather than creating different partial files.(app/helper/application_helper.rb, method name - navigation)
+
+
+Can you please confirm us whether user can have multiple roles assigned?
+
+I tried to ping you in Skype, but unfortunately did not get any response. We need small discussion regarding this. Please let us know your availability.
+
+Best,
+Amit
+
+
+>> db migration
+>> chrome issue fix
+>> injectable changes
+
+HIPAA Compliance:
+
+http://stackoverflow.com/questions/4308861/heroku-hipaa-compliance
+http://stackoverflow.com/questions/24157366/hipaa-compliant-server?rq=1
+https://mycircadianclock.org/
+
+Amazon has a whitepaper on HIPAA compliance with AWS (just google AWS Hipaa compliance) where they talk about their HIPAA bona fides. For example, AWS sysadmins don't have direct login access to customer OS images.
+
+To the best of my knowledge, Heroku has not shared details of how they secure their individual customer accounts.
+
+HIPAA business associate agreement (BAA)
+
+I wrote to Heroku about HIPAA, they said that they currently do not sign BAAs. "We hope to get to a place where we can sign those agreements and offer a HIPAA-compliant product, but we're not there yet and don't have an ETA" (however, I'm not sure if this conclusively means that Heroku can't be part of a HIPAA-compliant system, but it probably does)
+
+
+
+Amit, just acknowledge Max that we have not received payment for this invoice. This invoice is older one and it is still not paid.
+
+
+
+Hi Max, thanks so much for the payment done. We have received the payment($800 + $800) for the invoices #mr-015 and #mr-016 respectively.
+However, we have found that older invoice#mr-014 is still overdue. We would really appreciate if you could take a moment and look at the invoice when you get a chance. 
+
+Please ignore the email if you have already initiated the payment.
+
+Best,
+Amit
+
+
+
+Pending Stuffs:
+=====================
+
+>> Ajax requests from lead index when session is expired should redirect the whole page to the login. Currently it is rendering the login page as the request response on the same page.
+
+>> We also have an issue with the email parsing for notes. Its not very common but I believe that one of the emails we send out may not have valid html or isn't parsed correctly and when created as a note causes the html to be incorrect. All modals on the lead show page will open inside the notes panel behind the overlay. I will send you an example of this issue.
+
+>> We have received complaints that the over all speed of the app is slow. Any thoughts on how to speed it up?
+
+>> Sanitize the search function in the app >> I want your feedback on the thought of sanitizing our data before save that way we can search consistently for downcased and stripped strings
+
+>> docusign API
+		We have created a sandbox for docusing and authenticated by providing credentials. We are able to create a sample signature and sign the document from docusing website. While integrating with rails, we are getting nil response from Docusign server for getting account_id. The account information is not properly retrieved from docusign server from rails app.
+
+
+HIPAA Compliance:
+
+http://stackoverflow.com/questions/4308861/heroku-hipaa-compliance
+http://stackoverflow.com/questions/24157366/hipaa-compliant-server?rq=1
+https://mycircadianclock.org/
+
+
+
+399
+
+1900
+
+4.80
+
+prabhu => 48*4.80 => 230
+Amit => 70*4.80 => 330
+
+1900
+560
+
+
+Sir, please find updates as follows,
+
+Implement functionality to add the ads to ADD+ page DONE
+API integration for ADD+ listing page functionality DONE
+API integration for ADD+ listing page like functionality DONE
+API Integrated for trending ads. DONE
+
+Next plan of action
+
+Display jobs in descending order in the job lisitng page with proper user profile image
+Implement Apply now functionality
+Add functionality to go to ad home page by clicking on the link icon in ads listing page
+Display ads in descending order in the lisitng page with proper image
+Implement Hire a Freelancer functionality
+API for Ad image and User Profile image displaying in ads lisiting and jobs listing
+API for Apply now functionality
+Implement Hire a Freelancer functionality
+
+Best,
+Amit
+
+
+
+Hello Amit -
+
+Hope all is well. Now that we have integrated emails within the application. Is our process of saving notes going to change. Will we still have to use the Notify@4beauty email account - or is there a more efficient and multi practice option now that email integration is complete. 
+
+
+
+Hi Max, hope you had a great weekend.
+
+Here is our comments in green color
+
+Is our process of saving notes going to change
+
+Yes, we can change the process.(process described below)
+
+Will we still have to use the Notify@4beauty email account - or is there a more efficient and multi practice option now that email integration is complete, you can make it more efficient now as bellow
+
+We will not store the hard coded credentials anymore for GMAIL, as the organizations will connect their email accounts
+In the scheduler we need few tweaks in the existing logic to parse/read the email messages and save them as notes in lead detail page
+We will run the scheduler once everyday(Current logic is to retrive unread messages and mark them read when parsing is completed), But right now we will just the read emails datewise
+
+However, we might require to change some logic while displaying as notes in lead detail page.
+
+Please suggest.
+
+Best,
+Amit
+
+
+
+use crm.4beauty.net instead of conversiondoctor.herokuapp.com
+https://github.com/4beauty/crm/commit/d3d938bee161af69af16202d6032934f3e4a3135
+
+	
+AWS migration
+docusign
+New method of retrieving emails to store as notes 
+Real time chat
+Cleaning up the email integration
+
+New method of retrieving emails to store as notes - 15hrs
+=================================================
+1. Create model for storing the email, authentication token and other related data for organization. (One account per organization). 1hr
+2. Add tab panel in settings for email authentication and switchinf email account. 2hrs
+3. Modify email prser and implement according to gmail/outlook API. 6 hrs
+4. Make changes to scheduler to interact with Gmail API for all organizations. 6hrs
+
+
+We currently use your service to host our applications that manage leads for a doctor. We plan on extending the scope of our application to encompass private health information and will require a BAA to confirm HIPPA compliance. Where can we obtain the necessary information to complete the process with Heroku.
+
+
+
+http://stackoverflow.com/questions/3912706/n1-problem-in-mongoid
+
+Display user respective chat window 
+Create unique channel id 
+Subscription handling for initiating chat(common channel ID organization specific for initiating)
+Save chat history
+Chat history service call - DATE ASC order
+
+
+
+
+Channel based subscriptions (Private - one to one)
+Display online status of user
+
+
+
+Hi Max, please find the high level task breakdown of new strategy of lead note saving as follows,
+
+Add settings for admin to link(authenticate) Gmail/Outlook account for lead note save
+Create new table and functionality to store and refresh access token for different email providers
+Modified the existing logic in the scheduled rake task to authenticate and fetch emails periodically(we will run the task once daily to parse the inbox emails of current date)
+Modify the logic in email parser to get the content of email
+
+NB:
+All inbound and outbound communications automatically need to forward to linked account(like Notify@4beauty.net)
+
+How this approach is different than the previous one?
+
+Current Approach
+Current logic is only for one organization
+Hardcoded the GMAIL_USERNAME and GMAIL_PWD in heroku config variables
+Emails are fetched those are unread only, and we are marking them as read after parsing completes
+
+New Approach
+Keeping in mind for multi-tenant
+Token based authentication(as we are already doing for Gmail/Outlook)
+Emails will be fetched of current date only(No need to make the emails mark as read)
+
+Best,
+Amit
+
+
+8hrs
+
+inbound and outbound communications automatically forwarding to Notify@4beauty.net
+
+
+
+Gemfile
+==========
+gem 'docusign_rest'
+
+config/initializers/docusign_rest.rb
+======================
+
+require 'docusign_rest'
+
+DocusignRest.configure do |config|
+  config.username       = ''
+  config.password       = ''
+  config.integrator_key = ''
+  config.account_id     = ''
+  config.endpoint       = 'https://demo.docusign.net'
+  config.api_version    = 'v2'
+end
+
+
+MongoDB Setup
+================
+sudo sh -c "echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' >> /etc/apt/sources.list"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+sudo apt-get update && sudo apt-get install mongodb-org
+
+
+
+
+Sir, here are the paid invoices,
+
+CRM
+mr-013 => $600
+mr-015 => $800
+mr-016 => $800
+
+AI
+acts-02 => $500
+acts-03 => $450
+
+
+Total => $3150
+
+Config variables:
+
+http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-setenv.html
+
+
+
+
+
+	duration (ms)	from start (ms)	query time (ms)
+GET http://localhost:3004/leads	836.9	+0.0	
+  Executing action: index	227.7	+829.0	12 sql	24.4
+   Rendering: business/leads/index	287.5	+1050.0	28 sql	158.2
+    Rendering: business/leads/_leads_listing	2877.5	+1293.0	237 sql	2095.1
+   Rendering: layouts/business	7259.3	+4216.0	10 sql	21.1
+show time with children	20.0 % in sql
+client event	duration (ms)	from start (ms)
+Response	228.0	+12164.0
+First Paint Time		+90130.0
+Dom Content Loaded Event	91.0	+90346.0
+Load Event	41.0	+91228.0
+sharemore show trivial
+
+
+I have from time to time the same issue. And every time the problem was in multiple includes of javascripts files (in this case I think jquery is included more than once). Check this out
+
+
+http://stackoverflow.com/questions/18156075/rails-controller-check-if-turbolinks-request?rq=1
+http://stackoverflow.com/questions/14100206/when-using-turbolinks-rails-sending-multiple-ajax-request-instead-of-one
+
+
+
+============================================================================
+
+ZippyAR - 2
+WUS - 2
+CRM - 4
+
+
+ANS:
+Push changes to branch
+logout >> online status false >> push info to organization channel >> paramter user_id, type(online_user)
+login >> push info to organization channel >> paramter user_id, type(online_user)
+div id="user_id_online" >
+li >> addClass
+Issue fixes
+>> Display user name or group name on chat header.
+>> Display default message when no chats selected.
+>> Display default message when no history found.
+>> Add functionality for recent tab
+
+
+
+
+SMB:
+>> timezone - 1.5 hrs
+>> Docusign -> 2
+	surgical@4beauty.net/4beauty2310
+Add search user from the user list.
+	
+	
+
+
+
+before_action :require_login, :set_user, :set_org, :miniprofiler
+
+def miniprofiler
+    Rack::MiniProfiler.authorize_request
+  end
+
+  group :development do
+	gem 'rack-mini-profiler'
+	gem "rails_best_practices"
+end
+
+
+
+
+
+Hi Max,
+
+Added chat icon in the business layout header
+List of current organization users in message board
+Search Users within chat window
+Channel based subscriptions (Private - one to one)
+Saved the chat history in DB
+Added the logic to display online status of user
+
+Next plan of action:
+Offline data sync (When user is offline, store chat history. When user comes online display the offline chats)
+Channel based subscriptions (Group messages)
+Display unread message count per conversation to user
+Load more like functionality for chat history on chat window
+
+Attached screenshots for reference.
+
+Best,
+Amit
+
+
+
+3480
+
+
+
+pusher_client = Pusher::Client.new(app_id: '256400',key: '2a5d93b1463f9976addb',secret: 'd407fe2c1e3de34f28ef');
+pusher_client.trigger('test_channel', 'my_event', {:message => 'hello world'})
+
+https://github.com/pusher/notify
+
+
+
+========================================================================================
+function removePubnubMsg() {
+    $('#punnubdiv').fadeOut(300);
+    $("#pub_counter").val(0);
+    $("#hid_casenum").val(0);
+    ioMsgClicked = 1;
+    easycase.refreshTaskList();
+}
+
+function notify(title, desc) {
+    console.log('DESK_NOTIFY: ' + DESK_NOTIFY);
+    if (DESK_NOTIFY) {
+        var returnvalue = notifyMe(title, desc, HTTP_IMAGES + 'transparent_logo.png');
+        if (window.webkitNotifications && returnvalue == 1) {
+            var havePermission = window.webkitNotifications.checkPermission();
+            console.log('Chrome Permission: ' + havePermission);
+            if (havePermission == 0) {
+                var notification = window.webkitNotifications.createNotification(HTTP_IMAGES + 'transparent_logo.png', title, desc);
+                notification.onclick = function() {
+                    try {
+                        window.focus();
+                        removePubnubMsg();
+                        notification.cancel();
+                    } catch (e) {}
+                };
+                setTimeout(function() {
+                    try {
+                        notification.cancel();
+                    } catch (e) {}
+                }, 10000);
+                notification.show();
+            } else {
+                window.webkitNotifications.requestPermission();
+            }
+        }
+    }
+}
+
+function allowChromeDskNotify(check) {
+    if ((DESK_NOTIFY || check) && window.webkitNotifications && window.webkitNotifications.checkPermission() != 0) {
+        window.webkitNotifications.requestPermission();
+    }
+}
+
+
+https://paulund.co.uk/playground/demo/html5-notification-api/js/core.js
+
+
+========================================================================================
+
+https://www.html5rocks.com/en/tutorials/notifications/quick/
+http://ttsvetko.github.io/HTML5-Desktop-Notifications/
+
+
+
+
+ modified:   Gemfile.lock
+#       modified:   app/views/layouts/business.html.erb
+#       modified:   app/views/shared/_pusher.html.erb
+#       modified:   config/initializers/pusher.rb
+#       modified:   config/mongoid.yml
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       app/assets/javascripts/PusherNotifier.js
+#       app/assets/javascripts/jquery.titlealert.js
+#       app/assets/stylesheets/jquery.gritter.css
+
+
+
+
+Invoice to send to Max
+
+Sir, please find the invoice details to be send as follows
+
+
+Invoice#1
+
+Customer – Max Rockwell                 
+ 
+Email – max419rockwell@gmail.com
+ 
+Project – CRMBeauty
+ 
+Amount – $1,160
+ 
+Line item –  Completion of Phase#1(Private - one to one) internal chat integration on CRM app
+
+
+
+
+
+Fileuploader through ajax - ANS - 2 hrs
+Add UI for displaying File preview. ANS - 2 hrs
+
+
+
+Add functionality to upload the file to S3 bucket. 2hrs - SMB
+Make changes to conversation reply model to store the uploaded File. 1hr - SMB
+Send the File url through websocket to the users. 0.5 hrs - SMB
+Render the File on the chat board from the File url. 1 hr - SMB
+Make the file downloadable.. 1hr - SMB
+Make a special entry(Containing URL) in chat history denoting the image. 1hr - SMB
+Display file on chart board for chat history. 2hrs - SMB
+
+>> mr-014($800) and mr-017($540) is still showing overdue
+>> use crm.4beauty.net instead of conversiondoctor.herokuapp.com
+https://github.com/4beauty/crm/commit/d3d938bee161af69af16202d6032934f3e4a3135
+
+>> Search Feature
+=================================================================
+
+Display preview for image uploads in chat. 2hrs
+Make the file downloadable. 1hr - SMB
+Make group name editable in chat window. 1.5hr SMB
+
+
+
+
+
+Make the hostname dynamic for sending email to leads. 2hrs - SMB
+
+
+<script type="text/javascript">
+  $(function() {
+   var pusher = new Pusher('2a5d93b1463f9976addb');
+   var channel = pusher.subscribe('test_channel');
+   console.log('push loaded')   
+   window.Notification.requestPermission(function() {
+        console.log('Permissions state: ' + window.Notification.permission);
+    });   
+   //console.log(window.webkitNotifications.checkPermission())
+   channel.bind('my_event', function(data) {
+      //window.webkitNotifications.requestPermission();
+      console.log('An event was triggered with message');
+      // window.webkitNotifications.createNotification('http://localhost:3000/assets/doctor.png', 'title', 'desc');
+      if (window.Notification) { /* Safari 6, Chrome (23+) */
+        console.log('SC')
+        notification =  new window.Notification('test title', {
+              /* The notification's icon - For Chrome in Windows, Linux & Chrome OS */
+              icon: 'http://localhost:3004/assets/doctor.png',
+              /* The notification’s subtitle. */
+              body: 'this is body',
+              /*
+                  The notification’s unique identifier.
+                  This prevents duplicate entries from appearing if the user has multiple instances of your website open at once.
+              */
+              tag: 'this ia a tag'
+          });
+
+
+      } else if (window.webkitNotifications) { /* FF with html5Notifications plugin installed */
+        console.log('FF')
+        notification = window.webkitNotifications.createNotification('http://localhost:3000/assets/doctor.png', 'title', 'body');
+        notification.show();
+      } else if (navigator.mozNotification) { /* Firefox Mobile */
+        console.log('FM')
+      } else if (window.external && window.external.msIsSiteMode()) { /* IE9+ */
+        console.log('IE')
+      }
+      $.titleAlert("New chat message!", {
+          requireBlur:false,
+          stopOnFocus:false,
+          duration:4000,
+          interval:700
+      });
+    });
+   // var notifier = new PusherNotifier(channel);
+   // console.log(channel)
+   // console.log(notifier)
+  });
+</script>
+
+
+
+
+
+>> mr-014($800) and mr-017($540) is still showing overdue
+>> use crm.4beauty.net instead of conversiondoctor.herokuapp.com
+https://github.com/4beauty/crm/commit/d3d938bee161af69af16202d6032934f3e4a3135
+
+>> Search Feature
+
+
+
+
+To,
+
+The Director,
+Name of the School,
+Address,City
+
+Date:
+
+RE: Letter of resignation
+
+Dear Sir,
+
+I write this letter to inform you that, as we have previously discussed, I will be resigning from my position as Lecturer in Commerce, on <date>. My husband has been offered a position in Bangalore, and I will be relocating with him to join the faculty at a nearby community college. Please consider this my formal resignation letter.
+
+I look forward to the opportunities that await me, both professionally and personally; however, I will truly miss the amazing colleagues I have been fortunate to know here, as well as the students. I am honored to have received the opportunity to grow and learn amid such talent and brilliance.
+
+I appreciate the support you have offered me over few months and the encouragement you give me during this time of transition. Thank you so much for your assistance and attention to this matter. I wish you and my colleagues the best of success and hope that we will remain in touch.
+
+Sincerely,
+Monalisa Mishra
+
+
+
+
+
+http://ttsvetko.github.io/HTML5-Desktop-Notifications/js/desktop-notify.js
+
+
+
+
+
+Added a field "full_name" in leads collection for search enhancement.
+To update existing records run the following rake command.
+rake crm:store_lead_full_name
+
+
+
+
+Sir, please find the invoice detail to be send as below
+
+Invoice#1
+
+Customer – Max Rockwell                 
+ 
+Email – max419rockwell@gmail.com
+ 
+Project – CRMBeauty
+ 
+Amount – $1,160
+ 
+Line item –  Completion of Phase#3(Send file as chat messages, desktop/titlebar notification) internal chat integration on CRM app
+
+
+Best,
+Amit
+ᐧ
+
+
+
+Web application development
+QA & Testing
+Blogs, widgets, e-commerce and social networking applications
+CMS application development
+RoR migration
+RoR hosting services
+Custom RoR application development
+
+
+Open bugs:
+
+Add task >> no data >> submit the form >> page break
+New note >> no data >> redirecting to another page showing validations
+
+
+RingCentral
+=============
+http://ringcentral-sdk-ruby.readthedocs.io/en/latest/
+https://github.com/grokify/ringcentral-sdk-ruby
+https://crm.4beauty.net/remarket
+https://github.com/grokify/developing-with-call-logs/blob/master/docs/call-recordings.md
+https://github.com/grokify/developing-with-call-logs/tree/master/docs
+
+Your free developer account has been created with this number 14139304612. Please check your email address for our validation email to activate your free developer account.
+
+Password: Andolasoft9
+
+
+
+Thank you for signing up for a free RingCentral developer account. Because there is a finite amount of telephone numbers available, we may disable your account and reclaim your test phone number for other developers if your account is inactive for more than 90 days.
+
+
+
+
+
+=================================
+
+
+http://code.runnable.com/UogTLVjwPBRrAAAO/how-to-use-mixins-in-sass-for-ruby-on-rails-and-css
+http://code.runnable.com/Ruby-on-Rails
+http://code.runnable.com/UjQ4mOziD5kVAAFD/nokogiri-html-parser-example-for-ruby-on-rails
+
+
+
+Popup overlay issue(https://crm-4beauty-staging.herokuapp.com/leads/56e00da5b66a45000300000f)
+
+Successfully fixed the issue and merged in 'staging-copy' branch
+
+Improving efficiency - (Tentative - 16hrs)
+
+There are multiple queries are being exceuting for the same requests, hence affecting the waiting and response time increased to 2X. 
+Attached screenshot.
+
+Link Hover issue 
+We found that merging of chat integration stuffs do not have any impact on styling issue of anchor tag. We verified by checking out the last commit pushed for chat modification and the styling just works fine.(https://github.com/4beauty/crm/pull/454), it seems something has been messed up after the recent commits.
+
+However, we are looking into styling issue and will fix it by today EOD. (We can manage the hours, this will be not billable)
+
+
+Mailchimp & RingCentral
+
+One question we have as below,
+
+Do you want us to use the same page for mailchimp (https://crm-4beauty-staging.herokuapp.com/remarket) ?
+
+Additionally there will be a list of templates that has been created in mailchimp, user can search the patients and choose template and then we will use their API to send the emails.  
+
+Currently we are looking into the RingCentral and will get back to you on this. 
+
+Can you please share the mailchimp and ringcentral credentials with us?
+
+
+Please suggest.
+
+
+CRM >> Mailchimp & RingCentral
+
+
+Freelads >> send screenshot for video upload
+
+
+
+
+
+
+
+Step#1: The leads will be fetched from DB according to filter.
+Step#2: Make API call to Mailchimp and fetch available campaigns.
+Step#3: Make API call to get available lists from Mailchimp
+Step#4: Create a popup and display campaign and lists on it.
+Step#5:	Configure two backend jobs to communicate with Mailchimp.
+Step#6: The first backend job will build a batch request by adding the emails and lead name in JSON format and invoke the Mailchimp API to insert new leads to the list.
+Step#7: The second backend job will be invoked by first backend job after getting response from batch request.
+Step#8: The second backend job will query the Mailchimp API for the status of the batch request.
+Step#9:	On successful completion of batch request, the API for sending bulk email will be invoken to send email
+Step#10: The status of both backend job will be logged in a seperate log file.
+
+Hi Max,
+
+We have gone through mailchimp and here are details,
+
+We will use the existing remarketing page(https://crm.4beauty.net/remarket) dedicated to mailchimp integration
+Filer functionality is already present in the same page. Do you need to add any additional category to filter?
+
+Mailchimp Taskbreakdown
+
+Assuming user filtered the results and clicked the "Send Mass Email" button
+
+Mailchimp API call to fetch list of campaigns created in MailChimp dashboard (Here are some of the campaigns created by you - Post Op Gift (copy 02), Post Op Gift (copy 01), Post Op Gift, Happy Halloween...etc)
+Mailchimp API call to create/fetch available Lists from Mailchimp (Here are some of the campaigns created by you - Dysport Day, Cold Leads, Post Ops - Non Colleen/Marisol..etc)
+ Create List
+	List name will be created first using the API, then filtered leads will be subscribed to that List
+ Fetch List 
+    All filtered leads will be subscribed to the List
+Create a popup to display Campaign and Lists(Specific categories of subscribers created in MailChimp)
+Place the bussinees logic in the background job(as we already have sidekiq installed) to adding leads to a List and invoke the send email campaign
+
+
+Development Strategy
+
+We will configure two backend jobs to communicate with Mailchimp(After user clicks on "Send Mass Email" button, we will pass all the paramters and do the rest of the things in sidekiq)
+The first backend job will build a batch request by adding the emails and lead name in JSON format and invoke the Mailchimp API to insert new leads to the list
+The second backend job will be invoked by first backend job after getting response from batch request
+The second backend job will query the Mailchimp API for the status of the batch request
+On successful completion of batch request, the API for sending bulk email will be invoken to send email
+The status of both backend job will be logged in a seperate log file
+
+
+Why we need Sidekiq?
+
+For creatubg MailChimp List, we need to build a batch request by adding the emails and lead name in JSON format. So in order to avoid any sort of load on ther server, placing these stuffs in sidekiq is good for us.
+
+
+Questions:
+
+Do you want to create a Mailchimp List within our app using their API, or you will take care of creating List in MailChimp website and just choose in our application?
+
+Do you need to add any additional category to filter in remarketing page?
+
+
+Please suggest.
+
+
+Best,
+Amit
+
+
+
+
+
+CRM: Email Integration Enhancements
+---------------------------------------------------
+
+1. Display Folders
+	>> Fetch Available folders (google + outlook) - 3hrs
+	>> Parse the response and isplay folder list on browser. - 1hr
+	>> Add functionality to fetch messages from API by folder (google + outlook) - 2hrs
+	>> Parse the result and bind with view. - 2hrs
+
+2. Add back button to Message Details Page.
+	>> Add back Button and make API call wiht respective folder ID on clicking the back button.
+
+3. Disable width for send button on Compose Mail form - 0.5hr
+4. Clear the send email form on cancel and right align send/cancel button. 0.5 hr
+5. display attachment icon in sent email. 0.5 hr
+6. Search functionality for emails. 
+	>> Build search query (google + outlook) - 3hrs
+	>> Make API call and display filtered result - 2hrs
+	>> Persist the search fillter for back button - 2hrs
+
+
+
+
+Invoice to send to Max
+
+
+Sir, please find the invoice detail to be send as below
+
+Invoice#1
+
+Customer – Max Rockwell                 
+ 
+Email – max419rockwell@gmail.com
+ 
+Project – CRMBeauty
+ 
+Amount – $840
+ 
+Line item –  Completion of Gmail inbox search and display Folders on CRM app
+
+
+
+Invoice#2
+
+Customer – Max Rockwell                 
+ 
+Email – max419rockwell@gmail.com
+ 
+Project – CRMBeauty
+ 
+Amount – $660
+ 
+Line item –  Completion of new strategy of Leads Note Saving on CRM app
+
+
+Best,
+Amit
+
+
+Need these answers in order to submit proposals.
+Cover Letter
+Do you have any questions about the job description?
+Do you have suggestions to make this project run successfully?
+What part of this project most appeals to you?
+
+
+
+
+
+
+-------------------------------------
+leaves = Leave.where("from_date BETWEEN ? AND ? OR to_date BETWEEN ? AND ?", start_date, end_date,start_date, end_date)
+=====================================
+start_date = date_of_next("Monday")
+end_date = date_of_next("Friday")
+=====================================
+def date_of_next(day)
+  date  = Date.parse(day)
+  delta = date > Date.today ? 0 : 7
+  date + delta
+end
+============================================
+
+
+
+
+
+{
+  "uri": "https://platform.devtest.ringcentral.com/restapi/",
+  "apiVersions": [
+    {
+      "uri": "https://platform.devtest.ringcentral.com/restapi/v1.0",
+      "versionString": "1.0.28",
+      "releaseDate": "2016-12-02T00:00:00.000Z",
+      "uriString": "v1.0"
+    }
+  ],
+  "serverVersion": "8.4.1.4633",
+  "serverRevision": "b95072fcddd2"
+}
+
+curl -X GET --header "Accept: application/json" --header "Authorization: Bearer M1kxVGlNTzlTYWVTcGpxQS0zUXdOZzpjWkFfbWRwdFRvU0ZFZGF4RjE5WHR3R2FtdHVDQkZSN0dQUnVydmRRTmZMQQ==" "https://platform.devtest.ringcentral.com/restapi/v1.0/account/~"
+
+
+M1kxVGlNTzlTYWVTcGpxQS0zUXdOZzpjWkFfbWRwdFRvU0ZFZGF4RjE5WHR3R2FtdHVDQkZSN0dQUnVydmRRTmZMQQ==
+
+
+
+Hi Max,
+
+When we are authorizing the application to get the access token, redirecting to 'https://service.devtest.ringcentral.com'
+
+where we have to enter the credentials, 
+Username: +18024486718
+Password: ???????
+
+Can you please let us know the password?
+
+
+Login to https://developer.ringcentral.com
+In the header - My Apps >> CRM
+In the left side menu >> Click credentials 
+Then under 'User Account Credentials'
+here we need the password for 'Sandbox Environment'
+
+https://www.ringcentral.com/office/features/click-to-call/overview.html#view_demo_pop_up
+
+Your free developer account is 14132717459.
+We've sent you a verification email to ansuman.taria@andolasoft.co.in. Please check and activate your free developer account.
+
+Test9158
+
+
+
+
+
+===========================================================================================================================================
+Jessa A (12/8/2016, 8:40:07 PM): Hello. I'm Jessa, your RingCentral Technical Support Specialist. How may I assist you today? 
+Me (12/8/2016, 8:40:19 PM): hi 
+Jessa A (12/8/2016, 8:40:41 PM): Hello, Max. How can I help? 
+Me (12/8/2016, 8:41:57 PM): I am facing problem with  graduation requirements for applying production 
+Me (12/8/2016, 8:42:14 PM): Not sure what is "5+ API calls per each used endpoint (20+ in total" 
+Jessa A (12/8/2016, 8:42:39 PM): Is that an error message on your RingCentral API? 
+Me (12/8/2016, 8:44:25 PM): No. I am not getting any error. But in Status & review page it is showing crossed sign. That means I didn't meet the requirement to get api keys for production. 
+Me (12/8/2016, 8:45:00 PM): I am using ringcentral ruby library 
+Jessa A (12/8/2016, 8:45:17 PM): I see. May I have your RingCentral account? 
+Me (12/8/2016, 8:45:50 PM): Sure. Do you need credentials? 
+Jessa A (12/8/2016, 8:45:57 PM): Sorry, RingCentral account number. 
+Me (12/8/2016, 8:46:11 PM): Okay. One moment please 
+Jessa A (12/8/2016, 8:46:16 PM): Sure. 
+Me (12/8/2016, 8:46:25 PM): +18024486718 
+Jessa A (12/8/2016, 8:46:45 PM): Thanks. 
+Me (12/8/2016, 8:46:51 PM): Welcome 
+Jessa A (12/8/2016, 8:47:21 PM): I cannot pull up an account using (802) 448-6718. 
+Me (12/8/2016, 8:48:13 PM): In my dashboard it is showing this account number. 
+Me (12/8/2016, 8:48:28 PM): Could you please try this number 305.860.0717 
+Jessa A (12/8/2016, 8:48:43 PM): Definitely. One moment, please. 
+Me (12/8/2016, 8:49:13 PM): Okay. 
+Jessa A (12/8/2016, 8:51:00 PM): Max, your account is an AT&T Office@Hand. They don't have a support over chat. But you can send an email to the correct department just indicate the account number which is (305) 860-0717. Please send an email to devsupport@ringcentral.com. 
+Me (12/8/2016, 8:52:32 PM): Okay. What would I indicate? Just the account number? or anything else? 
+Jessa A (12/8/2016, 8:53:05 PM): Just your account number and your issue. 
+Me (12/8/2016, 8:53:20 PM): to devsupport@ringcentral.com.. Correct? 
+Jessa A (12/8/2016, 8:53:34 PM): Yes. 
+Me (12/8/2016, 8:54:19 PM): Okay. Thank you. 
+Me (12/8/2016, 8:55:02 PM): I have one more concern regarding fetching call recordings. 
+Me (12/8/2016, 8:55:27 PM): I always get an empty result while fetching call logs. 
+Me (12/8/2016, 8:55:39 PM): Is there anything that you could help? 
+Jessa A (12/8/2016, 8:55:53 PM): I am so sorry Max. Currently, chat is not an available channel for AT&T Office@Hand. Please call (866) 563-4703, so that the AT&T Office@Hand inbound team can assist you. 
+Me (12/8/2016, 8:56:20 PM): Okay. Thank you for your time Jessa. 
+Jessa A (12/8/2016, 8:56:40 PM): You are welcome. Have a good day. 
+============================================================================================================================
+
+
+(305) 860-0717. Please send an email to devsupport@ringcentral.com
+
+
+
+
+Hello,
+
+Account number :(305) 860-0717
+App name: CRM4Beauty
+
+We are facing some problems while using the call logs API and applying the same app for the production.
+
+We are using ringcentral_sdk ruby library to communicate with ringcentral API
+Currently we are using password authentication. When we are trying to fetch call records, it is returning empty resultset.(in Sandbox)
+
+client = RingCentralSdk.new(
+          access_key,
+          secret_key,
+          RingCentralSdk::RC_SERVER_SANDBOX,
+          {username: 'mu_username', extension: 'my_extension', password: 'my_password'}
+      )
+
+  response = client.http.get do |req|
+    params = {type: 'Voice'}
+    req.url '/restapi/v1.0/account/~/extension/~/call-log', params
+  end
+
+
+  
+Question-1  
+
+How to make telephone calls in sandbox, so that we can get some results in the call logs api. right now it is returning empty result set.
+
+Question-2
+
+How to generate call recordings in sandbox.
+
+Currently we have the permissions,
+
+- Read Accounts
+- Read Call Log
+- Read Call Recording
+
+For Graduation Requirements, we need all these permission need to tested well, but we are not able to make api call to get the call records API.
+
+
+Question-3
+
+Under Graduation Requirements, what is the requirement to meet this following criteria
+
+5+ API calls per each used endpoint (20+ in total)
+Exercise all requested permissions 
+
+
+Please revert back ASAP.
+
+Thank you.
+
+
+
+
+  https://service.devtest.ringcentral.com/mobile/media?cmd=downloadMessage&msgid=2240827005&type=1&useName=true&time=1481251904000&msgExt=101&msgNum=(802)448-6718&msgDir=Inbound&msgRecType=OnDemand&msgRecId=2240827005&download=1&saveMsg=1
+
+
+
+{
+  "access_token": "U0pDMTJQMDFQQVMwMHxBQUNqS0djX29nNDFzQ1pGaFN1Y1BBdHlZeGpQeEhJczRuMGJjd1dNWVVsS2FlLVBIQmhPUUlIc05JUzh3WGUzNXM1NF9QWWRPMEVYNEhPV3FzbEwwTUtuN05BemNsdVR1a3JFSkNZMWxXNnVxa09nYzg1enFwdk51Rnphb1BELWFZNURNeUttR3N0ZnNzU1FWZzhBVFpDTTgwdGUzT3RPeEdtUjdRV0VRWEhaU0F8TFZ2UThnfDdBaHQ3ZjYzYm96dUwxYjh2QmZhN1E",
+  "token_type": "bearer",
+  "expires_in": 3600,
+  "refresh_token": "U0pDMTJQMDFQQVMwMHxBQUNqS0djX29nNDFzQ1pGaFN1Y1BBdHlZeGpQeEhJczRuMGJjd1dNWVVsS2FlLVBIQmhPUUlIc05JUzh3WGUzNXM1NF9QWWRPMEVYNEhPV3FzbEwwTUtuT2tiM3d1cFlEdVBFSkNZMWxXNnVxbXV0MllvS1pRby11Rnphb1BELWFZNURNeUttR3N0ZnNzU1FWZzhBVFpDTXdWTVhUYXJldEJDUjdRV0VRWEhaU0F8TFZ2UThnfGZYZVlDTjB3Z25ZejdkVjAwTU5UQlE",
+  "refresh_token_expires_in": 604800,
+  "scope": "ReadAccounts ReadCallLog ReadCallRecording",
+  "owner_id": "134433004  ",
+  "endpoint_id": "NXewQPwhT7CpJCxnMEfowg"
+}
+
+
+2240827005
+"contentUri": "https://media.devtest.ringcentral.com/restapi/v1.0/account/134433004/recording/2240827005/content"
+
+
+<audio controls=""><source src="https://platform.devtest.ringcentral.com/restapi/v1.0/account/~/recording/2240827005/content" type="audio/mpeg"></audio>
+{
+  "id": "2240827005  ",
+  "contentUri": "https://media.devtest.ringcentral.com/restapi/v1.0/account/134433004/recording/2240827005/content",
+  "contentType": "audio/mpeg",
+  "duration": 33
+}
+
+
+
+Hi Max,
+
+Our ringcentral app 'CRM4Beauty Production' has been approved for production. 
+Total hours spent: 58hrs
+
+Here is the update on ringcentral integration as below,
+
+Created Model to store Ringcentral information for organization to database
+Added tab on settings page to get API information from user
+Encrypt/Decrypt the Ringcentral credentials and store it in DB
+Invoked API with Password authentication mechanism and authorized the API
+RnD on generating test call recordings in sandbox environment
+Create rake task to communicate with Ringcentral
+API call to Ringcentral to get call log and recording information
+Filter call log and recordings according to date filter criteria(Currently recordings are being fetched from last 24hrs)
+Modified Message model(lead messages) and added fields to save additional recordings information
+Parsed the response and stored the required information to database
+Make the app to meet the graduation requirement to apply for production
+Pushed all the changes to 'staging-copy' branch
+
+Rake task: 
+rake crm:read_call_logs
+
+
+Note:
+Currently we have the logic to get the last 24hrs call logs and save them into database. 
+Gradually we will create another rake task for getting the older call logs, because by calling so many call logs through api might hung up the system, as their api server is little bit slow.
+
+
+As we have added few worker classes in sidekiq for 'lead note saving' and 'mailchimp' integration, please restart the sidekiq in production server after you merge the codes.
+
+
+
+========================================================================================
+Reply/Forword Emails (For Gmail Only)
+=======================================
+
+individual Message view to Thread view:
+
+
+
+
+Switch to thread view
+	>> Make API call to get available threads
+	>> Make API call with thread id to get details of thread.
+	>> Parse the thread and last message of thread to get preview and message snippet.
+	>> Modify UI for inbox for thread view compatibility.
+
+	Affected modules
+	-----------------
+	>> Read/unread messages.
+	>> Delete messages
+	>> Star/Unstar messages
+	>> Move messages. (Change labels)
+
+Message Details
+	>> Make API call with thread id to get details of thread.
+	>> Parse the thread and sample messages inside the thread to generate data for preview.
+	>> Create UI to display preview of all messages inside thread.
+	>> Create UI and add functionality to display last message in the thread by default.
+	>> Make API call to get message details when an individual message is clicked.
+
+Reply To Email
+	>> Set the subject header for reply email.
+	>> Set In-Reply-To header to identify the parent message.
+	>> Add thread information to identify the message thread.
+	>> Prefill the receipents in message header for reply to all option
+
+Forward Email
+	>> Make API call and get the message details.
+	>> Generate forword text and append to message body
+
+
+
+	
+	
+	
+Hi Max, we thoroughly verified the ringcentral call logs entries in crm app and found that rake task that you ran yesterday made correct entried into database.
+
+There are only 65 call recording out of total 695 records, but maost of them are in between extensions and some of them in between phones(but thse phone do not belong to any patient within crm production app).(Attached ringcentral json response for your reference)
+And those who have calls with some duration, has not recorded the call. Hence we are not having any recordings in patient contact pages.
+
+These are the patients with call logs in production,
+
+https://crm.4beauty.net/patients/57d836f7991b620003000010
+https://crm.4beauty.net/patients/5825e6b3ab968700040000c8
+https://crm.4beauty.net/patients/54ff170d31373500038d0000
+https://crm.4beauty.net/patients/5751ba4ba7252f0003000138
+https://crm.4beauty.net/patients/54ff170e3137350003b10000
+	
+
+However, as discussed in yesterday meeting we have added the logic to display the call result(Accepted/Missed) and call duration in patient detail page under communication tab. 
+
+We have merged the changes to 'staging-copy' branch.
+	
+	
+	
+	
+	
+
+	
+3. Please explain why card to card fund transfer is not available. Sites do it.
+Apology for the delay response. We tried to look into this deeply and found one approach as below,
+=======================================================================================================
+
+Active Merchant(simple payment abstraction library) provides the flexibility to transfer from credit card to credit card like balance transfer.
+Active Merchant supports wide variety of payment gateways and its community support is very good. We can use stripe payment gateway to accept credit cards.
+
+With this approach, the whole process will be smooth and easy.
+
+All users only have to link their credit cards in our application, then with the help of Active Merchant we can capture the transaction from one credit card and transfer it to another credit card(s). 
+
+Please suggest.
+
+4. On promoter screen provided I showed you the layout. There's no place that explains about being a promoter and there's no share button for promoters to share there code to the facebook and twitter.
+====================================================
+
+We will add the facebook and twitter share buttons. 
+Can you please send the content to be displayed on this page?
+
+
+
+
+
+	
+	
+Rake Task modification notes
+-----------------------------
+As per the ringcentral API documentation, the rake task was designed to request the ringcentral API for fetching call logs for current extension.
+Now the rake task has been modified to fetch all call logs regardless the extension.
+
+
+Checklist to rerun modified rake task
+-------------------------------------
+1. Remove the rake task (crm:read_call_logs) to read call logs on daily basis from heroku scheduler
+2. Delete all the entries from Business::Message collection where provider is ringcentral
+	Business::Message.where({provider: 'ringcentral'}).destroy_all
+3. In heroku console run the rake task to fetch and store call recordings
+	heroku run rake crm:read_all_call_logs
+4. Set the rake task (crm:read_call_logs) to read call logs on daily basis on heroku scheduler
+	
+	
+Hi Max, based on yesterday discussion here are the update on items
+
+Call recording display issue in patient communication page
+
+As per the ringcentral API documentation, the rake task was designed to request the ringcentral API for fetching call logs for current extension.
+However, we have modified the rake task to fetch call logs regardless the extension. Now we are able to get all those call recordings from ringcentral
+
+Here are some call recordings in staging,
+	
+https://crm-4beauty-staging.herokuapp.com/leads/57a803dc77c6fe0003000016/
+https://crm-4beauty-staging.herokuapp.com/leads/57b0d3b2bedd080003000010/
+https://crm-4beauty-staging.herokuapp.com/leads/580e0d3ea16c660003000052/
+https://crm-4beauty-staging.herokuapp.com/leads/5806b86c12bb3a0003000040/
+https://crm-4beauty-staging.herokuapp.com/leads/580e0d01b9b8830003000025/	
+	
+	
+Multiple call log entry issue for patient 'Ella Hall'(https://crm.4beauty.net/patients/54ff170e3137350003b10000)
+
+Currently we are using "from" or "to" phone number from ringcentral API response for the lead matching crieteria and fetching the lead that match this crietaria.
+
+In production and staging server, there is a patient already present whose phone number is same as the number provided by RingCentral (3058600717). So whenever there is a communication made to any lead using this phone number, The lead (Ella Hall) falls into the matching crietaria. This is why there is multiple entries for this particular lead. Following is a sample response from ringcentral server.
+
+{
+    ...
+    ...
+
+    "to": {
+      "phoneNumber": "+13056638413",
+      "location": "Miami, FL"
+    },
+    "from": {
+      "phoneNumber": "+13058600717",
+      "name": "Norma Morales"
+    },
+    "recording": {
+      "uri": "https://platform.ringcentral.com/restapi/v1.0/account/1643584015/recording/452498610015",
+      "id": "452498610015",
+      "type": "Automatic",
+      "contentUri": "https://platform.ringcentral.com/restapi/v1.0/account/1643584015/recording/452498610015/content"
+    }
+  }
+	
+	
+Please feel free to ping me when you are available to discuss in detail.
+	
+	
+	
+["56155e473361650003ae0100", "5853371db1e15c0004000061", "5858131988df140004000040", "5859a34a5eb1ec0004000040", "5851d5bbb09f0c00040000fe", "58112da7cda81a0003000002", "5858a9640ab2200004000038", "57df72514828820003000002", "584c5247b017a8000400000f", "58598dd00ab220000400017b", "558d6fec3336330003fb0000", "570baaa4b232a50003000015", "575988153db6480003000001", "5806b86c12bb3a0003000040", "58553d7e5a9e5700040000c1", "585112fe0f74a30004000001", "58587e03e00ee0000400002e", "569f184e65646400038f0000", "58552c304461ee00040000b7", "57e583a12193f8000300002d", "584c5ac53e10650004000012", "58585382e00ee00004000011", "5858df160ab2200004000042", "5849df73a000420004000126", "58518f600f74a30004000097", "580e0d01b9b8830003000025", "581beaa44d7927000300001d", "5835d90eb13d8e000400026f", "56dda4a48c7381000300002b", "5855ceeea99b0e000400000a", "54e247bf6163360003fd0200", "5859102899f59e0004000038", "582cef89583b7600040001e4", "584fb9b78e671e0004000003", "582cc8f1583b76000400019b", "580e0d3ea16c660003000052", "57a803dc77c6fe0003000016", "582dc934473bcd00040001ec", "585597b3d4ca85000400000b", "585603a0a99b0e0004000024", "58565fa0a99b0e0004000052", "5856a109d4ca850004000052", "581e5d31cdc7520003000000", "5853fc3acf3d8e00040000c3", "57391e62e3e2bb000300002e", "5854354953ac620004000012", "57b0d3b2bedd080003000010", "5579cb356561330003f60000", "5509e2fc3662360003310000", "58400fdfe298ca0004000051", "5848418a8ffe1c00040000c5", "583f0e530c76de000400001a", "562e344b3639650003fd0000", "58581ad79e0d130004000059", "581a162721b8dd0003000000", "5850bd4e8e671e000400014e", "56fbcb68cfdde4000300003f", "5840bdbd192e9800040000f9", "573e3c1a72d4bb0003000069", "5856dcb8685e540004000075", "58575458b5063d000400001a", "5857842564cef60004000031", "5857d3fbb5063d000400002e", "5857d8259311e70004000045", "5855a126685e540004000039", "5824b9c090cc4f0004000019", "581cd8fea52b45000300000f", "5851bf680f74a30004000123", "57ad214d8fd07a0003000012", "584772698c6b0b0004000134", "58506d3f5df70900040000f1", "5825e6f7ab968700040000d1", "58508a281d1b33000400010c", "5707f235b471ae0003000091", "58542920cf3d8e0004000137", "58537a7fcf3d8e0004000097", "585339b3b1e15c0004000067", "5853ceddb1e15c0004000092", "585180cb0f74a30004000073", "58260ec9ab96870004000163", "584ffbca8e671e0004000010", "57329918bf5ca50003000058", "58535d48b1e15c0004000075", "5845d8de7b479c0004000160", "560a214c3733630003460000", "58537c42cf3d8e000400009e", "583abecd58d538000400003c", "5852fae0cf3d8e0004000028", "584a4b46468eb2000400013d", "5853474ecf3d8e000400007b", "5853635eb1e15c0004000081", "58539b07cf3d8e00040000a5", "56d3103906919f0003000020", "58058228be95500003000052", "57e2c984e05477000300017c"]
+	
+	
+	
+	
+	
+Invoice to send to Wallen (Act Sci)
+
+Sir, please find the invoice details to be send as follows
+
+
+Invoice#1
+ 
+Customer – Wallen
+ 
+Email – act.sci@aol.com
+ 
+Project – Automated Insights
+ 
+Amount – $1,500
+ 
+Line item –  ​F​etching​ of images directly from the excel sheet and displayed the respective images along the wordsmith generated contents on omni-works app
+	
+	
+Hi Carmen, hope you are doing good.
+
+Did you get a chance to make the payment for invoice(lg-017). Can you please make the payment at your earliest convenience. 
+
+Please ignore the email if you already have initiated the payment.
+
+
+
+
+https://github.com/4beauty/crm/commit/4dbead54000ce7571e7e2576ea0c4df01f84c2f2
+
+
+
+#<Business::RingcentralAccount _id: 5852c6561cd9710004000000, created_at: 2016-12-15 16:35:34 UTC, updated_at: 2017-01-15 06:00:44 UTC, access_key: "sI4F0uNjQsaArk-pKiCVog", secret_key: "_JUVqZ_3RhChQ_EAPCOmGQwFzgQLuURju7AW7GW4HwbA", phone: "+13058600717", password: "TWlhbWkyMzEwIQ==\n", access_token: "SUFEMDFQMDZQQVMwMHxBQUJGQk1rNl9xSVpEUEVqelB0aXptTUxhZ2xBdTFQdUNTTjFtOXQ3YWtvZ2lBRW05RkFOa3Rkc3lWR1BlYjVqWndlUlZyWUdxYlFSajRfdUZWOFNrOU9PM05LNE1rM3RWRm80LVVEQVFmZ1hxcWRQYnF4Q0ZTNjFPajg3WjJ5d2dqVUxnYnBEc0JWajFNVzRJXy05NDRJd0xWWDU5UjFyN0tsUVRXM3ZleXdyaGd8Q2JkWEp3fGVUQmVhdUJPcEE1X2Y2aW9TWURRUVE", expires_at: 1484344045, last_fetched: 2017-01-15 06:00:44 UTC, organization_id: BSON::ObjectId('54b0050c3931620002010000')>
+
+
+
+
+Business::Lead.where({phone: '3479182649'}).first
+
+
+
+mongodb://4beauty-DBAdmin:ESdYgH2JI8TSff46BwdDS9VLr6NsS1R@c733.candidate.11.mongolayer.com:10733,c800.candidate.12.mongolayer.com:10800/4beauty-crm-prod?replicaSet=set-54ef7149a5b4a09a570003b1'
+
+rake crm:read_call_log_custom_date date=2017-01-04
+
+
+ to=2017-01-16 page=1
+
+client = RingCentralSdk.new(
+  'sI4F0uNjQsaArk-pKiCVog',
+  '_JUVqZ_3RhChQ_EAPCOmGQwFzgQLuURju7AW7GW4HwbA',
+  RingCentralSdk::RC_SERVER_PRODUCTION,
+  {username: '+13058600717', extension: '', password: 'Miami2310!'}
+)
+
+
+rake crm:read_call_log_custom_date date=2017-01-04
+
+
+
+=> #<Business::Message _id: 58819bf9becd2900040003c7, created_at: 2017-01-01 15:10:23 UTC, updated_at: 2017-01-20 05:11:21 UTC, organization_id: BSON::ObjectId('54b0050c3931620002010000'), contact_id: BSON::ObjectId('569f184e65646400038e0000'), lead_id: BSON::ObjectId('569f184e65646400038f0000'), user_id: BSON::ObjectId('54cf9bd23530650003580000'), body: "https://platform.ringcentral.com/restapi/v1.0/account/1643584015/recording/454758023015/content", type: "phone", reply: false, provider: "ringcentral", direction: "Inbound", result: "Accepted", duration: 117, call_time: 2017-01-01
+
+
+Business::Lead.where({phone: '3479182649'}).first || Business::Lead.where({phone: 'WiRelsscaller'}).first
+3479182649
+
+
+
+
+https://crm.4beauty.net/patients/574730d72c1cca000300000d
+https://crm.4beauty.net/patients/586bfb5112aa4d0004000026
+
+
+
+
+=> #<Business::Message _id: 58819bf0becd290004000398, created_at: 2017-01-02 20:41:36 UTC, updated_at: 2017-01-20 05:11:12 UTC, organization_id: BSON::ObjectId('54b0050c3931620002010000'), contact_id: BSON::ObjectId('574730d72c1cca000300000d'), lead_id: BSON::ObjectId('574730d72c1cca000300000e'), user_id: BSON::ObjectId('54cf9bd23530650003580000'), body: nil, type: "phone", reply: false, provider: "ringcentral", direction: "Inbound", result: "Missed", duration: 57, call_time: 2017-01-02 20:41:36 UTC>
+
+
+- localhost:27017
+
+
+
+#   modified:   app/helpers/business/email_helper.rb
+#   modified:   app/views/business/emails/_show_email.html.erb
+#   modified:   config/initializers/omniauth.rb
+#   modified:   lib/gmail_client.rb
+
+
+2017-01-30T04:47:05.525019+00:00 app[web.3]:   Rendered business/emails/_inbox.html.erb (2.8ms)
+2017-01-30T04:47:05.526896+00:00 app[web.3]:   Rendered business/emails/mail.html.erb within layouts/emails (6.8ms)
+2017-01-30T04:47:05.543343+00:00 app[web.3]: Completed 500 Internal Server Error in 2032ms
+2017-01-30T04:47:05.545510+00:00 app[web.3]: F, [2017-01-30T04:47:05.545451 #4] FATAL -- : 
+2017-01-30T04:47:05.545512+00:00 app[web.3]: ActionView::Template::Error (undefined method `id' for nil:NilClass):
+2017-01-30T04:47:05.545512+00:00 app[web.3]:     167:               <% end %>
+2017-01-30T04:47:05.545513+00:00 app[web.3]:     168:             </li>
+2017-01-30T04:47:05.545514+00:00 app[web.3]:     169: 
+2017-01-30T04:47:05.545514+00:00 app[web.3]:     170:             <% unless @current_account.roles.include?(@current_org.roles.where({name: 'Phone Message Access'}).first.id.to_s) %>
+2017-01-30T04:47:05.545515+00:00 app[web.3]:     171:                 <li style="margin-top:10px;">
+2017-01-30T04:47:05.545516+00:00 app[web.3]:     172:                   <a href="#search" style="color:black !important;" class="search-btn btn-sm btn-default">Search
+2017-01-30T04:47:05.545516+00:00 app[web.3]:     173:                     Leads</a>
+2017-01-30T04:47:05.545517+00:00 app[web.3]:   app/views/layouts/emails.html.erb:170:in `_app_views_layouts_emails_html_erb__2797726124400099229_70342038474420'
+2017-01-30T04:47:05.545517+00:00 app[web.3]:   app/middlewares/chat_backend.rb:25:in `call'
+2017-01-30T04:47:05.545518+00:00 app[web.3]: 
+2017-01-30T04:47:05.545518+00:00 app[web.3]: 
+
+
+
+
+
+
+msg_id: get_header_attribute(email, 'Message-Id'),
+in_reply_to: get_header_attribute(email, 'Reply-to').present? ? get_header_attribute(email, 'Reply-to') : get_header_attribute(email, 'From') 
+
+GOOGLE_CLIENT_ID = "1056470742173-9isq6l6cgku2vqbmr15krqorgufiv63j.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "Xz02sSLe055gitdAMAKW_9xh"
+#
+
+
+
+http://www.voip-info.org/wiki/view/Asterisk+and+Vonage
+
+
+{
+ "messages": [
+  {
+   "id": "159edf86268c569b",
+   "threadId": "159edf86268c569b"
+  },
+  
+  
+  159edf86268c569b
+  
+  
+  
+TODO
+---------  
+Fixed issue where hash key(msg-id) is inconsistent   
+
+
+
+https://developers.google.com/gmail/api/v1/reference/users/messages/get
+
+
+
+---------- Forwarded message ----------
+From: notifier <notifications@andolasoft.com>
+Date: Wed, Feb 1, 2017 at 11:18 AM
+Subject: Squadz: lists#index (ArgumentError) "comparison of String with nil failed"
+To: girijalaxmi.mishra@andolasoft.com, deepak.dash@andolasoft.co.in, amit.mohanty@andolasoft.co.in
+
+
+gmail_reply_fwd f2df91b] modified reply content
+
+
+
+
+
+1590
+
+6360
+
+
+45642
+
+
+1532
+
+
+RingCentral Credentials:
+=========================
+
+
+
+
+
+{
+  "errorCode" : "InsufficientPermissions",
+  "message" : "In order to call this API endpoint, application needs to have [VoipCalling] permission",
+  "errors" : [ {
+    "errorCode" : "CMN-401",
+    "message" : "In order to call this API endpoint, application needs to have [VoipCalling] permission",
+    "permissionName" : "VoipCalling"
+  } ],
+  "permissionName" : "VoipCalling"
+}
+
+
+Reference:
+https://ringcentral-web-phone.herokuapp.com/demo/
+https://github.com/ringcentral/ringcentral-web-phone#demo
+
+
+
+
+
+
+Amit one time Installation & Support is live now : http://www.wakeupsales.org/community-installation-support (Payment ta link karidaba for $149)
+
+
+
+
+
+

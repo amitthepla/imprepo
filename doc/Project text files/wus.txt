@@ -1,0 +1,4862 @@
+S3 Access security
+====================
+https://github.com/thoughtbot/paperclip/wiki/Restricting-Access-to-Objects-Stored-on-Amazon-S3
+http://cloudacademy.com/blog/amazon-s3-security-master-bucket-polices-acls/
+
+Perpetual license:
+Go through this and plan accordingly. I will make you understand this after I come from lunch. 
+
+WakeUpsales - Self-Hosted - Community edition with all plugins
+ Reference - https://www.atlassian.com/software/jira/pricing?tab=cloud
+ Different branch
+ Source code should not have multi tenant feature
+ Source code should have perpatual license
+ Source code should not have the opensource license in the code
+ Source code should have restriction for user number
+ Pricing depends upon the number of users
+ Source code should have plugins which are currently available
+ One year free support & Maintenence
+
+
+ 
+======================================================================================================== 
+ 
+mysqldump -h wakeupsaas.cecbncxwd0ul.us-east-1.rds.amazonaws.com -u admin -p wakeupsaas > wusaas.sql
+
+mysqldump -h localhost -u root -p wus-local > wus.sql
+
+
+
+
+#!/bin/bash -x
+source /etc/profile.d/rvm.sh
+
+# enter application root
+cd $WORKSPACE
+
+sudo su
+
+#Use the gemset
+rvm use ruby-2.0.0-p648@wuscom
+
+# install missing gems
+bundle install
+
+#symlink database.yml from shared folder
+ln -nfs /var/www/shared/database.yml config/database.yml
+
+# invoke rake
+RAILS_ENV=production rake db:create db:migrate
+
+# invoke rake
+RAILS_ENV=production rake assets:precompile
+
+pkill -f puma
+
+sudo restart puma-manager
+
+
+Dennis :
+==============
+root@188.166.26.69
+password = @1Geheim
+
+
+=====================================
+ From: Rahul[RHL] (BDM/AJAY-PC/192.168.2.115/Ajay-<36966f77dd72dc19>)
+  at Wed Apr 19 20:35:59 2017 (RSA2/Signed)(sealed)
+-------------------------------------
+denniscardinaal1992@gmail.com
+adminroot
+
+
+
+
+
+https://devblast.com/b/modular-rails-architectures
+
+
+
+
+Server IP : 52.87.247.81
+Key : wakeupsales.ppk
+User : ubuntu
+
+MySQL root Pass : wuscom324*
+================================================
+>http://54.92.139.88:8080/
+>
+>
+>User : admin
+>Pass : andola123$
+==============================================================
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: wakeupcom-stag
+  pool: 5
+  host: localhost
+  username: root
+  password: wuscom324*
+  #socket: /var/lib/mysql/mysql.sock
+
+  
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: wakeupcom-prod
+  pool: 5
+  host: localhost
+  username: root
+  password: wuscom324*
+  #socket: /var/lib/mysql/mysql.sock  
+  
+  
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: wakeupsales
+#  host: wakeupsales.cecbncxwd0ul.us-east-1.rds.amazonaws.com
+#  pool: 100
+#  username: admin
+#  password: wak32rt7bhi
+#  socket: /var/lib/mysql/mysql.sock
+#  wait_timeout: 300
+
+==============================================================
+Braintree:
+
+pgharai@andolasoft.com
+pG2017O5@SKM
+
+===============================================================
+Brakeman:
+
+group :development do
+	gem 'brakeman', :require => false
+	gem 'bundler-audit', require: false
+end
+
+
+brakeman -w3 -o security.html
+bundle-audit
+
+
+
+
+
+
+=============================================================
+ln -nfs /var/www/shared/database.yml config/database.yml
+
+Girija Mam,
+
+I have successfully fixed the blank filter issue in lead listing page and pushed to new remote branch "deal_filter_issue_fix". You can verify the changes and merge them to master branch.
+
+But after fixing this issue, I have found couple of more issues as below,
+
+Records are not being inserted correctly in Deal settings table
+Checkbox validation is not working fine
+
+I will work on this tomorrow and keep you posted.
+==========================================================
+DEPRECATION WARNING: after_password_reset is deprecated. (called from call at /vagrant/railscrm-saas/lib/omnicontacts/middleware/bas
+Completed 500 Internal Server Error in 81ms=
+=================================
+
+Hi,
+
+We need to setup Asterisk(version 11+) which is an open source framework for building communications applications that turns an ordinary computer into a communications server.
+
+I found that Asterisk is best fit in Ubuntu which is also recommended by Asterisk. And also found that AsteriskNOW(http://www.asterisk.org/downloads/asterisknow)
+is a package available that installs the operating system, Asterisk, drivers for Digium telephony cards and phones and an open source administrative user interface called FreePBX. This installation process if fully automated and takes roughly 20 minutes to convert a computer into a working phone system.
+
+After installation please make sure to verify following stuffs,
+
+Asterisk CLI is accessible with the following command
+$> asterisk -rvvv
+
+FreePBX is installed and working as expected
+FreePBX is a web interface for our Asterisk configuration
+
+
+Please keep me updated in this email thread on day basis about the progress.
+
+
+References:
+https://www.linode.com/docs/applications/voip/deploy-voip-services-with-asterisk-and-freepbx-on-ubuntu-12-04-precise
+http://www.asterisk.org/downloads/asterisknow
+http://adhearsion.com/docs/getting-started/asterisk
+
+
+
+https://www.linode.com/docs/applications/voip/deploy-voip-services-with-asterisk-and-freepbx-on-ubuntu-12-04-precise
+
+
+
+
+
+
+manager2017andobeast
+6h%~ZK@mra[dT.$Z
+
+
+111.93.178.162/32
+
+http://wiki.freepbx.org/display/PPS/FreePBX+Distro+First+Steps+After+Installation#FreePBXDistroFirstStepsAfterInstallation-RegisteryourPBX
+
+
+
+
+
+
+
+Add Lead > Save & Add More option >> Leading to Lead Details Page. --  15 min - 7/2 - KSN
+Add Task > Click > Placeholder Text to faded. --  15 min - 7/2 - KSN
+Log Out > Route to the Sign in page. --  15 min - 7/2 - KSN 
+Tasks > Complete option > Functionality.--  1 hr - 7/2 - KSN
+Tasks > Next Action > Functionality.-- 1hr -- 7/2 - KSN
+
+Tasks > Type > Change option. 0.5 hr 
+
+
+
+ANKIT
+Footer > Need Help > Click here > No Link?? --  15 min - 7/2 - KSN/ANKIT 
+
+
+UDIT
+header >> Plus + icon hover issue 
+Kanban  >  Put shadow on each of kanban individual board list. --  15 min 
+Report section - 1.5
+Contacts > layout detail Page . --  1hr - 7/2 - KSN
+Fix Add Task popup - validate Add task popup layout
+
+
+KISAN:
+Display current popup only - hide if previously opened popup is present
+Validate lead save - add more
+Add Deal popup >> Prefill country and phone number
+Add Task popup - Remove spaces from footer 
+Add Task > Recurring section >> Issue after clicking.--  1hr - 7/2 - KSN
+Lead Details > Change the font and color of top section. 15 min
+Tasks > Click on Name > Go to Contact Details page. 15 min - KSN
+
+
+
+
+
+UDIT
+Contact Details page
+Edit lead page - DONE
+Kanban page - 
+Report page - Associated with Ankit - low priority
+
+KISAN
+Add cursor pointer in tasks > more option
+Fix ui issue in kanban page
+Tasks "Next Action" column is not showing in other tabs like upcoming/overdue etc
+Lead Listing > Page spacing issues to be fixed
+Tasks > Type > Change option(Change task typeon ajax call)
+Lead Listing >> Add missing items in lead other tabs 
+Report section changes 
+Lead detail	Assign to >> mouse hover on first name initial >> display name instead of 'Assign To' text
+Lead detail >> People Involved - showing wrong people
+lead listing >> Comment the Add label and apply label
+
+ANS
+Google Authenticate >> Add new auth keys as per the new domain(stag.wakeupsales.com) and verify 
+Fix  UI issue while filtering in report page
+Fix the page break issues while quick edit 
+Import csv functionality in reports page 
+Go through all pages and find if there any issue
+lead detail >> created notes >> note name is displayed as empty (Also check in Organization Activity Page)
+lead detail >> created notes >> store notes in local storage not in s3
+
+
+
+
+
+Hi Team,
+
+Here are the remaining tasks that need to be fixed by today EOD w/o fail,
+
+UDIT
+Contact Details page
+Edit lead page 
+Kanban page 
+Report page - Associated with Ankit - low priority
+Display cursorhand whereever required
+
+KISAN
+Add cursor pointer in tasks > more option
+Fix ui issue in kanban page
+Tasks "Next Action" column is not showing in other tabs like upcoming/overdue etc
+Lead Listing > Page spacing issues to be fixed
+Tasks > Type > Change option(Change task typeon ajax call)
+Lead Listing >> Add missing items in lead other tabs 
+Lead detail	Assign to >> mouse hover on first name initial >> display name instead of 'Assign To' text
+Lead detail >> People Involved - showing wrong people
+lead listing >> Comment the Add label and apply label
+Overall unit testing and issue fixing 
+
+ANS
+Google Authenticate >> Add new auth keys as per the new domain(stag.wakeupsales.com) and verify  [Make sure to change the creds as per 'demo.wakeupsales.org' after the verification ]
+Fix  UI issue while filtering in report page
+Fix the page break issues while quick edit 
+Import csv functionality in reports page 
+Go through all pages and find if there any issue
+lead detail >> created notes >> note name is displayed as empty (Also check in Organization Activity Page)
+lead detail >> created notes >> store notes in local storage not in s3
+Overall unit testing and issue fixing 
+
+
+Ankeet, please coordinate with team about the progress on these items. Suryakant will continue unit testing the community site after the lunch, so make sure to complete these items before 3PM, then we can fix the bug reported by QA.
+
+
+Please let me know if you have any questions.
+
+Best,
+Amit
+
+
+DT: Feb 9, 2017
+================
+UDIT
+Implement new UI on Report page after changing filter option 
+Fix Spaces and alignment issue in kanban view - DONE
+Fix the in app footer alignment. 15 min - DONE
+Implement hover effect of Left panel - DONE
+Add Contact popup >> email id is hiding after given 
+
+
+KISAN
+Change the task type in task listing on ajax call. 0.5 hr - KSN - DONE
+Highlight the Daily update, Users section from left pane.15 min - KSN - DONE
+Add icons for Daily update, Users section and change the icon on select. 0.5 hr - KSN - DONE
+Add white strip to the top of Activity page and add path of lead listing. 0.5 hr - KSN - DONE
+Add white strip to the top of Lead edit page and add path for Lea listing and Lead details page. 0.5 hr - KSN - DONE
+
+
+ANS
+Comment the sync calendar while create a new task - ANS - DONE
+Add county field in contacts csv in reports page - 1hr - ANS - DONE
+Fix UI of upcoming tasks and recent leads - 1 hr - ANS - DONE
+Fix UI of daily updates page - 1 hr - ANS (Ankit will give me the content) 
+Bug fixing 
+
+
+Daily Updates > For particular leads (e.g. Deal from Kailash) > User Involved section > is coming blank
+Daily Updates > Manage Updates > Edit > No option to assign more Users
+Activity Page > Incosistency in the text contents appearing below the Activity Type
+
+
+
+Go through all pages and fix UI issues. 1hr - KSN
+Code merging and unit testing - 1 hr - ANS
+
+
+
+
+
+
+Task Listing Page > Texts Overlapping if too long...
+Lead Listing Page > Click on 1st Lead Email > Side-to-side scroller coming in background
+Lead Listing Page > Click on a Lead Email > UI Issues on Send Email PopUp(done)
+Users Panel > Tile > Option (3 dot button) click functionality not showing at right place(done)
+Users Panel > Assign Lead PopUp UI (done)
+Users Panel > Assign Lead > Click of multiselect leads(Not a issues)
+Users Panel > Remove Lead > Mismatch of Popup UI with Assign Leads(done)
+Users Panel > Footer > Support email id breaking(done)
+
+
+
+DT: Feb 10, 2017
+==================
+ANS
+
+
+
+
+KSN
+Fix page spacing and alignment issue in DailyUpdate page. 0.5 hr  - DONE
+Change the daily update icon from left pane. 15 min - DONE
+Fix UI issue in report page. DONE
+
+Task Listing Page > Texts Overlapping if too long...
+Lead Details > Social Media buttons > Not Active 
+Lead Listing > Edit Lead > Lead Name field has Opportunity info
+Contact Details Page > Add a Task > Popup CTA non responsive
+Contact Details Page > Add a Task > Priority ((Hot/Cold/Warm) is showing while adding a task)
+
+
+UDIT
+Lead Listing > Edit Lead > Add Associate Contacts > Popup CTA is nonresponsive
+
+
+Validate with Ankit:
+Lead Listing Page > Click on 1st Lead Email > Side-to-side scroller coming in background (widescreen laptops)
+Lead Listing Page > Click on a Lead Email > UI Issues on Send Email PopUp
+Users Panel > Assign Lead PopUp UI > CTAs at the bottom are not visible at times (widescreen laptops)
+
+
+Daily Updates > For particular leads > User Involved section > is coming blank - DONE
+Lead Listing > Note is missing once you do Quick Edit - DONE
+
+
+
+DT: Feb 13, 2017
+===================
+KSN:
+LL 036  -  DONE
+LL 039  
+LL 040
+LL 043 - DONE - (validation message)
+Hide previous error message DONE
+LL 044 incommig count - DONE
+LL 045 DONE
+LL 063 DONE
+
+
+6. Click and enter in the CC & BCC fields >> Click i the other fields then the entered data in the "CC" & "BCC" are vanishing >> Click back on the "CC" & "BCC" fields then the entered email id are displayed
+7. "Lead listing >> Tables & Content >> Next Action >> Click on the ""Schedule a Task"" given in the list >> "Create a new task/event"" pop up window is displayed"	Validation messages UI are diff. in diff. browsers when compared
+8. "Lead listing >>Tables & Content >>Next Action >>Click on the ""Schedule a Task"" given in the list >> ""Create a new task/event"" pop up window is displayed"	"After entering all the data and click on ""Notify via Mail"" check box >>
+Clcik on ""Create Task"" button >>
+Mail is not received"
+9. "Lead listing >>
+Incoming Tab >>
+Click on the Tab"	Th no. of Lead count under this tab is not dsiplayed within braces in the tab	"Mozilla,
+Chrome"
+"Lead listing >>
+Follow up / Meeting Scheduled Tab >>
+10. Click on the Tab"	"The count is displayed >>
+Click on other tab then the count is still displayed >>
+Refresh the page then no count is displayed
+
+Either one format to be maintained"	"Mozilla,
+Chrome"
+11. "Lead listing >>
+Edit Lead"	The page name in the browser is displayed as "Android App" in the browser
+
+
+
+ANS:
+LL 049
+
+
+The page name in the browser is displayed as "Android App" in the browser
+Opportunity is displayed in the "Lead Name" field 
+Query-The link "NA + NEW" to be defined properly >> More information is better in User point of view for Industry
+Query-The link "NA + NEW" to be defined properly >> More information is better in User point of view for source
+The probability entered is not saved after editing and saving
+Add all the required details >> Click on "Save" button >> No response
+Lead listing >> Edit Lead >> Visiting Card window" - Linked In, Facebok & Twitter icons are not in clickable condition
+The edited name is displayed multiple times in the Lead Listing page
+File is not getting uploaded
+Not able to add any new keywords >> Some error message is displayed after entered and clicked on "Save" button
+
+
+1. LL 035	"Lead listing >>Tool Tip"
+
+
+Hi All, we have pushed the new version(3.9) to community for download. Verified overall process starting from downloading to run the app locally and everything is working properly.
+
+
+Best,
+Amit
+
+
+
+TL 002
+TL 009
+TL 010
+CD 007
+CL 003
+CL 004
+CL 005
+
+
+
+
+
+ (WUS-Stage-ZIP)Elastic IP: 34.199.151.186
+(WUS-Stage-Saas)Public IP: 174.129.66.60
+
+
+
+
+
+
+Push latest source code to community
+New instance configuration in Jenkins
+Verification of wus feature list
+Asterisk callcentric SIP trunk configuration
+
+
+
+
+
+KSN
+Lead listing 
+Lead detail >> Activity - DONE
+Contact Listing - WIP 
+Kanban view - DONE
+Files - DONE
+Activity - DONE
+
+
+
+ANS
+Task list 
+Users
+Daily Updates
+Dashboard
+Contact issue fix (individual and company)
+
+
+IDOR Attach
+============
+https://www.youtube.com/watch?v=fgOOMYnI1NM
+
+ruby-1.9.2-p0 :004 > Time.now
+ => 2011-05-19 15:46:45 +0100 
+ruby-1.9.2-p0 :006 > Time.now.in_time_zone('Melbourne')
+ => Fri, 20 May 2011 00:47:00 EST +10:00 
+ruby-1.9.2-p0 :007 > Time.now.in_time_zone('Melbourne').to_date
+ => Fri, 20 May 2011
+ 
+ 
+https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock
+ 
+ 
+var today = new Date((new Date()).valueOf() - 1000*60*60);
+ 
+ Home page- TBD - KSN - 2 hrs
+Manage Invoice - TBD - KSN 1hr
+Settings - TBD - KSN 2 hr
+Reports - TBD -  1hr
+
+Plugin Integration - TBD - KSN - 1 hr
+
+Popup - TBD - KSN/ANS - 
+ 
+
+Manage Invoice - KSN 1.5 - DONE
+Reports - KSN 1 - DONE
+Home page- KSN 2 - WIP
+Popup KSN/ANS - 2 - WIP
+Settings - KSN - consult with Ankeet - DONE
+Footer FN - DONE
+
+
+Plugin Integration - KSN  - Remove this - consult with Ankeet
+
+
+Admin  - ANS 
+Lead edit - ANS 
+Profile(Change Profile image) - ANS
+Fix Contact issue - ANS
+Sign up FN-- ANS 
+Popup KSN/ANS - 2
+
+Amazon SES
+===========
+https://www.youtube.com/watch?v=_u1D5edqHLE
+
+
+
+Ringcentral
+=========
+http://ringcentral-api-docs.readthedocs.io/en/latest/making_calls/
+https://www.zoho.com/crm/help/zoho-phonebridge/ringcentral.html#Enable_RingCentral
+https://www.zoho.com/crm/help/zoho-phonebridge/ringcentral.html#Answer_Calls
+https://github.com/ringcentral/ringcentral-web-phone
+
+Helpful one:
+http://ringcentral-faq.readthedocs.io/en/latest/voice_ringout/
+http://ringcentral-faq.readthedocs.io/en/latest/voice_ringout/
+https://developer.ringcentral.com/api-docs/latest/index.html#!#RefGetToken.html
+
+https://www.youtube.com/watch?v=WNrZav32-xo
+
+
+Here is your Free RingCentral Developer Account Phone Number: 14132982157. Please check your email kishan@wakeupsales.com for activation instructions, and once activated you will use this phone 
+
+
+Website integration
+====================
+https://code.google.com/archive/p/jquery-asmselect/
+https://davidwalsh.name/demo/asmselect.php
+
+
+Install npm
+============
+http://stackoverflow.com/questions/12913141/message-failed-to-fetch-from-registry-while-trying-to-install-any-module
+sudo apt-get update
+sudo apt-get install -y python-software-properties python g++ make
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+
+
+Zoho CRM is requesting access to RingCentral
+View your presence
+View your account and extension data
+Make RingOut calls on your behalf
+View your call log
+Make and receive VoIP calls on your behalf
+
+https://platform.ringcentral.com/restapi/v1.0/account/~/extension/~/ringout
+https://github.com/ringcentral/ringcentral-web-phone/blob/master/demo/index.js
+
+Read Accounts, Read Call log, Read Call Recordings
+
+
+
+Here is your Free RingCentral Developer Account Phone Number: 14135073759. Please check your email krishna.sahoo@andolasoft.com for activation instructions, and once activated you will use this phone number as the "username" when authenticating to the Developer Portal.
+
+
+ Your app has been successfully created!
+
+To start your development, please use your sandbox account and application credentials. A welcome email is sent to your email krishna.sahoo@andolasoft.com, please check your inbox and activate the sandbox account before proceed with development. If you do not see this email, please check your spam folder.
+
+Additional information can be found in our Getting Started tutorial and Developer Guide. 
+
+
+
+
+https://github.com/pencil/encrypted_id
+https://github.com/norman/friendly_id
+
+
+DT: Feb 20, 2017
+=================
+
+KSN
+Implementation of new effect on all pop up
+Lead are not showing in leads page
+Need to add links in all section of Summary-last 3 months in dashboard
+Need to change user label in lead listing
+Add activity on change of priority and stage
+Similarly need to add activity in lead details page
+Need to add count in the tabs lead listing page
+New UI in search page
+
+Proper striking of task on task complete.
+Overall unit test and bug fixing
+
+ANS
+Getting error on click of PDF view button in reports page - 
+BO notification 
+Fix IDOR issue 
+Amazon SES integration 
+overall unit testing and bug fixing 
+
+
+
+SMTP Username:
+AKIAIZL2SG5UDVIDUR7Q
+SMTP Password:
+AlfwKij6xOL+IlS3AzL5j40EMGZmcDwax8IsZsVhPA4Z
+
+
+Server Name: email-smtp.us-east-1.amazonaws.com
+Port:	25, 465 or 587
+
+https://console.aws.amazon.com/support/home?region=us-east-1#/case/?displayId=2081686121&language=en
+https://console.aws.amazon.com/support/home?region=us-east-1#/
+https://console.aws.amazon.com/ses/home?region=us-east-1#dashboard:
+
+
+Rails Engine:
+
+https://www.amberbit.com/blog/2015/10/15/rails-mountable-engines/
+https://www.youtube.com/watch?v=Ec_aX21Byw4
+http://brandonhilkert.com/blog/relative-timestamps-in-rails/
+http://stackoverflow.com/questions/11887999/creating-a-gem-that-contains-rails-models
+
+/app/assets/javascripts
+/app/assets/javascripts
+
+
+
+- Does your email-sending comply with the AWS Service Terms ( http://aws.amazon.com/serviceterms/ ) and AWS Acceptable Use Policy (AUP) ( http://aws.amazon.com/aup/ )?
+- Do you only send to recipients who have specifically requested your mail?
+- Do you have a process to handle bounces and complaints?
+
+
+
+
+KSN
+Implement new Popup - DONE
+Change Confirmation email template - UDIT
+Implement the new UI for flash messages as per sharing docs
+Check isses in demo and consult with Ankit sir 
+Fix issues from sheet 
+Overall unit testing
+
+
+ANS
+---
+Fix the tab issues in lead listing page
+Task striking issue
+Verify and fix to fetch the records as per organization basics in remaining pages
+
+
+braintree
+=============
+https://developers.braintreepayments.com/reference/general/testing/ruby
+https://articles.braintreepayments.com/guides/recurring-billing/overview
+https://github.com/braintree/braintree_rails_example
+https://developers.braintreepayments.com/reference/general/testing/ruby
+https://developers.braintreepayments.com/reference/general/testing/ruby#test-amounts
+https://github.com/lyang/braintree-rails/wiki/creditcard
+https://gist.github.com/byu/99651
+http://app.payzilla.in/community_addon_download?addon=ganttchart
+
+
+
+bundle gem time_ago
+cd time_ago/
+mkdir vendor
+mkdir vendor/assets
+mkdir vendor/assets/javascripts
+mkdir app
+  844  mkdir app/helpers
+  845  mkdir app/helpers/time_ago_helper.rb
+  846  touch app/helpers/time_ago_helper.rb
+  847  mkdir app/assets
+  848  mkdir app/assets/javascripts
+  849  touch app/assets/javascripts/timeago.js
+Place that file in 'vendor/plugins/'
+gem 'time_ago', path: 'vendor/plugins/time_ago'
+
+DT: Feb 22, 2017
+================
+KSN:
+Implement new flash message in all pages - 2hrs
+Add icons and fix UI issue in Home page -  1hr
+	8 icons - followup Niranjan
+Fix issue in daily update page - 1hr 
+Mange Invoice 
+End to End testing and bug fixing 
+Lead Listing > Move Opportunity > 
+    1. CTA Buttons not visible 
+    2. A scrollbar is showing at the bottom of browser
+
+ANS:
+Fix UI issues in dashboard and header
+Fix issues in Lead listing page from shared bug sheet
+Fix issues in Task listing page from shared bug sheet
+Fix issue in users page from shared bug sheet
+Deal listing >> insert activity in case of lead move 
+Plugin for Invoice 
+
+
+AMT:
+Documentation for creating plugins and integration in WUS
+Unpack a gem and find out how to auto place files in applications
+Prepare DB architecture for Braintree payment
+Amazon SNS in staging Cloud server
+Info on EC2 instance types to Anurag Sir
+Beanstalk CLI installation in staging servers, so that we can push it to production from there
+Push latest version in WUS Docker and need document for this 
+
+Plugin
+=========
+Invoice Generate
+Email Tracking
+
+Integration
+=========
+Google Calendar
+Import Gmail Contact
+
+
+DT: Feb 23, 2017
+================
+Homepage UI issue - Ankeet/KSN
+LD 5 
+LD 8
+LD 10
+LD 12
+LD 14
+LD 20
+LD 21
+
+AY 001
+
+
+KSN
+LD 14
+AY 001
+Homepage UI issue - Ankeet/KSN
+End to End testing and bug fixing 
+
+ANS
+LD 8
+LD 12
+LD 20
+LD 21
+End to End testing
+Plugin for Sendgrid SMTP implementation
+Documentation for creating plugins and integration in WUS
+
+
+
+
+Plugin for Invoice 
+
+
+Weekly Plan
+
+
+
+
+
+
+Check migration file of previous version and add the missing migration file. 0.5 hr - KSN/ANS
+Implement new footer of before login page. 1.5hrs - KSN
+Add link to all actions in footer. 0.5 hr - KSN
+Remove dummy text and add relevant content to sign up page. 0.5 hr - KSN
+Implement new pop up of edit lead in lead details page. 1hr - KSN
+Unit test in the production server - 2 hrs - ANS/KSN
+Redirect to sign up page after putting email and clicking sign button in homepage. 2hrs - KSN
+Implement functionality to sign up with email and organization name - 1.5 hrs - ANS
+Implement to generate a password and send mail - 1 hr - ANS
+Implement functionality to redirect to profile page until user informations are not provided - 1.5 hrs - ANS
+
+
+
+
+
+Started POST "/save_user" for 111.93.178.162 at 2017-02-24 05:03:33 +0000
+Processing by BetaAccountsController#save_user as HTML
+  Parameters: {"utf8"=>"â", "authenticity_token"=>"AgqZN013UO4hTy0ummmxIIQNGDMm3Ry+3AM0mf10taQ=", "user"=>{"name"=>"Amit", "email"=>"mohanty.amit888@gmail.com", "password"=>"[FILTERED]", "organization_name"=>"sadasdasd", "organization_type"=>"13", "organization_size"=>"2"}, "commit"=>"Sign Up"}
+  Rendered devise/mailer/confirmation_instructions.html.erb (1.2ms)
+
+Sent mail to mohanty.amit888@gmail.com (268ms)
+Redirected to https://wakeupsales.com/
+Completed 302 Found in 1336ms (ActiveRecord: 70.3ms)
+Started GET "/" for 111.93.178.162 at 2017-02-24 05:03:34 +0000
+Processing by HomeController#index as HTML
+  Rendered home/index.haml within layouts/application (111.1ms)
+  Rendered home/_import_contact_modal.haml (0.9ms)
+  Rendered shared/_header.haml (9.3ms)
+  Rendered shared/_footer.haml (9.7ms)
+Completed 200 OK in 136ms (Views: 135.2ms | ActiveRecord: 0.0ms)
+
+
+
+Dashboard
+=========
+Footer height
+
+Lead Listing
+============
+Change category >> error - DONE
+Change Priority >> error - DONE
+Right side Lead details >> Replace Lead title with name DONE
+Func of create ticket - Need to check
+Need to change Send emil - UI
+
+Lead details
+=============
+Dummy text in lead details >>  Acme Solutions
+After changing assigned to >> Change icon
+Current time is not showing after changing tine zone DONE
+Created by is blank DONE
+
+Kanban page
+===========
+UI break on moving kanban to lead list  -- UI
+
+Task 
+=====
+Click on Any tab >> it will shows all list
+calender view >> click on task >> page break
+Export to CSV >> page break
+
+
+Contact Listing
+===============
+Search cont >> error
+Repeatation of contacts Contact count >> wrong
+
+Daily Update
+============
+Manage Daily Update >> UI
+
+
+
+
+app/assets/stylesheets/custom.min.css              |    4 +--
+app/assets/stylesheets/home.css                    |    2 +-
+app/assets/stylesheets/new-style.css               |    6 +++--
+app/controllers/beta_accounts_controller.rb        |   28 +++++++++++++++-----
+app/controllers/deals_controller.rb                |   13 ++++++---
+app/datatables/tasks_datatable.rb                  |    4 +--
+app/models/task.rb                                 |    2 +-
+app/views/deals/_deal_contacts.haml                |    2 +-
+app/views/deals/_get_kanban_view.haml              |    3 ++-
+app/views/deals/show.haml                          |   24 +++++++++--------
+.../devise/mailer/invitation_instructions.html.erb |    9 +++----
+.../mailer/reset_password_instructions.html.erb    |   11 ++++----
+.../devise/mailer/unlock_instructions.html.erb     |    6 ++---
+app/views/home/index.haml                          |    9 ++++---
+app/views/layouts/application.haml                 |    2 +-
+app/views/shared/_footer.haml                      |    6 ++---
+app/views/shared/_header.haml                      |    8 +++---
+app/views/shared/_left_sidebar.haml                |    9 ++++---
+config/locales/devise.en.yml                       |    4 +--
+
+
+
+
+LL 008	Add a New Lead window pop up	"""Save & add more"" button whcn clicked >> Takes the user to the ""Edit Lead"" page"
+LL 012	"Next Action >>Schedule a Task >>""Create a new task/event "" window pop up is displayed"	"By default ""Priority"" is displayed as ""Warm"" but in the listing it was displayed a ""Hot"" >> Warm was tried to be selected in earlier time by an user"
+LL 015	"Lead Listing >> Priority"	"Priority is displayed as ""NA"" >> which is not in the option"
+
+
+
+
+Monday
+New Signup QA and push  - ANS - DONE
+S3 Bucket storage >> Organization ID specific - ANS - DONE
+Sendgrid & Amazon SES plugin - AMT/ANS 
+
+A NoMethodError occurred in settings#delete_group:
+  undefined method `destroy' for nil:NilClass
+  app/controllers/settings_controller.rb:69:in `delete_group'
+  
+A NoMethodError occurred in settings#update_weekly_digest:
+  undefined method `update_attributes' for nil:NilClass
+  app/controllers/settings_controller.rb:414:in `update_weekly_digest'
+  
+An ActionView::Template::Error occurred in settings#fetch_pages:
+  undefined method `country' for #<Deal:0x00560acb123f78>
+  activemodel (3.2.13) lib/active_model/attribute_methods.rb:407:in `method_missing'
+
+Bug fix - push to live - KSN
+LL 007
+LL 008
+LL 013
+LL 016
+LL 018
+Test case of new signup process - KSN
+SuperAdmin Statistics - KSN
+Invoice as attachment - KSN
+
+Payment DB architecture - AMT
+Braintree sandbox account setup and plan creation - AMT
+Automate plugin setup(file creation and auto place files) - AMT/ANS
+Go through braintree recurring payment - AMT
+
+
+TuesDay
+Wednesday
+Thursday
+
+Friday
+
+
+ [#<UserLabel id: 1, organization_id: 3, user_id: 2, name: "Inbound", color: "#cf5353", created_at: "2016-09-10 18:59:46", updated_at: "2016-09-10 18:59:46">, #<UserLabel id: 2, organization_id: 27, user_id: 43, name: "<h1>test</h1>", color: "#612e2e", created_at: "2016-10-11 19:30:13", updated_at: "2016-10-11 19:30:13">, #<UserLabel id: 3, organization_id: 7, user_id: 14, name: "Inbound", color: "#cf5353", created_at: "2016-11-10 13:18:19", updated_at: "2016-11-10 13:18:19">, #<UserLabel id: 4, organization_id: nil, user_id: nil, name: "Uncategorised", color: nil, created_at: "2017-02-24 05:13:05", updated_at: "2017-02-24 05:13:05">, #<UserLabel id: 5, organization_id: nil, user_id: nil, name: "Inbound", color: nil, created_at: "2017-02-24 05:13:05", updated_at: "2017-02-24 05:13:05">, #<UserLabel id: 6, organization_id: nil, user_id: nil, name: "Outbound", color: nil, created_at: "2017-02-24 05:13:05", updated_at: "2017-02-24 05:13:05">, #<UserLabel id: 7, organization_id: 28, user_id: 39, name: "label test", color: "#db8a8a", created_at: "2017-02-24 05:21:19", updated_at: "2017-02-24 05:21:19">, #<UserLabel id: 8, organization_id: 69, user_id: 111, name: "Test Label", color: "#11f54a", created_at: "2017-02-24 07:19:10", updated_at: "2017-02-24 07:19:10">, #<UserLabel id: 9, organization_id: 72, user_id: 68, name: "Assigned to", color: "Aquamarine", created_at: "2017-02-25 15:54:23", updated_at: "2017-02-25 15:54:23">]
+
+ 
+ 
+ 
+DT: Feb 28, 2017
+================
+ANS:
+ID encryption - ANS
+Sendgrid & Amazon SES plugin - AMT/ANS 
+Text overlap issue in shedule a task - ANS
+
+AMT:
+Payment DB architecture - AMT
+Braintree sandbox account setup and plan creation - AMT
+Go through braintree recurring payment - AMT
+
+KSN:
+List of organizations in Site admin dashboard 
+Add "Bill To" in invoice and change from address
+Data is not showing in the bracket symbol in user profile page.(In case of a user) 
+List of permissions according to Role 
+
+
+
+Page revert back to the home page at the time of update password in the profile page. DONE
+The message of email confirmation is not showing at the time of sign-up. DONE
+Not getting the confirmation email, if I sign up with same email -id  & put different organization.  DONE
+Industry field is missing on the profile page. NOT A BUG
+Data is not showing in the user data field of profile page (in the case of a user profile). 
+Data is not showing in the bracket symbol in user profile page.(In case of a user) - role
+Profile image is not showing after cropping the image. DONE - validate
+The priority field is missing in the 'add a lead' section. NOT A BUG - default is high
+Some error is showing at the time of changing the priority value in the lead listing page. DONE 
+Wrong data is showing in the priority field in the task schedule page. NOT A BUG
+'Create task' button is not working in the task schedule page.
+	>> calendar on select close
+	>> UI issue after schedule a task
+	>> validate with Padma (create task is not working)
+The inbound filter is not working properly. DONE 
+The tooltip is not working in case of the filter. NOT A BUG
+In Filter Section when clicking on the opportunities the previous menu of 'next action' is still displayed. DONE
+
+
+Create a new task/event section, not working properly : after filling all the sections. task is not created
+In Create a new task/event section, the calendar still appears after selecting date in the due date drop down menu.
+In Create a new task/event section, Assign Deal option is not necessary.
+Lead Listings page issues.
+
+Commmunity checkoutpage
+https://app.orangescrum.com/community_addon_download?addon=timeloggold
+
+
+DT: March 1, 2017
+=================
+ANS
+ID encryption - ANS QA 
+Sendgrid & Amazon SES plugin - AMT/ANS 
+
+KSN
+Requirement specification for Encrypted Id
+UI changes in Signin page.
+Schedule a task issue while "None" is selected in recurring section.
+Bug fixing from shared sheet. -- Need to check
+Add bill to address and sent from address to the Invoice.
+UI breaking after schedule a task.
+Show drop down option according to user privilege in Users page.
+Find list of permissions according to Role.
+
+
+AMT
+
+
+dcdec8e49528fb634f3caeb7124c75ed
+
+
+community_plugin_id
+name
+email
+phone
+gmt_offset
+location
+ip
+referrer
+transaction_id
+transaction_type
+transaction_status
+invoice_id
+is_emailed
+token
+download_date
+latitude
+longitude
+
+rails g model PluginTransaction community_plugin_id:integer name:string email:string phone:string gmt_offset:string location:string ip:string referrer:text transaction_id:text transaction_status:string invoice_id:string is_emailed:boolean token:text download_date:datetime latitude:float longitude:float
+
+
+$result = Braintree_Transaction::sale(array(
+			'amount' => $addon_amt_actual,
+			'customer' => array(
+				'firstName' => $this->request->data['transaction']['customer']['first_name'],
+				'email' => $this->request->data['transaction']['customer']['email']
+			),
+			'creditCard' => array(
+				'number' => $this->request->data['transaction']['credit_card']['number'],
+				'cardholderName' => $this->request->data['transaction']['customer']['first_name'],
+				'expirationDate' => $this->request->data['transaction']['credit_card']['expiration_month'] . '/' . $this->request->data['transaction']['credit_card']['expiration_year'],
+				'cvv' => $this->request->data['transaction']['credit_card']['cvv']
+			),
+			'options' => array(
+				'submitForSettlement' => true
+			)
+));
+
+
+"CVV must be 4 digits for American Express and 3 digits for other card types."
+
+DT: March 2
+=============
+WI-3# WUS > After Login > Left Side Pane > Profile Picture > Showing Old Style 
+WI-4# Lead Listing Page > 90% View > 2 Issues 
+WUS Blog Auto-subscribe for Downloads/SignUps
+WUS Plugin Details & Blog Topic
+	Detailed Documentation of any one of the 3 plugins we're releasing 
+	Near about 8 to 10 points which highlight the security measures we've taken for WakeUpSales
+	
+
+KSN
+WI-3# WUS > After Login > Left Side Pane > Profile Picture > Showing Old Style 
+WI-4# Lead Listing Page > 90% View > 2 Issues  - DONE
+Change the installation guide(associated with Ankit) 
+LL013 "Lead Listing >>Lead Menus >>Quick Edit"Assign User"" field >>Click on the drop down >>None to display >>""Me"" is missing" 
+LL 006  "Click on the Filter icon >> Hover mouse over the options one by one"	Some options are displayed and some are getting hidden
+LD 003
+LD 005
+LD 017
+UR 002
+ST 001 Admin is displayed instead of "Super Admin /Owner"
+ST 003
+=================================
+Lead Listings page issues. DONE
+Even if there are very few leads on the list, there's a scroller showing on the right hand side.  DONE
+The footer at the bottom is not showing completely. DONE
+
+Flash error message on assign lead + task create DONE
+Fix lead count, task count. DONE
+
+LL 006  "Click on the Filter icon >> Hover mouse over the options one by one"	Some options are displayed and some are getting hidden DONE
+Fix Footer company name length to 15 character. DONE
+LD 017 "Lead Detail >> Edit Lead >>""Source"" field"	"Click on the link ""NA + NEW"" >> The window pop up not displayed completely" DONE
+=======================================================
+Flash error message on assign lead + task create DONE
+Fix lead count, task count. DONE
+
+Fix Footer company name length to 15 character. DONE
+WI-3# WUS > After Login > Left Side Pane > Profile Picture > Showing Old Style - Need discuss
+WI-4# Lead Listing Page > 90% View > 2 Issues - DONE
+Change the installation guide(associated with Ankit)
+OS
+===
+Lead Listings page issues. DONE
+Even if there are very few leads on the list, there's a scroller showing on the right hand side. DONE 
+The footer at the bottom is not showing completely. DONE
+
+Live Bug Report
+===============
+LL013 "Lead Listing >>Lead Menus >>Quick Edit"Assign User"" field >>Click on the drop down >>None to display >>""Me"" is missing"
+
+WakeUp Sales_Cloud_Staging_Bug Report_2017
+========================================
+LL 006  "Click on the Filter icon >> Hover mouse over the options one by one"	Some options are displayed and some are getting hidden DONE
+
+LD 003 "In certain file upload conditions, the arrised error message is >> ""ERROR: Request Entity Too Large"" >> Error message can be detailed little more"
+LD 005 Conf msg on attachment
+LD 017
+  "Lead Detail >> Edit Lead >>""Source"" field"	"Click on the link ""NA + NEW"" >> The window pop up not displayed completely" DONE
+
+UR 002 Adding a new user or Admin is not provisioned - Need discussion
+
+ST 001 Admin is displayed instead of "Super Admin /Owner" 
+ST 2
+"Owner Login >>
+User page / Profile page" "User name is not displayed in the WakeUp Sales main menu section below the logo >>
+The company name is displayed" >> NOT A ISSUE
+
+ST 003
+"Manage Lead Stages"	"If there are more Stages added >>
+The Leads page is having design break when all the tabs are added"
+
+===============================================================
+ANS
+Verify plugin installation (starting from downloading)
+Plugin installation guide 
+Commmunity release version #3.10
+plugins
+ organization_id
+ Name
+ URL
+ is_active => default true
+Each plugin => task  => new record entry in plugin table 
+LL 017 >> "Lead Listing >>Bulk Lead Upload"
+Plugin purchase page design and validations
+WUS Blog Auto-subscribe for Downloads/SignUps
+
+AMT
+Save plugin purchase info in tables
+After payment successfully, mail to be sent concerned persons
+Download URL to validate with token
+Near about 8 to 10 points which highlight the security measures we've taken for WakeUpSales
+
+
+
+
+
+https://help.zoho.com/portal/kb/articles/how-secure-is-my-data-with-zoho
+https://www.zoho.com/crm/help/security/
+https://www.zoho.com/security.html
+https://blog.pipedrive.com/2016/08/protect-data-pipedrive/
+	
+
+DT: March 3, 2017
+=================
+KSN
+===
+Add a confirmation message on attachment.
+Modify the steps of installation guide.
+Downloaded lattest version of code and setup the project.
+
+Data is not showing in the country field in contact Detail page.
+Not able to edit the social media links in contact Detail page.
+There is no option to add/edit the skype ID in Edit Lead page.
+Data is not showing in Industry field of lead detail page after the updating the industry in edit lead page.
+There is no option to add/edit the company size in Edit Lead page.
+There is no option to add/edit the company name in Edit Lead page.
+If I create a lead & reassigned to any other user then my name is not showing in people involved field.
+The Tooltip should show the full name of that Opportunity. That's the point of having a Tool Tip.
+
+ANS
+===
+Validations and UI in payment page
+Send invoice attachment after purchase
+
+
+AMT
+===
+Key features of those 3 plugins/integrations in bullet points? Like what it does, & how it works...
+
+Our infrastructure puts strong safeguards in place to help protect customer privacy. All data is stored in highly secure data centers
+Firewall protection on multiple levels eliminating the possibility of intrusion from outside attacks   
+Encryption in transit with TLS across all services
+Employs only secure HTTPS connections, where information is encrypted to ensure maximum uptime and safety of your records
+
+Daily Data backups which ensures that the data never lost
+Role based access control - role based security ensures that data is accessible to users based on the organization's hierarchy
+Documents are uploaded in Amazon S3 bucket with data encryption capabilities
+URL are encrypted rather than DB generated ID, which is difficult to guess
+
+
+
+SendGrid:
+
+What You Need
+SendGrid account and SMTP credentials
+ 
+Integrate with some Email Service Providers 
+SendGrid's SMTP relay services to deliver transactional emails
+SendGrid offers the industry's top email delivery platform along with world-class expert services to make sure your valuable emails reach your recipients.
+Increase Email Deliverability With SendGrid
+Scaleup your email delivery with SendGrid
+===================================================================
+Sendgrid - Increase Email Deliverability With SendGrid
+
+SendGrid offers the industry's top email delivery platform along with world-class expert services to make sure your valuable emails reach your recipients.
+SendGrid provides SMTP relay services for both transactional email and marketing email. Because SendGrid send billions of emails per month, and their  service is highly scalable, trusted, and reliable. Avoid the negative pitfalls by using SendGrid for automated and bulk email sends.
+
+What You Need:
+SendGrid account 
+SendGrid SMTP credentials
+
+
+
+
+
+
+$.post("http://blog.wakeupsales.com/?email=dsfds@dsds.com&domain=cloud", function(response) {}, "jsonp");
+
+
+
+
+
+
+
+Hi Amit,
+
+When I try to do a normal Signup, or a Google or LinkedIn Signup - it does Signup correctly but I don't get any confirmation email neither in user inbox not in the support. 
+
+Maybe that's the reason we're not able to know if somehas Signed-up in cloud. 
+
+We need to fix and test this.
+
+@ankeet test this once if this working.
+
+
+
+Hi Omkar, 
+
+I just signup in cloud and successfully received the email with temp. password(Attached). By looking at the code, I do not think we have the code in place to send an email notification to WUS Support. Let me talk to developers, and we can place this code on Monday. 
+
+And on a separate note, about Google or LinkedIn Signup, if the email ID is already in WUS, then you will not get any confirmation mail, rather it will directly login and link Linkedin account with the given email ID. you can check this in settings page under "SNS media" tab.
+
+
+Best,
+Amit
+
+DT: Feb 6
+=============
+KSN
+>> Validate and fix notification issue to WUS support after user sign up
+>> Validate issue fixing and merge code in community
+
+ANS
+>> Plugin payment page design - Associate with Ankeet and Udit 
+>> Email template content change 
+>> Verify whole process of plugin payment and installation
+
+AMT
+>> Key features of those 3 plugins/integrations in bullet points? Like what it does, & how it works...
+>> Verify whole process of plugin payment and installation
+
+
+Invoice Generator Plugin:
+
+
+Send invoice to your existing contact/new user & track all the payments received.
+
+
+
+-------------
+
+
+LD 005	"Lead Detail >>
+Quick Attach >>
+Multiple uploads were done"	No confirmation message was displayed that upload was successful
+
+
+LD 017	"Lead Detail >>
+Edit Lead >>
+""Source"" field"	"Click on the link ""NA + NEW"" >>
+The window pop up not displayed completely"
+
+
+LD 018	"Lead Detail >>
+Edit Lead >>
+""Duration"" field"	The field UI needs to be fixed
+
+
+LD 019	"Lead Detail >>
+Edit Lead >>
+""Payment"" field"	The radio button options to be in proper allignment
+
+
+LD 020	"Lead Detail >> Edit Lead"	Close button is missing in the window pop up
+
+
+TL 002	"Add a Task >>
+Fill all the details and fields >>
+Click on save >>
+A loader was spinning"	"No confirmation message was displayed >>
+The window pop up was displayed back >>
+Close the window >>
+No task was created"
+
+
+LL 006	"Add a New Lead >>
+Pop up window is displayed >>
+Enter data >>
+Save the details >>
+Click on ""Save & add more"" >>
+Again the ""Add a New Lead"" window is displayed"	"The validation messages and the UI are different in first opened window and also after using the button ""Save & add more""
+Same Validation UI to be maintained universally"
+
+
+TL 003	"Go to Task page >>
+Click on the calendar view"	"The page is completely blank >>
+The calendar without the tasks to be displayed for the user make some entries from there directly"
+
+
+LL 030	"Lead Listing >>
+Table and Contents >>
+Stage >>
+Click on the drop down field (Do not close the dop rodwn field) >>
+Click on the Filter drop down"	Both the drop downs are overlapping on each other
+
+LL 046	"Lead listing >>
+Tables & Content >>
+Contact >>
+Click on the email id given in the list >>
+""Send Email"" pop up window is displayed"	If the mail had to be sent to that particular recipient then the "To" email id should be unchangeable 
+
+LL 088	"Lead Listing >>
+Bulk Lead Upload"	File is not getting uploaded
+
+
+UR 008	"Users >>
+Assign Lead >>
+Click and select the Leads from the list >>
+Click save"	In the Leads count it is not getting refreshed until user refreshes the page manually
+
+
+
+===============================================
+>> Hide Opportunity link.
+>> Add activity on deal move.
+>>Display email when name is blank in Assigned to drop down in contact details page.
+Edit contact on contact details
+Phone number and Country saving issue in contact
+
+UR 007	"User >>
+Menu options"	"When the user is already an Admin then the drop down list will display ""Revoke Admin"" >>
+Some space to be maintained b/w the name and the logo"
+
+TL 002	"Add a Task >>
+Fill all the details and fields >>
+Click on save >>
+A loader was spinning"	"No confirmation message was displayed >>
+The window pop up was displayed back >>
+Close the window >>
+No task was created"
+
+Sendgrid	5	Sendgrid for SMTP	https://wakeupsales.com/plugin/da2b71df841021f24f3c673aac94551d/checkout
+Invoice - Basic	3	invoice basic func.	https://wakeupsales.com/plugin/8e174d651925d79da49bfd76c08e65fd/checkout
+Amazon SES	5	AMAZON SES	https://wakeupsales.com/plugin/d4c92b9fcaabaf10ae407fb39e2f0146/checkout
+
+https://wakeupsales.com/plugin/da662bc8d0b4c391dbb0628ec8032d13/download
+https://wakeupsales.com/plugin/2f563f59b58d6b663cde3ab9919ca3be/download
+
+https://wakeupsales.com/plugin/2611cb35d508b14983bf389d5fc75e64/download
+
+>> Payment page design
+>> Error handling in plugin setup
+
+DT: March 7
+=============
+ANS
+>> Remove model relation in invoice plugin - ANS
+	- pdfkit installation add in manual
+>> Download functionality of paid invoice
+>> Exception occured in contacts#show_contact_detail 
+
+KISAN	
+>> plugin sidebar design - KISAN - 1hr 
+>> Change phone no and country saving functionality - community - 1hr
+>> Plugin detail page - purchase history - 1.5hr 
+>> Hide create invoice - for normal user  - 0.5
+>> Source/Industry - Not available - replace the text with update
+>> Source save - page break issue 
+
+https://app.orangescrum.com/community_addon_download/781cfa7f34ef893c4173dcc58d241ca6?addon=timelog
+781cfa7f34ef893c4173dcc58d241ca6
+
+DT: March 8
+===========
+
+Remove scroll and implement slide toggle functionality in Left side menu.
+Edit Contact Detail page : social media profile links
+Issue in Email Sending through WakeUpSales
+Appending extra https:// in social media links 
+
+
+
+KSN
+>> Add alert-success class - BOSUCCESS - DONE
+>> Conditionally add http(s) for SNS - 
+>> WUS lead detail's page + contact details page - Associate with Ankeet 
+>> WUS Cloud/Community > Footer > Newsletter subscription - Associate with Ankeet
+>> Email Templates Update - Associate with Ankeet
+
+ANS
+>> Exception occured in deals#show - DONR
+>> OS#8: Issue in Email Sending through WakeUpSales - DONE
+>> G+ and linkedIn signup - notification to support - DONE
+>> Intercom integration
+>> Payment bug fixes
+
+AMT
+
+Commmunity zip - 
+Commmunity Demo - 
+Cloud - 
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    66:                   =link_to "/edit_individual_contact/#{@contact.to_param}", class: "grey_act", style:"font-size: 12px;text-decoration:none", rel: "tooltip", title: "Edit" do
+    67:                     %span.in-edit-cn
+    68:               %ul.contact-left
+    69:                 - @name = @contact.class.name == "IndividualContact" ? @contact.first_name : @contact.name
+    70:                 %li
+    71:                   - if @contact.image.present?
+    72:                     .contactImage
+
+which rmagick
+1291  sudo which rmagick
+1292  bundle show
+1293  bundle show sudo apt-get install rmagick
+1294  sudo apt-get install rmagick
+1295  sudo apt-get install imagemagick libmagickwand-dev
+
+
+1. what's the things we are stuck in 
+2. what other things (that are in priority) we need to do and 
+3. what are the next set of actions
+
+
+http://app.payzilla.in/community_addon_download?addon=ganttchart
+
+http://app.payzilla.in/users/community_addon_download?addon=ganttchart
+
+
+
+Write to us on "support@wakeupsales.com" if you have any queries.
+
+
+
+<div id="signupsuccess" style="text-align:center;width:100%;border:0px solid #666666;height:auto;">
+	<img src="http://app.payzilla.in/img/inbox.png" title="Inbox(1)" alt="Inbox(1)"/>
+	<h3 class="reg" style="text-align:center;color:#FF7E00;font-size:30px;padding-top:10px;">Thanks for purchasing Gantt Chart Add-on.</h3>
+	<h3 class="reg" style="text-align:center;color:#5B767D;font-size:24px;padding-top:10px;">Just one more step...</h3>
+	<div id="msgsuccess" class="sml_hd_1 faq_ans" style="text-align:center;color:#333333;padding-top:10px;font-size:20px;">
+		An email is sent to the email "amit.mohanty@andolasoft.co.in" 
+							,<br/><span style="color:red;">please check and download the source code.</span>
+						</div>
+	<div class="faq_an" style="text-align:center;color:#333333;font-size:18px;padding-top:30px;">
+		If you do not receive any email, please feel free to <br/><a href="mailto:support@orangescrum.com?subject=Gantt Chart Add-on purchase" style="color:#FF7E00">contact us</a> for all help and support.
+	</div>
+</div>
+			
+DT: March 9
+===========
+KSN:
+>> Lead detail - edit contact(as per type)
+>> Community code merge from Cloud
+
+>> Implement Newsletter subscription functionality - Associate with Ankeet
+>> Update email templates. >> Total 30 template - 20
+>> SNS icon UI issue - contact detail & lead detail
+>> Skype URL mismatch
+>> Import Contact - TO BE FIXED
+
+ANS:
+>> Disable back & forward button in checkout - DONE
+>> Form reset after payment failure - DONE
+>> Payment code merge in saas_ui_v1 
+>> Auto strip attributes in model - use gem
+>> Paid 
+
+>> Bug fixing from QA sheet
+
+==========================
+Kanban view - DONE
+Create Invoice - DONE
+Contact Listing - DONE
+Files - DONE
+Settings >> Lead Stages - DONE
+Settings >> Task Type - DONE
+Settings >> Auth Token 
+
+Import Contact - TO BE FIXED
+
+
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: wakeupsaas
+  pool: 5
+  username: admin
+  password: wakeupsaas123$
+  host: wakeupsaas.cecbncxwd0ul.us-east-1.rds.amazonaws.com
+  port: 3306
+
+mysqldump -h wakeupsaas.cecbncxwd0ul.us-east-1.rds.amazonaws.com -u admin -p wakeupsaas > wusaas.sql
+
+DT: March 10
+================
+KSN:
+Company Size default selected - DONE
+Company Name >> Auto suggest issue - DONE
+Change Email Template 
+Merge Code in Community 
+Import Contact - TO BE FIXED
+Add Request a Demo CTA in footer >> Link to calendly - DONE
+Skype link issue in Lead details page 
+
+ANS:
+Implement Newsletter subscription functionality - 
+
+I got offer from TCS today, but the location(Chennai) is not going to work for me. Got the call to schedule interview yesterday from Accenture, but as I am totally packed for today, that's why asked to reschedule, but did not get any call after that. 
+
+Call was from 'Vritika', no: 8066560953
+
+Can you please talk to team to reschedule quickly and process my profile soon.
+
+Thank you in advance.
+
+
+ANS:
+>> Add invoice logo 
+>> Display total amount and tax amount 
+>> Display last logo uploaded in invoice logo section  - but user should be able to change it
+
+
+KSN:
+>> mailer changes to know user signup type(normal or social) - DONE
+>> OS#16 - Tasks > Action menu of a task (created by me) > Edit option:  assign deal field is invisible by default, it is visible only wen we click or drag on that field - DONE
+>> OS#16 - Task listing > Calender view > after selecting a task in the calender view, "wrong final block length" error appears - DONE
+>> OS#17 - Kanban View > Lead > Action Menu > send email : Email id missing in email section - DONE
+
+
+>> Check mandatory organization setup in download community
+>> Plugin installation test - Mac, Windows
+
+linkedin
+google_oauth2
+
+
+
+
+>> G+ and linkedIn signup - notification to support
+>> Fixes on Plugin purchase(Sandbox) QA
+>> Plugin installation in Mac OS and windows
+>> Email template changes - new UI
+>> Invoice changes for plugin - UI, Fn
+	 - adding logo 
+	 - line items
+	 - tax
+	 - Bill from 
+>> Invoice demo in demo.wakeupsales.org
+>> Start work in Website integration
+>> Meta keywords - .com site
+>> "Awards & Recognitions" page for Wakeupsales Cloud
+
+DT: March 15
+============
+KSN:
+>> Validation for month expiry checkout page
+>> message => Hello, please create an Organization to start working with Wakeupsales, it's mandatory!
+>> add 'rpt' in signup emails
+
+>> Add icons in homepage 
+>> "Awards & Recognitions" page for Wakeupsales Cloud
+>> Plugin installation windows
+>> OS#20: Daily Update Page
+
+ANS:
+
+Braintree::Configuration.environment = :production
+Braintree::Configuration.merchant_id = "YOUR_PRODUCTION_MERCHANT_ID"
+Braintree::Configuration.public_key = "YOUR_PRODUCTION_PUBLIC_KEY"
+Braintree::Configuration.private_key = "YOUR_PRODUCTION_PRIVATE_KEY"
+
+
+
+	
+	
+
+DT: March 16
+============
+KSN:
+>> Merge cloud fixes in community page 
+>> Deal visibilty issue 
+>> #17: Kanban View page issues
+>> #12: Issues in 'files' page
+
+
+ANS:
+>> Add invoice logo 
+>> Display total amount and tax amount 
+>> Display last logo uploaded in invoice logo section  - but user should be able to change it
+>>Add Invoice in demo.wakeupsales.org
+
+AMT:
+
+
+Braintree::Configuration.environment = BT_CREDENTIALS['environment']
+Braintree::Configuration.merchant_id = BT_CREDENTIALS['merchant_id']
+Braintree::Configuration.public_key = BT_CREDENTIALS['public_key']
+Braintree::Configuration.private_key = BT_CREDENTIALS['private_key']
+
+
+
+
+define("ENVIRONMENT", "production");
+define("MERCHANTID", "d66nbzx5bfyqcg4w"); // changed by GDR
+define("PUBLICKEY", "6hzdtn4wjsw7pw28"); //changed by GDR
+define("PRIVATEKEY", "f7f7b1688155fde2f4ad6da3bee17f5f"); //changed by GDR
+define("ENC_CODE", "MIIBCgKCAQEA0Q3MxSz0QfTNJsl3utRPH5ECSJJM6vshXXqSfDHLcxjjhJslGLD/P8R6y1c0i6KLvnzbMcTrqWHhGzjW3cGocYLlGXTm0edqEOJsSMGoJnHIfP+ExIy1BjvhMMvde514RSZ/B89Iq9/VUhyhM/RKWkJoKEAhKQ0B5H5GTFHa+vkyvot9gxOvpmrnwNdnS1lNcerF9UHGOOKiR9AHgdkB38R0rpjjInZWw08s0XSGAoOS8Vcx4N3xcAGeraqT5KUldWEIqfxbzSy8djp3+TPm+MSx/f8ltPI41BmEjwEYLau/ARCfe0vyZWrv5DEErX5AZ8DDwTA/yXQG6ArlJmvyyQIDAQAB");
+
+
+
+production:
+  environment: production
+  merchant_id: d66nbzx5bfyqcg4w
+  public_key: 6hzdtn4wjsw7pw28
+  private_key: f7f7b1688155fde2f4ad6da3bee17f5f
+
+development:
+  environment: sandbox
+  merchant_id: wvj9qbh2cqwsz27p
+  public_key: gcvy7dq3jkdg57vf
+  private_key: 64410c5855846ce54cfdc3b0b4e10f88
+
+ Rendered notification/plugin_payment_success.html.erb (0.8ms)
+
+Sent mail to mohanty.amit888@gmail.com (357ms)
+  Rendered notification/admin_plugin_payment_notification.html.erb (0.8ms)
+
+Sent mail to support.wakeupsales.org (127ms)
+
+DT: March 17
+============
+
+KSN:
+>> Merge cloud fixes in community page 
+>> Deal visibilty issue 
+>> #12: Issues in 'files' page
+
+
+ANS:
+>> Add invoice logo 
+>> Display total amount and tax amount 
+>> Display last logo uploaded in invoice logo section  - but user should be able to change it
+>>Add Invoice in demo.wakeupsales.org
+
+
+- cache('home_page_new_ui', skip_digest: true) do
+expire_fragment("home_page_new_ui")
+
+
+
+
+
+Dear Hiring Manager,
+
+Reference CID: (Candidate ID - C6276670) 
+
+In reference to my interview for the position dated Mar 15 2017, I am writing to inquire about updates on the progress of your hiring decision and the status of my job application. 
+
+I would appreciate any feedback for the same. Again, I would like to thank you for your time and consideration and look forward to hearing back from you soon. 
+
+=========================================
+Sitemap.xml
+demo invoice 
+
+
+=========================================
+
+Community merge
+Org page => .com 
+SEO changes 
+==================================================
+
+DT: March 20
+
+Community merge list
+====================
+Kanban view send email issue.
+Implemented filter bu user
+Added note in files page
+news letter functionality
+Implement edit contact functionality in lead details
+Fixed social icon issue in lead details
+
+Implemented Releases page
+
+KSN
+>> community fixes - unit test
+>> Add sitemap.xml 
+>> WUS Cloud SEO Analysis And Suggestions
+>> 
+
+ANS
+>> Invoice fixes - QA
+>> 
+
+AMT
+
+
+WATIR test:
+http://stackoverflow.com/questions/18843880/how-to-access-modal-pop-up-using-watir
+
+
+Amazon - 21st Mar
+Invoice - 22nd Mar (Thu)
+Website Integration (Web to Lead) - 
+Gmail Plugin - 
+Portfolio Managment
+Lead Event Tracking (once Website Integration is over)
+Lead Project Management - [Discuss, after ajay sends the flow]
+Ring Central
+Twilio
+Mailchimp Integration - 
+Google Contacts
+Expense Management (Orangescrum)
+Quote Management
+
+Installation & Support: $299 (like Orangescrum) in the marketplace as well as in the Free Download Page, Services page
+
+
+
+DT: March 21
+
+KSN
+Feature page - push to production
+New Page: About Us, Releases, Integration, Roadmap, Report-a-bug
+>> Linkedin & G+ signup >> Bell notification >> Creating an "Organization" is mandatory. please create an Organization.
+>> meta tags - about-us, releases, roadmap, report a bug
+>> mail template change - 3 atleast 
+>> 404 & 500 error page layout change
+
+ANS
+>> Amazon SES file - after your test
+>> Bug fixing 
+>> Invlice plugin test 
+>> Demo website - invoice 
+>> Functionality for download expiry 
+
+AMT
+>> Insightly website integration go through 
+>> Upload Amazon SES zip to production server and generate plugin purchase URL
+
+
+Sitemap: https://www.wakeupsales.com/sitemap.xml
+
+https://www.wakeupsales.com/sitemap.xml
+
+
+DT: March 22
+KSN
+Implement Roadmap page - 1hr 
+Implement Releases page - 
+Implement new UI in email templates - 1hr - DONE
+Fix SEO issue in cloud - DONE
+
+
+ANS
+
+
+
+
+
+AMT
+
+grant_type:password
+username:
+password:Amitmohanty12%40
+extension:
+
+
+service.devtest - ringcentral
+=============================
+xgBGs5kPSeSmkDLdunw26A
+zQnFgfaFSECUc0Y1avvicg7bohB0rcR5ihTI4YnokHgA
+18024486718
+Douche!!!5
+
+
+vMhUsoO3TBaphLi7h4h8Mw
+0kxQ-KUBRKqmU0KK7rrsYQuCN9gKMMRa6TtlhwcuaD1A
++14133380610
+
+ringcentral tokens:
+=====================
+{
+  "access_token" : "U0pDMTFQMDFQQVMwMHxBQUE3TWhSRTlwSkNkd2FNVEU0RGZOXzF4TWVwcFFJaEZCSE01anFuQWFzakJ1UVJfREtHRGFBZ0FRR3FLS19hRHcxNF9QWWRPMEVYNEhPV3FzbEwwTUtuajhEbnFTcnVMbXJFSkNZMWxXNnVxZ29UdHZOSDdISHE4TS1oUzhGQkdXRVAwQzUxazBTckRRVnRIZDluZ0syOUptRnNJdjdJZHRMOGItTnItVVNrMEpIdEJZUkJjZGxJfE5XV1VQQXxQaXQ0MWRtdWdWMkRhaXU1dEdpYl93",
+  "token_type" : "bearer",
+  "expires_in" : 600,
+  "refresh_token" : "U0pDMTFQMDFQQVMwMHxBQUE3TWhSRTlwSkNkd2FNVEU0RGZOXzF4TWVwcFFJaEZCSE01anFuQWFzakJ1UVJfREtHRGFBZ0FRR3FLS19hRHcxNF9QWWRPMEVYNEhPV3FzbEwwTUtuM2FSRzBlOUZSSkRFSkNZMWxXNnVxZ013RHptaFEweV84TS1oUzhGQkdXRVAwQzUxazBTckRRVnRIZDluZ0syOUptRnNJdjdJZHRKdHFsSkFZd0xaTEpIdEJZUkJjZGxJfE5XV1VQQXxVZmtSSzU3RV84Z1ZieDR4MHhtQjVB",
+  "refresh_token_expires_in" : 604800,
+  "scope" : "ReadAccounts RingOut VoipCalling ReadCallLog SubscriptionWebhook",
+  "owner_id" : "168270004",
+  "endpoint_id" : "8-5lydK6QvShthW02xQhSg"
+}
+
+
+{
+  "device" : {
+    "uri" : "https://platform.devtest.ringcentral.com/restapi/v1.0/account/168270004/device/36548004",
+    "id" : "36548004",
+    "type" : "WebPhone",
+    "status" : "Online",
+    "phoneLines" : [ ],
+    "linePooling" : "None"
+  },
+  "sipInfo" : [ {
+    "transport" : "WSS",
+    "username" : "14133380610*101",
+    "password" : "FEH7oTkzv",
+    "authorizationId" : "36548004",
+    "domain" : "sip.devtest.ringcentral.com",
+    "outboundProxy" : "dev-webphone-sip.devtest.ringcentral.com:8083"
+  } ],
+  "sipFlags" : {
+    "voipFeatureEnabled" : true,
+    "voipCountryBlocked" : false,
+    "outboundCallsEnabled" : false
+  }
+}
+
+{"device":{"uri":"https://platform.devtest.ringcentral.com/restapi/v1.0/account/168270004/device/36538004","id":"36538004","type":"WebPhone","status":"Online","phoneLines":[],"linePooling":"None"},"sipInfo":[{"transport":"WSS","username":"14133380610*101","password":"F6VEM","authorizationId":"36538004","domain":"sip.devtest.ringcentral.com","outboundProxy":"dev-webphone-sip.devtest.ringcentral.com:8083"}],"sipFlags":{"voipFeatureEnabled":true,"voipCountryBlocked":false,"outboundCallsEnabled":false}}
+
+
+Google+
+========
+https://crm.4beauty.net/auth/google/callback
+
+
+
+
+NN:
+Use Structural markup date in home page. 
+Create internal linking of contents to their respective pages. (I will tell you the details what to link)
+
+ANKIT:
+The inside of this page is not looking good. Give a quality look to make more user-friendly with images and content. 
+
+
+
+
+
+
+what do you know about Accenture, 
+who are the competitors, 
+how do businesses use technology,
+what makes Accenture different. Its over in a flash
+
+
+D:\Final Dev\ringcentral-web-phone\node_modules\ringcentral\build\ringcentral.js
+
+
+
+>> CommmunityPlugin - Add column is_plugin => default true
+>> logic change in existing plugin history => is_plugin => true
+>> After add plugin - redirect to listing
+>> Fix is_active true save issue 
+
+
+
+What Are Your Weaknesses?
+- I used to like to work on one project to its completion, before starting to any other project, but I learnt to multitask and it allows me to be more creative and effective each one.
+- I am always working on improving my communication skills to be a more effective presenter. I recently joined Toastmasters, which I find very helpful.
+- I am very commited to my qork, Dont rest until I finish my job that have an impact on work life balance.
+
+What Are Your Strengths?
+- Excellent Time management skill, I am organized
+- Customer service skill
+- Excellent team player
+- Handle difficult situation
+- I just dont try to meet deadlines, rather try to complete the project way before the deadline
+- Proactive, self motivated
+- Always comes with a solution 
+
+Why Should We Hire You? 
+- Quickly adopt new environment
+- Willingness to stretch whenever required, as I have worked in startup 
+
+What Can You Do for Us That Other Candidates Can't? What makes you unique?
+- Quick turn around time
+- Focused
+- Dont hesitate to work on holidays, able to stretch
+- Self driven > always comes with solution
+
+Why do you want to work in accenture
+- global company with a world-class brand and reputation
+- People enjoy working here
+- Variety of opportunities
+- right balance between work and personal life
+- "Total Rewards" package
+
+
+
+Use Structural markup date in home page. 
+Create internal linking of contents to their respective pages. (I will tell you the details what to link)
+
+The inside of this page is not looking good. Give a quality look to make more user-friendly with images and content. 
+
+DT: March 23
+
+KSN:
+Support page
+FAQ page
+Pricing page
+
+
+http://www.wakeupsales.org/community-installation-support
+
+
+Amazon SES:	https://wakeupsales.com/plugin/4e7e6e700f7fe9a8f6204d7927743c23/checkout
+Quick Installation Support: https://wakeupsales.com/plugin/656983420420f9d140ca1e32132b95fc/checkout
+
+
+Amazon - 21st Mar
+Invoice - 22nd Mar (Thu)
+Website Integration (Web to Lead) - 
+Gmail Plugin - 
+Portfolio Managment
+Lead Event Tracking (once Website Integration is over)
+Lead Project Management - [Discuss, after ajay sends the flow]
+Ring Central
+Twilio
+Mailchimp Integration - 
+Google Contacts
+Expense Management (Orangescrum)
+Quote Management
+
+Installation & Support: $299 (like Orangescrum) in the marketplace as well as in the Free Download Page, Services page
+
+
+287 607 135 18
+313.437.2022
+(305) 860-0717
+Miami2310!
+
+Douche!!!5
+
++4133380610
+
+WUS Cloud
+
+Pricing Page - New 
+
+Support Page - Banner Change, Header, Spacing alignments
+
+FAQs - Banner Change, Header, Spacing Alignments, Accordian UI update
+
++13058600717
+sI4F0uNjQsaArk-pKiCVog
+
+_JUVqZ_3RhChQ_EAPCOmGQwFzgQLuURju7AW7GW4HwbA
+
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Generated the purchase URLs for Amazon SES and Quick installation support purchase
+Verified the payment process of both the service in staging server 
+Fixed the duplicate entry of user lables(inbound/outbound) in production server 
+Gone through the insignly CRM WebToLead functionality, so that we can follow the same process in our CRM
+Discussed regarding the standard error page UI changes with KISAN
+Discussed regarding the invoice QA fixes with Ansuman Sir and Sudhansu Sir
+Discussed with Omkar regarding the WebToLead and Gmail integration functionality
+Verified the completion of SEO stuffs(https://docs.google.com/document/d/1R1l8Ozotkk-DA4eihcnXEyjGQM_45ZcWPTAVOynVntE/edit)
+Registered in ringcentral developer portal and generated app key, secret key, attached a digital line setup to enable voice calling from web phone(so that we can make a call directly to LEAD from WUS)
+Doing RnD to fix "Unauthorized for this grant type" using the keys provided by ringcentral
+
+
+DT: March 23
+
+KISAN
+Email template update - 3
+Support page spacing and alignment - 0.5
+implement Integration page - 2 
+OS##14: Issue in Lead Listings page
+OS#13: Issue in Reports page
+
+Ansuman
+Push code to demo.wakeupsales.org
+Unit test of invoice 
+
+AMIT
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Gone through existing gmail integration in CRM4Beauty project
+Discussed with Omkar regarding the Lead Project integration functionality
+Successfully fixed "Unauthorized for this grant type" using the keys provided by ringcentral
+Going through webrtc ringcentral 
+Verified the invoice plugin in local system and found some functionality issues
+Discussed regarding invoice QA fixes
+
+DT: March 27
+============
+KSN:
+>> Integratio page UI cleanup - 2hrs 
+>> OS#21: Settings Menu - send latest blog mail : the bow notifications collides with the header  - {Push}
+New Branch:
+>> Gmail UI 
+>> Authenticate gmail signin and store tokens - coordinate with ANS
+
+ANS:
+>> Demo merge 
+>> Invoice as plugin - make necessary code change 
+>> Code push to 'stage-zip' and assign QA person 
+>> local verify invoice plugin - Nasim will give the new environment
+>> OS#25: Create a new task/event
+
+DT: March 28
+============
+KSN
+----
+UI fixes in header 0.5 hr
+Message >> "You have successfully created the Organization: 'Acme'. Please start with adding a lead or calling in your team on-board"
+
+email_account 
+ email
+ provider 
+ user_id
+ organization_id
+ access_token
+ refresh_token
+ expires_in
+ expires_at
+ [field :provider, type: String   field :email, type: String   field :access_token, type: String   field :refresh_token, type: String   field :expires, type: Boolean, default: true   field :expires_in, type: Integer, default: 3600   field :expires_at, type: Integer]
+
+routes.rb:
+/email/:provider/connect
+
+/email/google/connect => if not linked 
+
+/email/google
+
+ANS
+----
+Verify the invoice plugin - 2 hrs - ANS
+Merge the invoice changes in cloud edition - 1 hr - ANS
+Fix the google authenticate when create a new task - 2 hrs - ANS
+
+http://localhost:3000/oauth2callback
+
+https://crm.4beauty.net/auth/google/callback
+
+
+http://localhost:3000/users/auth/google_oauth2/callback
+
+DT: March 29
+============
+KSN:
+Add links under + icon of header - 1.5 hr 
+Change message on sign up - 0.5 hr
+Fix UI issues in header - 1hr 
+Remove tooltip from banners - 0.5hr 
+Website integration design(webform) - follow insighly (WebToLead) - 3hrs 
+Invoice plugin installation in Mac - 1hr 
+
+ANS:
+Verify the invoice plugin in new linux environment - 1 hr - ANS
+Fix the total amount issue after remove tax in invoice page - 0.5 hr - ANS
+Implement functionality to gmail authentication - 2
+Save the token in DB - 1 hrs
+Fetch inbox items - 1hr 
+Code merging and unit testing - 1 hr - ANS
+
+
+​Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Verified the invoice functionality in new linux environment
+Discussed with Ansuman Sir regarding invoice issue fixes 
+Generated the plugin folder for invoice and tested it in Mac system
+Merged the new changes in demo community site and pushed to production
+Discussed with kisan regarding website integration and prepared plan for development
+Fixed the asset precompile issue in cloud production server
+
+
+
+Doing RnD to invoke ringout api through webrtc
+Verified the installation steps in new ubuntu environment
+​Discussed with Ankeet regarding installation guide changes for Linux environment​
+​Pushed and verified the invoice in demo community site
+Discussed regarding invoice QA fixes​​​
+
+DT: March 30
+=============
+KISAN:
+Implement and design the Web To Lead Page. 2hrs
+Implement 'Create html for your web site' popup. 1hr 
+Generate HTML code for selected fields. 1.5hrs - KSN
+Create WebForm table with following attributes - 0.5 hr
+  - organization_id (integer)
+  - form_unique_id (integer)
+  - user_responsible (string)
+  - lead_source_id (integer)
+  - is_display_thank_you_page (boolean)
+  - send_email_notification (boolean)
+  - field_names (text)
+  - form_html_code (text)
+  - email_to_all (boolean)
+Save all data after form_submit. 1hr ksn
+Redirect the page according to our selection. 0.5 hr
+
+http://www.suumit.com/projects/bsmSelect/examples/index.html
+https://github.com/vicb/bsmSelect
+
+ANS:
+Verify the invoice plugin - 1 hr - ANS
+Implement functionality to gmail authentication - 2 hrs - ANS
+Save the gmail token in DB - 1 hr - ANS
+Fetch and display gmail inbox items - 1 hr - ANS
+API call to fetch folders and inbox message count - 2hr - ANS
+Code merging and unit testing - 1 hr - ANS
+
+AMT:
+Push latest invoice zip file - .5hr 
+Go through Gmail implementation
+Findout the docs for wakeupsales
+
+​Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Associated with Ansuma Sir in fixing gmail login issue for Email functionality
+Verified the invoice functionality in community server
+Gone through QA sheet and discussed with Sudhansu Sir regarding same
+Discussed with Ansuman Sir regarding invoice issue fixes 
+Push the updated invoice zip file and uploaded to production server
+Verified the invoice payment URL in staging and production server
+Gone through jquery asmselect in website implementation
+
+DT: March 31
+=============
+KSN:
+Save EMAIL NOTIFICATION SETTINGS, new column addition - 1hr 
+Design 'Create html for your web site' popup as per insighlty. 1hr - KSN
+Implement ASMselect dropdown for selecting form fields - 2hrs 
+Generate HTML code for selected fields. 1.5hrs - KSN
+Save the html code and selected fields in database - 1hr 
+Integrate functionality for enable/disable form - 1hr 
+
+
+<form name="insightly_web_to_lead" action="https://5n5j1bvo.insight.ly/WebToLead/Create" method="post"><input type="hidden" name="formId" value="+nTYcjUwpQgXPpTcHfd33w==" />
+
+
+<label for="insightly_firstName">First Name: </label><input id="insightly_firstName" name="FirstName" type="text"/><br/><label for="insightly_lastName">Last Name: </label><input id="insightly_lastName" name="LastName" type="text"/><br/><label for="insightly_organization">Organization: </label><input id="insightly_organization" name="OrganizationName" type="text"/><br/><label for="phone">Phone: </label><input id="insightly_Phone" name="phone" type="text"/><br/><label for="insightly_title">Title: </label><input id="insightly_Title" name="Title" type="text"/><br/>
+
+
+<input type="submit" value="Submit"></form>
+
+ANS:
+Implement functionality to gmail authentication for mailbox - 1 hr - ANS
+Save the informations after gmail authentication in DB for mailbox - 1 hr - ANS
+Display mailbox listing still signout from gmail for mailbox - 1 hr - ANS
+Fetch and display gmail inbox items - 2 hrs - ANS
+Fetch and display gmail sent items - 1 hr - ANS
+API call to fetch folders and inbox message count - 2 hrs - ANS
+Code merging and unit testing - 1 hr - ANS
+
+AMT:
+Implement ASMselect in website integration
+Associate with Ansuman Sir in implementing gmail email integration
+Go through EB to place the cron job in production 
+
+
+AWS lambda:
+
+exports.handler = function index(event, context, callback) {
+  var http = require('http');
+  http.get({
+        host: 'squadzvenue-dev-env.us-east-1.elasticbeanstalk.com',
+        path: '/make_payment'
+    }, function(response) {
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+          console.log('Ended');
+      });
+    });
+};
+
+
+DT: April 3
+=============
+KSN:
+Ajax call on field select to get html code in text area. 1.5hrs
+Save fields name and html code in database. 0.5 hr
+Disable delete option for mandatory fields. 1hr 
+Generate HTML code for selected fields - 1.5hr 
+Save the html code and selected fields in database - 1hr
+Change email subject of contact us - 0.5hr
+Add sitemap link in footer  - 0.5hr
+Integrate functionality for enable/disable form
+
+ANS:
+Fix the UI of email details page - 1 hr - ANS
+Implement the email read/unread/delete functionality - 1hr - ANS
+Implement the search functionality for mailbox section - 1hr - ANS
+Implement to refresh the listing for mailbox section - 1 hr - ANS
+Integrate reply/forward functionality - 2hrs
+Modify the omniauth sign in - 2 hrs - ANS
+Code merging and unit testing - 1 hr - ANS
+
+AMT:
+>> Asmselect
+>> gmail email integration
+>> setup lambda for cron 
+
+
+
+In addition to your salary, you may receive other benefits,
+
+
+Merge the invoice functionality in the community edition
+Merge the invoice functionality in the community plugin
+Implement functionality for gmail authentication for mailbox
+Store the gmail token and other informations into the database
+Display mailbox listing until signout from mailbox
+Fetch and display the gmail inbox, sent, drafts, spam, trash and personal items
+Implement the compose mail functionality
+Implement the next/previous functionality
+Implement the signout functionality
+
+
+Sir, please find updates as follows
+
+​​Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Associated with Ansuman Sir in fixing linkedin login issue with Omniauth
+Discussed with Kisan regarding the autoselect of mandatory select fields in website integration page 
+Fixed the dropin issue for selected fields for ASMselect 
+Discussed with Ankit regarding calendar integration page in community website
+Gone through existing daily update reminder in cloud server 
+
+​Best,
+Amit​
+
+DT: April 4
+=============
+KSN:
+Implement convince your boss page in a new branch - 1
+Add select box for country - 0.5hr 
+Add functionality to save lead information in respective tables - 2.5hrs 
+Redirect to respective pages(internal/external) after form submit - 1hr
+Send email notification as per the web form settings - 1hr 
+
+ANS:
+Verify the mailbox functionality in the staging server - 1 hr - ANS
+
+Merge and verify the mailbox functionality in community edition - 3 hrs - ANS
+Merge and verify the mailbox functionality in community plugin - 3 hrs - ANS
+Verify the mailbox plugin in the local server - 1 hr - ANS
+
+
+AMT:
+Push latest changes to cloud and verify 
+Fix issue while removing item form list in website integration page 
+Team meeting - AMT - 1hr 
+Go through lead project management - 2hrs - AMT
+Coordinated with QA team regarding gmail email integration
+Attended the client meeting with Omkar 
+Discussed about the contact upload functionality from other CRM
+
+​​Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Fixing issue while removing item form list in website integration page 
+Gone through Insightly 'convert to project' functionality, so as to integrate with WUS lead project management 
+Coordinated with QA team regarding gmail email integration
+Attended the client(Luca) meeting with Omkar 
+Discussed with Ansuman Sir about the contact upload functionality from other CRM changes like 'Title' convert to 'Opportunity' and make it optional while uploading CSV
+
+
+
+Associated with Ansuman Sir in fixing linkedin login issue after migration from devise-omniauth to omniauth
+Discussed with Kisan regarding the auto-select of mandatory select fields in website integration page 
+Fixed the dropin issue for selected fields for ASMselect 
+Discussed with Ankit regarding calendar integration page in community website
+Gone through existing daily update reminder in cloud server 
+
+DT: April 5
+===========
+KSN:
+Display proper message for disabled forms - 0.5hr 
+Validate the form id after submission - 0.5hr 
+Functionality for saving description as notes - 0.5hr 
+UI changes in web form create page - 1.5hr 
+Integrate new thank you plage layout - 1hr 
+Send email to respective users after form submit - 1hr 
+Fixed the dropin issue for selected fields for ASMselect - 2hrs 
+Overall unit testing of web form functionality in local and staging - 1hr
+
+ANS:
+Change the mailbox icon in left side bar - 0.5 hr - ANS
+Fix the mark as starred mail issue - 0.5 hr - ANS
+Fix the previous button issue - 1 hr - ANS
+Fix the UI of the compose/send/forward popup - 1 hr - ANS
+Fix the UI of the message field - 1 hr - ANS
+Merge the mailbox functionality in the community plugin - 3 hrs - ANS
+Verify the mailbox plugin in the local server - 1 hr 
+
+
+
+​​Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Discussed with Omkar regarding contact convert to opportunity functionality
+Discussed with Ansuman Sir regarding the implementation and changes need to be made
+Discussed with Netrananda Sir regarding google site verification issue and placed google provided html file in root folder
+Fixed the jquery editable issue for editing the opportunity in contact listing page 
+Discussed with Ankit regarding custom reported issue for community 
+Discussed with Kisan regarding webform page layout changes 
+
+
+DT: April 6
+============
+KSN:
+Implement copy to clipboard functionality to copy html code. 1hr 
+Create activity(Created Deal and Assigned) on note created. 0.5 hr
+Update email template of web form notification email. 1.5 hr
+Change the UI of manage web form page. 1hr
+Modify Requirement specification. 0.5 hr
+Fixed the dropping issue for selected fields for ASMselect - 2hrs 
+Overall unit testing of web form functionality in local and staging - 1hr 
+
+ANS:
+Display convert link after add opportunity in the contact listing page - 1.5 hrs - ANS
+Implement functionality to convert opportunity to lead - 1.5 hrs - ANS
+Code merging and unit testing - 1 hr - ANS
+Verify the mailbox plugin in the local server - 2 hrs - ANS
+
+AMT:
+Fixed the dropping issue for selected fields for ASMselect - 2hrs 
+Implement copy to clipboard functionality to copy html code - 1hr 
+Go through mailup implementation - 1.5hrs - AMT
+Push latest changes to cloud and verify - 1hr - AMT
+Verify QA sheet on gmail email integration - 0.5hr - AMT
+Discussion with QA team regarding webform implementation - 0.5hr - AMT
+Go through lead project management in Insighlty - 1.5hrs - AMT
+
+
+
+
+Associated with kishan to implement copy to clipboard functionality to copy html code
+Verified QA sheet on gmail email integration
+Discussed with QA team regarding webform implementation
+Discussed with Ansuman Sir regarding lead convert functionality
+Coordinated with Naresh regarding the icons 
+Push the latest code to production and verified the same
+
+
+ 123 => workitect
+ 
+DT: April 7
+============
+KSN:
+Fix ordering issue in webform listing page - 1hr
+Fixed the dropping issue for selected fields for ASMselect - 2hrs 
+Unit testing and issue fixing - 2hrs
+Fix the gmail email integration open bugs as per QA sheet - 2.5hrs 
+
+ANS:
+Verify and fix the bulk contact upload as per provided csv - 2 hrs - ANS
+Merge the mailbox functionality in the community plugin - 2 hrs - ANS
+Verify the mailbox plugin in the local server - 2 hrs - ANS
+Code merging and unit testing - 1 hr - ANS
+
+AMT:
+Fixed the dropping issue for selected fields for ASMselect - 2hrs 
+Push latest changes to cloud and verify - 1hr - AMT
+Verify QA sheet on gmail email integration - 0.5hr - AMT
+Coordinate with QA team regarding webform implementation - 0.5hr - AMT
+Go through insighlty lead project management in Insighlty - 1hr - AMT
+Associated with Ansuman Sir in implementation of gmail email plugin in community - 1hr - AMT
+
+
+
+​​Verified all the task completed by ANS,KSN and pushed all the updated code to production server
+Fixed the dropping issue for selected fields for ASMselect
+Verified QA sheet on gmail email integration and discussed with Kisan regarding same 
+Coordinated with QA team regarding webform implementation
+Associated with Ansuman Sir in implementation of gmail email plugin in community
+Discussed with Ankeet regarding user role group implementation
+Gone through acts_as_commentable gem to be implemented in lead project management 
+Verified bulk upload of contacts in production 
+
+
+Requirement Specification
+=========================
+1. Click on "web_form/create" link to create new web form.
+2. Click on "manage_web_form" link it will redirect to create web form page untill you create at least one form.
+3. Click on "Create HTML For Your Website" link, then a pop up will appear.
+4. In this pop up select fields name as per your choice, and the respective html code will reflect on text area below.
+5. In "FORM SUBMISSION BEHAVIOR" section, if you choose "Display a page on my website" and enter a link it will redirect to the page, else it it display Thank you page after form submission.
+6. In "EMAIL NOTIFICATION SETTINGS" section if you checked it an email will sent according to your choice.
+7. After creating a web form you can access "/manage_web_form" page.
+8. You can get HTML code by clicking "Get HTML code" link of respective form.
+9. Copy the HTML code and create a HTML file, and paste the copied text in the file.
+10.Open the file and fill out all fields all fields then submit the form.
+11.After submiting the form it will redirect to page according to your selection on "POST FORM SUBMISSION ACTIVITY".
+12.You will also get an email if you have checked "Send Email Notifications To:" checkbox during form creation.
+13.Then you can see the lead in lead listing page..
+
+
+Scope of the work:
+Converting website visitors into leads in Wakeupsales. Select the fields you like to keep, from an available set of fields. Create a form of your choice & Wakeupsales gives you an HTML code. Paste it on your website & you’re good to go. Once you set up the HTML code & the form is live, any visitor submitting his/her info gets automatically added as a lead in Wakeupsales CRM.
+
+Requirement Specification:
+
+Step-1: (Web form Creation)
+
+>> Click on settings icon from top header and click on "Manage Web Form"
+>> If there is no web form created yet it will redirect to create web form page else it will redirect to "Manage Web Form" listing page
+>> Fill out Form name, User Responsible and Lead Source these three fields are mendatory
+>> Click on "Create HTML For Your Website" link, then a pop up will appear
+>> In this pop up select fields name as per your choice, and the respective html code will reflect on text area below
+>> If you do not click "Create HTML For Your Website" or do not select any field then the default fields are First Name, Last Name and Email
+>> In "POST FORM SUBMISSION ACTIVITY" section, choose "Display a page on my website" or default form submission is "Display Thank you page"
+>> In "EMAIL NOTIFICATION SETTINGS" section check "Send Email Notifications To" and select option as per your requirement to get email notification
+>> After creating a web form all data are saved and it will redirect to "Manage Web Form" listing page
+>> You can get the previously submitted data in the top of the listing
+>> Click on "Get HTML Code" to show HTML code in a pop up
+>> Click on "Copy Text" to copy the HTML code below
+>> Create a HTML file and paste the copied text in to the file
+
+Step-2: (Web form Submission from source side)
+
+>> Open the HTML file in a browser, then the form will open with your selected fields in part 1
+>> Fill out all the fields and submit the form
+>> An email will received according to your selection in "EMAIL NOTIFICATION SETTINGS" section in part 1
+>> And also an email will send to the user email
+
+Step-3: (Check Lead)
+>> The data you have submit in part 2 will be inserted as a Lead and Contact 
+>> You can check it in Lead Listing page, Contact Listing page
+>> You will also get a new activity in Activity page
+
+
+DT: April 10
+============
+KSN:
+UI changes in mailbox - 1hr 
+Save description as lead and contact note - 0.5hr 
+Make Webform as plugin and verify - 2hrs
+Push the webform plugin to community(demo.wakeupsales.org) - 1hr
+Unit test webform integration in community site - 1hr
+Push webform to cloud and verify - 2.5hrs 
+
+ANS:
+Bug fixing of mailbox plugin - 2.5hr
+Merge the mailbox functionality in the community plugin and cloud - 2 hrs 
+Verify the mailbox plugin in the local server - 2 hrs
+Documentation on integrate mailbox plugin - 1 hr 
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Push latest changes to cloud and verify - 1hr  - AMT
+Upload contacts of Luca in production - 1hr - AMT 
+Verify QA sheet on gmail email integration - 0.5hr - AMT
+Discussion with Omkar regarding 'Quote Management' integration - 1hr - AMT
+Go through insighlty lead project management in Insighlty - 1hr - AMT
+Install eb cli in cloud production
+
+
+ElasticBeanstalk:
+=================
+32  curl -O https://bootstrap.pypa.io/get-pip.py
+   33  uname -a
+   34  uname -m
+   35  cat /etc/issue
+   36  eb --version
+   37  curl -O https://bootstrap.pypa.io/get-pip.py
+   38  sudo python get-pip.py
+   39  apt-get install libffi-dev libssl-dev
+   40  pip install awsebcli
+   41   python --version
+   42   sudo python27 get-pip.py
+   43  sudo pip install awsebcli
+   44  sudo python27 get-pip.py
+   45  pip install awsebcli
+   46  pip
+   47  which pip
+   48  pip install awsebcli
+   49  python27 get-pip.py
+   50  curl -O https://bootstrap.pypa.io/get-pip.py
+   51  ls -l /usr/local/lib/python2.7/site-packages/
+   52  ls -l /usr/local/lib/python2.7/site-packages/pip/
+   53  sudo /usr/local/lib/python2.7/site-packages/pip install awsebcli
+   54  sudo python27 get-pip.py
+   55  sudo pip install awsebcli
+   56  export /usr/local/lib/python2.7/site-packages
+   57  cd /usr/local/lib/python2.7/site-packages
+   58  ls -l pip
+   59  pip install awsebcli
+   60  exit
+   61  yum update
+   62  clear
+   63  python --version
+   64  mkdir work
+   65  cd work/
+   66  curl -O https://bootstrap.pypa.io/get-pip.py
+   67  ls -l
+   68  python27 get-pip.py
+   69  python27
+   70  pip install awsebcli
+   71  which pip
+   72  eb --version
+   73  eb -v
+   74  eb -V
+   75  eb --version
+   76  cd /var/PRIMP-Rails-App/
+   77  rvm use 2.2.3@primphigh
+   78  git branch
+   79  git pull
+   80  eb deploy
+   81  eb init
+   82  eb deploy
+   83  eb deploy
+
+
+WUS:
+AKIAIJW2F3IJYGUUMNBA
+3SbODksWhcLsaMxurZnfwusBM1e1FBfIdvHD0eyA
+
+
+
+Started GET "/auth/google/mailbox/callback?state=efac2a8b90281de3f74be1f651d46b4c3432ba8286418333&code=4/PC9ijr7vVkEHZ7-jvzf6lc23jO53kK7uY9DPcWb6E08" for 111.93.178.162 at 2017-04-10 11:43:56 +0000
+(google) Callback phase initiated.
+(google) Authentication failure! invalid_credentials: OAuth2::Error, invalid_client:
+{
+  "error" : "invalid_client"
+}
+Started GET "/auth/failure?message=invalid_credentials&origin=https%3A%2F%2Fwww.wakeupsales.com%2Femails%2Fconnect&strategy=google" for 111.93.178.162 at 2017-04-10 11:43:56 +0000
+
+username: admin
+  password: wakeupsaas123$
+  host: wakeupsaas.cecbncxwd0ul.us-east-1.rds.amazonaws.com
+  
+mysqldump -h wakeupsaas.cecbncxwd0ul.us-east-1.rds.amazonaws.com -u admin -p wakeupsaas > wusaas.sql
+
+
+DT: April 11
+==============
+Gmail Email Integration - 04/12
+Website Integration - 04/12
+Lead Project Management  04/13 - 04/19
+Lead Event Tracking - 04/13 - 04/19
+Cloud payment subscription - 05/05
+
+Deadline: 5th May 
+
+
+Today's Discussion: Lead Event Tracking, Lead Project Management
+
+KSN:
+Remove scroll from left pane and add new menu in header. 1hr
+Add Plugin button, Demo_button Take a peek "BO" and visit wakeupsales marketplace button. 2 hr
+Verify Website Integration in MAC/Ubuntu. 2.5hr
+Merge Website Integration code into Cloud and do unit testing. 1.5 hr
+Prepare installation document for Webform integration - 1hr 
+
+
+
+ANS:
+Add bcc option in the compose, reply and forward mail - 1 hr - ANS
+Fix the UI of send mail popup - 1 hr - ANS
+Change the plus icon to attach icon to attachment button - 0.5 hr - ANS
+Merge the favorite icon in community demo - 1 hr - ANS
+Verify the mailbox plugin in Mac/Ubuntu - 2 hrs - ANS
+Create project in google developer console (Documentation) - 0.5hr 
+Discussion and go through Lead Event Tracking - 1hr 
+
+
+AMT:
+EB Deploy community demo - 0.5hr - AMT
+Task assignment and review - 2hrs - AMT
+Push latest changes to cloud and verify - 1hr  - AMT
+Go through implementation of 'acts_as_commentable_with_threading' - 2hrs - AMT
+Go through lead project management in Insighlty - 0.5hr - AMT
+Discussion regarding lead event tracking - 1hr 
+
+RnD on adding BCC 
+fix the refresh token issue in gmail login
+
+undefined method `[]' for nil:NilClass
+
+
+
+
+wakeupsaas123$
+
+{
+"access_token": "ya29.GlsqBHR6Iw6IZhmR7nLbxKpKrXUt7Mao6HZZb_J8S54H4CkHviqjbVebL1wANXHPlE0GMpo7m8n5lc0s7w24ZWa0DJJ3BMl9ReV9GJlkmNPOSMbnOUHaqMeD2tvT",
+"expires_in": 3600,
+"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjYzOWMwMDYxZWJhNjQ3ZTI3NTA3NDA5ODIxNDZiMzRmNmFhM2I3ZDYifQ.eyJhenAiOiI4NTIwMjUwODU5NjMtYWJ1a2M1dHRqczc1MWg1MDlqYW12cXNxdjNjYjgyanQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI4NTIwMjUwODU5NjMtYWJ1a2M1dHRqczc1MWg1MDlqYW12cXNxdjNjYjgyanQuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTgxMDIwODY4OTYyMTExMDEzMzciLCJoZCI6ImFuZG9sYXNvZnQuY28uaW4iLCJlbWFpbCI6ImFuc3VtYW4udGFyaWFAYW5kb2xhc29mdC5jby5pbiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNEdiUHIzdmpnTGdqZFNMbHc1c0R1dyIsImlzcyI6ImFjY291bnRzLmdvb2dsZS5jb20iLCJpYXQiOjE0OTE5MDc1ODEsImV4cCI6MTQ5MTkxMTE4MX0.GOPXBlWHrH6W0FnYgI4xxAxXMvVldwA-8ELhrhyGDUkFzFScXpx76l3f5VPv1D3AyhO8Fo-vtE5YfzMQB2vvlzfxXUjlAAT6_56F71gkPh26oSWcBMWOaFFJUNY2LnmiCt1BoQXCf3AF2iakYbCUAva5G9nJE7aeyDO_gaT5r8AN6aIuqq60YlVbJw8cPHJOskKTJkWUkNPdNt9lxX7gej4Z0V0QeuceSmX56bS7Os1lx7OAk-WPw4vLY8xzrLIL824DXkSTbhzlCAjs_L49Bodwiq4hxnJv79HYAPtkE16XUgYQccYwRX1gxyY2ljNmGd232B429ng_VW9c_EYw6Q",
+"token_type": "Bearer"
+}
+
+
+POST /oauth2/v4/token HTTP/1.1
+Host: www.googleapis.com
+Content-length: 233
+content-type: application/x-www-form-urlencoded
+user-agent: google-oauth-playground
+code=4%2F77ORt8eZzWtJuycfZLFIO2VVdhLXzIF2pX1jaog4ZHE&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&client_secret=************&scope=&grant_type=authorization_code
+
+
+
+HTTP/1.1 200 OK
+Content-length: 266
+X-xss-protection: 1; mode=block
+X-content-type-options: nosniff
+Transfer-encoding: chunked
+Expires: Mon, 01 Jan 1990 00:00:00 GMT
+Vary: Origin, X-Origin
+Server: GSE
+-content-encoding: gzip
+Pragma: no-cache
+Cache-control: no-cache, no-store, max-age=0, must-revalidate
+Date: Tue, 11 Apr 2017 11:24:09 GMT
+X-frame-options: SAMEORIGIN
+Alt-svc: quic=":443"; ma=2592000; v="37,36,35"
+Content-type: application/json; charset=UTF-8
+{
+  "access_token": "ya29.GlsqBEu7DxQMbWSCWyaVr5jxoukUJT-JlHUHn_M_fuLSXrDF21qvXlozCCJykypAAbHnNLhkTnNIfBGURcNeYbAXx-ORkNOa7QIjfMgQ6D4FNZJsHXDFYfYsQXyv", 
+  "token_type": "Bearer", 
+  "expires_in": 3600, 
+  "refresh_token": "1/QcsvINQle4BdFIxQF-eXweSXEztFg-Gm4iGBYiVbH-A"
+}
+
+
+PDFKit::NoExecutableError (No wkhtmltopdf executable found at /usr/bin/wkhtmltopdf
+>> Please install wkhtmltopdf - https://github.com/pdfkit/PDFKit/wiki/Installing-WKHTMLTOPDF):
+  lib/email_tracker/rack.rb:40:in `call'
+
+
+DT: April 12
+============
+KSN:
+Changed icon and UI changes in header and left pane. 2hrs
+   Icons to be change - header setting icon, kanban view icon, gmail icon, invoice icon, Website integration icon,
+   Fix UI issue in header menu.
+   Add Getting started link with icon.
+Fresh install community version and run Website integration plugin. 1hr
+#308
+#307
+#324
+#322
+#316
+
+#308 Move Create Invoice to left side navigation , also keep same under + sign in top left corner
+#307 Put Getting started Link on left side navigation
+#324 Lead Page > click on the '+' sign > add tab > the 'Cancel' button is not aligned to middle of the button
+#322 Change the top action panel icons with these line icons
+#316 WUS Cloud: Menu (Top right corner) - replace the 'Add Lead' icon
+
+
+
+#306
+#327
+
+ANS:
+Verify the mailbox plugin in the ubuntu system - 1 hr - ANS
+Validate and fix open ssl issue during gmail authorization in the Mac system -  1hr - ANS
+#317: WUS Demo > Leads > Bulk Upload - 2hrs 
+#309
+#266
+#267
+Add links to convert to project in Lead detail page - 0.5hr 
+Popup design for creating project - 1.5hr 
+Create models and add logic to save prject information in respective tables - 2.5hr 
+
+
+
+AMT:
+Install pdfkit in cloud production 
+Discussion and go through Lead Event Tracking - 2 hrs - ANS
+314
+
+313
+
+
+
+http://localhost:3004/leads?type=won
+
+
+5 organization 
+
+58
+70
+173
+212
+350
+460
+
+ 
+SELECT ROUTINE_DEFINITION FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'wakeupsaas' AND ROUTINE_TYPE = 'PROCEDURE' AND ROUTINE_NAME = "import_leads_to_deals()";
+ 
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Result consisted of more than one row: CALL import_leads_to_de
+als(1)):
+
+ 
+adapter: mysql2
+encoding: utf8
+reconnect: false
+database: wakeupsales
+pool: 5
+username: admin
+password: wakeup321&
+host: wakeupsales.cecbncxwd0ul.us-east-1.rds.amazonaws.com
+port: 3306
+
+DT: April 13
+============
+KSN:
+Change UI and content of Roadmap page 1.5 hr DONE
+Change icon in header section 1hr DONE
+	307 DONE
+	321 DONE
+	330 DONE
+	322 DONE
+Implement new form layout in Website integration page 1.5 hr
+#306: Task Email notification format to be changed 1hr
+#327: Lead List > after selecting a lead the option to choose to 'move a lead' or delete a lead (have no icons) 0.5hr DONE
+#329: Change and update the 'Wakeupsales Logo' in the top-left corner
+
+WUS Files Section
+	#341 DONE
+	#342 DONE
+	#343
+WUS Tasks Page
+	#340 DONE
+	#348 DONE
+
+ANS:
+undefined method `name' for nil:NilClass,app/datatables/tasks_datatable.rb:127:in `block in data' - DONE
+Exception occured in contacts#send_email (AWS::SES::ResponseError) "MessageRejected - Email address is not verified - DONE
+Exception occured in deals#index (ActiveRecord::StatementInvalid) "Mysql2::Error: You have an error in your SQL syntax
+Leads List Page
+365
+366
+369
+309,
+317,
+324
+326
+328
+332
+333
+
+Gmail Plugin Issues
+318
+319
+316
+320
+335
+337
+338
+355
+
+
+AMT:
+Install wkhtmltopdf in cloud production through EB - 0.5hr - AMT
+Gmail issue fixes
+WUS Tasks Page
+	#339: Error in Out come of the task - DONE
+Daily Update
+	#354 Daily updates > Lead menu - DONE
+	#356 Daily Updates > Manage daily update link - DONE
+	#357 Daily Update > manage daily Update > tooltip - DONE
+	#358 Daily update > manage daily update > edit options issues
+	#382 Daily updates page > spacing issues
+Push latest changes to cloud and verify - 1hr  - AMT
+
+
+
+[root@ip-172-30-0-37 var]# uname -a
+Linux ip-172-30-0-37 4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+
+ Parameters: {"_type"=>"new", "assigned_to"=>"", "created_by"=>"", "cuser"=>"2", "ds_id"=>"58", "filtertype"=>"58", "filtervalue"=>"0", "q"=>"", "y"=>"", "sEcho"=>"1", "iColumns"=>"9", "sColumns"=>"", "iDisplayStart"=>"0", "iDisplayLength"=>"20", "mDataProp_0"=>"0", "mDataProp_1"=>"1", "mDataProp_2"=>"2", "mDataProp_3"=>"3", "mDataProp_4"=>"4", "mDataProp_5"=>"5", "mDataProp_6"=>"6", "mDataProp_7"=>"7", "mDataProp_8"=>"8", "sSearch"=>"", "bRegex"=>"false", "sSearch_0"=>"", "bRegex_0"=>"false", "bSearchable_0"=>"true", "sSearch_1"=>"", "bRegex_1"=>"false", "bSearchable_1"=>"true", "sSearch_2"=>"", "bRegex_2"=>"false", "bSearchable_2"=>"true", "sSearch_3"=>"", "bRegex_3"=>"false", "bSearchable_3"=>"true", "sSearch_4"=>"", "bRegex_4"=>"false", "bSearchable_4"=>"true", "sSearch_5"=>"", "bRegex_5"=>"false", "bSearchable_5"=>"true", "sSearch_6"=>"", "bRegex_6"=>"false", "bSearchable_6"=>"true", "sSearch_7"=>"", "bRegex_7"=>"false", "bSearchable_7"=>"true", "sSearch_8"=>"", "bRegex_8"=>"false", "bSearchable_8"=>"true", "iSortCol_0"=>"0", "sSortDir_0"=>"desc", "iSortingCols"=>"1", "bSortable_0"=>"false", "bSortable_1"=>"true", "bSortable_2"=>"true", "bSortable_3"=>"false", "bSortable_4"=>"true", "bSortable_5"=>"false", "bSortable_6"=>"false", "bSortable_7"=>"true", "bSortable_8"=>"true", "_"=>"1492082984433"}
+  User Load (1.2ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+
+DT: April 14
+===============
+KSN
+Fix the logo issue in Firefox browser -  DONE
+#386: Kanban view 3 dots menu -  DONE
+#387: Kanban view lead logo -  DONE
+#389: Kanban view > 3 dot meu > send email option -  DONE
+#304 Kanban view issue. 1hr -  DONE
+#324 Center align cancel icon. 0.5 hr -  DONE
+#388: Kanban view> 3 dot menu> add a note 
+#306: Task Email notification format to be changed 1hr
+#308 Add Invoice icon under thr plus sign and add other plugin links. 0.5 hrs 
+
+
+#268: 0.5hr  
+#269: Implement new form layout in Website integration page 2.5 hr 
+#391: Kanban view > 3 dot menu > Move Lead 
+Code merging in community - 0.5hr 
+
+ANS
+#311: Dashboard -> Tooltip missing on every chart - 0.5 hr - ANS - Done
+Dashboard >> summary last 3 months section >> if count equals to 0 then should not display "Read" option - 0.5 hr - ANS - Done
+Fix the page break issue during complete task - Done
+Fix the page break issue in contact details page - 0.5 he - ANS - Done
+#379: Dashboard > Upcoming Tasks - 1 hr - ANS - Unable to simulate
+#393: Dashboard > Boxes Alignment - 0.5 hr - ANS - Done
+#363: Dashboard > The Stats are not dynamic it seems - 0.5 hr - ANS - Done
+#450: Leads Listing >> Export to CSV >> Not working - Done
+
+
+#367: Dashboard >> Clickability - 1 hr - ANS
+#376: Dashboard >> Summary - last 3 months - 0.5 hr - ANS
+#381: Dashboard > Usage - 1 hr - ANS
+#372: Dashboard > View Task Listing > Error - 1 hr - ANS
+
+#309: Leads-> Move Leads - This should grey out till user at least select one lead - 1 hr - ANS
+#326: Lead List Page > When not selecting any lead > it still gives me the option (and the pop-up) to move or delete a lead - 0.5 hr - ANS
+#328: Lead List > After selecting a lead > the option to 'add or move a lead' > does not have any hover effect - 0.5 hr - ANS
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned) - 0.5 hr - ANS
+#365: Leads List > three dot menu > "Add Task Pop-up form" Issue - 1 hr - ANS
+
+AMT
+Prepare technical specification for WebToLead - 0.5hr - DONE
+Install wkhtmltopdf in cloud production through EB - 0.5hr - AMT - DONE
+#318: Gmail sent mail ( 2 emails displayed) - 2hrs - DONE  
+#319: Gmail Sent mail page (loading status error) - 1hr - DONE  
+#320: Gmail Inbox issues - 0.5hr - DONE  
+#335: Mailbox > Inbox page ( Next page option) issues - 2hrs 
+
+
+
+
+RuntimeError (command failed (exitstatus=0): /opt/rubies/ruby-2.0.0-p648/bin/wkhtmltopdf --page-size A4 --print-media-type - -):
+  lib/email_tracker/rack.rb:40:in `call'
+
+
+
+Daily Update - 4/13
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​
+Prepared technical specification for WebToLead functionality(attached)
+Fixed the exception "undefined method `to_datetime' for nil:NilClass" while creating task 
+Gone through gmail api explorer to read api response
+Fixed #318: Gmail sent mail ( 2 emails displayed)
+Fixed #319: Gmail Sent mail page (loading status error)
+Fixed #320: Gmail Inbox issues
+Fixed #335: Mailbox > Inbox page ( Next page option) issues
+Pushed all the changes  to cloud production
+
+
+​Best,
+Amit​
+
+
+Step-1: (Web form Creation)
+	Click on settings icon from top header and click on "Manage Web Form"
+	If there is no web form created yet it will redirect to create web form page else it will redirect to "Manage Web Form" listing page
+	Fill out Form name, User Responsible and Lead Source these three fields are mandatory
+	Click on "Create HTML For Your Website" link, then a pop up will appear
+	In this pop up select fields name as per your choice, and the respective html code will reflect on text area below
+	If you do not click "Create HTML For Your Website" or do not select any field then the default fields are First Name, Last Name and Email
+	In "POST FORM SUBMISSION ACTIVITY" section, choose "Display a page on my website" or default form submission is "Display Thank you page"
+	In "EMAIL NOTIFICATION SETTINGS" section check "Send Email Notifications To" and select option as per your requirement to get email notification
+	After creating a web form all data are saved and it will redirect to "Manage Web Form" listing page
+	You can get the previously submitted data in the top of the listing
+	Click on "Get HTML Code" to show HTML code in a pop up
+	Click on "Copy Text" to copy the HTML code below
+	Create a HTML file and paste the copied text in to the file
+
+Step-2: (Web form Submission from source side)
+	Open the HTML file in a browser, then the form will open with your selected fields in part 1
+	Fill out all the fields and submit the form
+	An email will received according to your selection in "EMAIL NOTIFICATION SETTINGS" section in part 1
+	And also an email will send to the user email
+
+Step-3: 
+	The data you have submit in part 2 will be inserted as a Lead and Contact 
+	You can check it in Lead Listing page, Contact Listing page
+	You will also get a new activity in Activity page
+
+
+
+
+
+
+So how many issues has been fixed this week? and How many issue left?
+What need to be done to expedite the issue fix asap?
+
+Sir, we have already fixed major page break issues and pushed to production as well. Now overally we have UI/UX issues/enhancement listed in OS which we are trying to fix by Thursday EOD. We are giving our best effort to sort out the stuffs ASAP.
+
+We have also started working on new form layout UI changes and already implemented for WebToLead. Gradually we will implement in other pages too.
+
+Almost 50% of the issues has been resolved and we will take care of the rest by Thurday. From Monday we are also planning to start working on Lead project management. I have already discussed the same with Anurag Sir and Omkar.
+
+DT: April 17
+=============
+KSN
+#268: 0.5hr -  DONE  
+#269: Implement new form layout in Website integration page 2.5 hr  -  DONE
+#391: Kanban view > 3 dot menu > Move Lead 
+Code merging in community - 0.5hr 
+
+
+Kanban View: 1.5hr 
+
+#386: Kanban view 3 dots menu. - 0.5hr - KSN - DONE
+#387: Kanban view lead logo - 15min - KSN - DONE
+#389: Kanban view > 3 dot meu > send email option - 15min - KSN - DONE
+#388: Kanban view> 3 dot menu> add a note - 15min - KSN - DONE
+#453: Leads Listing > Kanban > Alignment - 15min - KSN - DONE
+#454: Kanban >> Center Aligning - 15min - KSN - DONE
+
+Task Page:
+#306: Task Email notification format to be changed - Merge in live. - 0.5hr - KSN  - DONE
+#346: Background colour remain same- 0.5 hr - KSN  - DONE
+#347: 'List View' is not necessary - 0.5 hr - KSN  - DONE
+#360: Value of menu should change - 0.5 hr - KSN -DONE
+
+#339: Error in Out come of the task - 1hr - KSN - DONE
+#340: Drop down value should be left Align With Icons - 15min - KSN   ---- Add icon in task type is not possible for this time
+
+#455: Kanban >> Tooltips Issue - 15min - KSN  BO notification center and vertical align
+#422: Tasks Listing > Type > No Tooltip? - 15min - KSN 
+#350: Write Task Details instead of detail - 15min - KSN - And show the details in 3 line instead of 2 line -follow up with padma
+#442: Arrow mark is not placed properly - 0.5 hr - KSN
+
+2 form design - 2.5hr 
+
+ANS
+#367: Dashboard >> Clickability - 1 hr - ANS
+#376: Dashboard >> Summary - last 3 months - 0.5 hr - ANS
+#381: Dashboard > Usage - 1 hr - ANS
+#372: Dashboard > View Task Listing > Error - 1 hr - ANS
+#378: Task Listing > Numbering at the Top
+
+
+#309: Leads-> Move Leads - This should grey out till user at least select one lead - 1 hr - ANS - Done
+#326: Lead List Page > When not selecting any lead > it still gives me the option (and the pop-up) to move or delete a lead - 0.5 hr - ANS - Done
+#328: Lead List > After selecting a lead > the option to 'add or move a lead' > does not have any hover effect - 0.5 hr - ANS - Done
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned) - 0.5 hr - ANS - Done
+#365: Leads List > three dot menu > "Add Task Pop-up form" Issue - 1 hr - ANS
+
+AMT
+
+
+Gmail : $99
+Web to Lead : $69
+
+
+#<Braintree::SuccessfulResult customer:#<Braintree::Customer id: "21029397", company: "Andolasoft", email: "ansuman.taria@andolasoft.co.in", fax: nil, first_name: "Ansuman", last_name: "Taria", phone: "7896541230", website: nil, created_at: 2017-04-17 11:16:34 UTC, updated_at: 2017-04-17 11:16:34 UTC, addresses: [#<Braintree::Address:0x11649248 @gateway=#<Braintree::Gateway:0xe6fbd24 @config=#<Braintree::Configuration:0xe6f30fc @custom_user_agent=nil, @endpoint=nil, @http_open_timeout=60, @http_read_timeout=60, @logger=#<Logger:0x11d4d738 @progname=nil, @level=1, @default_formatter=#<Logger::Formatter:0x11d4d6c0 @datetime_format=nil>, @formatter=#<Logger::SimpleFormatter:0x11d4d508 @datetime_format=nil>, @logdev=#<Logger::LogDevice:0x11d4d620 @shift_size=nil, @shift_age=nil, @filename=nil, @dev=#<IO:<STDOUT>>, @mutex=#<Logger::LogDevice::LogDeviceMutex:0x11d4d60c @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x11d4d51c>>>>, @merchant_id="wvj9qbh2cqwsz27p", @public_key="gcvy7dq3jkdg57vf", @private_key="[FILTERED]", @environment=:sandbox, @proxy_address=nil, @proxy_port=nil, @proxy_user=nil, @proxy_pass=nil, @ssl_version=nil>>, @id="db", @customer_id="21029397", @first_name=nil, @last_name=nil, @company="andola", @street_address="tesst", @extended_address=nil, @locality="sdsd", @region="sadsad", @postal_code="78965", @country_code_alpha2="US", @country_code_alpha3="USA", @country_code_numeric="840", @country_name="United States of America", @created_at=2017-04-17 11:16:34 UTC, @updated_at=2017-04-17 11:16:34 UTC>],
+
+ credit_cards: [#<Braintree::CreditCard token: "8r4kmy", billing_address: #<Braintree::Address:0x1162c148 @gateway=#<Braintree::Gateway:0xe6fbd24 @config=#<Braintree::Configuration:0xe6f30fc @custom_user_agent=nil, @endpoint=nil, @http_open_timeout=60, @http_read_timeout=60, @logger=#<Logger:0x11d4d738 @progname=nil, @level=1, @default_formatter=#<Logger::Formatter:0x11d4d6c0 @datetime_format=nil>, @formatter=#<Logger::SimpleFormatter:0x11d4d508 @datetime_format=nil>, @logdev=#<Logger::LogDevice:0x11d4d620 @shift_size=nil, @shift_age=nil, @filename=nil, @dev=#<IO:<STDOUT>>, @mutex=#<Logger::LogDevice::LogDeviceMutex:0x11d4d60c @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x11d4d51c>>>>, @merchant_id="wvj9qbh2cqwsz27p", @public_key="gcvy7dq3jkdg57vf", @private_key="[FILTERED]", @environment=:sandbox, @proxy_address=nil, @proxy_port=nil, @proxy_user=nil, @proxy_pass=nil, @ssl_version=nil>>, @id="db", @customer_id="21029397", @first_name=nil, @last_name=nil, @company="andola", @street_address="tesst", @extended_address=nil, @locality="sdsd", @region="sadsad", @postal_code="78965", @country_code_alpha2="US", @country_code_alpha3="USA", @country_code_numeric="840", @country_name="United States of America", @created_at=2017-04-17 11:16:34 UTC, @updated_at=2017-04-17 11:16:34 UTC>, bin: "411111", card_type: "Visa", cardholder_name: "Ansuman Taria", created_at: 2017-04-17 11:16:34 UTC, customer_id: "21029397", expiration_month: "11", expiration_year: "2018", last_4: "1111", updated_at: 2017-04-17 11:16:34 UTC, prepaid: "Unknown", payroll: "Unknown", product_id: "Unknown", commercial: "Unknown", debit: "Unknown", durbin_regulated: "Unknown", healthcare: "Unknown", country_of_issuance: "Unknown", issuing_bank: "Unknown", image_url: "https://assets.braintreegateway.com/payment_method_logo/visa.png?environment=sandbox">], paypal_accounts: []>>
+
+
+
+#<Braintree::SuccessfulResult subscription:#<Braintree::Subscription:0x109252c4 @gateway=#<Braintree::Gateway:0xe3aa918 @config=#<Braintree::Configuration:0xe3abe94 @custom_user_agent=nil, @endpoint=nil, @http_open_timeout=60, @http_read_timeout=60, @logger=#<Logger:0x11d4d738 @progname=nil, @level=1, @default_formatter=#<Logger::Formatter:0x11d4d6c0 @datetime_format=nil>, @formatter=#<Logger::SimpleFormatter:0x11d4d508 @datetime_format=nil>, @logdev=#<Logger::LogDevice:0x11d4d620 @shift_size=nil, @shift_age=nil, @filename=nil, @dev=#<IO:<STDOUT>>, @mutex=#<Logger::LogDevice::LogDeviceMutex:0x11d4d60c @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x11d4d51c>>>>, @merchant_id="wvj9qbh2cqwsz27p", @public_key="gcvy7dq3jkdg57vf", @private_key="[FILTERED]", @environment=:sandbox, @proxy_address=nil, @proxy_port=nil, @proxy_user=nil, @proxy_pass=nil, @ssl_version=nil>>, @add_ons=[], @balance=#<BigDecimal:1096f9f0,'0.0',9(18)>, @billing_day_of_month=17, @billing_period_end_date="2017-05-16", @billing_period_start_date="2017-04-17", @created_at=2017-04-17 11:27:41 UTC, @updated_at=2017-04-17 11:27:41 UTC, @current_billing_cycle=1, @days_past_due=nil, @discounts=[], @failure_count=0, @first_billing_date="2017-04-17", @id="3r6pcr", @merchant_account_id="andolasoft", @never_expires=true, @next_bill_amount="20.00", @next_billing_period_amount="20.00", @next_billing_date="2017-05-17", @number_of_billing_cycles=nil, @paid_through_date="2017-05-16", @payment_method_token="8r4kmy", @plan_id="rr9r", @price=#<BigDecimal:1096f978,'0.2E2',9(18)>, @status="Active", @trial_duration=nil, @trial_duration_unit=nil, @trial_period=false, @descriptor=#<Braintree::Descriptor:0x1096f914 @name=nil, @phone=nil, @url=nil>, @transactions=[#<Braintree::Transaction id: "ajrfr4f1", type: "sale", amount: "20.0", status: "submitted_for_settlement", created_at: 2017-04-17 11:27:40 UTC, credit_card_details: #<token: "8r4kmy", bin: "411111", last_4: "1111", card_type: "Visa", expiration_date: "11/2018", cardholder_name: "Ansuman Taria", customer_location: "US", prepaid: "Unknown", healthcare: "Unknown", durbin_regulated: "Unknown", debit: "Unknown", commercial: "Unknown", payroll: "Unknown", product_id: "Unknown", country_of_issuance: "Unknown", issuing_bank: "Unknown", image_url: "https://assets.braintreegateway.com/payment_method_logo/visa.png?environment=sandbox">, customer_details: #<id: "21029397", first_name: "Ansuman", last_name: "Taria", email: "ansuman.taria@andolasoft.co.in", company: "Andolasoft", website: nil, phone: "7896541230", fax: nil>, subscription_details: #<Braintree::Transaction::SubscriptionDetails:0x109baf90 @billing_period_end_date="2017-05-16", @billing_period_start_date="2017-04-17">, updated_at: 2017-04-17 11:27:41 UTC>], @status_history=[#<Braintree::Subscription::StatusDetails:0x10aa3ee8 @timestamp=2017-04-17 11:27:41 UTC, @status="Active", @user="amit.mohanty@andolasoft.co.in", @subscription_source="api", @balance="0.00", @price="20.00", @currency_iso_code="USD", @plan_id="rr9r">]>>
+
+
+Subscription ID	Plan Name	Price	Trial Period	Billing Cycle	Customer Name	Status	Actions
+jbc6nr	Basic $29	$29.00 USD	29 days	Every 1 Month(s)	Vadim Komarskij UAB JCDecaux Lietuva	Active	
+Edit Cancel
+
+
+DT: April 18
+===============
+KSN
+#455: Kanban >> Tooltips Issue - 15min - KSN  BO notification center and vertical align
+
+Implement New form Layout in Add contact, Invite user and Send email popup. 2.5 hrs - KSN 
+#422: Add tooltip in task type in tasks page. - 0.5 hr
+#350: Write Task Details instead of detail And show the details in 3 line instead of 2 line. 0.5 hr DONE
+Add icons in Add lead, Add contact and add task popup of new form layout. 1.5hrs DONE
+#464: Dashboard >> Recent Leads & Upcoming Tasks >> Calendar - DONE
+#448: Dashboard >> Layout Update DONE
+#463: Dashboard >> Recent Leads >> View More  DONE
+#476: Dashboard >> Summary >> Last Calls section  DONE
+
+
+#324: Lead Page > click on the '+' sign > add tab > the 'Cancel' button is not aligned to middle of the button DONE
+#328: Lead List > After selecting a lead > the option to 'add or move a lead' > does not have any hover effect  - DONE
+#332: Leads Page > the "Name", "Opportunity" et. On hover should show the hand icon > it shows pointer now , - DONE
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned) --- DONE
+#334: Lead List Page > Let's keep only one style of 'Tooltip'. That is the 'Dark Grey with White font with ponters'
+
+
+ANS
+#480: Mailbox Timing Issues - DONE
+#319: Gmail Sent mail page (loading status error) - DONE
+#376: Dashboard >> Summary - last 3 months - Reopen 
+#326: Lead List Page > When not selecting any lead > it still gives me the option (and the pop-up) to move or delete a lead - DONE
+
+#367: Dashboard >> Clickability - 1 hr - ANS
+#381: Dashboard > Usage - 1 hr - ANS
+Checkout page changes - remove layout of sidebar/topbar for loggedin user - DONE
+
+
+AMT
+Task assignment and review - 2hrs - AMT
+Integrate brakeman gem to generate security vulnerabilities - 0.5hr - AMT- DONE
+Push the updated zip files to production and generate payment URLs - 1hr - AMT - DONE
+Discussion/review with ANS regarding lead project management implementation - 1.5hr - AMT - DONE
+Go through Braintree payment subscription plan search/cancel/update API - 1.5hrs - AMT
+Go through Braintree payment customer update API - 1.5hrs - AMT
+Create module for subscription plan - 1hr - AMT
+
+
+Created module for creating braintree Customer that would store in Braintree vault and able to get customer id and token in api response 
+
+Adding the logic to override the default plan information when creating subscription by which we can set arbitrary amount of money when we create the subscription via the API
+
+
+
+
+Gmail : $99
+Web to Lead : $69
+
+
+/var/www/shared/
+
+
+
+http://stage-saas.wakeupsales.com/plugin/1aa0d3df04d1130f539d805597169816/checkout
+http://stage-saas.wakeupsales.com/plugin/a36332420772f14ac9ca4ddcd0c93115/checkout
+
+
+http://stage-saas.wakeupsales.com/plugin/c87af7a90bf5cbd7793fee6360778d1d/download
+
+
+
+Gmail Mailbox - https://wakeupsales.com/plugin/7734b76581950c2f84195c9c93a6909d/checkout
+Web to Lead - https://wakeupsales.com/plugin/601e23a8c484171733f2caa1b0afb72b/checkout
+
+
+
+
+#<Braintree::SuccessfulResult subscription:#<Braintree::Subscription:0x109252c4 @gateway=#<Braintree::Gateway:0xe3aa918 @config=#<Braintree::Configuration:0xe3abe94 @custom_user_agent=nil, @endpoint=nil, @http_open_timeout=60, @http_read_timeout=60, @logger=#<Logger:0x11d4d738 @progname=nil, @level=1, @default_formatter=#<Logger::Formatter:0x11d4d6c0 @datetime_format=nil>, @formatter=#<Logger::SimpleFormatter:0x11d4d508 @datetime_format=nil>, @logdev=#<Logger::LogDevice:0x11d4d620 @shift_size=nil, @shift_age=nil, @filename=nil, @dev=#<IO:<STDOUT>>, @mutex=#<Logger::LogDevice::LogDeviceMutex:0x11d4d60c @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x11d4d51c>>>>, @merchant_id="wvj9qbh2cqwsz27p", @public_key="gcvy7dq3jkdg57vf", @private_key="[FILTERED]", @environment=:sandbox, @proxy_address=nil, @proxy_port=nil, @proxy_user=nil, @proxy_pass=nil, @ssl_version=nil>>, @add_ons=[], @balance=#<BigDecimal:1096f9f0,'0.0',9(18)>, @billing_day_of_month=17, @billing_period_end_date="2017-05-16", @billing_period_start_date="2017-04-17", @created_at=2017-04-17 11:27:41 UTC, @updated_at=2017-04-17 11:27:41 UTC, @current_billing_cycle=1, @days_past_due=nil, @discounts=[], @failure_count=0, @first_billing_date="2017-04-17", @id="3r6pcr", @merchant_account_id="andolasoft", @never_expires=true, @next_bill_amount="20.00", @next_billing_period_amount="20.00", @next_billing_date="2017-05-17", @number_of_billing_cycles=nil, @paid_through_date="2017-05-16", @payment_method_token="8r4kmy", @plan_id="rr9r", @price=#<BigDecimal:1096f978,'0.2E2',9(18)>, @status="Active", @trial_duration=nil, @trial_duration_unit=nil, @trial_period=false, @descriptor=#<Braintree::Descriptor:0x1096f914 @name=nil, @phone=nil, @url=nil>, @transactions=[#<Braintree::Transaction id: "ajrfr4f1", type: "sale", amount: "20.0", status: "submitted_for_settlement", created_at: 2017-04-17 11:27:40 UTC, credit_card_details: #<token: "8r4kmy", bin: "411111", last_4: "1111", card_type: "Visa", expiration_date: "11/2018", cardholder_name: "Ansuman Taria", customer_location: "US", prepaid: "Unknown", healthcare: "Unknown", durbin_regulated: "Unknown", debit: "Unknown", commercial: "Unknown", payroll: "Unknown", product_id: "Unknown", country_of_issuance: "Unknown", issuing_bank: "Unknown", image_url: "https://assets.braintreegateway.com/payment_method_logo/visa.png?environment=sandbox">, customer_details: #<id: "21029397", first_name: "Ansuman", last_name: "Taria", email: "ansuman.taria@andolasoft.co.in", company: "Andolasoft", website: nil, phone: "7896541230", fax: nil>, subscription_details: #<Braintree::Transaction::SubscriptionDetails:0x109baf90 @billing_period_end_date="2017-05-16", @billing_period_start_date="2017-04-17">, updated_at: 2017-04-17 11:27:41 UTC>], @status_history=[#<Braintree::Subscription::StatusDetails:0x10aa3ee8 @timestamp=2017-04-17 11:27:41 UTC, @status="Active", @user="amit.mohanty@andolasoft.co.in", @subscription_source="api", @balance="0.00", @price="20.00", @currency_iso_code="USD", @plan_id="rr9r">]>>
+
+KSN:
+#377: Contact Listing > no tooltip
+#396: Contact Listing > Contact icon ( A , B, C ...... )
+#397: Contact Listing > Contact details > opportunity tab
+#484: Contact Listings > Contact Details: Cursor on Logo
+#465: Need to change the top pane of the page (with change in incons wherever required.) - Omkar
+
+ANS:
+#305: Contacts Section: Contact to Lead Conversion (No notifcation or message)
+
+
+DT: April 18
+===============
+KSN:
+#377: Contact Listing > no tooltip - DONE
+#396: Contact Listing > Contact icon ( A , B, C ...... ) - DONE
+#397: Contact Listing > Contact details > opportunity tab - DONE
+#465: Need to change the top pane of the page (with change in incons wherever required.) - DONE
+#464: Dashboard >> Recent Leads & Upcoming Tasks >> Calendar - DONE
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned)- DONE
+#484: Contact Listings > Contact Details: Cursor on Logo- DONE
+
+
+
+#455: Kanban >> Tooltips Issue - Discuss with Ankeet - DONE
+#311: Dashboard -> Tooltip missing on every chart - Discuss with Omkar
+#476: Dashboard >> Summary >> Last Calls section
+#334: Lead List Page > Let's keep only one style of 'Tooltip'. That is the 'Dark Grey with White font with ponters'
+#345: Lead List > Inbound, Outbound and Uncatagorized (drop down) > Just below the Lead Name > to be left aligned and making the respective icons smaller - DONE
+#365: Leads List > three dot menu > "Add Task Pop-up form" Issue
+#458: Leads Listing >> Stage >> Limit - DONE
+#467: Lead List > clicking on the lead circle icon > that brings the right contact board [Check screenshot]] - Need to add tooltip
+#466: Lead List Page > (on clicking the lead name round icon) > which brings the right side contact pane > compresses the entire page (overalaps the text)
+#483: Leads Listing > Right side panel > Misalignments
+
+
+ANS:
+#305: Contacts Section: Contact to Lead Conversion (No notifcation or message)- DONE
+#401: Contact Listing > send email - 0.5 hr - ANS - DONE
+
+#399: Leads Listing > Filter > UI Fix - DONE
+#400: Leads Listing > Tags/Stages - DONE
+#437: Lead Listings > 3 dot menu > Edit > Associate a contact - DONE
+#460: Leads Details >> Quick Notes Section >> Update 
+#486: Lead Listings >> Right Side panel - DONE
+
+#406: Contact Listing > Contact Details > Activites - 0.5 hr - ANS - DONE
+#419: Profile details > Deals to be renamed  - 1 hr - ANS - DONE
+#416: Profile page > Todays tasks button - 1 hr - ANS 
+Implement functionality to create tasks under project - 2 hrs - ANS
+Fix validation on create project popup - 2 hrs - ANS
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Discussion/review with ANS regarding lead project management implementation - 1.5hr - AMT 
+Discussion with Omkar and Prabhu regarding subscription download/upgrade strategies - 1.5hr - AMT
+Go through Braintree payment subscription plan search/cancel/update API - 1.5hrs - AMT
+Go through Braintree payment customer update API - 1.5hrs - AMT
+Create module for subscription plan - 1hr - AMT
+
+https://developers.braintreepayments.com/guides/webhooks/parse/ruby
+https://developers.braintreepayments.com/guides/recurring-billing/manage/ruby
+https://articles.braintreepayments.com/guides/recurring-billing/recurring-advanced-settings
+https://articles.braintreepayments.com/guides/recurring-billing/subscriptions#updating-a-subscription
+
+
+Daily Update - 4/19
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​
+Verified the os case#372,#323 and #334 in cloud production server
+Discussed with Ansuman Sir regarding lead project management implementation 
+Associated with Kisan in fixing the tooltip issue 
+Placed the sample smtp configuration in PHP application for downloading of community users
+Assisted Danniel in settings of smtp cofiguration for domain 'jermaineart.eu'
+Pushed all the changes  to cloud production
+Attended the UML session for topic "SAD and OOAD"
+
+​Best,
+Amit​
+
+
+
+require 'net/smtp'
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.default_url_options = { :host => 'localhost:3000' }
+
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.smtp_settings = {
+  :address              => "mail.jermaineart.eu",
+  :enable_starttls_auto => true,
+  :port                 => 587 ,  #SSL is 465, and the port for TLS is 587
+  :domain               => "jermaineart.eu",
+  :user_name            => "sales@jermaineart.eu",
+  :password             => "Sales20!7",
+  :authentication       => 'plain',
+}
+
+
+DT: April 20
+============
+
+KSN:
+#455: Kanban >> Tooltips Issue - Discuss with Ankeet - 0.5hr - KSN - tooltip issue pending - DONE except tooltip issue
+#334: Lead List Page > Let's keep only one style of 'Tooltip'. That is the 'Dark Grey with White font with ponters' 0.5hr - KSN
+
+#311: Dashboard -> Tooltip missing on every chart 
+#476: Dashboard >> Summary >> Last Calls section -DONEL
+#365: Leads List > three dot menu > "Add Task Pop-up form" Issue - DONEL
+
+#398: Users Page >> User Roles & Restrictions
+
+#395: Users >> User Tile >> Options button overlapping with header after scrolling - DONE
+#402: Users >> Edit User >> Profile Pic - DONE
+#405: Users Listing >> Revoke Admin >> BUG - DONE
+#407: Users Page >> Assign a Lead >> Pop Up >> UI - DONE
+#408: Users Page >> Assign a Lead >> No auto-refresh - DONE
+#409: Users >> Assign a Lead >> Notification Msg missing - DONE
+#412: Header Menu >> Invite a User >> Pop Up - DONE
+#456: Users Page >> Roles Color - DONE
+
+
+#494: Lead List Page >> row alignment of the leads are not proper [Check Screenshot]
+
+ANS:
+#460: Leads Details >> Quick Notes Section >> Update  - 0.5 hr - ANS
+#416: Profile page > Todays tasks button - 1 hr - ANS
+#399: Leads Listing > Filter > UI Fix - 0.5 hr - ANS
+#495: Community Users - Resend Invitation functionality
+
+#413: Users Page >> Block a User >> BUG
+
+Implement to display the project listing - 1.5 hrs - ANS
+Implement the UI of create new task - 1.5 hrs - ANS
+Implement the create new task functionality without repeat option - 2 hrs - ANS
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Fix the tooltip issue through out the application - 1.5hrs 
+Discussion/review with ANS regarding lead project management implementation - 1.5hr - AMT 
+Go through Braintree proration to charge or credit a customer if a change is made to the subscription price in the middle of a billing cycle - 1hr - AMT
+Go through Braintree AddOn/Discount integration with Subscription and call their API - 1.5hr 
+Prepare Model Architecture and documentation on key features for subscription module - 2hrs - AMT
+
+[1, 8, 9, 10, 11, 12, 13, 15, 16, 17, 22, 23]
+
+
+
+DT: April 21
+============
+26 Day(s) left on your trial
+users/pricing
+
+#334: Lead List Page > Let's keep only one style of 'Tooltip' 0.5 hr 
+#311: Dashboard -> Tooltip missing on every chart  It need to be interactive 0.5 hr
+Fix Tooltip issue. 0.5 hr
+
+
+KSN
+#494: Lead List Page >> row alignment of the leads are not proper. 0.5 hr
+Implement the new UI for send email popup - 1 hr 
+Change structure of Add Lead and add task popup and push in staging. 0.5hr
+Implement view html layout functionality and display guide lines in a popup. 1.5hr - KSN
+#491: Contact Listings >> Send email popup
+#428: Settings >> Groups
+#426: Settings > Personal > Charts ?
+#423: Settings >> SNS Media ?
+#424: Settings >> Widgets >> Not Working
+#417: Settings >> Lead Stages >> Add New Stage
+#430: Settings > Weekly Digest ?
+#431: Settings > Task Outcomes
+#433: Settings > API Integration ?
+#446: Settings >> A Click on SNS Media
+
+ANS
+#413: Users Page >> Block a User >> BUG - 1 hr - ANS
+Merge the convert to lead to the community - 0.5 hr - ANS
+Generate migration for project job - 0.5 hr - ANS
+Implement the popup to create project job - 0.5 hr - ANS
+Design the form for create project job - 1.5 hrs - ANS
+Save the project job data in respective tables - 2 hrs - ANS
+Implement the job repeat popup - 1 hr - ANS
+Design the form for job repeat - 1.5 hrs - ANS
+
+
+AMT
+Go through company settings page with Ankeet - 1hr - AMT
+Discussion/review with ANS regarding lead project management implementation - 1.5hr - AMT 
+Go through Braintree proration to charge or credit a customer if a change is made to the subscription price in the middle of a billing cycle - 1hr - AMT
+Create respective models for subscription module - 1hr - AMT
+Integrate bootstrap slider in user pricing page - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+Restrict blocked users to login - 0.5hr - AMT
+
+Go through Braintree AddOn/Discount integration with Subscription and call their API - 1.5hr 
+Prepare Model Architecture and documentation on key features for subscription module - 2hrs - AMT
+
+Braintree Customer Create 
+Braintree Subscription 
+Rake task for setting trial period 
+Create models for subscription
+
+
+Code Merge in community:
+
+>> Bulk upload Contact 
+>> Convert to Lead
+>> Resend invitation
+>> Dashboard fixes
+>> User changes 
+
+>> Braintree Proration go through 
+Go through Bootstrap slider 
+
+
+
+inserted new columns into Organization
+Set the trial end date for all organization
+
+
+
+rails g model UserSubscription subscription_id:integer user_limit:integer storage_limit:integer price:float btsubscription_id:text btprofile_id:text cc_token:text payment_status:string is_cancel:boolean is_updown:string subscription_start_date:datetime next_billing_date:datetime cancel_date:datetime is_active:boolean  organization:references user:references
+
+
+
+
+Daily Update - 04/21
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​
+Associated with Kisan in fixing the displaying of HTML code in preview 
+Discussed with Ansuman Sir regarding lead project management integration 
+Associated with Ansuman Sir in adding the logic for restricting blocked users to login 
+Created and modified models Organization and Subscription for storing of subscription information
+Added the logic to storage free trial for all organizations and displayed the trial days left in header 
+Going through the braintree webhook for charge successfull/unsuccessful transaction
+Meerged the webtolead functionality in demo community server and verified 
+Pushed all the changes to cloud production
+
+​Best,
+Amit​
+
+
+DT: April 24
+=============
+KSN:
+#428: Settings >> Groups 1hr
+#431: Settings > Task Outcomes 1hr
+#417: Settings >> Lead Stages >> Add New Stage - 0.5 hr 
+#491: Contact Listings >> Send email popup - 0.5hr
+Implement new form layout in Invite User popup. 1 hr
+Verify webform plugin. 1hr 
+#389: Kanban view > 3 dot meu > send email option
+#359: Create Invoice issues
+#414: Create Invoice > footer part
+
+
+
+Not Defined issue in user - community
+fix admin type issue in live server
+#404: Users Page >> Revoke Admin >> PopUp
+#402: Users >> Edit User >> Profile Pic
+
+
+
+ANS:
+#486: Lead Listings >> Right Side panel 
+Convert to lead in community
+Implement the projects job listing page - 2 hrs - ANS
+Implement quick job functionality under job listing page - 2 hrs - ANS
+Implement the project job details page - 2 hrs - ANS
+Fix the UI of projct job creation page - 2 hrs - ANS
+Verify and fix the project job creation - 1 hr - ANS
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Integrate drag n drop file upload in lead project management - 1hr - AMT
+Fix the user role group 'not defined' issue in community server - 0.5hr - AMT 
+Update the admin type issue in live server - 0.5hr - AMT
+Discussion/review with ANS regarding lead project management implementation - 1hr - AMT 
+Add webhool URL in braintree settings page to save transaction information - 2hrs - AMT
+Create respective models for subscription module - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+ln -nfs /var/www/shared/production.rb config/environments/production.rb
+
+rails g model UserSubscription subscription_id:integer user_limit:integer storage_limit:integer price:float btsubscription_id:text btprofile_id:text cc_token:text payment_status:string is_cancel:boolean is_updown:string subscription_start_date:datetime next_billing_date:datetime cancel_date:datetime is_active:boolean  organization:references user:references
+
+rails g model Subscription plan_id:text user_limit:integer storage_limit:integer is_active:boolean price:float free_trial_days:integer organization:references
+
+rails g model Transaction btsubscription_id:text transaction_id:text plan_id:text status:text subscription_price:float amount:float balance:float next_billing_date:datetime transaction_type:text invoice_id:integer organization:references user:references user_subscription:references
+
+
+
+DT: April 25
+=============
+KSN:
+#486: Lead Listings >> Right Side panel : 
+#448: Dashboard >> Layout Update 
+#442: Arrow mark is not placed properly 
+#324: Lead Page > click on the '+' sign > add tab > the 'Cancel' button is not aligned to middle of the button 
+#463: Dashboard >> Recent Leads >> View More
+#497: Users >> Invited user >> 3 dot menu
+#454: Kanban >> Center Aligning
+#496: Invite User >> Email Template >> Change
+Highlight user in case of blocked, display inviatation sent label
+Lead project management UI - project listing & create job 
+
+ANS:
+Fix the new UI of project job details page - 2 hrs - ANS
+Display the required data in job details page - 1.5 hrs - ANS
+Fix the undefined method issue when create a task - 0.5 hr - ANS
+Validate and fix the comment functionality - 2 hrs - ANS
+Verify and update the in progress tasks in orangescrum - 1 hr - ANS
+Merge and verify convert to lead functionality in community zip - 1 hr - ANS
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Discussed with Ansuman Sir regarding lead project management integration - 1hr - AMT
+Go through the braintree DOC to simulate the past due transaction - 1hr - AMT
+Go through the braintree DOC for unsuccessful transactions - 1hr - AMT
+Fix the redirect loop issue when user logs out - 1hr - AMT
+Invite User - Check User limit and display proper message - 1.5hrs - AMT	
+Code merging and unit testing - 1.5hr - AMT
+
+
+==============================================================================================================================
+
+Almost close
+=============
+#333Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned)
+#464: Dashboard >> Recent Leads & Upcoming Tasks >> Calendar 
+#401: Contact Listing > send email 
+#377: Contact Listing > no tooltip 
+#455: Kanban >> Tooltips Issue 
+#454: Kanban >> Center Aligning
+
+
+Discuss
+=======
+#323: Lead list page > tab count is coming after we have clicked on certain tab 
+#372 Dashboard > View Task Listing > Error
+
+#391: Kanban view > 3 dot menu > Move Lead - ANS
+
+
+Not Started
+===
+#369: Lead List Page > three dot menu > "Add Note" Issue 
+#391: Kanban view > 3 dot menu > Move Lead  --  will fix after new form layout
+
+
+Pending
+380 - all pop up
+#334 tooltip
+#367: Dashboard >> Clickability 
+#311 tooltip
+
+DT: April 26
+=============
+KSN:
+Implement new project and create job  page as per mock up. 2hrs - KSN
+Fix delete functionality issue of send email popup. 0.5 hr - KSN
+Fix UI issue and changes in cc and bcc field. 0.5 hr - KSN
+Disabled email field after choosing name from autosuggest. 0.5 hr - KSN
+#501 WUS Cloud Website >> Quora Link
+#454: Kanban >> Center Aligning - take UI help 
+
+ANS:
+Fix the validation for the project creation form - 2 hrs - ANS
+Implement hide functionality for date and hour in project creation form - 1 hr - ANS
+Implement to show/hide functionality when click on link this project to lead radio button - 1 hrs - ANS
+Fix the validation for the project job creation form - 2 hrs - ANS
+Fix the validation for the project job repeat form - 2 hrs - ANS
+
+AMT:
+Push latest webtolead zip file to production 
+Discussed with Ansuman Sir regarding lead project management integration - 1hr - AMT
+Go through the braintree DOC to simulate the past due transaction - 1hr - AMT
+Go through the braintree DOC for unsuccessful transactions - 1hr - AMT
+Add validations for restricting organization users to login incase of failed subscriptions - 2hrs - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+NoMethodError (undefined method `<' for nil:NilClass)
+
+
+
+DT: APril 27
+=============
+KSN:
+Add Help desk link and Quora link in header and footer - 0.5 hr - KSN
+#507: Kanban Page >> Select an Opportunity >> Send Email >> 0.5 hr - KSN
+Job list UI
+Job details page UI
+Job type add/edit in settings page - 1.5hr
+Job group add/edit in settings page - 2.5hrs
+
+#509: White Panel at the Top >> Icons unchanged
+
+ANS:
+Fix the exception occured in contacts import contact from zoho_crm - 0.5 hr - ANS
+Fix the exception occured in deals bulk lead upload - 0.5 hr - ANS
+Add option bar to display project board and details view - 0.5 hr - ANS
+Implement UI project board view - 2 hrs - ANS
+Implement UI project detailed view - 2 hrs - ANS
+Display chart for job type in project details view page - 1 hr - ANS
+Display chart for job status in project details view page - 1 hr - ANS
+Display the overdue and upcoming section in project details view page - 1 hr - ANS
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Discussion about the job repeat functionality - 0.5hr - AMT
+Go through BT customer search/update API - 0.5hr - AMT
+Implement slider in pricing page - 1hr - AMT
+Add the logic to use same BT profile ID if the customer information is already in vault - 1hr 
+Discussed with Ansuman Sir regarding lead project management integration - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+
+DT: April 27
+============
+ANS:
+Display the project status backgroud color as per status in project board view - 0.5 hr - ANS
+Display the overdue and upcoming section in project details view page - 1 hr - ANS
+Display the users involved section in project details view page - 1 hr - ANS
+Display dynamic status in job listing. 0.5 hr - KSN
+Group by dates in job listing 
+Job listing - all, today...etc
+
+KSN:
+#509: White Panel at the Top >> Icons unchanged
+Complete job details page as per mock up. 1.5 hr - KSN
+Implement dropdown for task type and change task type on select. 0.5 hr - KSN
+Implement bootstrap inline edit for estimated hours. 0.5 hr - KSN
+Implement dropdown for priority and change task type and colour of priority on select. 0.5 hr - KSN
+Implement dropdown for task group and change task group on select. 0.5 hr - KSN
+Implement dropdown for Assigned to and change the user on select. 0.5 hr - KSN
+Implement date picker and change due date. 0.5 hr - KSN
+Add column resolved_at and closed_at 
+closed_at => task progress 100%
+Display created by in task listing data table. 0.5 hr - KSN 
+Job type, project task type and job group add/edit in settings page 
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Discussion about the job repeat functionality - 0.5hr - AMT
+Go through BT customer search/update API - 0.5hr - AMT
+Implement slider in pricing page - 1hr - AMT
+Add the logic to use same BT profile ID if the customer information is already in vault - 1hr 
+Discussed with Ansuman Sir regarding lead project management integration - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+LPM remaining items:
+Fix the UI of project detailed view - 2 hrs - ANS
+Display chart for job type in project details view page - 1.5 hrs - ANS
+Display chart for job status in project details view page - 1 hr - ANS
+Implement filter UI in project board view page - 1.5 hrs - ANS
+Job repeat
+
+Invite Users
+Task detail - shotcut action items
+Task detail - Next & Previous, Back button 
+
+Project board view
+Project detailed view
+Job type and Job group addition in settings page 
+Create project UI
+Create job UI
+Project List view UI
+Job list UI
+Job details page UI
+
+DT: April 29
+============
+Kisan:
+Commmunity
+Change icons from left side pane. 1hr
+Change icons from top header. 0.5hr 
+Add new Menu on header. 0.5hr
+Merge in community - 60%
+
+
+Cloud:
+after_save :adjust_user_subscription_and_org_status_based_on_webhook_response, :if => :status_changed? 0.5 hr
+Complete job details page as per mock up. 1.5 hr
+Display created by in task listing data table. 0.5 hr
+
+
+Ansuman:
+Displayed the project status backgroud color as per status in project board view
+Implemented functionality to fetch and display the count for overdue and upcoming jobs in project details view page
+Implemented to display dynamic status in job listing
+Implemented to display the records as group by dates in job listing
+Display the All, Today, Overdue, Upcoming and Completed tab in Job listing
+Implemented functionality fetch and display records as per selected tab in Job listing
+
+
+
+Sir, please find updates as follows	
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​	
+Discussed with Ansuman Sir regarding lead project management integration 
+Integrated slider for user selection and displayed price accordingly
+Added the logic to check whether user is upgrading or downgrading subscription
+Integrated the functionality for subscription upgrade and downgrade 
+Displayed the subscription information in the subscription page 
+Displayed the list of braintree transactions in transaction page 
+
+​Best,
+Amit​
+ᐧ
+
+
+Go through BT customer search/update API - 0.5hr - AMT
+Implement slider in pricing page - 1hr - AMT
+Add the logic to use same BT profile ID if the customer information is already in vault - 1hr 
+Discussed with Ansuman Sir regarding lead project management integration - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+
+Fixed the issue where subscription was getting cancelled in webhook call 
+Created page for subscription and transaction informations 
+Added the logic to restrict duplicate entry in transaction table
+Verified the logic for restriction on trial period and subscription expiration 
+Pushed all the changes to cloud production
+
+
+
+DT: May 1, 2017
+==============
+KSN:
+Hide option functionality - create a project - DONE 
+invite user - create project 
+File upload UI tweak - Comment Job - DONE 
+Validation for file upload - DONE 
+Job listing UI changes and information display - DONE
+Job ID project specific - WIP 
+Due date in job listing - DONE 
+
+#527: Click on invite person from upper right corner, click on create group from pop up it takes to lead stages instead of group
+
+
+ANS:
+created_by in project listing - DONE
+Add link for lead and opportunity in project listing - DONE
+Project detail wuth statistics - DONE 
+Mark project as complete - DONE 
+Add comment for each activity like resolve, assigned to ...etc - DONE 
+Job repeat functionality 
+
+Convert to lead and dashboard in community - DONE 
+
+AMT:
+
+WakeUpSales
+Task assignment and review - 2hrs - AMT
+Discussion about the job repeat functionality - 0.5hr - AMT
+Go through BT customer search/update API - 0.5hr - AMT
+Implement functionality for user selection after payment made - 2hrs - AMT 
+Add the logic to use same BT profile ID if the customer information is already in vault - 1hr 
+Discussed with Ansuman Sir regarding lead project management integration - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+
+
+
+
+
+Discussio on comment - job project 
+Discussion on the project listing page 
+how a porject staus changed to startedand completed
+
+
+DT: May 2, 2017
+==============
+KSN:
+
+
+
+ANS:
+Implement back, next, prev functionality in job details page- 1.5 hrs - ANS
+Implement to collapse description in job details page - 0.5 hr - ANS
+Add link shortcut icon link in job details page - 1 hr - ANS
+Implement functionality for short cut icon in job details page - 2.5 hrs - ANS
+Fix the due date datepicker issue in job details page - 1 hr - ANS
+Fix the last comment as nil issue - 1 hr - ANS
+Add link lead and opportunity in dob details page - 0.5 hr - ANS
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Merge resend invitation functionality in Daniel's VPS server - 1hr 
+Discussion about the job repeat functionality - 0.5hr - AMT
+Implement functionality for user selection after payment made - 2hrs - AMT 
+Add logic to store user information in same vault if user has already have subscription profile - 1.5hr - AMT
+Verify upgrade and downgrade subscription  - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+Created test function in AWS lambda and verified the triggers
+
+Payment reminder email during trail period expiration - 1hr - AMT
+
+
+http://dev-saas.wakeupsales.com/
+lambda_test
+
+
+DT: May 3, 2017
+==============
+KSN:
+Add color to status and change UI in job details page - 0.5 hr - KSN ---DONE
+Add plus icon in right-bottom section of page and and Create Job and create Project link on mouse hover. 1hr - KSN  ---DONE
+Change the progress on status changed to Closed - 0.5 hr - KSN  ---DONE
+Add link to shortcut icon in all pages - 2 hrs - KSN  ---DONE
+Implement the catchup later in job details page - 0.5 hr - KSN  ---DONE
+Implement invite user functionality after project creation - 1.5 hrs - KSN  ---DONE
+End to end testing and push to staging server - 2 hrs - KSN
+
+ANS:
+Fix the dropzone initialization on ajax request - 1 hr - ANS
+Implement datepicker functionality to change due date in project jobs listing page - 0.5 hr - ANS
+Fix the UI of chart section in board view - 1 hr - ANS
+Fetch and display respective jobs select project option - 1 hr - ANS
+Update shared document and requirement specification - 1 hr - ANS
+Design pricing page - 1 hr - ANS
+Implement payment reminder functionality - 1 hr - ANS
+Implement functionality for user selection after payment made - 1.5hrs - ANS
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Merge updated code in community  - 1hr 
+Discussion about the job repeat functionality - 0.5hr - AMT
+Implement functionality for user selection after payment made - 2hrs - AMT 
+Verify upgrade and downgrade subscription  - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+Created test function in AWS lambda and verified the triggers
+Payment reminder email during trail period expiration - 1hr - AMT
+
+
+DT: May 3, 2017
+===============
+KSN:
+Do Unit testing on Lead Project management. 2hrs - KSN
+Refresh task details page after status changed to resolved, closed and catch-up later. 0.5 hr - KSN
+Prepare document for each module of Lead Project management. 1.5hrs - KSN
+Prepare Requirement Specification of Lead Project management. 0.5hr - KSN
+Hide sortcut icon of current status. 0.5 hr - KSN
+Add comment after change of estimated hours. 0.5 hr - KSN
+Fix priority changing isuue. 0.5hr - KSN
+Add comment on change of assign to and due date. 0.5 hr - KSN
+Add character limit to lead name and job title. 0.5 hr - KSN
+Add comment on change of assign to and due date 0.5 hr - KSN
+Add character limit to Project Name, Opportunity Associated, Lead Associated and Description. 0.5 hr - KSN
+Merge code in Dashboard and Users page in community. 1.5hrs - KSN
+
+ANS:
+Design pricing page - 1 hr - ANS
+Implement payment reminder functionality - 1 hr - ANS
+Implement functionality for user selection after payment made - 1.5hrs - ANS
+Create migration file to add user allow by admin field to organization - 0.5 hr - ANS
+Fix the UI of chart section in board view - 1 hr - ANS
+Update shared document and requirement specification - 1 hr - ANS
+Implement job repeat functionality - 2 hrs - ANS
+
+AMT:
+Merge updated code in community  - 1hr 
+Discussion about the job repeat functionality - 0.5hr - AMT
+Verify upgrade and downgrade subscription  - 1hr - AMT
+Fix the trail period calcualtion issue for organizations - 1hr - AMT
+Fix the multi super admin account for some organizations - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+
+#528-Users Page >> Block - Unblock Issue - DONE
+#374-Footer > Bottom Right corner > Last activity - DONE
+#341: Create New > Files > Filter options - DONE
+
+#481-Plugin Payments Page >> Autofill Issue 
+#437: Lead Listings > 3 dot menu > Edit > Associate a contact
+#442: Arrow mark is not placed properly - 
+
+
+You will be charged after your 30 days use of Orangescrum. The charge on your credit card statement will be from "ANDOLASOFT INC"
+
+The icons are old ones. Plus, the icon of Revoke/Grant Admin is not properly aligned.
+
+So let's update the icons with new ones (given by Naresh). 
+
+gem 'sidekiq', '4.2.9'
+
+
+Plugin 
+>> Lead project mgmt. 
+>> lead Event tracking 
+
+>> Cloud subscription 
+
+>> Code merge in community 
+
+>> OS issue fixes 
+
+>> Self hosted 
+
+Step-1 
+
+Priority2 - Lead project mgmt.  and  monthly cloud subscription
+3- Code merge in community 
+
+4. self hosted dependent on 3 (less than 4days )
+
+
+Amit,
+
+I see in orangescrum still 140  tasks with new and in progress 30. and high priority is 78 out of it. Provide me an ETA when this will be done.
+
+
+Thanks
+
+
+Daily Update - 05/04
+
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​	
+Verified the lead project management integration and listed out the bugs
+Discussed with Kisan regarding the lead project management issue fixes
+Associated with Ansuman Sir in generating hash within array for charts 
+Fixed the broken link issue for save user 
+Verified the open OS issues in cloud server, and resolved those tasks after verification
+Fixed os#374-Footer > Bottom Right corner > Last activity
+
+​Best,
+Amit​
+
+
+
+
+Pushed the latest changes to community demo server and verified the changes 
+Fixed the page break issue immediately after eb deployment in community demo server 
+Discussed regarding the lead project management development with ANS and KSN
+Added the logic to send error notification during subscription 
+Verified the braintree prorate functionality by upgrading subscription 
+Discussed with Kisan regarding the broken link issues in cloud 
+Pushed the fixes to staging server and verified the broken links using http://www.deadlinkchecker.com
+
+
+
+DT: May 5, 2017
+===============
+KSN:
+Display blank if lead not associated - 0.5 hr - ANS - DONE
+Add dynamic text for â€œDisplaying all jobs - 0.5 hr - ANS - DONE
+Project Listing >> Add a create job button in job listing page. 0.5hr - KSN - DONE
+Project Board View >> Add character limit to short name to the project while creating project. 0.5 hr - KSN - DONE
+Project Detailed View >> Fix Upcoming and Overdue count issue. 0.5 hr - KSN - DONE
+Create New Project >> Prefilled Lead and opportunity while creating project. 0.5 hr - KSN - DONE
+Create new Job >> Add start date and end date validation and number validation in create job and create project page. 1 hr - KSN - DONE
+Add action in close and cancel button. 0.5 hr - KSN - DONE
+Did not getting any mail on form submit with checking user on notify via email.0.5 hr - KSN - DONE
+Job Details >> Add attachment and activity icon in job details - DONE
+Job Details >> Add a vertical bar before catch-up later icon. - DONE
+Job Details >> Add up and down arrow of collapse description action - DONE
+Project Listing >> Add plus icon in right-bottom section of page and and Create Job and create Project link on mouse hover
+
+#504: WUS Cloud Website >> Pricing Page 
+Functionality to store user price in cookie and redirect to pricing page after signup 
+
+
+
+ANS:
+Implement filter functionality in projects listing page - 2.5 hrs - ANS
+Implement filter functionality in project jobs listing page - 2 hrs - ANS
+Implement functionality for user selection after payment made - 1.5 hrs - ANS
+Implement job repeat functionality - 2 hrs - ANS/AMT
+Super Admin access 
+
+
+
+AMT:
+
+Fix the user limit display issue - 1.5hr - AMT
+Fix the trail period calcualtion issue for organizations - 1hr - AMT
+Discussion about the job repeat functionality - 0.5hr - AMT
+Go through error handling during subscription - 1hr - AMT
+Code merging and unit testing - 1.5hr - AMT
+
+Merge updated code in community  - 1hr 
+
+Verify upgrade and downgrade subscription  - 1hr - AMT
+
+Fix the multi entry super admin account for some organizations - 1hr - AMT
+
+
+
+Discuss about project status
+Subscription during trial period 
+
+
+User.where(["admin_type not in (?)", [0,1]]).update_all is_active: false
+
+add_column :organizations, :is_trial_expired, :boolean, :default => false
+add_column :organizations, :extend_trial_days, :integer, :default => 0
+
+
+http://dev-saas.wakeupsales.com/check_trial_period_expiration
+
+
+- Trial period calcualtion issue fixed
+- Added the logic to check and inactive users after trial expires
+- Set the rule and function in AWS lambda
+
+
+Daily Update - 05/05
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​	
+Verified the lead project management integration and listed out the bugs
+Discussed with Kisan regarding the lead project management issue fixes
+Associated with Ansuman Sir in fixing the lead project management filter issues 
+Fixed the trial period calcualtion issue for organizations after signup and displayed proper message in top menu header
+Cross checked the subscription code and added necessary steps to take care of errors and log them in log file
+Added the logic to verify active users and made them inactive after subscription expires 
+Created method to check the trail period expiry of organizations to place it in AWS lambda function
+Scheduled the AWS lambda function in cloudwatch to run the trial period expiration check
+Pushed all the changes to 'subscription' branch
+
+​Best,
+Amit​
+
+
+Verified all the task completed by ANS,KSN and pushed all the updated code to production server​	
+Verified the lead project management integration and listed out the bugs
+Discussed with Kisan regarding the lead project management issue fixes
+Associated with Ansuman Sir in generating hash within array for charts 
+Fixed the broken link issue for save user 
+Verified the open OS issues in cloud server, and resolved those tasks after verification
+Fixed os#374-Footer > Bottom Right corner > Last activity
+
+
+DT: May 8, 2017
+===============
+ANS:
+Add functionality to siteadmin for allowing extra users and extend trial period for some organization - 1 hr - ANS
+Restriction except superadmin to access pricing, subscription, transaction page and inactive uses(admin/non-admin) will redirect to dashboard only  - 1 hr - ANS
+Pricing page UI cleanup and fix the autofill issue - 1.5hr - ANS
+Left side menu icon change, add Subscription, transaction, add link Billing in top menu link - 1hr - ANS 
+Implement job repeat functionality - 2 hrs - ANS/AMT
+Verify the filter functionality and add new filter options - 2 hrs - ANS
+Lead project management documentation and assign to QA - 1hr - ANS
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Disable all users after transaction is unsuccessful in BT webhook - 1hr - DONE
+Add trial period in BT subscription if user start subscription during trial period - 2hrs - AMT - DONE
+Prepare documentation for cloud subscription - 2hrs - AMT 
+Verify upgrade and downgrade subscription  - 1hr - AMT - DONE
+Fix the multi entry super admin account for some organizations - 1hr - AMT
+Discussion regarding the job repeat functionality - 0.5hr - AMT
+ 
+
+Added the logic to fetch CC information in credit card page 
+
+array = User.where("admin_type = ?",1).collect(&:organization_id)
+array.select{|element| array.count(element) > 1 }
+
+
+3 =DONE
+42 =DONE
+26 =DONE
+36 =DONE
+40 =DONE
+55 =DONE
+72
+
+=> [3, 3, 3, 3, nil, 3, 3, nil, 3, 42, 26, nil, 3, 3, 3, 3, 72, 72, 36, 36, 3, 3, nil, 40, 42, 42, 40, 55, 55, nil, nil, 26, nil, nil]
+o = Organization.find 3
+o.users.where(:admin_type=>1).count
+o.users.where(:admin_type=>1).update_all(admin_type: 2)
+o.users.first.update_column(:admin_type, 1)
+
+a.mit.mohanty@andolasoft.co.in
+test1234
+
+Cloud Subscription Remaining works 
+===================================
+>> Trial days left link UI cleanup - after trial expires, display 'Subscription' link 
+>> Validation in checkout page 
+>> Changes in subscription page 
+    - Created on | User Limit | Users:1 of 10 | Next Billing Date
+	- History 
+	  - User limit | Amount | Created On | Status 
+	- Transaction
+	  - Invoice Date | Invoice Number | Applied Amount($) | Status | Action
+>> After successful transaction system generated invoice id 
+>> Billing History >> Download on invoice link 
+>> Billing History >> Actions >> Send email 
+>> Subscription Create - Send invoice pdf attachment 
+>> Credit card - Edit credit card 
+
+Lead Project Management
+========================
+>> Job repeat  
+>> Job filter 
+
+>> Code merge in community
+>> DB design self hosting 
+
+
+DT: May 9 
+=========
+ANS:
+Implement form validation in checkout page - 1 hr - ANS
+Implement UI of the subscription page - 1.5 hrs - ANS
+Generate invoice id after successful transaction - 0.5 hr - ANS
+Implement functionality to download pdf on click on invoice link in billing history - 1 hr - ANS
+Implement send email functionality with pdf attachment in billing history - 1 hr - ANS
+Implement job repeat functionality - 2 hrs - ANS/AMT
+
+KSN:
+Merge in Community:
+Add link to Contact icon to redirect to the contact details page. 0.5 hr - KSN
+Remove hand cursor and add default cursor in profile icon. 15min - KSN
+Fixed file attachment issue in send email popup. 0.5hr - KSN  
+Fixed 3 dots overlapping with the white header area UI issue. 15min - KSN
+Change text form "Change Image" to "Preview" in profile edit pop up. 15min - KSN
+Change text form "Non-Admin" to "User" in Invite user pop up. 15min - KSN
+
+Merge in Zip file:
+Merge the changes in dashboard page. 0.5hr - KSN
+Merge the changes in User page. 1hr - KSN
+Merge the changes in Kanban view page. 1hr - KSN
+Merge the changes in Lead listing page. 0.5hr - KSN
+Merge changes in files page.  0.5 hr - KSN
+Merge changes in Tasks page. 0.5 hr - KSN
+Merge the changes in Contact listing and contact details page. 1hr - KSN
+Add link to Contact icon to redirect to the contact details page. 0.5 hr - KSN
+Remove hand cursor and add default cursor in profile icon. 15min - KSN
+Fixed file attachment issue in send email popup. 0.5hr - KSN  
+Fixed 3 dots overlapping with the white header area UI issue. 15min - KSN
+Change text form "Change Image" to "Preview" in profile edit pop up. 15min - KSN
+Change text form "Non-Admin" to "User" in Invite user pop up. 15min - KSN
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Implement edit credit card functionality - 2 hr - ANS
+Prepare documentation for cloud subscription - 2hrs - AMT 
+Verify upgrade and downgrade subscription  - 1hr - AMT - DONE
+Discussion regarding the job repeat functionality - 0.5hr - AMT
+
+
+
+
+mysqldump -h localhost -u root -p wus-subscription > wakeupcom-dev-saas.sql
+wuscom324*
+
+
+#<UserSubscription id: 14, subscription_id: 1, user_limit: 1, storage_limit: nil, price: 5.0, btsubscription_id: "f62nw2", btprofile_id: "581718339", cc_token: "665fwy", payment_status: "Active", is_cancel: false, is_updown: "down", subscription_start_date: "2017-05-08 00:00:00", next_billing_date: "2017-06-08 00:00:00", cancel_date: nil, is_active: true, organization_id: 5, user_id: 5, created_at: "2017-05-09 11:15:59", updated_at: "2017-05-09 11:15:59", is_cancel_payment_fail: false>
+
+
+DT: May 10
+==========
+ANS:
+Implement UI of the job repeat form - 1 hr - ANS
+Validate project job repeat form - 1 hr - ANS
+Implement project job repeat functionality - 2 hrs - ANS
+
+
+Modify the subscription invoice pdf contents - 1 hr - ANS
+Document on subscription and lead project management - 1.5 hrs - ANS
+Code merging and unit testing in the staging server - 1 hr - ANS
+
+Implement checkout page for self hosting payment - 2hrs - ANS
+
+
+KSN:
+Thoroughly test the zip version of community. 2hr - KSN
+Fix the price left calculation issue in pricing page. 0.5hr - KSN
+Find out if any other things we need to merge in zip and community. 1hr - KSN
+#304 - Add BO notification after deal move from one stage to another. 0.5hr - KSN
+#327 - Add icon in 'move a lead' and delete a lead option in lead listing page. 0.5hr - KSN
+#388 - Add tooltip for delete button in add contact and attachment section. 0.5 hr - KSN
+#342 - Add download link on the file type column in files page. 0.5hr - KSN
+Implement new form layout in Create a Task, Send Email 1.5 hrs - KSN 
+Implement calendar view for Job in Lead Project Management plugin. 2hrs - KSN
+
+AMT:
+Prepare plan 
+
+
+cat  /etc/nginx/sites-available/default
+
+#server unix:/var/www/workspace/WUS-Stage-ZIP/shared/sockets/puma.sock;
+
+/var/www/railscrm/shared/sockets/puma.sock
+
+
+#!/bin/bash -x
+source /etc/profile.d/rvm.sh
+
+# enter application root
+cd $WORKSPACE
+
+sudo su
+
+#Use the gemset
+rvm use ruby-2.0.0-p648@wuscom
+
+# install missing gems
+bundle install
+
+#symlink database.yml from shared folder
+ln -nfs /var/www/shared/database.yml config/database.yml
+
+# invoke rake
+#RAILS_ENV=production rake db:create db:migrate
+
+# assets precompile
+RAILS_ENV=production rake assets:precompile
+
+sudo pkill -f puma
+
+sudo restart puma-manager
+
+
+DT: May 11
+==========
+Lead Project Management:
+Project listing UI (Add Job)  
+Filter functionality - 6hrs 
+Calendar View - 2hrs 
+
+
+ANS:
+Implement project jobs calendar view - 2 hrs - ANS
+Implement filter functionality by priority, status for project jobs - 2 hrs - ANS
+Verify the job repeat functionality in the staging server - 1 hr - ANS
+Subscription Email template changes - 1.5 hrs
+
+
+
+KSN:
+>> Self hosting community
+>> Subscription - email changes 
+
+Desigh Pricing self-hosted page. 2.5 hrs - KSN
+Fix scroll issue of pricing scroll bar. 0.5hr - KSN
+Fix bo notification text appending issue in zip version. 0.5hr - KSN
+
+
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Prepare documentation for cloud monthly subscription - 2hrs - AMT - DONE
+Prepare DB architecture for self hosting stuffs - 1hr - AMT 
+Build license key generation logic in cloud - 2hrs - AMT
+Decrypt logic in self hosting codebase - 1.5hrs - AMT
+
+
+Code deploy to community 
+
+nano ~/.aws/config
+
+AWS EB deploy: 
+arn:aws:iam::012577392693:user/wuseb
+aws_access_key_id = AKIAIJW2F3IJYGUUMNBA
+aws_secret_access_key = 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
+
+
+
+Bucket:
+access_key_id: AKIAJAVFGWOGKGBOWPWQ
+secret_access_key: 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
+  
+  
+  
+Daily Update - 05/11
+  
+Sir, please find updates as follows
+
+Verified all the task completed by ANS, KSN and pushed all the updated code to production server​
+Pushed the community fixes to demo community server and verified the issues
+Discussed with Kisan regarding self hosting pricing page implementation
+Prepared documentation for cloud monthly subscription
+Created new class method to generate the license key encrypted format 
+Verified the encryption and decryption of generated key 
+Discussed with Ankeet regarding email template changes for cloud monthly subscription
+Discussed with Ansuman Sir regarding implementation self hosting checkout page implementation
+Assisted queries of Customer Danniel with Rahul
+
+​Best,
+Amit​
+
+
+
+DT: May 12
+==========
+ANS:
+Implement and verify the subscription email templates - 2 hrs - ANS
+Implement filter functionality by status for project jobs listing - 1.5 hrs - ANS 
+Payment reminder email starting from last 3 days - 1hr - ANS 
+Lead project management - Add project link in header and verify - 1hr -ANS 
+Implement self hosting checkout page - 2 hrs - ANS
+Integrate license key generation after self hosting payment done - 1hr - ANS/AMT 
+
+
+KSN:
+Demo Commmunity - File download issue fix - 1.5hrs - KSN/AMT
+Fix task type update issue in task list page - 1hr - KSN 
+Fix bo notification text appending issue in zip version. 0.5hr - KSN
+Allowed user to change task type for completed tasks - 0.5hr - KSN 
+Self hosting pricing page changes - 2hrs - KSN 
+Strike through compled task in community version - 0.5hr - KSN 
+Discussed with Omakr regarding self hosting documents - 0.5hr - KSN 
+
+
+>> Create new branch 'community_self_hosting' from 'community' - DONE
+>> Change icons before/after login - DONE
+>> Find out and change the label 'community' - DONE
+>> Change the installation guide as per self hosting - WIP 
+
+
+
+Verify the self hosting pricing summary stuffs with ANK/OMK 
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Prepare documentation for cloud monthly subscription - 2hrs - AMT 
+Prepare DB architecture for self hosting stuffs - 1hr - AMT 
+Build license key generation logic in cloud - 2hrs - AMT
+Decrypt logic in self hosting codebase - 1.5hrs - AMT
+
+During the monthly processing if we see card expired then give a grace period of ten days, during that time he will be able to do everything and on header it will show that we could not process your card due to expired , please update it to get an uniterupted service and every day for ten day send email , 
+at the end of tenth day after login user will see credit card page.
+
+
+Daily Update - 05/12
+
+Trial expiry notification => alignment 
+"Trial period expiry today" => red text 
+Fix the jquery issue for user selection 
+
+mysqldump -h localhost -u root -p wus-local > wakeupcom-subscription.sql
+
+Daily Update - 05/15
+======================
+ANS:
+Implement filter functionality to fetch and display the datas as per tab - 2 hrs - ANS
+Modify the error mail notification template for cloud and webhook - 1 hr - ANS
+Verify the subscription email templates - 1 hrs - ANS
+Lead project management - Add project link in header and verify - 1 hr -ANS
+Implement self hosting checkout page and download functionality - 2 hrs - ANS
+
+
+KSN:
+Community >> Add Getting started link with icon and change Setting to Company Setting. 0.5hr - KSN
+OS fixes code merging in community - 2hrs - KSN 
+Download zip >> Set of Documents for WUS Self-Hosted CRM - 1.5hrs - KSN 
+community_self_hosting >> New organization form >> password validation(error message) - 0.5hr - KSN 
+community_self_hosting >> New organization form >> Add new field license key and validations - 2hrs - AMT/KSN 
+
+
+
+Cloud monthly subscription >> Change color of trial expire today and fix alignment issue. 0.5 hr - KSN
+
+
+
+AMT:
+Discussion regarding lead project management unit testing 
+Modify logic with admin user
+Restricted validations before creation of organization
+handled the cancel stuffs 
+
+
+Task assignment and review - 2hrs - AMT
+Verify monthly subscription end to end - 1.5hrs - AMT 
+Build license key generation logic in cloud - 2hrs - AMT
+Decrypt logic in self hosting codebase - 1.5hrs - AMT
+
+
+Prepare documentation for cloud monthly subscription - 2hrs - AMT 
+Prepare DB architecture for self hosting stuffs - 1hr - AMT 
+Build license key generation logic in cloud - 2hrs - AMT
+Decrypt logic in self hosting codebase - 1.5hrs - AMT
+
+User.create(:email => "support@wakeupsales.com",:password => "test1234", :first_name => "Siteadmin", :admin_type=> 0,:confirmation_token=>nil, :confirmed_at=>Time.now)
+
+NoMethodError (undefined method `trial_expired?' for nil:NilClass):
+  app/controllers/application_controller.rb:76:in `chk_subscription_status_and_user_limit'
+  lib/omnicontacts/middleware/base_oauth.rb:41:in `call'
+ 
+  
+Payment reminder email >>  notification issue - days showing wrong 
+Payment reminder email >> mail should sent to user not admin 
+Subscription activation email to user >> Make date format consistent
+Subscription activation email to user  >> Bill to >> add fullname too, if available
+Subscription activation email to user  >> Add no. of user in description >> like Monthly Subscription - May 2017 to "(1/2/3) user(s) - Monthly Subscription - May 2017"
+Subscription activation email to admin >> change format - Date of Payment
+Subscription cancel email to user and admin >> undefined method 'user' for nil class 
+Transaction listing >> Cancelled subscription >> still showing status 'Active'
+Payment Has Been Processed Email >> amount should be 1.0 
+Payment Has Been Processed Email >> Invoice should come if amount >= 0
+Choose Users >> Please move the leads to the other side.
+Choose Users >> Remove super admin email from the list 
+Subscription page >> 'Cancel Subscription' link should be active only if current subscription is active 
+Transaction page >> Invoice number is same, which is incorrect
+
+
+>> If account is cancelled still organization should be able to access everything till next billing date 
+ 
+
+Daily Update - 05/15
+======================
+KSN:
+Implement new form layout in update trial period pop up. 0.5hr - KSN
+Implement success story page and its details page. 2.5 hr - KSN
+Validate for user limit as per the license key - 1hrs - KSN 
+OS issue fixing - 
+
+
+ANS:
+Implement saving functionality with required informations of self hosting checkout page - 2 hrs - ANS - DONE
+Implement mailer notification functionality for self hosting page - 1 hr - ANS - DONE 
+Integrate license key generation after self hosting payment done - 1 hr - ANS/AMT - DONE 
+Implement download functionality after successful self hosting checkout - 1 hr - ANS - DONE 
+Fix the lead project management shared issues - 2 hrs - ANS
+Fix the monthly cloud subscription issues - 2hrs - AMT/ANS
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Associated with Suryakant for cloud monthly subscription - 2hrs - AMT 
+
+Discussion 
+ >> Add logic to set maintenance_period_ends_on and redirect to renew license page after maintenance period ends -  1.5 hr - KSN
+ 
+ 
+ 
+ 
+ 
+ 
+http://stage-saas.wakeupsales.com/invitation/accept?invitation_token=3k-gcppivmurzH5hdG_K
+ 
+ 
+ 
+ 
+ exports.handler = function index(event, context, callback) {
+  var http = require('http');
+  http.get({
+        host: 'squadzvenue-dev-env.us-east-1.elasticbeanstalk.com',
+        path: '/make_payment'
+    }, function(response) {
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+          console.log('Ended');
+      });
+    });
+};
+ 
+ 
+ 
+Sir, please find updates as follows
+
+Verified all the task completed by ANS, KSN and pushed all the updated code to production server​
+Pushed the cloud fixes to production server and verified the issues
+Associated with Ansuman Sir in generating license key after self hosting payment done
+Discussed with Kisan regarding license decryption and user limit validations 
+Associated with Suryakant for cloud monthly subscription QA in dev server
+Placed the payment reminder email functionality in AWS lambda 
+Validated for user limit as per the license key in self hosting codebase 
+
+
+KT: 
+Freelads - Completed project Details hand over to Ashish 
+Leaguer - Completed project Details hand over to krishna madam, Discussed regarding project key functionalities we have developed and future scope(pipeline work)
+
+​Best,
+Amit​
+ 
+ 
+ 
+ Discussed with Kisan regarding code merging and changes required for self hosting codebase 
+Placed the logic for the decryption of the license key code in self hosting codebase 
+Verified the license key while setting up the organization in self hosting codebase 
+Discussed with Ansuman Sir regarding implementation self hosting checkout page implementation
+ 
+ 
+DT: May 17
+==========
+ANS:
+Fix the lead project management shared issues - 2 hrs - ANS
+Fix the monthly cloud subscription issues - 2 hrs - AMT/ANS
+#398: Users Page >> User Roles & Restrictions - 1 hr - ANS
+#543: Gmail Inbox >> Reply an Email >> The Pop-up needs to be wider horizontally - 0.5 hr - ANS
+Code merging and unit testing - 1 hr - ANS
+ 
+KSN:
+
+
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Fix the GEO locatio fetch issue - 1.5hrs - AMT
+Validate for user limit as per the license key - 1hrs - AMT
+Fixing open bugs of subscriptions - 2hrs - AMT
+Code merging and unit testing - 2hrs - AMT
+
+
+ 
+ 
+
+
+New,Inprogress, Medium, High
+
+#544: Getting Started Page > New Mock Design 1hr 
+#506: Users >> Assign Lead >> Pop Up 0.5hr 
+#473: Bo Notifications >> Update  1hr
+#513: [Client Issues] Contact Details >> Fields not showing - 0.5hr 
+#512: [Client Issues] Lead Details >> Assign to Another Person >> Error Msg  -- 0.5hr
+#514: [Client] Create Task >> Description field 0.5hr
+	>> Create Task > Option for Description field (this will be an optional field)
+	>> This will also show the daily update comment that users send.
+
+#331: Lead page > no multi-option to select all the lead at the same (if a person wants to move or delete leads in bulk) + the drop-down option pointer should give a "hand icon"  1hr
+#365: Leads List > three dot menu > "Add Task Pop-up form" Issue  0.5hr 
+#324: Lead Page > click on the '+' sign > add tab > the 'Cancel' button is not aligned to middle of the button 0.5hr 
+#369: Lead List Page > three dot menu > "Add Note" Issue  1hr
+#530: Task Listing >> Calendar View >> New Mocks 1hr 
+
+
+
+ 
+ org.update_attributes :is_trial_expired => true, :trial_expires_on => Time.now
+ o.users.where(["admin_type not in (?)", [0,1]]).update_all is_active: false
+ 
+ 
+ 
+ 
+ 
+Lead Project Management
+----------------------------------
+Total - 36
+Fix - 7
+Remaining - 29
+
+Fixed: 23 
+6 left - 2hrs 
+
+
+Daily Update - 05/17
+
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS, KSN and pushed all the updated code to production server​
+Pushed the cloud fixes to production server and verified the issues
+Gone through the locatin fetching issue for cloud users and fixed the Geo location fetch issue 
+Discussed with Omkar and Ankeet regarding self hosting mockups for both cloud and client codebase 
+Fixed the following cloud monthly subscription bugs
+Checkout(Price)	>> Price value should auto-come
+zip code >> length of zip code
+created on >> date is not displaying
+Billing Manipulation >> If Partly payment is possible then where to see the rest payment details
+Subscription id	>> Subscription id is not unique for all
+Validated subscription with proper message if they are already in same plan 
+Associated with Chinmaya and Aditya for cloud monthly subscription QA in dev server
+
+
+​Best,
+Amit​
+
+
+
+
+ 
+ 
+Associated with Ansuman Sir in generating license key after self hosting payment done
+Discussed with Kisan regarding license decryption and user limit validations 
+
+Validated for user limit as per the license key in self hosting codebase 
+ 
+ 
+ 
+DT: May 18
+==========
+Subscription: 
+Code level documentation for cloud monthly subscription 
+Past due >> Adding grace period stuffs in case of card expiry - Discussion with Prabhu
+Disable subscription for our organization
+Adding validation while activating users as per the user limit - subscription page 
+
+Unique customer ID generation - self hosted 
+Create form for requesting additional user license - New model UserLicenseRequest
+license_key => text, not string 
+ 
+ 
+ 
+Community_self_hosting:
+------------------------
+Validation for user limit 
+Display maintenance_period_ends_on, customer ID in myplan page 
+Update license key in my plan page 
+license_key => text, not string 
+
+
+
+
+Plan for this week 
+====================
+Self hosting page functionality implementation complete -> both cloud and community - AMIT(Complete functionality)
+OS issue fixes - 50% - Qty: 50
+Lead project management and subscription issue fixes - 100% issue fixing - ANS/AMT
+Code merging cloud fixes in community demo, community and community_self_hosted - KSN 
+
+
+Plan for next week 
+==================
+OS issue fixes - 50% Qty: 50
+lead project management, webtolead and invoice plugin in self hosted 
+
+
+#369: Lead List Page > three dot menu > "Add Note" Issue
+
+
+ #334: Lead List Page > Let's keep only one style of 'Tooltip'. That is the 'Dark Grey with White font with ponters'
+
+
+
+
+
+
+
+ANS
+#479: Files Section >> Issues
+#477: Quick Links >>> Invite User:
+#474: Quick Links Menu >> Add a contact
+#475: Qucik Links Menu >> Create a new task:
+#470: Footer >> Last Activity >> Restrictions
+#358: Daily update > manage daily update > edit options issues
+
+#536: WUS Community edition >> Contacts>> Import contacts from other crm option
+#437: Lead Listings > 3 dot menu > Edit > Associate a contact
+#311: Dashboard -> Tooltip missing on every chart
+#367: Dashboard >> Clickability
+
+KSN
+
+#344: Lead List Page > Lead Name (On Hover) the tooltip sometimes shows and sometimes doesn't
+#532: Users Listing >> Update the icons with new ones (given by Naresh)
+#529: Users >> Group >> Show
+#524: WUS Websites (Cloud & Community) >> Footer > YouTube Channel Link
+#523: Quicklinks > Reports >> Rename it to 'Reports & Analytics'
+#507: Kanban Page >> Select an Opportunity >> Send Email >>
+#489: WUS.com Website >> Sign in & Sign Up forms
+
+
+Daily Update - 05/18
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS, KSN and pushed all the updated code to production server​
+Pushed the cloud fixes to production server and verified the issues
+Verified the location fetching issue in production server 
+Added the logic to validate license key and displayed proper error message in self hosted 
+Created new page 'myplan' for self hosted which display informations such as maintenance period ends on, current user limit, customer id and all used license keys 
+Gone through lead project management and discussed about the issue fixes with Ansuman Sir
+Associated with Chinmaya and Aditya for cloud monthly subscription QA in dev server
+
+​Best,
+Amit​
+
+
+
+DT: May 19
+=============
+AMT:
+>> Email content change after subscription went past due 
+>> Add Grace period stuffs to handle credit card expiry 
+>> Fix open bugs of monthly subscription 
+
+ANS:
+>> Merge the project lead management functionality to saas_ui_v1 branch - 0.5 hr - ANS - DONE
+>> Verify invite user functionality automatic insert to project users - 0.5 hr - ANS - DONE 
+>> Add User in project listing page - 1 hr - ANS - DONE 
+>> Implement to generate unique customer id and modify creation of license key - 1 hr - ANS - DONE 
+
+>> Grace period reminder email notification - 1hr - ANS 
+>> Site admin - Self hosted users list - DONE 
+
+>> UserLicenseRequest - customer_id, Name, Email, requested_user_limit, amount, is_license_generated(default -> false), new_license_key(text) - 2hrs
+>> SelfHostedUser - total_users(when is_license_generated -> true, add the requested value in total value )
+				license key: ["u", "total_users", "10-04-2017", "14527"]									
+ 
+URL: /users/:customer_id/request_for_additional_user 
+Fix OS open bugs - 3hrs 
+
+#550: Company Settings > Groups > No show
+
+
+KSN:
+
+
+Tomorrow work:
+
+>> Add User in project listing page 
+>> Verify - Invite User - Automatic insert to project users 
+
+>> Subscription 
+license key: ["s", "10", "10-04-2017", "14527"]
+Unique customer ID generation - max 5 digits 
+
+
+Need Reply:
+#323: Lead list page > tab count is coming after we have clicked on certain tab
+#511: [Client Issues] Add a Lead / Contact >> Sorting
+#517: [Client] - All the Opportunities to be given a unique Number
+#519: [Client] - Contacts >> Convert to Lead (For All Contacts)
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned)
+ #489: WUS.com Website >> Sign in & Sign Up forms
+
+ 
+Saturday:
+#544: Getting Started Page > New Mock Design
+New mockup self hosted
+#509: White Panel at the Top >> Icons unchanged
+#502: WUS >> In-application >> No Listing >> Welcome Pages (Total 5)
+#462: Tasks Listing >>> Tooltip Issue
+
+
+
+DT: May 20
+===========
+KSN:
+>> Self hosted changes to be merge in saas_ui_v1 - 1hr 
+>> Code merging in community demo , community, self hosted 
+>> Getting started page 
+
+
+DT: May 22 
+===========
+ANS:
+>> Grace period reminder email notification - 1hr - ANS 
+>> UserLicenseRequest - customer_id, Name, Email, requested_user_limit, amount, is_license_generated(default -> false), new_license_key(text) - 2hrs
+>> SelfHostedUser - total_users(when is_license_generated -> true, add the requested value in total value )
+				license key: ["u", "total_users", "10-04-2017", "14527"]									
+ 
+URL: /users/:customer_id/request_for_additional_user 
+Generate license - siteadmin 
+Update user license in community_self_hosted 
+
+
+KSN:
+Implement new UI in Getting Started page. 1hr - KSN
+#509: White Panel at the Top >> Icons unchanged
+Myplan page >> UI design 
+Code merge in community demo, community and community self hosted 
+
+
+Self hosted changes to be merge in saas_ui_v1. 1hr - KSN
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Prepare checklist for cloud monthly subscription - 1hr - AMT
+Remove the price field and add the general pricing plan per user - 0.5hr - AMT 
+Add the logic to display grace period stuff in header for 10days - 0.5hr - AMT
+Remove restrictions for past due subscription for grace period days - 1.5hrs - AMT
+Code push and merging to cloud, community - 1hr - AMT 
+
+
+Grace period stuff
+Add user license 
+
+
+Daily Update - 05/22
+
+Sir, please find updates as follows
+
+Verified all the task completed by ANS, KSN and pushed all the updated code to production server​
+Merged the updated code to cloud and community server and verified the issues
+Associated with Ansuman Sir regarding user license key implementation from cloud admin panel 
+Removed the price field from checkout form and added the general pricing plan per user
+Prepared code level documentation of cloud monthly subscription
+Cleanup the database and associated with Chinmaya and Aditya for cloud monthly subscription QA in dev server
+Code cleanup of cloud monthly subscription module 
+Displayed proper message during grace period and redirected to credit card page on the last date 
+Added the logic to cancel subscription after grace period is over 
+
+
+​Best,
+Amit​
+ᐧ
+
+
+Gone through lead project management and discussed about the issue fixes with Ansuman Sir
+Discussed with Omkar regarding self hosted stuffs 
+Created new columns to store grace period stuffs 
+Added the logic to store grace period information during subscription past due 
+
+Daily Update - 05/23
+====================
+KSN:
+Show BO images with CTA if there is no data in listing page of following pages. 2hrs
+	Users Listing
+	Tasks Listing
+	Leads Listing
+	Invoice Listing
+	Contacts Listing
+	Project Listing
+	Job Listing
+Merge code in community demo file. 2hrs - KSN
+Code merging in Community zip file. 2hrs - KSN
+Code merging in self-hosted zip file. 0.5hr - KSN
+Preorder form designs - 0.5hr - KSN 
+
+Community_self_hosting >> change/update popup design and functionality - 1hr - KSN/AMT 
+Community_self_hosting >> myplan page UI implementation - 1hr - KSN 
+
+
+ANS:
+Add project button instead of add lead button - 0.5 hr - ANS
+Filter and other icons should be removed when there are no project - 0.5 hr - ANS
+Respective icons / filter option to be highlighted in blue colour during presence of respective page - 0.5 hr - ANS
+Replace all task keyword to job under project - 0.5 hr - ANS
+Action button (three dot menu) on project details view which includes complete and add user option (same as we have in Project Board View) - 0.5 hr - ANS
+UI design breaks on board view (When the Project Status is changed to "Complete") - 0.5 hr - ANS
+Add restriction for user (open and reopen) of project on action button - 0.5 hr - ANS
+On job listing page in header project drop down button inverted tringle icon should be move towards to right side of button - 1 hr - ANS
+"+ Add Lead" button should be changed to "+ Add Job" button on job list page - 0.5 hr - ANS
+Implement quick job functionality change(single field display for entry jobs(by default that job should be assigned to me)) - 1 hr - ANS
+we can create job type in job type field on create job page - 1 hr - ANS
+we can create job group in create job page - 1 hr - ANS
+Make another button "save and add more" button on create job - 1 hr - ANS
+
+
+
+AMT:
+Task assignment and review - 2hrs - AMT
+Self hosted documentation - 2hrs - AMT 
+Deploy community_self_hosting branch in dev server and verify license key stuffs - 1hr - AMT 
+Community_self_hosting >> change/update popup design and functionality - 1hr - KSN/AMT 
+
+
+Daily Update - 05/23
+====================
+AMT:
+Task assignment and review - 2hrs - AMT
+Create new method to inactive organization users if subscription is cancelled and billing month is over - 1hr - DONE
+Fix the open bugs of cloud monthly subscription - 2.5hrs - AMT 
+Community_self_hosting >> Add functionality to update license key and change the logic of user validation with the new key - 2hrs - AMT
+Deploy community_self_hosting branch in dev server and verify license key stuffs - 1hr - AMT 
+Community_self_hosting >> change/update popup design and functionality - 1hr - KSN/AMT 
+
+ANS:
+Respective icons / filter option to be highlighted in blue colour during presence of respective page - 1 hr - ANS
+Implement filter functionality in board view and details view page - 2 hrs - ANS
+if a user will not be  assigning project to admin can't enter into that project.but superadmin can have power to enter into that project - 0.5 hr - ANS
+Implement functionality to create job type in job type field on create job page - 1.5 hrs - ANS
+Implement functionality to create job group in create job page - 1 hr - ANS
+Implement lead project management plugin - 3 hrs - ANS
+Verify the lead project management plugin in the stating server - 1 hr - ANS
+
+
+KSN:
+
+
+exports.handler = function index(event, context, callback) {
+  var http = require('http');
+  http.get({
+        host: 'dev-saas.wakeupsales.com',
+        path: '/check_for_canceled_subscription'
+    }, function(response) {
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+          console.log('Ended');
+      });
+    });
+};
+
+
+@Amit – from your side, are we done with all the fixes. In percentage how much is left! Do share. 
+
+Amit...mu aita mail re lekhibi..tame reply karidaba that we are almost...90% done..rest 10 % are small issues that will fixup by today or tomorrow first half. 
+
+
+We spent 40hrs for bug fixing in place of lead event tracking, by that time we fixed 80%, and rest 20% are minor issues which can be fixed later keeping in mind to move monthly subscription and self hosted to production.
+
+
+
+#479: Files Section >> Issues
+#462: Tasks Listing >>> Tooltip Issue
+#451: Leads Listing >> Drop Down Alignment
+#449: Left Pane Menu >> Mailbox Rename to Gmail
+#425: Activities > Activity Stream
+#444: Footer >> Hours Spent >> Zero?
+#354: Daily updates > Lead menu
+#338: Mailbox : Hours Spent status message overlaps with the borderline
+#440: Footer >> Last Activity >> Overlapping
+#381: Dashboard > Usage
+
+#532: Users Listing >> Update the icons with new ones (given by Naresh)
+#509: White Panel at the Top >> Icons unchanged
+#455: Kanban >> Tooltips Issue
+#334: Lead List Page > Let's keep only one style of 'Tooltip'. That is the 'Dark Grey with White font with ponters'
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned)
+#344: Lead List Page > Lead Name (On Hover) the tooltip sometimes shows and sometimes doesn't
+#437: Lead Listings > 3 dot menu > Edit > Associate a contact
+#311: Dashboard -> Tooltip missing on every chart
+#367: Dashboard >> Clickability
+#474: Quick Links Menu >> Add a contact
+#475: Qucik Links Menu >> Create a new task:
+#358: Daily update > manage daily update > edit options issues
+
+
+
+#536: WUS Community edition >> Contacts>> Import contacts from other crm option
+
+
+Daily Update - 05/25
+====================
+AMT:
+
+
+KSN:
+Display image in a popup after clicking on file type icon. 0.5 hr - KSN
+Add icons for all file type in file type column. 0.5hr - KSN
+Add icon in filter menu. 0.5 hr - KSN
+Display file type on mouse hover. 0.5 hr - KSN
+#451: Leads Listing >> Drop Down Alignment 15min  - KSN
+#449: Left Pane Menu >> Mailbox Rename to Gmail 15min - KSN
+#425: Activities > Activity Stream - 0.5 hr - KSN
+#444: Footer >> Hours Spent >> Zero? - 15min  - KSN
+#354: Daily updates > Lead menu 0.5 hr - KSN
+#338: Mailbox : Hours Spent status message overlaps with the borderline - 0.5 hr - KSN
+#440: Footer >> Last Activity >> Overlapping - 15min  - KSN
+#532: Users Listing >> Update the icons with new ones (given by Naresh) 0.5 hr - KSN
+#509: White Panel at the Top >> Icons unchanged - 1hr - KSN
+Change icons in settings menu of top header. 0.5 hr - KSN
+
+Community merge 
+UI clean myplan page 
+Functionality to store user license 
+
+ANS:
+#475: Quick Links Menu >> Create a new task - 0.5 hr - ANS
+#333: Lead List > Clicking on the actions (three dot menu) just besides the lead name (drop down menu needs to be left-aligned) - 0.5 hr - ANS
+#344: Lead List Page > Lead Name (On Hover) the tooltip sometimes shows and sometimes doesn't - 0.5 hr - ANS
+#455: Kanban >> Tooltips Issue - 0.5 hr - ANS
+#358: Daily update > manage daily update > edit options issues - 1 hr - ANS
+#334: Lead List Page > Let's keep only one style of 'Tooltip'. That is the 'Dark Grey with White font with pointers' - 1 hr - ANS
+#437: Lead Listings > 3 dot menu > Edit > Associate a contact - 1 hr - ANS
+#367: Dashboard >> Clickability - 0.5 hr - ANS
+#381: Dashboard > Usage - 0.5 hr - ANS
+#474: Quick Links Menu >> Add a contact - 0.5 hr - ANS
+Merge the stylesheet and icons in lead project management plugin and push to demo community - 2 hrs - ANS
+Verify the lead project management plugin - 1 hr - ANS
+
+
+
+
+
+

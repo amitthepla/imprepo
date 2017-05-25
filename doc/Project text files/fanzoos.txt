@@ -1,0 +1,1474 @@
+DT: Sept 8, 2015
+=====================
+
+What street did you live on as a child?
+What was the name of your first pet?
+Where is the first place you visited outside of your native country?
+Who was your first childhood crush?
+
+
+https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-edit-their-password
+http://stackoverflow.com/questions/11254895/custom-action-for-devise-registrations-controller-getting-nil-resource
+https://github.com/plataformatec/devise/blob/master/app/controllers/devise/passwords_controller.rb
+
+
+git clone git@github.com:Fanzoos/Development.git
+Ruby: 2.1.1
+Rails: 4.2
+Database: postgresql
+
+
+
+http://stackoverflow.com/questions/18672736/rails-4-recaptcha-and-turbolinks
+https://coderwall.com/p/fajmvq/fixing-the-map-doesn-t-show-up-until-i-refresh-when-working-with-turbolinks-in-ruby-on-rails
+http://brandonhilkert.com/blog/organizing-javascript-in-rails-application-with-turbolinks/
+
+http://reed.github.io/turbolinks-compatibility/google_adsense.html
+https://productforums.google.com/forum/#!topic/adsense/YEl7M9BqC-4
+https://developers.google.com/adsense-for-ajax/
+
+
+<script type="text/javascript">
+atOptions = {
+'key' : '82bbdeca761800fad1e4c16c8c0daa26',
+'format' : 'iframe',
+'height' : 90,
+'width' : 728,
+'params' : {}
+};
+</script>
+<script type="text/javascript"
+  src="http://www.bnhtml.com/invoke.js">
+</script>
+
+username - admin 
+pwd - password	
+
+rails server -b 0.0.0.0 -p 3000
+
+https://github.com/whitesmith/rubycritic
+
+DT: March 3, 2016
+===================
+1-Without login in home page middle banner gap issue DONE
+2-Home page trending section like comment block DONE
+3-Align next/prev arrow in home page DONE
+4-Video player alignment issue for grey background DONE
+5-Add "free to sign up, free to post videos and free to use." text in signup page DONE
+
+
+6-Align Header & footer issue for responsive
+7-Decrease font size for responsive in iphone
+
+8-Make responsive for inner pages 
+9-Fix unable to scroll to footer in wide screen.
+
+
+First 7 issues and i ll chek for inner page responsive
+
+
+
+ care@irctc.co.in
+
+ 
+ b1af21f0e590b50b59f454cdbb2f9b44cb28a903
+ 
+ 
+ c3f0ee4bb2450d47eafce47fde72a1b86d60eda2
+
+ 
+ 
+  ready = function() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'http://www.bnhtml.com/invoke.js';
+    document.body.appendChild(script);
+   };
+   
+   
+   
+<script type="text/javascript">
+atOptions = {
+'key' : '82bbdeca761800fad1e4c16c8c0daa26',
+'format' : 'iframe',
+'height' : 90,
+'width' : 728,
+'params' : {}
+};
+</script>
+<script type="text/javascript"
+  src="http://www.bnhtml.com/invoke.js">
+</script>
+
+http://reed.github.io/turbolinks-compatibility/google_adsense.html
+
+
+
+"Video Detail",
+"Search Result", 
+"View More",
+
+
+
+DONE:
+"Learn More"
+"Terms & Privacy", 
+"About",
+"Advertise", 
+"Help",
+"Upload Video",
+"Contact",
+"Terms of Use", 
+"Home",
+"Signup",
+"Signin",
+
+Hi Sir,
+
+Please find updates as follows:
+
+Leaguer:
+Figure out and solved the installation issue of diawi link in Carmen's iPhone
+Email communication with Carmen
+
+Fanzoos
+RnD to fix the turbolink compatibility issue with Google AdSense
+Fixed the google ad sense initialize issue with turbolink
+Task assignment and review of UI stuffs with Amarajyoti sir
+Team discussion regarding remaining work
+
+Best,
+Amit
+
+
+
+====================================================================================
+
+
+On sign up page will have a link that allows user to sign
+up to create a fanzoos page. The page will have a link or
+button that states --> Create a FanZoos page for Athlete, Team, or Organization
+The user will be given a check box to agree to fanzoos term and
+button that states let's start.
+The first page in the sequence the user should see will be title and label
+Register Admin for page.
+On this page user will select 2 other a section with a field for username and password
+if they already have a Fanzoos account and another section with some basic
+field where they will be registering for a Fanzoos account. this section include the
+necessary fields such email, date of birth, username, first name and last name.
+User will click next to next sequence
+User will get to choose 3 photo panel buttons that represent athlete, team, and organization.
+These will be on the left and when user clicks them user will be given further fields on the right to choose from.
+photo button for - Athlete
+under this section User will have drop down to right middle of screen where user will first choose professional and non professional. Then user will choose the sport. Then user will choose the team if exist or type it in. Then user will enter their jersey number
+List all known sports, from basketball to track and field
+photo button for Team
+under this section user will have drop down to select their team. User will have drop down to right middle of screen where user will first choose professional and non professional. Then user will choose the sport. Then user will choose the team if exist or type it in.
+photo button for Organization
+under this section user will have drop down to select their organization. User will have drop down to right middle of screen where user will first choose local business, place, product, brand, company, institution, organization, entertainment. From there user can enter the name of said entity
+On next sequence,
+If user chose athlete. Please give user page with following fields
+place on page to upload picture
+First name Last name,
+Date of Birth
+Small description about themselves
+Number of years with current team,
+Name of team, Name of coach
+Address, City, State
+website.
+then user should have last button to create page
+If user chose team. Please give user page with following fields
+place on page to upload picture/logo
+Name of team
+Date of existence
+Description
+Mission
+Type of sport
+website
+coach of team
+assistant coach
+Current roster
+then user should have last button to create page
+If user chose Organization. Please give user page with following fields
+place on page to upload picture/logo
+Name of Organization
+Date of existance
+Description
+website
+email
+then user should have last button to create page
+Every fanZoos page
+Should have FanLocker page that will serve as a timeline page
+We will have photo tab, video Tab, and About tab.
+User will be able to upload videos, photos, and post status to their page.
+
+==========================
+
+["About", "/about", {:data=>{:no_turbolink=>true}}]
+-------------> else <--------------
+["Advertise", "/advertise", {:data=>{:no_turbolink=>true}}]
+-------------> else <--------------
+["Help", "/faq", {:data=>{:no_turbolink=>true}}]
+-------------> else <--------------
+["Community Guidelines", "/terms_of_use", {:data=>{:no_turbolink=>true}}]
+-------------> else <--------------
+["Contact", "/contact_us", {:data=>{:no_turbolink=>true}}]
+-------------> else <--------------
+["Terms & Privacy", "/terms_and_privacy", {:data=>{:no_turbolink=>true}}]
+-------------> else <--------------
+["Fan Locker", "/fanlocker/1"]
+
+
+
+
+Hi Sir,
+
+Please find updates as follows:
+
+Leaguer:
+Figure out and solved the installation issue of diawi link in Carmen's iPhone
+Email communication with Carmen
+
+Fanzoos:
+RnD to fix the turbolink compatibility issue with Google AdSense
+Fixed the google ad sense initialize issue with turbolink
+Task assignment and review of UI stuffs with Amarajyoti sir
+Team discussion regarding remaining work
+
+
+CRM:
+
+Best,
+Amit
+
+
+DT: March 9, 2016
+===================
+
+Elastic search
+IP : 192.168.2.239
+Port : 9200
+
+Tested with this command.
+ curl -X GET 'http://localhost:9200'
+
+Result:
+
+{
+  "status" : 200,
+  "name" : "Tinkerer",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "1.7.3",
+    "build_hash" : "05d4530971ef0ea46d0f4fa6ee64dbc8df659682",
+    "build_timestamp" : "2015-10-15T09:14:17Z",
+    "build_snapshot" : false,
+    "lucene_version" : "4.10.4"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+http://www.codinginthecrease.com/news_article/show/409843?referrer_id=948927
+
+>> sorting issue
+>> ad sense issue
+>> 
+
+
+
+[tunemygc] not enabled
+Application Development registered. Use RUBY_GC_TOKEN=1df4ea555701f2e100a97767dd053271 in your environment.
+
+
+RUBY_GC_TOKEN=1df4ea555701f2e100a97767dd053271 RUBY_GC_TUNE=1 bundle exec rails server -b 0.0.0.0 -p 3000
+
+
+
+[tunemygc, pid: 22822] The TuneMyGC service requires an instrumented application to do at least one unit of work (an ActionController request / response cycle, processing a background job through ActiveJob etc.) in order to suggest a configuration.
+[tunemygc, pid: 22822] During the last instrumented run, the agent observed 3 GC events of interest, but none of them happened within the context of a unit of work and is thus not representative of your application's GC profile.
+[tunemygc, pid: 22822] Therefore, we're discarding 3 snapshots and will generate a configuration when there's more context available for the agent to get a representative sample size.
+
+
+<script type="text/javascript">
+atOptions = {
+'key' : '82bbdeca761800fad1e4c16c8c0daa26',
+'format' : 'iframe',
+'height' : 90,
+'width' : 728,
+'params' : {}
+};
+</script>
+<script type="text/javascript"
+  src="http://www.bnhtml.com/invoke.js">
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Homepage Leaderboard -->
+<ins class="adsbygoogle"
+style="display:inline-block;width:728px;height:90px"
+data-ad-client="ca-pub-1234567890123456"
+data-ad-slot="1234567890"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ad2 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-8469078915880259"
+     data-ad-slot="9533509524"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<div class="add_sens">
+<%#=image_tag  "gadd.gif"%>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-2393413709750991";
+/* AuditNet Vertical Ad */
+google_ad_slot = "7449752229";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-7724353502851639" data-ad-slot="3161327130"></ins><script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-8469078915880259"
+     data-ad-slot="9533509524"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+https://support.google.com/adsense/answer/3221666?hl=en
+
+<iframe id="google_ads_frame1" name="google_ads_frame1" width="728" height="90" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-8469078915880259&amp;format=728x90&amp;output=html&amp;h=90&amp;slotname=9533509524&amp;adk=1231217902&amp;w=728&amp;lmt=1457519323&amp;flash=20.0.0&amp;url=http%3A%2F%2Fdev.fanzoos.com%2Fabout&amp;wgl=1&amp;dt=1457519323462&amp;bpp=14&amp;bdt=1222&amp;fdt=19&amp;idt=253&amp;shv=r20160301&amp;cbv=r20151006&amp;saldr=aa&amp;correlator=1224536623105&amp;frm=20&amp;ga_vid=1729384705.1454584647&amp;ga_sid=1457519324&amp;ga_hid=1000344303&amp;ga_fc=0&amp;pv=2&amp;iag=3&amp;icsg=2&amp;nhd=1&amp;dssz=2&amp;mdo=0&amp;mso=0&amp;u_tz=330&amp;u_his=17&amp;u_java=0&amp;u_h=768&amp;u_w=1360&amp;u_ah=728&amp;u_aw=1360&amp;u_cd=24&amp;u_nplug=5&amp;u_nmime=7&amp;dff=helvetica%20neue&amp;dfs=14&amp;adx=547&amp;ady=116&amp;biw=1343&amp;bih=667&amp;eid=575144605%2C4087392&amp;oid=3&amp;rx=0&amp;eae=0&amp;fc=208&amp;pc=1&amp;brdim=0%2C0%2C0%2C0%2C1360%2C0%2C1360%2C728%2C1360%2C667&amp;vis=2&amp;rsz=Mo%7Co%7C%7C&amp;abl=NS&amp;ppjl=d&amp;pfx=0&amp;fu=16&amp;bc=1&amp;ifi=1&amp;xpc=aqnBYzulSs&amp;p=http%3A//dev.fanzoos.com&amp;dtd=288" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true"></iframe>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-11790744-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-8469078915880259"
+     data-ad-slot="9533509524"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+http://www.liberiangeek.net/2013/10/google-asynchronous-adsense-code-is-now-the-default-option/
+
+
+D>
+>2. Enter a video title & from auto suggest drop-down select the video >>Corresponding video is not displayed.
+>3. Sort by 'popularity' is not working.
+>4. Home page >>click on 'menu' icon >>Click on 'sports' >>click on 'others' >>Filter uploaded date 'today' & category 'any' >>Its not working.	(URl: http://dev.fanzoos.com/search?category=Any&uploaded=today)
+>
+>5. After log in >>click on 'more video' link of 'fanz in your zone' section >>All records are displayed.  
+>(URl http://dev.fanzoos.com/watch/more_videos?category=Tennis&duration=long&type=zone&uploaded=today  )
+>
+>6.After log in >>click on 'more video' link of 'Recommended' section >>All records are displayed.  
+>URl :http://dev.fanzoos.com/watch/more_videos?category=Tennis&duration=long&type=recommended&uploaded=today )
+
+
+Completed tasks:
+
+1. Search special character(e.g +) >>Error is displayed.
+2. Enter a video title & from auto suggest drop-down select the video >>Corresponding video is not displayed.
+3. Sort by 'popularity' is not working.
+4. Home page >>click on 'menu' icon >>Click on 'sports' >>click on 'others' >>Filter uploaded date 'today' & category 'any' >>Its not working.	(URl: http://dev.fanzoos.com/search?category=Any&uploaded=today)
+
+
+>5. After log in >>click on 'more video' link of 'fanz in your zone' section >>All records are displayed.  
+>(URl http://dev.fanzoos.com/watch/more_videos?category=Tennis&duration=long&type=zone&uploaded=today  )
+>
+>6.After log in >>click on 'more video' link of 'Recommended' section >>All records are displayed.  
+>URl :http://dev.fanzoos.com/watch/more_videos?category=Tennis&duration=long&type=recommended&uploaded=today )
+
+
+
+
+
+SELECT "posts".* FROM "posts" WHERE (posts.is_processed = true AND (posts.user_id = 19 OR posts.is_public =
+ true) AND posts.created_at > '2016-03-07 09:04:22 UTC' AND posts.vzaar_video_id IS NOT NULL AND (posts.video_category_id IN (1,
+8,12) OR  posts.video_category_id IS NULL) AND  (posts.created_at >= '2016-03-09 09:04:22 UTC' and posts.created_at <= '2016-03-
+10 09:04:22 UTC') AND comment_post_id IS NULL AND is_public = true ) AND ("posts"."id" NOT IN (184, 205))  ORDER BY posts.create
+d_at ASC
+
+
+
+------------------------whereeeeeeeeeeeeeeeeee
+" (posts.created_at.to_date >= '2016-03-09' and posts.created_at.to_date <= '2016-03-10')"
+-----------------------------
+" (posts.created_at.to_date >= '2016-03-09' and posts.created_at.to_date <= '2016-03-10') AND comment_post_id IS NULL AND is_public = true "
+  User Load (9.8ms)  SELECT "users".* FROM "users" WHERE ((city = 'bhubaneswar' OR state = 'odisha' OR country_id = 102) AND id != 19)
+  UserSport Load (2.1ms)  SELECT "user_sports".* FROM "user_sports" WHERE "user_sports"."user_id" = $1  [["user_id", 19]]
+  VideoCategory Load (1.8ms)  SELECT "video_categories".* FROM "video_categories" WHERE (name IN ('Discussion','Trending Sports Story', 'Sport News'))
+  FlagVideo Load (3.3ms)  SELECT "flag_videos".* FROM "flag_videos" WHERE "flag_videos"."user_id" = $1  [["user_id", 19]]
+  Post Load (3.6ms)  SELECT "posts".* FROM "posts" WHERE (sport_id IN (1,1) AND is_processed = true AND is_public = true)
+  Post Load (5.0ms)  SELECT "posts".* FROM "posts" WHERE (user_id IN (4,21,1,20,24,23) AND is_processed = true AND is_public = true)
+  Post Load (3.4ms)  SELECT "posts".* FROM "posts" WHERE (posts.is_processed = true AND (posts.user_id = 19 OR posts.is_public = true) AND posts.created_at > '2016-03-07 09:33:49 UTC' AND posts.vzaar_video_id IS NOT NULL AND (posts.video_category_id IN (1,8,12) OR  posts.video_category_id IS NULL) AND  (posts.created_at.to_date >= '2016-03-09' and posts.created_at.to_date <= '2016-03-10') AND comment_post_id IS NULL AND is_public = true ) AND ("posts"."id" NOT IN (184, 205))  ORDER BY posts.created_at ASC
+PG::UndefinedTable: ERROR:  missing FROM-clause entry for table "created_at"
+LINE 1: ...,8,12) OR  posts.video_category_id IS NULL) AND  (posts.crea...
+                                                             ^
+: SELECT "posts".* FROM "posts" WHERE (posts.is_processed = true AND (posts.user_id = 19 OR posts.is_public = true) AND posts.created_at > '2016-03-07 09:33:49 UTC' AND posts.vzaar_video_id IS NOT NULL AND (posts.video_category_id IN (1,8,12) OR  posts.video_category_id IS NULL) AND  (posts.created_at.to_date >= '2016-03-09' and posts.created_at.to_date <= '2016-03-10') AND comment_post_id IS NULL AND is_public = true ) AND ("posts"."id" NOT IN (184, 205))  ORDER BY posts.created_at ASC
+
+
+
+Post.where("STR_TO_DATE(posts.created_at, '%m/%d/%Y') BETWEEN ? AND ?",Time.now.to_date,(Time.now-1.day).to_date).count
+
+Post.where("(STR_TO_DATE(posts.created_at,%Y-%m/%d) >= '2016-03-09' and STR_TO_DATE(posts.created_at,%Y-%m/%d) <= '2016-03-10')").count
+
+
+
+
+ Post.where("posts.created_at, 'DD MM YY') BETWEEN ? AND ?",Time.now.to_date,(Time.now-1.day).to_date).count
+ 
+ 
+ 
+ 
+ Post.find_by_sql("SELECT * FROM 'posts' WHERE (posts.is_processed = true AND (posts.user_id = 19 OR posts.is_public = true) AND posts.created_at > '2016-03-07 09:58:21 UTC' AND posts.vzaar_video_id IS NOT NULL AND (posts.video_category_id IN (1,8,12) OR  posts.video_category_id IS NULL) AND  (posts.created_at >= '2016-03-09' and posts.created_at <= '2016-03-10') AND comment_post_id IS NULL AND is_public = true ) AND ('posts'.'id' NOT IN (184, 205))  ORDER BY posts.created_at ASC").count
+
+ Post.where(" (posts.created_at.to_date >= '2016-03-09' and posts.created_at.to_date <= '2016-03-10')").reorder_posts(Post.last)
+ 
+ http://localhost:3000/watch/sqL8zJTO6
+ 
+ 
+ 
+ 1. Search special character(e.g +) >>Error is displayed.
+2. Enter a video title & from auto suggest drop-down select the video >>Corresponding video is not displayed.
+3. Sort by 'popularity' is not working.
+4. Home page >>click on 'menu' icon >>Click on 'sports' >>click on 'others' >>Filter uploaded date 'today' & category 'any' >>Its not working.	(URl: http://dev.fanzoos.com/search?category=Any&uploaded=today)
+
+
+>5. After log in >>click on 'more video' link of 'fanz in your zone' section >>All records are displayed.  
+>(URl http://dev.fanzoos.com/watch/more_videos?category=Tennis&duration=long&type=zone&uploaded=today  )
+>
+>6.After log in >>click on 'more video' link of 'Recommended' section >>All records are displayed.  
+>URl :http://dev.fanzoos.com/watch/more_videos?category=Tennis&duration=long&type=recommended&uploaded=today )
+
+
+http://dev.fanzoos.com/search?category=Any&uploaded=today >> Fixed
+http://dev.fanzoos.com/watch/more_videos?duration=medium&type=zone&uploaded=today >> 
+http://dev.fanzoos.com/watch/more_videos?type=recommended
+
+
+
+
+
+
+http://dev.fanzoos.com/watch/zCzeKI9nD/first-video
+
+http://dev.fanzoos.com/watch/fnFCmqyTK/new-testing
+
+Uncaught TypeError: The element or ID supplied is not valid. (videojs)
+
+<script>  
+// $(window).on("navigate", function (event, data) {
+//   var direction = data.state.direction;
+//   if (direction == 'back') {
+//     // do something
+//     alert('back')
+//   }
+//   if (direction == 'forward') {
+//     // do something else
+//     alert('forward')
+//   }
+// });
+
+var before_change, change;
+
+change = function() {
+  alert('change')
+  // var i, len, player, ref, results, video;
+  // ref = document.getElementsByClassName('video-js');
+  // results = [];
+  // for (i = 0, len = ref.length; i < len; i++) {
+  //   player = ref[i];
+  //   results.push(video = videojs('video_div'));
+  // }
+  // return results;
+   myPlayer = videojs('video_div')
+   myPlayer.width(550);
+   myPlayer.height(100);
+   myPlayer.show();
+  // alert('change')
+  // videojs('video_div')
+
+};
+
+before_change = function() {
+	// alert('before_change')
+	// videojs('video_div')
+	alert('before_change')
+  // var i, len, player, ref, results, video;
+  // ref = document.getElementsByClassName('video-js');
+  // results = [];
+  // for (i = 0, len = ref.length; i < len; i++) {
+  //   player = ref[i];
+  //   video = videojs('video_div');
+  //   results.push(video.dispose());
+  // }
+  // return results;
+   _V_("video_div")
+  myPlayer = videojs('video_div')
+   myPlayer.width(550);
+   myPlayer.height(100);
+   myPlayer.show();
+};
+$(document).on('page:before-unload', before_change);
+
+$(document).on('page:change', change);
+
+Hi Sir,
+
+Please find updates as follows:
+
+Fanzoos:
+Fixed issues in search page
+Verified search result for overall type of search
+Fixed implementation of google async script for advertisement
+Associated with Deepak sir in fixing video player intialize issue in browser back/forward navigation
+Code push to staging and unit testing the same in staging environment
+
+CRM:
+Task assignment and review of Sambit
+Associated with Sambit in fixing UI issues 
+
+Best,
+Amit
+
+https://console.developers.google.com/
+
+http://www.dev.fanzoos.com/users/auth/facebook/callback
+http://dev.fanzoos.com/users/auth/facebook/callback
+
+Authorized redirect URIs
+http://dev.fanzoos.com/users/auth/google_oauth2/callback
+http://www.dev.fanzoos.com/users/auth/google_oauth2/callback
+
+
+
+
+<%#= link_to 'Edit', edit_post_path(@post) %> |
+<%#= link_to 'Back', posts_path %>
+<script>  
+	if (<%= @content_rating %> == true){
+  		$("#content_rating_modal").modal("show");
+  		var video = videojs('video_div');
+  		video.pause()
+  	}
+
+  function setEmailSubject (inputNode) {
+    var emailId = $(inputNode).val();
+    var subject = $("#emailSubject");
+    if ($.trim(subject.val()) == "") {
+      subject.val(emailId.split('@')[0]);
+    }
+  }
+
+  $(function(){
+  	//location.reload();
+  	$.removeCookie("commentPost");
+    $.removeCookie("parentPost");
+
+    $("[data-hide]").on("click", function(){
+      $("." + $(this).attr("data-hide")).hide();
+    });
+  });
+
+  function age_confirm(){
+	if ($("#confirm_age").prop("checked") == true){
+		$("#content_rating_modal").modal("hide");
+		// $("#video_div_non_playable").hide();
+
+		// var video_non_play = videojs('video_div_non_playable')
+		// video_non_play.dispose()
+		// $("#video_div").html($("#video_div1").html());
+		// $("#video_div").show();
+		// var video = videojs('video_div')
+		// video.play()
+
+		// var content_rating  = <%= @content_rating = true%>
+		// var playable = <%= @playable = true%>
+		var url = $(location).attr('pathname');
+		window.location.href = url + "?content_rating=false";
+
+
+	}
+	else{
+		$("#err_cnfrm_msg").show();
+	}
+  }
+
+  function validateAndSubmitData(inputNode) {
+    var isValidForm = true;
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ($.trim($("#emailBody").val()) == "") {
+      isValidForm = false;
+      $("#emailBody").closest("div.form-group").addClass("has-error").focus();
+    }
+    if ($.trim($("#emailSubject").val()) == "") {
+      isValidForm = false;
+      $("#emailSubject").closest("div.form-group").addClass("has-error").focus();
+    }
+    if (($.trim($("#toAddress").val()) == "") || (!regex.test($.trim($("#toAddress").val())))) {
+      isValidForm = false;
+      $("#toAddress").closest("div.form-group").addClass("has-error").focus();
+    }
+
+    if (($.trim($("#fromAddress").val()) == "") || (!regex.test($.trim($("#fromAddress").val())))) {
+      isValidForm = false;
+      $("#fromAddress").closest("div.form-group").addClass("has-error").focus();
+    }
+
+    if (isValidForm) {
+      var form = $(inputNode).closest("form");
+      var formData = $(form).serializeArray();
+      $.ajax({
+        url: '/send_post_email',
+        type: 'POST',
+        data: formData,
+        dataType: "json",
+        success: function () {
+          $("#emailModal").modal("hide");
+        },
+        error: function () {
+          $("#alertBox").show();
+        }
+      });
+    }
+    return false;
+  }
+		set_cookies(<%=@post.id%>);
+	    var showChar = 200;
+	    var ellipsestext = "...";
+	    var moretext = "more";
+	    var lesstext = "less";
+	    $('.more').each(function() {
+	        var content = $(".more p").html();
+	        if(content.length > showChar) {
+	            var c = content.substr(0, showChar);
+	            var h = content.substr(showChar-1, content.length - showChar);
+	            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+	            $(this).html(html);
+	        }
+	    });
+	 
+	    $(".morelink").click(function(){
+	        if($(this).hasClass("less")) {
+	            $(this).removeClass("less");
+	            $(this).html(moretext);
+	        } else {
+	            $(this).addClass("less");
+	            $(this).html(lesstext);
+	        }
+	        $(this).parent().prev().toggle();
+	        $(this).prev().toggle();
+	        return false;
+	    });
+
+	    $("#signupLoginModal").click(function(){
+	     	
+         $(".modal-backdrop").remove();
+       });
+	
+	$( '#video_div' ).ready(function() {
+		videojs( '#video_div_html5_api', { plugins : { resolutionSelector : {} } }, function() {
+		    var player = this;
+		    player.on( 'changeRes', function() {
+		        console.log( 'Current Res is: ' + player.getCurrentRes() );
+		    });
+			player.on( 'ended', function() {
+				if(<%=!user_signed_in?%>){
+					window.location.href = "/users/sign_in"
+				}
+			});
+			player.watermark({
+			    file: '/images/watermark-logo.png',
+			    xpos: 2,
+			    ypos: 77,
+			    xrepeat: 0,
+			    opacity: 0.5,
+			});
+		});
+	});
+
+  function set_cookies (id) {
+    var post_ids = $.cookie('post_ids') ? $.cookie('post_ids') : "";
+    if (post_ids == "") {
+      post_ids += id
+    }
+    else {
+      var total = post_ids.split(',');
+      if (total.indexOf(id.toString()) != -1) {
+        total.splice(total.indexOf(id.toString()), 1);
+      }
+      total.push(id);
+      post_ids = total.join(',');
+    }
+    $.cookie("post_ids", post_ids, {path    : '/'});
+	}
+
+	function showReplyForm(divId) {
+		var link_href = $("#"+divId).attr("href");
+		if(link_href != "/users/sign_in"){
+			$("#"+divId).toggle();
+		}
+	}
+	function showEditCommentForm(divId,id) {
+		var link_href = $("#"+divId).attr("href");
+		if(link_href != "/users/sign_in"){
+			$("#"+divId).toggle();
+			$("#"+divId).find(".reply_form").show();
+			$("#"+divId).find(".edit_comment").show();
+			if($("#"+divId).find(".edit_comment").is(':visible')){
+				$("#comment_div_"+id).find(".comment_txt").find(".comment_text").hide();
+			}else{
+				$("#comment_div_"+id).find(".comment_txt").find(".comment_text").show();
+			}
+		}
+	}
+	function showEditReplyForm(divId,id) {
+		var link_href = $("#"+divId).attr("href");
+		if(link_href != "/users/sign_in"){
+			$("#"+divId).toggle();
+			$("#"+divId).find(".reply_form").show();
+			$("#"+divId).find(".edit_comment_reply").show();
+			if($("#"+divId).find(".edit_comment_reply").is(':visible')){
+				$("#reply_div_"+id).find(".reply_txt").hide();
+			}else{
+				$("#reply_div_"+id).find(".reply_txt").show();
+			}
+		}
+	}
+	function delete_comment(id) {
+		var strconfirm = confirm("Are you sure you want to delete?");
+		if (strconfirm == true){
+			$.ajax({
+		        type: "DELETE",
+		        url: "/comments/" + id,
+		        dataType: "json",
+		        data: {id: id},
+		        complete: function(data){
+		        	data = $.parseJSON(data.responseText);
+		            if(data.mtype == "success"){
+			            $("#comment_div_"+id).remove();
+			            newAlert("info" , data.message)
+			        }else{
+			        	newAlert("danger" , data.message)
+			        }
+		        }
+		    });
+		}
+	};
+
+	function delete_reply(comment_id, id) {
+		var strconfirm = confirm("Are you sure you want to delete?");
+		if (strconfirm == true){
+			$.ajax({
+		        type: "DELETE",
+		        url: "/comments/" + comment_id + "/comment_replies/" + id,
+		        dataType: "json",
+		        data: {id: id},
+		        complete: function(data){
+		        	data = $.parseJSON(data.responseText);
+		            if(data.mtype == "success"){
+		            	$("#reply_div_"+id).remove();
+		            	newAlert("info" , data.message)
+		           	}else{
+			        	newAlert("danger" , data.message)
+			        }
+		        }
+		    });
+		}
+	};
+
+	$('#signup_link').click(function(){
+	    $('.login-popup').hide();
+	    $('.signup-popup').show();
+	  });
+	$('#login_link').click(function(){
+	    $('.signup-popup').hide();
+	    $('.login-popup').show();	    
+    });
+	$('#comment').click(function() {
+		var link_href = $("#comment").attr("href");
+		if(link_href != "/users/sign_in"){
+			$( "#comment_form" ).toggle("slow");
+			$( "#comment" ).hide();
+		}
+	});
+	
+	function get_duration(){
+		<%= @wait_time =   @popup_time.present? ? @popup_time : 0.1 %>	
+		var play_time = $('#video_div').find('video').get(0).currentTime;
+		var duration = $('#video_div').find('video').get(0).duration;
+		// $('#current').html(play_time);
+		// $('#duration').html(duration);
+		if((play_time > <%= @wait_time.minutes %>) && !$('#signupLoginModal').is(':visible')){
+			$('#video_div').find('video').get(0).pause();
+			$('#signupLoginModal').modal('show');
+		}
+	}
+	// var halt = parseInt($("#halt_time").text());
+	var interval = setInterval(function(){
+		if(<%=!user_signed_in?%>){
+			get_duration()
+		}
+	},500)
+	$('#signupLoginModal').on('hidden.bs.modal', function () {
+	  clearInterval(interval)
+	})
+	$('#close_login').click(function () {
+	  $('#signupLoginModal').modal('hide');
+	  $('#video_div').find('video').get(0).play();
+	  // $('#current').html($('#video_div').find('video').get(0).play());
+	});
+	$('.close_flag').click(function () {
+	  $('#flagModal').modal('hide');
+	});
+	
+
+
+
+	function comment_video_popup(id){
+		if(!$('#signupLoginModal').is(':visible')){
+			var post_data = {id: id};
+		    $.ajax({
+		        type: "get",
+		        url: "<%=comment_video_posts_path%>",
+		        dataType: 'json',
+		        async: true,
+		        data: post_data,
+		        beforeSend: function(){
+		        },
+		        success: function(data)
+		        { 
+		        
+		        },
+		        error: function(data) {
+		        },
+		        complete: function(data) {
+		          $('#commentVideoModal').modal('show');
+		          $('#comment_video_div').html(data.responseText);
+		        }
+		      });
+		}
+	}
+	$('#commentVideoModal').on('hidden.bs.modal', function () {
+	  	video = videojs('commentVideoDiv')
+        video.dispose()
+	})
+	function watch_later_video(id, type) {
+	  	var post_data = {id: id, type: type};
+		$.ajax({
+		    type: "post",
+		    url: "<%=watch_later_posts_path%>",
+		    async: true,
+		    data: post_data,
+		    beforeSend: function(){
+		    },
+		    success: function(data){
+		    },
+	      	error: function(data) {
+	      	},
+	      	complete: function(data) {
+	          data = $.parseJSON(data.responseText);
+	      		if(data.mtype == "success"){
+	      			
+	      			if(type == 'no')
+	      			{
+	      			html = '<a class="timer-v-play" href="javascript:void(0);" onclick= "watch_later_video(\'' + data.post_id + '\',\'' + data.wtype + '\')")"></a>'
+
+                    html1 = '<a  href="javascript:void(0);"  onclick= "watch_later_video(\'' + data.post_id + '\',\'' + data.wtype + '\')")" style="cursor:pointer"><span class="rge watch-thumb"></span></a></span>' 
+
+                     $('#upper_w').html(html)
+                     $('#lower_w').html(html1)
+	      			}	
+	      			else
+	      			{
+	      			 html = '<a class="timer-v-play active" href="javascript:void(0);" onclick= "watch_later_video(\'' + data.post_id + '\',\'' + data.wtype + '\')")"></a>'
+
+                    html1 = '<a  href="javascript:void(0);"  onclick= "watch_later_video(\'' + data.post_id + '\',\'' + data.wtype + '\')")" style="cursor:pointer"><span class="rge watch-thumb active"></span></a></span>' 
+
+                     $('#upper_w').html(html)
+                     $('#lower_w').html(html1)	
+	      			}	
+	      			//html='<input type="checkbox" name="watch_later" value="yes" onclick="watch_later_video(\'' + data.post_id + '\',\'' + data.wtype + '\')"'+ data.check + '> <label>Watch Later</label>'
+					//$('#check_watch_later').html(html)
+					newAlert("info" , data.message)
+		      	}else{
+		      		newAlert("danger" , data.message)
+		      	}
+	        }
+	    });
+	}
+	function show_btns()
+	{
+     $("#cm_btns").show();
+	}
+	function hide_btns()
+	{
+     $("#cm_post").val("");		
+	 $("#cm_btns").hide();
+
+	}
+	function store_cookie()
+	{
+	  //$.cookie("commentPost", true);
+	  //$.cookie("parentPost", <%=@post.id%>);
+	  // document.cookie="commentPost=" + true
+	  // document.cookie="parentPost=" + <%=@post.id%>
+
+	  var commentPost = "true"
+	  var parentPost = <%=@post.id%>
+	  window.location.replace("/watch/new?commentPost=true&parentPost=" + parentPost)
+	}
+	
+</script>
+
+
+
+DT: March 14, 2016
+=====================
+---------------> videos <-----------------
+user_reco_video
+[75, 3, 2, 20, 77, 1, 5, 7, 9, 78, 19, 12, 13, 14, 16, 21, 35, 76, 80, 81]
+user_zone_video
+[75, 3, 17, 2, 20, 10, 77, 1, 5, 7, 9, 78, 19, 12, 13, 14, 16, 18, 35, 76, 80, 11, 210, 209, 208, 207, 211, 225, 221, 226, 222, 223, 227, 228, 229, 230, 81]
+trending_posts
+[]
+
+
+
+
+---------------> after videos <-----------------
+[75, 80, 81, 77, 2, 7, 3, 1]
+[17, 11, 18, 225, 210, 209, 208, 207]
+[]
+
+    p @user_reco_video.map(&:id)
+      p @user_zone_video.map(&:id)
+      p @trending_posts.map(&:id)
+
+
+----------------------------> search results <-------------------
+[75, 3, 2, 20, 77, 1, 5, 7, 9, 78, 19, 12, 13, 14, 16, 21, 35, 76, 80, 81]
+[75, 3, 17, 2, 20, 10, 77, 1, 5, 7, 9, 78, 19, 12, 13, 14, 16, 18, 35, 76, 80, 11, 210, 209, 208, 207, 211, 225, 221, 226, 222, 223, 227, 228, 229, 230, 81]
+[]
+
+
+
+[21]
+
+
+
+if @user_reco_video.count > 0 && @user_zone_video.count > 0
+		@posts = @user_zone_video - @user_reco_video - @trending_posts
+		@user_zone_video = Post.reorder_posts(@posts)
+		@rec_posts = @user_reco_video - @user_zone_video - @trending_posts
+		@user_reco_video = Post.reorder_posts(@rec_posts)
+elsif @user_reco_video.count == 0 && @user_zone_video.count > 0
+		 @posts = @user_zone_video  - @trending_posts
+		 @user_zone_video = Post.reorder_posts(@posts)
+end  
+
+if @user_reco_video.count > 0 && @user_zone_video.count == 0
+	@rec_posts = @user_reco_video  - @trending_posts
+	@user_reco_video = Post.reorder_posts(@rec_posts)
+end 
+	  
+	  
+[75, 80, 81, 77, 2, 7, 3, 1]
+
+
+
+ActionView::Template::Error (undefined method `unique_id' for #<Array:0xa055e18c>):
+     7: %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+     8: %meta{:content => "486581428189296", :property => "fb:app_id"}
+     9: %meta{:content => "video", :property => "og:type"}
+    10: %meta{:content => @post.present? && @post.unique_id.present? ? (root_url + 'watch/' + @post.unique_id) : '', :property => "og:url"}
+    11: %meta{:content => @post.present? && @post.title.present? ? @post.title : '', :property => "og:title"}
+    12: %meta{:content => @post.present? && @post.description.present? ? @post.description : '', :property => "og:description"}
+    13: %meta{:content => @post.present? && @post.thumbnail.present? ? @post.thumbnail : '', :property => "og:image"}
+  app/views/shared/_head.haml:10:in `_app_views_shared__head_haml___612557187__633283998'
+  app/views/layouts/application.haml:5:in `_app_views_layouts_application_haml___568819393_116910910'
+
+
+
+
+
+
+ 
+ Hi Sir,
+
+Please find updates as follows:
+
+Fanzoos:
+Gone through the existing logic for recommended video
+Fixed the video displaying issue in more video of Recommended video
+Added the logic to retrive og tags for video detail page only
+Added the logic to play video immediately rather reloading the whole page, after user confirms age for rated videos
+Code push to staging and unit testing the same in staging environment
+
+Leaguer:
+Email communication and follow up with Carmen
+
+
+$(document).ready(function(){
+alert('ddddddddddddd')
+$("form").submit(function(e) {
+
+    var ref = $(this).find("[required]");
+
+    $(ref).each(function(){
+        if ( $(this).val() == '' )
+        {
+            alert("Required field should not be blank.");
+
+            $(this).focus();
+
+            e.preventDefault();
+            return false;
+        }
+    });  return true;
+});
+});
+
+function hasHtml5Validation () {
+  //Check if validation supported && not safari
+  return (typeof document.createElement('input').checkValidity === 'function') && 
+    !(navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0);
+}
+
+$('form').submit(function(){
+    if(!hasHtml5Validation())
+    {
+        var isValid = true;
+        var $inputs = $(this).find('[required]');
+        $inputs.each(function(){
+            var $input = $(this);
+            $input.removeClass('invalid');
+            if(!$.trim($input.val()).length)
+            {
+                isValid = false;
+                $input.addClass('invalid');                 
+            }
+        });
+        if(!isValid)
+        {
+            return false;
+        }
+    }
+});
+
+
+
+
+$(document).ready ->
+  $('form').submit (e) ->
+    ref = $(this).find('[required]')
+    $(ref).each ->
+      if $(this).val() == ''
+        alert 'Required field should not be blank.'
+        $(this).focus()
+        e.preventDefault()
+        return false
+      return
+    true
+  return
+
+
+
+
+
+
+
+# @post = @user_zone_video - @user_reco_video - @trending_posts
+# @user_zone_video = Post.reorder_posts(@post)
+# @rec_posts = @user_reco_video - @user_zone_video - @trending_posts
+# @posts = Post.reorder_posts(@rec_posts)
+
+
+<%
+ext_cls = ""
+if @playable && @content_rating == true 
+	ext_cls = "hide"			
+		
+			<video id="video_div_non_playable" class="video-js vjs-default-skin" controls preload="none" width="870" height="489" poster="<%= STATIC_PATH+'Fanzoos-video_player.gif'%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+			   
+			</video>
+		<% end %>
+end%>
+
+
+
+<video id="video_div" style="display:none" class="video-js vjs-default-skin" controls autoplay preload="none" width="870" height="489" poster="<%= @post.url%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+							        <source src="<%=@post.video_details%>?576" type="video/mp4" data-res='576' />
+							        <source src="<%=@post.video_details%>?1280" type="video/webm" data-res='1280' />
+							        <source src="<%=@post.video_details%>?448" type="video/ogg" data-res='448' />
+							        <source src="<%=@post.video_details%>?320" type="video/mp4" data-res='320' />
+							        <% if @post.sub_title_file_name.present?%>
+							        <track kind="subtitles" src="<%= @post.subtitle_url %>" srclang="en" label="English" default>
+							    	<% end %>
+							    </video>
+								<video id="video_div_non_playable" class="video-js vjs-default-skin" controls preload="none" width="870" height="489" poster="<%= STATIC_PATH+'Fanzoos-video_player.gif'%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+							       
+							    </video>
+								
+								
+	<%if @playable && @content_rating == false %>
+			      	     
+	<video id="video_div" class="video-js vjs-default-skin" controls autoplay preload="none" width="870" height="489" poster="<%= @post.url%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+		<source src="<%=@post.video_details%>?576" type="video/mp4" data-res='576' />
+		<source src="<%=@post.video_details%>?1280" type="video/webm" data-res='1280' />
+		<source src="<%=@post.video_details%>?448" type="video/ogg" data-res='448' />
+		<source src="<%=@post.video_details%>?320" type="video/mp4" data-res='320' />
+		<% if @post.sub_title_file_name.present?%>
+		<track kind="subtitles" src="<%= @post.subtitle_url %>" srclang="en" label="English" default>
+			<% end %>
+	</video>
+<% else %>
+
+<video id="video_div" style="display:none" class="video-js vjs-default-skin" controls autoplay preload="none" width="870" height="489" poster="<%= @post.url%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+		<source src="<%=@post.video_details%>?576" type="video/mp4" data-res='576' />
+		<source src="<%=@post.video_details%>?1280" type="video/webm" data-res='1280' />
+		<source src="<%=@post.video_details%>?448" type="video/ogg" data-res='448' />
+		<source src="<%=@post.video_details%>?320" type="video/mp4" data-res='320' />
+		<% if @post.sub_title_file_name.present?%>
+		<track kind="subtitles" src="<%= @post.subtitle_url %>" srclang="en" label="English" default>
+		<% end %>
+	</video>
+	<video id="video_div_non_playable" class="video-js vjs-default-skin" controls preload="none" width="870" height="489" poster="<%= STATIC_PATH+'Fanzoos-video_player.gif'%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+	   
+	</video>
+<% end %>			
+								
+								
+								
+								http://localhost:3000/watch/macyLPLmW/test-title
+								
+								
+								
+								
+								
+								
+								
+function age_confirm(){
+	if ($("#confirm_age").prop("checked") == true){
+		$("#content_rating_modal").modal("hide");
+		$("#video_div_non_playable").hide();
+		$("#video_div").removeClass("hide");
+		var video_non_play = videojs('video_div_non_playable')
+		video_non_play.dispose()
+		// $("#video_div").html($("#video_div1").html());
+		// $("#video_div").show();
+		var video = videojs('video_div')
+		video.play()
+
+		var content_rating  = <%= @content_rating = true%>
+		var playable = <%= @playable = true%>
+		// var url = $(location).attr('pathname');
+		// window.location.href = url + "?content_rating=false";
+	}
+	else{
+		$("#err_cnfrm_msg").show();
+	}
+  }
+  
+  
+  
+  
+  <%if @playable && @content_rating == true %>
+						<% ext_cls = "hide"%>			
+							
+						<video id="video_div_non_playable" class="video-js vjs-default-skin" controls preload="none" width="870" height="489" poster="<%= STATIC_PATH+'Fanzoos-video_player.gif'%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+						   
+						</video>
+					<% end %>
+					<video id="video_div" class="video-js vjs-default-skin <%=ext_cls%>" controls autoplay preload="none" width="870" height="489" poster="<%= @post.url%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+						<source src="<%=@post.video_details%>?576" type="video/mp4" data-res='576' />
+						<source src="<%=@post.video_details%>?1280" type="video/webm" data-res='1280' />
+						<source src="<%=@post.video_details%>?448" type="video/ogg" data-res='448' />
+						<source src="<%=@post.video_details%>?320" type="video/mp4" data-res='320' />
+						<% if @post.sub_title_file_name.present?%>
+						<track kind="subtitles" src="<%= @post.subtitle_url %>" srclang="en" label="English" default>
+							<% end %>
+					</video>
+								
+								
+								
+								
+								
+<%if @playable && @content_rating == false %>
+								<video id="video_div" class="video-js vjs-default-skin" controls autoplay preload="none" width="870" height="489" poster="<%= @post.url%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+							        <source src="<%=@post.video_details%>?576" type="video/mp4" data-res='576' />
+							        <source src="<%=@post.video_details%>?1280" type="video/webm" data-res='1280' />
+							        <source src="<%=@post.video_details%>?448" type="video/ogg" data-res='448' />
+							        <source src="<%=@post.video_details%>?320" type="video/mp4" data-res='320' />
+							        <% if @post.sub_title_file_name.present?%>
+							        <track kind="subtitles" src="<%= @post.subtitle_url %>" srclang="en" label="English" default>
+							    		<% end %>
+							    </video>
+							<% else %>
+							<video id="video_div" style="display:none" class="video-js vjs-default-skin" controls autoplay preload="none" width="870" height="489" poster="<%= @post.url%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+							        <source src="<%=@post.video_details%>?576" type="video/mp4" data-res='576' />
+							        <source src="<%=@post.video_details%>?1280" type="video/webm" data-res='1280' />
+							        <source src="<%=@post.video_details%>?448" type="video/ogg" data-res='448' />
+							        <source src="<%=@post.video_details%>?320" type="video/mp4" data-res='320' />
+							        <% if @post.sub_title_file_name.present?%>
+							        <track kind="subtitles" src="<%= @post.subtitle_url %>" srclang="en" label="English" default>
+							    	<% end %>
+							    </video>
+								<video id="video_div_non_playable" class="video-js vjs-default-skin" controls preload="none" width="870" height="489" poster="<%= STATIC_PATH+'Fanzoos-video_player.gif'%>" data-setup='{ "plugins" : { "resolutionSelector" : { "default_res" : "480" } } }'>
+							       
+							    </video>
+							<% end %>
+								
+								
+Hi Sir,
+
+Fanzoos:									
+Did RnD to add custom js in rails admin
+Added the logic to validate requred field  and displayed an error message
+Did rnD to fix the watermark display issue in video player
+Added the logic to create walletmark elements if not present for safari browser
+Fixed the "latest" sorting issue in case of more videos
+Added the logic to redirect to coming soon page depending upon 'is_live' flag
+Pushed the changes to staging server and done unit testing.
+
+Best,
+Amit
+
+
+
+Here are the sendGrid Accounts I created One for you and anotherOne calle
+FanZoosWeb
+SendGrid
+Username AndolaSoft
+Beaver@23
+FanZoosWeb
+Redwood@23
+
+
+No error message given when attempted to ad a banner with not height
+
+
+
+ENV['RAILS_SERVE_STATIC_FILES']
+
+
+ ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.sendgrid.net",
+    :enable_starttls_auto => true,
+    :port                 => 25 ,  #SSL is 465, and the port for TLS is 587
+    :domain               => "dev.fanzoos.com",
+    :user_name            => ENV['Sendgrid_USERNAME'],
+    :password             => ENV['Sendgrid_PASSWORD'],
+    :authentication       => 'plain',
+  }
+  
+  
+  ActionMailer::Base.default_url_options = { host: 'mysite.mydomain.com' }
+  
+  
+  
+  
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.sendgrid.net",
+    :enable_starttls_auto => true,
+    :port                 => 25 ,  #SSL is 465, and the port for TLS is 587
+    :domain               => "dev.fanzoos.com",
+    :user_name            => ENV['Sendgrid_USERNAME'],
+    :password             => ENV['Sendgrid_PASSWORD'],
+    :authentication       => 'plain',
+  }
+
+Net::SMTPFatalError (550 Unauthenticated senders not allowed
+
+
+Net::SMTPAuthenticationError (535 Authentication failed: Bad username / password
+):
+
+Fanzoos:
+Added smtp sendgrid for action mailer
+Fixed Net::SMTPFatalError (550 Unauthenticated senders not allowed) while using sendgrid credentials for SMTP
+
+Leaguer:
+
+
+
+config = {
+  host: "http://dev.fanzoos.com:9200/",
+  transport_options: {
+    request: { timeout: 5 }
+  },
+}
+
+if File.exists?("config/elasticsearch.yml")
+  config.merge!(YAML.load_file("config/elasticsearch.yml").symbolize_keys)
+end
+
+
+
+config = {
+  host: "http://localhost:9200/",
+  transport_options: {
+    request: { timeout: 5 }
+  },
+}
+
+if File.exists?("config/elasticsearch.yml")
+  config.merge!(YAML.load_file("config/elasticsearch.yml").symbolize_keys)
+end
+
+Elasticsearch::Model.client = Elasticsearch::Client.new(config)
+
+
+
+
+Post.__elasticsearch__.index_exists?
+Post.__elasticsearch__.delete_index!
+Post.__elasticsearch__.create_index!
+Post.import
+
+rake backend_run:rebuild_elastic_search
+
+
+Sir,
+
+Gone through ealsticsearch model to clear/create indexes in staging server
+Created rake task for delete old index and create new one with current DB
+Verified the search functionality in production server
+Did investigation about FB authorization issue with Client given Facebook app
+Created sample app for Facebook with api version 2.5 and integrated the app id and secret key
+Fixed the FB authorization issue with Client created Facebook app
+Pushed all the changes to staging server and unit tested the same
+
+Best,
+Amit
+
+
+
+http://fanzoos.com/users/auth/facebook/callback
+http://fanzoos.com/users/auth/facebook/callback
+
+
+http://www.fanzoos.com/users/auth/facebook/callback
+http://www.fanzoos.com/users/auth/facebook/callback
+
+
+http://www.fanzoos.com/users/auth/facebook/callback
+
+http://192.168.56.1:3000/users/auth/facebook/callback
+
+uhyi4b2SF2qxhYcXSOTYlagkgizgJAIclKd8MxNYWSlYnzwAgqFm3keHjdeSwJO6mu1x1uE5EE0iweIY54skZuW4MgOUWxG6vb16Bu3PpmCgXLFLn4fOEorolMb_Bo4OR7Wdzd4DIK3352LL8lN8-VgJM4olt7yUGjMrpNCfU6bUUJjqqNReIDBLxrxR1jRUiqZSKOgtGrjwgaSvzReIw8dvdHzLUJqQu0d00-EjdDr&state=0fa2ca861eb22f144ecb826cee27215c6cbfcccc73543555" for 10.0.2.2 at 2016-03-18 10:13:53 +0000
+I, [2016-03-18T10:13:54.650355 #8457]  INFO -- omniauth: (facebook) Callback phase initiated.
+E, [2016-03-18T10:13:59.963134 #8457] ERROR -- omniauth: (facebook) Authentication failure! invalid_credentials: OAuth2::Error, {"message"=>"(#100) Tried accessing nonexisting field (address) on node type (User)", "type"=>"OAuthException", "code"=>100, "fbtrace_id"=>"AfzPdoDBpLn"}:
+{"error":{"message":"(#100) Tried accessing nonexisting field (address) on node type (User)","type":"OAuthException","code":100,"fbtrace_id":"AfzPdoDBpLn"}}
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"code"=>"AQC-vrRW7DGc9uOckubB26snlmn7eoIC4SCJxWeVv0xO_P6cybIPp7IOXTVrxkP8MEFlLMUn9fXSalAhDqoMSQ4BUkfYhD5BDi8QdiQ_QoaoZuhyi4b2SF2qxhYcXSOTYlagkgizgJAIclKd8MxNYWSlYnzwAgqFm3keHjdeSwJO6mu1x1uE5EE0iweIY54skZuW4MgOUWxG6vb16Bu3PpmCgXLFLn4fOEorolMb_Bo4OR7Wdzd4DIK3352LL8lN8-VgJM4olt7yUGjMrpNCfU6bUUJjqqNReIDBLxrxR1jRUiqZSKOgtGrjwgaSvzReIw8dvdHzLUJqQu0d00-EjdDr", "state"=>"0fa2ca861eb22f144ecb826cee27215c6cbfcccc73543555"}
+  Page Load (2.1ms)  SELECT  "pages".* FROM "pages" WHERE (controller = '' AND action = '' AND is_active = true)  ORDER BY "pages"."id" ASC LIMIT 1
+  AdSense Load (2.0ms)  SELECT "ad_senses".* FROM "ad_senses"
+
+
+
+  
+  
+  
+  There will be a link on sign-up page with text "Want to sign-up as organisation,athlete or team. Click here"
+It will redirect to the page where user have to choose existing user or new user.
+If user is existing it will ask user to validate using email/username and password.
+If user is new, a form will appear to fill up the user details such as email, username,password, first name, last name and dob.
+User will redirect to next sequence where 3 boxes will appear like "Athlete", "Organization" and "Team".
+By clicking on any of the above boxes it's relevant form fields will appear.
+User have to fill up all the fields in order to create the pages.
+User can upload the page profile image & back splash image.
+User can able to create multiple pages for "Athlete", "Organization" and "Team".
+User profile page and "Athlete", "Organization" or "Team" pages created by that user are different.User will behave as admin for those created pages.
+In case of new user, an email verification will send to his/her email in order to activate the "Athlete", "Organization" or "Team" page.
+Name will be unique for "Organization" and "Team".
+
+
+
+
+https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=email+profile&response_type=code&redirect_uri=http%3A%2F%2Fdev.fanzoos.com%2Fusers%2Fauth%2Fgoogle_oauth2%2Fcallback&state=15c83e19b3c9d38fefbe76bd3c0701d8ac8a9c7d16c21bbb&client_id=315864028798.apps.googleusercontent.com&hl=en&from_login=1&as=-2b1674a902a21cd2&authuser=0
+
+
+https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=email+profile&response_type=code&redirect_uri=http%3A%2F%2Fdev.fanzoos.com%2Fusers%2Fauth%2Fgoogle_oauth2%2Fcallback&state=785c1fa8407b540a6b47a39b2e9ec85db893dbad09ca0577&client_id=870732549517-n24jtuf4ak61cp8rmkpita985s1s1ok4.apps.googleusercontent.com&hl=en&from_login=1&as=-7cdd521eefed3c40&authuser=0
+
+
+
+Invalid credentials
+
+
+p
+I, [2016-03-23T05:59:20.169279 #30607]  INFO -- : Started GET "/users/auth/google_oauth2/callback?state=56cc1e9041e3427836659ed0c692e90e5de053a9f36bfa85&code=4/e23sR4U1KlcaYqkc5H5MmkUBQASS5cdbRt6i3uLtCDY" for 111.93.178.162 at 2016-03-23 05:59:20 +0000
+I, [2016-03-23T05:59:20.577493 #30607]  INFO -- : Processing by Users::OmniauthCallbacksController#failure as HTML
+I, [2016-03-23T05:59:20.577643 #30607]  INFO -- :   Parameters: {"state"=>"56cc1e9041e3427836659ed0c692e90e5de053a9f36bfa85", "code"=>"4/e23sR4U1KlcaYqkc5H5MmkUBQASS5cdbRt6i3uLtCDY"}
+
+
+Invalid credentials
+Processing by Users::OmniauthCallbacksController#failure
+
+
+http://dev.fanzoos.com/users/auth/google_oauth2/callback
+
+
+
+707125231649-a2p8pu21a5e3ci40fc3e9brhrm455f9a.apps.googleusercontent.com
+sEoRvM3w-k0jGCW0C_UPQW66
+
+
+
+
+
+4444444444444444444444444444444444444I, [2016-03-23T06:24:23.889156 #31862]  INFO -- : Started GET "/users/auth/google_oauth2" for 111.93.178.162 at 2016-03-23 06:24:23 +0000
+I, [2016-03-23T06:24:24.612756 #31862]  INFO -- : Started GET "/users/auth/google_oauth2" for 111.93.178.162 at 2016-03-23 06:24:24 +0000
+I, [2016-03-23T06:24:33.275815 #31862]  INFO -- : Started GET "/users/auth/google_oauth2/callback?state=76798c63527a878e94fb73fe86d9a26650e1954cd77e5bdc&code=4/NaMCt88N_HDf9H7eRvsMxvVcYGxO0YJ-Blp9q913twQ" for 111.93.178.162 at 2016-03-23 06:24:33 +0000
+I, [2016-03-23T06:24:33.674889 #31862]  INFO -- : Processing by Users::OmniauthCallbacksController#failure as HTML
+I, [2016-03-23T06:24:33.675044 #31862]  INFO -- :   Parameters: {"state"=>"76798c63527a878e94fb73fe86d9a26650e1954cd77e5bdc", "code"=>"4/NaMCt88N_HDf9H7eRvsMxvVcYGxO0YJ-Blp9q913twQ"}
+
+
+
+Message-ID: <56f23737d1118_7e5c11b7b6886582@ip-172-31-0-149.mail>
+Subject: Fanzoos: omniauth_callbacks#google_oauth2
+ (ActiveRecord::RecordInvalid) "Validation failed: Email has already been
+ taken...
+Mime-Version: 1.0
+
+
+
+
+
+make sure we have Contacts API  and Google+ API  are enabled for the application
+here is the video on this, http://screencast.com/t/fy5zp1FE1I
+
+This might take few minutes to reflect after adding those apis
+

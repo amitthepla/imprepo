@@ -1,0 +1,42 @@
+Started POST "/refinery/news/2017-perceived-as-riskier-by-top-executives-survey-results-say-knowledgeleader" for 111.93.178.162 at 2017-03-14 04:41:52 +0000
+  Processing by Admin::NewsItemsController#update as HTML
+  Parameters: {"utf8"=>"â", "authenticity_token"=>"WBB61xSWjzpV0jVc+o4lPAQRYmxMIZsch9NIjUSxitQ=", "switch_locale"=>"en", "news_item"=>{"title"=>"2017 Perceived as Riskier by Top Executives, Survey Results Say (KnowledgeLeader)", "publish_date(1i)"=>"2017", "publish_date(2i)"=>"3", "publish_date(3i)"=>"1", "publish_date(4i)"=>"00", "publish_date(5i)"=>"50", "expiration_date(1i)"=>"2017", "expiration_date(2i)"=>"3", "expiration_date(3i)"=>"31", "expiration_date(4i)"=>"23", "expiration_date(5i)"=>"59", "content"=>"<table style=\"width:100%;border-collapse: collapse;\"><tbody><tr> <td style=\"border-bottom: 1px solid #ccc;\"><img src=\"/system/images/BAhbB1sHOgZmSSIvMjAxMi8xMC8yNS8xNi81Mi8xNS8zOTIvQXVkaXROZXQuNzIuc20uanBnBjoGRVRbCDoGcDoKdGh1bWJJIg0yMjV4MjU1PgY7BlQ/AuditNet.72.sm.jpg\" title=\"Audit Net.72.Sm\" alt=\"Audit Net.72.Sm\" rel=\"225x255\" height=\"96\" width=\"144\" /><img src=\"http://www.auditnet.org/system/images/BAhbB1sHOgZmSSI6MjAxMy8xMi8wMi8xMi8zNy8yNS81MzAvS0xsb2dvX3N0YWNrZWRfZm9yX2VtYWlscy5naWYGOgZFVFsIOgZwOgp0aHVtYkkiDTIyNXgyNTU+BjsGVA/KLlogo_stacked_for_emails.gif\" title=\"K Llogo Stacked For Emails\" alt=\"K Llogo Stacked For Emails\" rel=\"225x255\" height=\"77\" width=\"225\" />\r\n\r\n</td>\r\n<td style=\"border-bottom: 1px solid #ccc;\" valign=\"top\"><strong>Summary</strong>:&#160;Political and economic instability, cyberattacks and disruptive change have global executives and board members on high alert for the year ahead, according to research from Protiviti and North Carolina State Universityâs ERM Initiative.<br /><br /><a href=\"http://www.auditnet.org/newsletter\" title=\"http://www.auditnet.org/newsletter\" target=\"_blank\">Read this month's newsletter</a> with the link to the article!</td>\r\n</tr>\r\n</tbody>\r\n</table>"}, "continue_editing"=>"false", "id"=>"2017-perceived-as-riskier-by-top-executives-survey-results-say-knowledgeleader", "locale"=>:en}
+Completed 500 Internal Server Error in 60192ms
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_request.text.erb (1.5ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_title.text.erb (0.5ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_session.text.erb (83.7ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_title.text.erb (0.1ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_environment.text.erb (531.0ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_title.text.erb (0.4ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_backtrace.text.erb (2.0ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/_title.text.erb (0.2ms)
+Rendered /usr/local/rvm/gems/ruby-1.9.2-p320@auditnet/gems/exception_notification-3.0.1/lib/exception_notifier/views/exception_notifier/exception_notification.text.erb (803.8ms)
+
+Sent mail to auditnet-grp@andolasoft.com, animesh.dash@andolasoft.com, ansuman.taria@andolasoft.co.in (4560ms)
+
+RestClient::RequestTimeout (Request Timeout):
+
+
+
+
+
+ => #<Member id: 153494, username: "Galib", email: "suddin.acnabin@gmail.com", encrypted_password: "$2a$10$yVB7L4Tzre83jZehdWL0qui8E9a/ATMTWnXU1bsRKFGi...", persistence_token: nil, created_at: "2017-03-14 04:46:18", updated_at: "2017-03-14 04:46:19", perishable_token: nil, current_sign_in_at: "2017-03-14 04:46:19", last_sign_in_at: "2017-03-14 04:46:19", current_sign_in_ip: "202.74.245.250", last_sign_in_ip: "202.74.245.250", sign_in_count: 1, remember_token: nil, reset_password_token: nil, remember_created_at: nil, invitation_token: nil, invitation_sent_at: nil, invitation_accepted_at: nil, first_name: "shahab", last_name: "uddin", title: nil, phone: nil, fax: nil, website: nil, organization: "acnabin", street_address: nil, city: nil, province: nil, postal_code: nil, member_until: nil, membership_level: "Member", enabled: true, is_new: false, access_level_id: 1, country_id: "BD", user_found_id: "WL", industry_sector: "audit", confirm_token: "036456bd13427127cc2f82c823c93020", email_use: true, trans_id: nil, account_expires: nil, user_auth_token: nil, is_trial: false, is_rating: false, is_ppc_user: false, referrer_url: nil, page_url: nil>
+
+
+
+
+
+
+=> #<PurchaseAttempt id: 5554, purchaser_id: 152474, subscription_plan_id: 17, billing_response: nil, exception: nil, created_at: "2017-03-13 13:25:03", updated_at: "2017-03-13 13:31:28", first_name: nil, last_name: nil, item_name: nil, mc_gross: 1.0, payment_gross: 1.0, mc_currency: "USD", transaction_id: "9KT67257C0956663B", receiver_email: nil, transaction_type: nil, payment_status: "Completed", payer_email: nil, city: nil, state: nil, street_address: nil, zip_code: nil, status: true, receipt_id: nil>
+
+
+
+192.168.2.159
+255.255.255.0
+192.168.2.1
+
+192.168.2.1
+8.8.4.4
+
+
+

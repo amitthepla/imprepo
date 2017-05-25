@@ -1,0 +1,773 @@
+Can you provide me an estimate for this
+
+I would like to make a small web app in Ruby for Automated Insights http://wordsmith.readme.io/v1/docs
+It will allow users to upload a CSV file, run the wordsmith API to produce the downloable report. Just that, no sign ups, no profiles, no worries about UX - just a white page with 3 buttons. Upload, Run, Download.
+
+Here is the token 
+4b1d5c5ba707ed7f4808f913fff5e5e69dbdbaaccba47a4ca0d37133a60873c5
+ 
+API documentation
+http://wordsmith.readme.io/
+ 
+Project 
+AI WS 001
+ 
+Templates are in the project above
+
+AWS: act.sci/autowriter1
+
+==========================================================================================================
+
+vagrant@precise32:/vagrant/Automatedinsights$ rails generate bootstrap:install less
+      insert  app/assets/javascripts/application.js
+      create  app/assets/javascripts/bootstrap.js.coffee
+      create  app/assets/stylesheets/bootstrap_and_overrides.css.less
+      create  config/locales/en.bootstrap.yml
+        gsub  app/assets/stylesheets/application.css
+vagrant@precise32:/vagrant/Automatedinsights$ rails generate bootstrap:install static
+      insert  app/assets/javascripts/application.js
+   identical  app/assets/javascripts/bootstrap.js.coffee
+      create  app/assets/stylesheets/bootstrap_and_overrides.css
+      insert  config/locales/en.bootstrap.yml
+        gsub  app/assets/stylesheets/application.css
+vagrant@precise32:/vagrant/Automatedinsights$ rails g bootstrap:layout application
+    conflict  app/views/layouts/application.html.erb
+Overwrite /vagrant/Automatedinsights/app/views/layouts/application.html.erb? (enter "h" for help) [
+Ynaqdh] y
+       force  app/views/layouts/application.html.erb
+vagrant@precise32:/vagrant/Automatedinsights$
+vagrant@precise32:/vagrant/Automatedinsights$
+vagrant@precise32:/vagrant/Automatedinsights$ rails s -p 3004
+=> Booting WEBrick
+
+===========================================================================================================
+
+
+Project: <button type="button" class="btn btn-primary btn-round-lg btn-lg"><%=@project.first.name%></button>
+
+Templates:
+<div id="tab" class="btn-group" data-toggle="buttons-radio">
+  <%# @project.templates.each do |p| %>
+  <%#=p%>
+  <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab">Prices</a>
+  <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab">Features</a>
+  <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab">Requests</a>
+  <a href="javascript:" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+
+
+ <%#end%>
+</div>
+
+<%=debug @project.first.templates%>
+
+<div id="tab" class="btn-group" data-toggle="buttons-radio">
+  <%# @project.templates.each do |p| %>
+  <%#=p%>
+  <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab">Prices</a>
+  <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab">Features</a>
+  <a href="javascript:" class="btn btn-large btn-info" data-toggle="tab">Requests</a>
+  <a href="javascript:" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+
+
+ <%#end%>
+</div>
+
+
+<%=debug @project%>
+
+
+
+#<Wordsmith::Project:0xa7385d4 @name="Ecommerce", @slug="ecommerce", @schema={:make=>"Text", :disp_tec=>"Text", :manufacture=>"Text", :smart=>"Text", :year=>"Number", :price=>"Number", :savings=>"Number", :avg_price=>"Number", :size=>"Number", :resolution=>"Number", :extras=>"Text", :refresh=>"Number", :threed=>"Text", :wifi=>"Text", :hdmi_port=>"Number", :rating=>"Number"}, @templates=#<Wordsmith::TemplateCollection:0xa738430 @templates=[#<Wordsmith::Template:0xa7384f8 @name="Ecommerce Template", @slug="ecommerce-template", @project=#<Wordsmith::Project:0xa7385d4 ...>>]>>
+
+
+
+
+
+# {"disp_tec"=>["2014", "test description"], "manufacture"=>["2014", "Ford"], "smart"=>["2014", "yes"], "year"=>["2014", "2016"], "price"=>["2014", "201
+# 11"], "savings"=>["2014", "1544"], "avg_price"=>["2014", "1547"], "size"=>["2014", "15"], "resolution"=>["2014", "1100"], "extras"=>["2014", "body"],
+# "refresh"=>["2014", "yes"], "threed"=>["2014", "123"], "wifi"=>["2014", "yes"], "hdmi_port"=>["2014", "yes"], "rating"=>["2014", "5"]}
+
+	# template.generate({make: '2014',disp_tec:'test description',manufacture:'asas',smart:'asas',year:'dsadas',price:'sadsad',savings:'as',avg_price:'as',size: 'sas',resolution: 'sd',extras:'sadsad',refresh: 'sad',threed: 'dsad',wifi: 'sads',hdmi_port: 'asd',	rating: '4'})
+
+	
+	
+	#uploading csv file for generating the content
+  def upload_file
+  	puts "-------> Upload File <------"
+    # p params
+    @records = []
+    first_row = true
+    CSV.foreach(params[:file].path, headers: true, encoding: 'ISO-8859-1') do |row| 
+  #   	puts "----- > <-----"    
+  #   	if first_row
+  #         @headers = row.headers
+  #         first_row = false
+  #       end    
+  #       @records << row.fields
+	 #    p row.headers
+
+		# puts "----<<<<<<<<<<<<<<<<<<"
+		# p @records
+  #   	 # csv << @headers
+  #    	# @records.each { |record| csv << record }
+    hash_row =  row.headers[1..-1].zip( (Array.new(row.fields.length-1, row.fields[0]).zip(row.fields[1..-1])) ).to_h
+    # hash_row.each{|key, value| tickers[key] ? tickers[key].merge!([value].to_h) : tickers[key] = [value].to_h}
+
+    p hash_row
+
+
+
+	project = Wordsmith::Project.find('project-slug')
+	template = project.templates.find('template-slug')
+
+
+    end
+
+  end
+
+  
+    templates = Wordsmith::Project.find('ecommerce').templates
+    @template = templates.find('ecommerce-template')
+
+
+    puts "-------------------generate template"
+    p @template.generate({make:'2014',disp_tec:'testdescription',manufacture:'asas',smart:'asas',year:'dsadas',price:'sadsad',savings:'as',avg_price:'as',size:'sas',resolution:'sd',extras:'sadsad',refresh:'sad',threed:'dsad',wifi:'sads',hdmi_port:'asd',rating:'4'})
+  
+  
+  
+  
+    templates = Wordsmith::Project.find('amit').templates
+    @template = templates.find('new-template')
+    
+    p @template.generate({test1:'2014',test2:'testdescription',test3:'asas'})
+  
+
+  
+  
+  my_hash = {:test1=>'2014',:test2=>'testdescription',:test3=>'asas'}
+  
+require 'faraday'
+require 'json'
+require 'hashie'
+
+Wordsmith.client.post "projects/amit/templates/new-template/outputs", :test1=>'2014',:test2=>'testdescription',:test3=>'asas'
+
+
+
+
+
+response = connection.post uri, {data: data}.to_json
+parse_response response
+	  
+	  
+cgroup_id = []	  
+	  
+	  
+ConversationGroup.each {|p| if p.members.include?(id) }
+
+
+
+We have deployed the changes to heroku platform and continuing with unit testing using our own api key.
+
+Here is the completed stuffs,
+
+Displayed list of project in dropdown
+Web-service API call to fetch list of templates and displayed in dropdown 
+Displayed schema with desired datatypes, immediately after selecting a project
+Implemented functionality for uploading the csv file(with same schema that has been defined during project creation on wordsmith website)
+Added a link "Download sample csv" to download sample csv file format
+Web-service API call to generate contents and displayed as a list (This is called after user click on the 'Run' button)
+Placed "download" button to download the contents in csv format
+
+Here is the url,
+https://automate-insights.herokuapp.com/
+
+Next plan of action:
+
+Replace the api key provided by you 
+Upload and verify the content generation functionality by uploading huge data through csv file 
+
+
+Note:
+Currently we are using our own api key, so you need to select the project "Amit". We have also attached the csv file here, that you need to upload 
+
+
+
+
+
+Hi Act,
+
+We have worked on your feedback and here are the details,
+
+Used your API key for Wordsmith. 
+Added the sample Excel File Template for download provided by you
+Downloaded the contents in MS Word document format
+
+Please take a look into it and share your feedback with us.
+
+
+Best,
+Anurag
+
+
+Check to make sure your data file meets the below criteria:
+
+Your data is a CSV file.
+Every column has a header, there are no blank headers.
+Each column has a unique name. Wordsmith won't be able to differentiate between columns that have the same name.
+
+
+
+Started POST "/upload" for 10.0.2.2 at 2016-08-16 06:29:01 +0000
+Processing by ContentsController#upload_file as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5vu9STjI3jfhnSY7RxSrVozJAJp5XOzq0m0/wOONTXY=", "project_slug"=>"amit", "template_slug"=>"new-templa
+te", "file"=>#<ActionDispatch::Http::UploadedFile:0xa030390 @tempfile=#<Tempfile:/tmp/RackMultipart20160816-4574-1ktwr52>, @original_filename="amit.cs
+v", @content_type="application/vnd.ms-excel", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"amit.csv\"\r\nContent-Type: applicat
+ion/vnd.ms-excel\r\n">, "commit"=>"Run"}
+
+
+---------- row.headers.length
+["test1", "test2", "test3"]
+["cuttack", "yes", "87"]
+-------------------AMit
+...............................
+API error
+
+
+RuntimeError: API error
+
+
+
+{"city"=>"cuttack", "cloud_cover"=>"yes", "chance_of_rain"=>"87", "high_temp_fahrenheit"=>"87", "high_temp_celsius"=>"56", "low_temp_fahrenheit"=>"15"
+, "low_temp_celsius"=>"125", "previous_high_temp"=>"nss"}
+
+
+
+
+
+
+project = Wordsmith::Project.find('mypro') #fetch a project by slug
+template = project.templates.find('new-template')           #fetch a template by slug
+template.generate({a_data_point: 1, another_one: 'Tuesday'}) #generate content
+
+template.generate({city: "cuttack", cloud_cover: "yes", chance_of_rain: "87", high_temp_fahrenheit: "87", high_temp_celsius: "56", low_temp_fahrenheit: "15", low_temp_celsius: "125", previous_high_temp: "nss"})
+
+
+
+template.generate({"city"=>"cuttack", "cloud_cover"=>"yes", "chance_of_rain"=>"87", "high_temp_fahrenheit"=>"87", "high_temp_celsius"=>"56", "low_temp_fahrenheit"=>"15", "low_temp_celsius"=>"125", "previous_high_temp"=>"nss"})
+
+
+project = Wordsmith::Project.find('density-impact-on-rock-temperature')
+template = project.templates.find('new-template')
+template.generate({"rock"=>"cuttack", "temperature"=>"yes", "density"=>"87"}.to_hash)
+
+template.generate({rock: "cuttack", temperature: 80, density: 87})
+
+
+project = Wordsmith::Project.find('tutorial')
+template = project.templates.find('step-3-using-synonyms')
+template.generate({city: "cuttack", cloud_cover: "yes", chance_of_rain: "87", high_temp_fahrenheit: "87", high_temp_celsius: "56", low_temp_fahrenheit: "15", low_temp_celsius: "125", previous_high_temp: "nss"})
+
+
+
+Hi Act, thanks for your feedback. 
+We want to let you know that based on the initial agreement, we have completed the stuffs and deployed all our changes to heroku platform.
+
+Below changes requested by you requires additional effort to accomplish and also requires discussion.
+
+Do the PPT output for the PPT  Templates
+Insert plotted charts for each experiment and Experiment diagrams for each experiment in the Docs and PPTs output files
+
+It would be great, if we can have your skype id to reach you directly.
+
+Looking forward to hear from you soon.
+
+
+
+
+
+Do the PPT output for the PPT  Templates
+Insert plotted charts for each experiment and Experiment diagrams for each experiment in the Docs and PPTs output files
+
+
+Here are the task breakdown,
+
+>> Create another page for uploading of images 
+>> Display list of images with URL(so that user can copy the image URL links and paste it in csv)
+>> Delete button to destroy the stored images(we will store the images in amazon s3 bucket and the pricing is very nominal)
+>> Storing of content types(PPT/DOC) in backend so as to download by specific types(We will handle this by template name, if the name contains the word 'ppt', then we will take it as PPT, or else DOC)
+>> Integrate logic for generating the PPT output(Slide wise) and download the same
+>> Parse the wordsmith content and place the images in places
+>> Download as PPT/DOC after content retrieval from wordsmith API
+
+
+
+Requirement:
+
+AWS access_key_id and secret_access_key
+bucket
+
+
+
+x = "text1 http://www.domain.com/experiment_B_setup_diagram_image.png\n\nExperiments text2 http://www.domain.com/experiment_C_setup_diagram_image.png \nexperiment text3 http://www.domain.com/experiment_A_plotted_chart.png"
+x.tr("\n", " ").split(" ")
+
+
+text="text1 http://www.domain.com/experiment_B_setup_diagram_image.png\n\nExperiments text2 http://www.domain.com/experiment_C_setup_diagram_image.png \nexperiment text3 http://www.domain.com/experiment_A_plotted_chart.png"
+text.split(/\s|\n/)
+
+
+
+
+"\nDIFFERENT ROCK TYPES SUITABILITY FOR SPENT FUEL STORAGE\n\nPresenter: \nJOHN DOE\nYOUR COMPANY LOGO\nXYZ INSTITUTE\nSMALLTOWN, USA\njohn.doe@domain.com\n\n\n\n"
+------1------
+"\nOUTLINE\n\n• INTRODUCTION & PRIOR ARTS\n• OBJECTIVE\n• PROPOSED APPROACH\n• EXPERIMENTS\n• RESULTS\n• DISCUSSION\n• CONCLUSION\n\n\n"
+------2------
+"\nINTRODUCTION & PRIOR ARTS\n\nFor some of the appropriate sample prior arts we refer to the following work,\"Rock densities impact on temperature ch
+ange due to Spent Fuel Storage\" by Smith et al., \"Impact Of Increasing Temperature On Different Rocks' Densities\" by Williams et al., \"How Years O
+f Spent Fuel Storage Impact Different Rocks' Temperatures\" from Zhang et al., among others.\n\n\n"
+
+
+x.gsub(/\n/,"\\n").split(/\\/).reject(&:empty?)
+
+
+
+x.gsub(/\n/,"\\n").split(/\\/)
+
+=====================================================
+
+
+["For some of the appropriate sample prior arts we refer to the following work,\"Rock densities impact on temperature change due to Spent Fuel Sto
+rage\" by Smith et al., \"Impact Of Increasing Temperature On Different Rocks' Densities\" by Williams et al., \"How Years Of Spent Fuel Storage Impac
+t Different Rocks' Temperatures\" from Zhang et al., among others.", ]
+
+"For some of the appropriate sample prior arts we refer to the following work,\"Rock densities impact on temperature change due to Spent Fuel Storage\
+" by Smith et al., \"Impact Of Increasing Temperature On Different Rocks' Densities\" by Williams et al., \"How Years Of Spent Fuel Storage Impact Dif
+ferent Rocks' Temperatures\" from Zhang et al., among others."
+
+
+
+For some of the appropriate sample prior arts we refer to the following work,"Rock densities impact on temperature change due to Spent Fuel Storage" by Smith et al., "Impact Of Increasing Temperature On Different Rocks Densities" by Williams et al., "How Years Of Spent Fuel Storage Impact Different Rocks' Temperatures" from Zhang et al., among others.
+
+
+
+==========================================================================
+
+
+
+
+["For some of the appropriate sample prior arts we refer to the following work,\"Rock densities impact on temperature change due to Spent Fuel Storage\" published by Smith et al., \"Impact Of Increasing Temperature On Different Rocks Densities\" published by Williams et al., \"How Years Of Spent Fuel Storage Impact Different Rocks Temperatures\" by Zhang et al., among others."]
+
+
+  @slides << Powerpoint::Slide::Textual.new(presentation: self, title: title, content: content)
+
+Problems while creating slide
+
+& is not allowed
+
+
+
+
+
+
+Access Key ID:
+AKIAJYNZK4HDSSQ75QSA
+Secret Access Key:
+0CER+Smycl90k905Y2NLdQPWebVQt2G5yHA/t38E
+
+
+Access Key ID:
+AKIAIYDZRM7YI5V3H4XA
+Secret Access Key:
+IHwF3OxXhgwjuxteEYp7KSq2Mu3oDE/0mFBpP3DF
+
+
+
+==========================================================================================================================
+1-If you can move the slide contents up to start from the top that would be great. 
+2-And change the font size for slide content text to 18pt (since now it is 32pt and thus too big to fit in one slide) . 
+3-Align the slide text Left ( since now it is aligned Center) - DONE
+4-The slide titles can stay 44pt and aligned center. No change needed.
+
+5-You can remove Slide 6, 9, 12 because their info is already covered by Slides 7, 10, 13 - DONE
+
+6-You can also remove Slides 15, 17, 19 because their info is covered by slides 16, 18, 20 - DONE
+
+===========================================================================================================================
+
+
+Hi
+Thanks for getting the graphics insertion working.
+I also did a test with OFFICIAL MANUSCRIPT template. It worked.
+
+Just as in the PPT output here are just some basic formatting feedback that might make the result more presentable.
+I attached the raw output doc file and the target formatted doc file for reference.
+
+Basically each section of the paper needs to start as new paragraph with one blank line above and blank line below the section (or subsection) title. Please see attached file.
+
+Section and sub-section titles can be considered as below:
+
+Title and personal details
+Abstract
+Introduction
+Experiments
+	Experiment A
+	Experiment B
+	Experiment C
+Results
+	Experiment A
+	Experiment B
+	Experiment C
+Discussion
+Conclusion
+References [Each reference needs to start in a separate new line]
+
+
+============================================================================================================================
+
+http://www.officeopenxml.com/prSlide-styles-themes.php
+
+
+>> Dev environment setup (PHP+Android Studio)
+>> Code walk through
+>> DB architecture modification
+
+
+http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/
+
+24hrs
+80hrs
+
+
+PHP - 30
+Android - 80
+
+
+High level tasks:
+
+1. Adding of sub sub-category 
+   study zone > k-12 > board(sub-sub) > class > subject > chapter
+   
+2. correct answer +1 point and wrong answer -0.25 and skip -0.15
+
+3. every questions has 50-50 then points will as correct answer +0.50 point and wrong answer -0.30 and skip -0.2
+
+4. Remove timer
+
+5. remove Shopping and add About Us
+
+6. Remove ads
+
+7. Product lauch
+
+Questions:
+•	after ending of chapter 1, chapter 2 it will show as all chapter so all chapter questions directly showing here
+
+Our standing is that, in one chapter you want to show, questions from previous chapters also. In this way, the last chapter wil have all the questions.
+
+•	it will show as ibps, ssc, railway, etc then sub category then quiz will start
+
+What will be subcategory for ssc and railsway. Can you please give an example.
+
+
+
+
+
+
+
+act.sci@aol.com
+
+3-Slide# in HTML seems to serve a purpose but maybe adding a slide demarcation graphic might be better. Or maybe just ***SLIDE XX***
+10-Also please send me a basic doc with instructions for properly running the app and making some basic web page appearance changes.
+
+==========================================================================================================================================
+1-Change name of app to “Omni Writer” so it will be https://omni-writer.herokuapp.com to reflect that it’s distinct from conventional automated insights platform.
+9-Put a Link at the top center for “HOW IT WORKS” so it can link to screencast youtube or vimeo demo video.
+
+Completed:
+2-Keep both the “View As HTML” button and “Download” button. But add “Print” Button and align them as per your suggestion.
+4-Hide or do not display the Schema. It will look cleaner and uncluttered. Also so that the webapp looks better on mobile devices because currently the “Upload csv” gets superimposed on top of schema text.
+5-Add basic cumulative counter of “Total Documents Generated : XX” at the bottom of page. Under the counter add text “Omni Writer By iMult Inc ©2016”
+6-Change text “Select project and template” to “SELECT PROJECT | TEMPLATE”
+7-Change text “Upload csv” to “UPLOAD YOUR CSV”
+8-Change text “Download sample file” to “Download Template”
+
+
+
+
+Hi Wallen,
+
+We have worked on the changes and here are the status highlighted in GREEN text
+
+1-Change name of app to “Omni Writer” so it will be https://omni-writer.herokuapp.com to reflect that it’s distinct from conventional automated insights platform.
+2-Keep both the “View As HTML” button and “Download” button. But add “Print” Button and align them as per your suggestion. DONE
+3-Slide# in HTML seems to serve a purpose but maybe adding a slide demarcation graphic might be better. Or maybe just ***SLIDE XX*** Future Scope
+4-Hide or do not display the Schema. It will look cleaner and uncluttered. Also so that the webapp looks better on mobile devices because currently the “Upload csv” gets superimposed on top of schema text. DONE
+5-Add basic cumulative counter of “Total Documents Generated : XX” at the bottom of page. Under the counter add text “Omni Writer By iMult Inc ©2016” DONE
+6-Change text “Select project and template” to “SELECT PROJECT | TEMPLATE” DONE
+7-Change text “Upload csv” to “UPLOAD YOUR CSV” DONE
+8-Change text “Download sample file” to “Download Template” DONE
+9-Put a Link at the top center for “HOW IT WORKS” so it can link to screencast youtube or vimeo demo video. DONE
+10-Also please send me a basic doc with instructions for properly running the app and making some basic web page appearance changes. DONE(Attached)
+
+Please verify and let us know your feedback.
+
+
+
+http://omni-writer.herokuapp.com/download.pptx?records=1496
+
+
+
+Thanks for the update.
+Please push the attached updated and color coded "How It Works" file.
+
+
+Hi Wallen,
+
+Thanks for your feedback. We have pushed the updated file to the server. Please verify.
+Definately we will look into the new tasks after the payment done and keep you posted.
+
+======================================================================================================================================
+
+For the next task of one click automation to automatically 
+
+1-Plot charts from the user's Excel template data and automatically insert them in the output document report.
+2-Extract the Experiment Setup Diagram images  from Excel template data and automatically insert them in the output document report.
+3-Auto convert user's Excel file's  CONTROL TABLE to CSV for them for the  API for AI to crunch the report.
+
+
+===========================================================================================================================================
+Hi
+
+Thanks for the update.
+Please push the attached updated and color coded "How It Works" file.
+
+In the mean time after I submit the current iteration's payment sometime tomorrow please start looking at Ruby MS Office resources 
+[e.g.  :
+https://www.ruby-toolbox.com/categories/graphing
+https://www.ruby-toolbox.com/categories/reporting
+]
+
+For the next task of one click automation to automatically 
+1-Plot charts from the user's Excel template data and automatically insert them in the output document report.
+2-Extract the Experiment Setup Diagram images  from Excel template data and automatically insert them in the output document report.
+3-Auto convert user's Excel file's  CONTROL TABLE to CSV for them for the  API for AI to crunch the report.
+
+Basically we want to minimize number of manual steps or touch points for users so that they just enter their data into the Excel Template file and upload it ->Select Project->Select Template-> Click Run. Then get their results.
+
+
+Hi Wallen, hope you are doing good.
+
+We finished our ground work on extracting the images from Excel/CSV file, but unfortunately could not find any solution. 
+However, we are able to accomplish #3(Auto convert user's Excel file's  CONTROL TABLE to CSV for them for the  API for AI to crunch the report). 
+
+This will take tentatively 16hours($300). Please suggest.
+
+Best,
+Amit
+
+
+
+Wordsmith is the world’s only self-service natural language generation engine. Our open API makes it easy for data professionals to automate clear, written explanations of their Tableau visualizations. It’s like having an expert speak directly to every user, telling them what the data means and what they should do about it. And, best of all, the narrative updates in real time as the user explores the visualization.
+
+
+
+
+https://github.com/heavysixer/Tableau-Trusted-Interface-Example
+http://kb.tableau.com/articles/knowledgebase/Ruby-on-Rails-Vulnerabililty
+https://github.com/TraxTechnologies/tableau-ruby
+
+
+http://stackoverflow.com/questions/33680465/grab-image-from-excel-sheet?rq=1
+
+https://github.com/kaspernj/php_process
+
+
+
+
+
+
+ ############ Excel Read ###############################
+    # begin
+      # xlsx = Roo::Spreadsheet.open(params[:file])
+      # xlsx = Roo::Excelx.new(params[:file])
+
+      #Use the extension option if the extension is ambiguous.
+      xlsx = Roo::Spreadsheet.open(params[:file].path, extension: :xlsx)
+      puts "--------------------- read from excel"
+      # p xlsx.info
+      puts "------------ sheets"
+      p xlsx.sheets
+      p xlsx.sheet('CONTROL TAB').row(2)
+      puts "----------- columns -------------"
+      p xlsx.column(1)
+      
+      # sdfsdfdsf
+     # p xlsx.sheet('CONTROL TAB').row(2)
+    # rescue => e
+    #   puts "--------------- error"
+    #   p Roo::Spreadsheet.open(params[:file].path)
+    #   p params[:file]
+    #   p e.message
+    # end
+    # p params[:file].path
+    # book = Spreadsheet.open '/vagrant/automate-insights/public/test.xlsx'
+    # sheet2 = book.worksheet 'CONTROL TAB'
+    # sheet2.each 2 do |row|
+    #   # do something interesting with a row
+    #   p row[0]
+    # end
+	
+	
+
+
+http://www.excelhowto.com/how-to-quickly-extract-pictures-from-an-excel-file/
+
+http://www.walkswithme.net/reading-images-from-excel-sheet-using-phpexcel
+https://github.com/weshatheleopard/rubyXL
+
+https://github.com/mkroman/rar
+https://www.youtube.com/watch?v=3Kr3v8PX3Qk
+
+
+
+Hi Wallen, hope you are doing good.
+
+We finished our ground work on extracting the images from Excel/CSV file, but unfortunately could not find any solution. 
+However, we are able to accomplish #3(Auto convert user's Excel file's  CONTROL TABLE to CSV for them for the  API for AI to crunch the report). 
+
+This would take tentatively 16hrs($300). Please suggest.
+
+Best,
+Amit
+
+1-Sorry I think I just mentioned the Excel to HTML solution because it was the first of the two solutions listed on the site. The second listed solution on that same link was simply converting the Excel file to RAR file [ https://github.com/mkroman/rar ]. But no hurry you can look into it later if needed.
+
+
+
+2-Use Ruby to plot the charts of the experiment data in user's Excel as discussed before
+
+
+-Your point sounds good, yes please continue exploring methods to include as much automation as possible. 
+
+
+
+
+Hi Wallen, hope all is well.
+
+We have tried tons of methods to import images directly from excelsheet, but unfortunately could not found any solution. Because images in Excel are inserted on a separate layer and float above the cells. The best approach is to add image URL and get the specific images while parsing the sheets, which we already doing. So at this point we are not able to automate the whole process. However, we will look into it and keep you posted on same.
+
+We also tried to convert the xlsx to rar, but this approach did not work from ruby side.
+
+Here is the list of items that we can implement at this point,
+
+Upload excelsheet and google spreadsheet file
+Plot line charts(Charts can only be inserted in bottom of the page separately)
+
+Please let us know your feedback.
+
+Best,
+Amit
+
+http://www.aspose.com/
+https://github.com/sanjusoftware/asposeslides
+
+
+>> Parse setup in heroku
+
+
+
+https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fdevcenter.heroku.com%2Farticles%2Fdeploying-a-parse-server-to-heroku&template=https%3A%2F%2Fgithub.com%2FParsePlatform%2Fparse-server-example
+
+https://github.com/ParsePlatform/parse-server-example
+
+http://www.appcoda.com/parse-server-installation/
+
+57117366
+78768532
+
+http://www.aspose.com/products/cells/cloud
+Extract charts, pictures, shapes and other objects as images
+http://www.aspose.com/docs/display/cellscloud/Aspose.Cells+for+Cloud+REST+Live+Examples
+http://www.aspose.com/docs/display/cellscloud/How+to+Setup+Aspose.Cells+Cloud+SDK+for+Ruby
+http://www.rubydoc.info/gems/aspose_cells_cloud/1.0.1
+
+http://api.aspose.com/v1.1/swagger/ui/index
+
+
+SID: aa63ff75-cf7b-419d-8178-ddf345b463a7
+APP KEY: aaaa7187a03186d21c7c8c35adedfe17
+
+http://api.aspose.com/v1.1/usage/summary?appsid=aa63ff75-cf7b-419d-8178-ddf345b463a7&signature=oIVxhqiQnRF9%2Ff9s%2FMk32isPrvA
+
+
+
+Sir, we have verified all the details from Meera and also received all the project related documents. Now we can release her.
+
+Best,
+Janmejaya
+
+http://www.aspose.com/docs/display/totalcloud/home
+
+http://www.aspose.com/docs/display/cellscloud/1.6+-+Available+SDKs
+
+https://github.com/aspose-cells/Aspose.Cells-for-Cloud/tree/master/SDKs/Aspose.Cells-Cloud-SDK-for-Ruby
+
+
+
+http://www.aspose.com/docs/display/cellscloud/1.2.4+-+Using+Saaspose.Cells+REST+API+with+RUBY
+http://www.aspose.com/docs/display/cellscloud/Convert+Workbook+to+other+formats+without+using+Storage+%28RUBY+REST%29
+
+http://www.aspose.com/docs/display/cellscloud/How+to+Get+Picture+from+a+Worksheet+%28PHP+SDK%29
+
+
+http://www.aspose.com/docs/display/cellscloud/Get+Picture+from+a+Worksheet
+
+https://github.com/aspose-cells/Aspose.Cells-for-Cloud/tree/master/SDKs/Aspose.Cells-Cloud-SDK-for-Ruby
+http://www.aspose.com/docs/display/cellscloud/picture
+https://github.com/aspose-cells/Aspose.Cells-for-Cloud/blob/master/SDKs/Aspose.Cells-Cloud-SDK-for-Ruby/lib/aspose_cells_cloud/api_error.rb
+
+
+Hi Wallen, please find the task breakdown as below
+
+
+
+Rails >> Save and Upload excelsheet in amazon s3 bucket
+Rails >> Call wordsmith API to generate the content and save it to DB
+PHP >> API invoke to fetch the image from the excelsheet
+	Here Rails will provide the amazon s3 url of the excelfile 
+	API will parse the sheet and save the files in local storage
+	Upload the saved images to amazon s3 bucket
+	Return success/error message after operation completes, along with amazon s3 URL
+Rails >> Save the respective image urls against a content in DB
+Rails >> Append/Display images in doc/ppt/html on bottom part of the page 
+	
+	
+	
+Rails - 32hrs
+PHP - 24hrs
+
+Total = 56*30 = 1680
+		60*25 = 1500
+
+
+There is whole lot of work in the background after user uploads, and also keeping in mind the quality
+we also need to setup PHP application in heroku for you. 
+
+
+http://192.168.2.199/automate_insight/
+
+post
+parameter src
+
+pls try this in your rest client
+
+http://auto-writer.s3.amazonaws.com/excel_assets/27/image2.jpeg
+
+=> "{\"image1\":\"http://auto-writer.s3.amazonaws.com/excel_assets/1515/image14.jpeg\",\"image2\":\"http://auto-writer.s3.amazonaws.com/excel_assets/1
+515/image15.jpeg\",\"image3\":\"http://auto-writer.s3.amazonaws.com/excel_assets/1515/image16.jpeg\"}"
+
+
+1515
+
+

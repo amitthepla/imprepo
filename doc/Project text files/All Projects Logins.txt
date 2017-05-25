@@ -1,0 +1,478 @@
+Project logins
+-----------------------------------------------------------------------
+==================================================================================================================
+******************************************************************************************************************
+SALK
+******************************************************************************************************************
+==================================================================================================================
+Local development Environment:
+
+putty: 192.168.2.170
+suman/suman
+
+cd salkmetabolic/Krishna/salkmetabolic/
+rvm gemset use salk
+git branch
+
+--
+git checkout krs
+git pull origin krs
+
+rails s -p 3004
+
+suman.panda@andolasoft.co.in / test1234
+rextweet123@gmail.com / test1234
+
+browser
+('studyadmin', 'Mycirc@d!@n')
+==================================================================================================================
+******************************************************************************************************************
+SIM
+******************************************************************************************************************
+==================================================================================================================
+
+putty: 192.168.2.170
+suman/suman
+-----------------------------------
+To enter run the app
+-----------------------------------
+cd GIT/sin/
+git branch
+rvm gemset use sin
+rails s -p 3010
+-----------------------------------
+To push to commit/save your work
+-----------------------------------
+ git status
+ git add .
+ git commit -m"fixed logout error if academic year is not set"
+-----------------------------------
+To push to dev environment
+-----------------------------------
+<< Note: First save your works in your branch and then push the required files to dev>>
+
+git push
+git checkout dev
+git pull
+git merge staging
+git push
+git checkout staging
+
+
+utrkobpihrbc21
+utrkobpihrbc21
+
+how to push to live server
+
+putty
+
+104.236.37.60
+
+
+root
+utrkobpihrbc21
+
+cd /var/www/html/sin/
+  218  git branch -a
+  219  git pull
+  220  ps -aux | grep puma
+  221  pkill -f puma
+  222  puma -e development -d
+  223  rake db:migrate
+  224  pkill -f puma
+  225  puma -e development -d
+  226  tail -f log/development.log
+  227  cat config/database.yml
+  228  mysql -u root -p
+
+  
+  http://104.236.99.88/
+==================================================================================================================
+******************************************************************************************************************
+SQUAd
+******************************************************************************************************************
+==================================================================================================================
+
+192.168.2.217
+root
+andola
+
+cd /var/www/html/squad/
+rvm use ruby-2.1.1@squad
+ rails s -p 3001
+ 
+ if mongo is stopped
+ -----------------------
+  rm /var/lib/mongo/mongod.lock
+  mongod --repair
+  service mongod start
+ 
+ Copy database from live server
+-----------------------------------
+  mongodump --host 127.0.0.1:27017 -d squad_development --out squad_development.json
+
+
+ 
+ how to push to dev server
+ -----------------
+ git add .
+ git commit -m""
+ git push
+ 
+ pull from dev server
+ ------------------------
+ putty : ec2-squad
+ 54.164.124.188
+ 
+ 
+ login as: ec2-user
+ sudo su
+cd /var/squad/
+ git pull
+ 
+ to restart the server
+ ------------------------
+  netstat -tnlp
+	kill -9 5006
+	 rails s -p 3003 -d
+cd  /var/squad/
+
+pkill -f puma
+
+RAILS_ENV=development bundle exec puma -e development -d -b unix:///var/run/my_app.sock
+
+
+ ps -aux | grep puma
+ pkill -f puma
+ RAILS_ENV=development bundle exec puma -e development -d -b unix:///var/run/my_app.sock-------------
+ *****************************************************
+   mongodump --collection places --db squad_development
+
+ mongodump --collection places --db squad_newdev
+ ------------------------ For whole database
+mongorestore dump/ --db squad_production 
+------------------------ For single table
+ mongorestore dump/squad_newdev/places.bson --collection places --db squad_production
+*********************************************
+rake db:mongoid:create_indexes with RAILS_ENV=production
+
+
+  pkill -f puma
+ RAILS_ENV=production bundle exec puma -e production -d -b unix:///var/run/my_app.sock
+
+
+52.6.106.53
+
+admin@squadz.com/Squadz!23$
+anurag.pattnaik@andolasoft.com/Squadz!andola
+==================================================================================================================
+******************************************************************************************************************
+PrettyInMyPocket
+******************************************************************************************************************
+==================================================================================================================
+
+VAGRANT in LOcal
+
+
+ cd /var/www/primp-staging/
+ rvm use ruby-2.1.1@primp-staging
+ ------------
+ 
+ 
+ for production environment in vagrant
+ ------------
+  cd /var/www/primp-production/
+ rvm use ruby-2.1.6@primp-production
+ 
+ view changed files in sorted list
+ ---------------
+git status -s | while read mode file; do echo $mode $(stat -c %y $file) $file; done|sort
+
+							_________________________________________________________
+							heroku stack -a primp-production
+
+							heroku ps -a primp-production
+
+							heroku stack:set cedar-14
+
+							git commit --allow-empty -m "Upgrading to Cedar-14"
+
+							git push heroku master
+							_________________________________________________________
+							
+For Mongodb
+sudo rm /var/lib/mongodb/mongod.lock
+sudo mongod --repair
+sudo service mongod start
+
+curl -H "Referer: http://www.prettyinmypocket.com" http://api.shoppable.com/v1/token/BrESx7e47m74ca0P1131fae710b1acbe/cart/6884195b-ee85-41c6-b5b5-6ccd15e6b41d/put/1031-884486091529_6f120c989ae69a77e195efb3bd9ee8b5/qty/1
+
+
+AWS-STAGING Environment
+
+http://52.5.13.86/
+
+cd /var/PRIMP-Rails-App/
+rvm use ruby-2.1.6@awsprimp
+git pull origin aws-staging
+ pkill -f puma
+
+RAILS_ENV=staging bundle exec puma -e staging -d -b unix:///var/run/my_app.sock
+
+
+cd /var/www/PRIMP-Github/PRIMP-Rails-App/
+rvm use ruby-2.1.6@aws-staging
+
+
+
+primp-production aws -server -1
+ cd /var/PRIMP-Rails-App/
+rvm use ruby-2.1.6@primp
+pkill -f puma
+RAILS_ENV=production bundle exec puma -e production -d -b unix:///var/run/my_app.sock
+
+RAILS_ENV=production bundle exec puma -e production -t 5:16 -w 2 -p 8080
+
+
+Slack credentials
+
+https://primp.slack.com/messages/@cvs/files/F06E55562/
+anurag.pattnaik@andolasoft.com/andola123
+
+production:
+  adapter: postgresql
+  username: primp
+  password: Prim32#!*p
+  pool: 5
+  database: primplive
+  host: primpdb.cckcmddnrliy.us-east-1.rds.amazonaws.com
+  port: 5432
+
+staging:
+  adapter: postgresql
+  username: primp
+  password: P!rEi%nm2015
+  pool: 5
+  database: primpdb
+  host: localhost
+  port: 5432
+  #encoding: latin1
+  #ctype: en_US.utf8
+  #collation: en_US.utf8
+  #template: template0
+
+To get the git url
+----------------------------------
+git config --get remote.origin.url
+----------------------------
+Steps to integrate shoppable products in staging
+
+Change the branch to shoppable
+Run the RAILS_ENV=staging rake db:migrate
+Run the RAILS_ENV=staging rake new_client_for_web
+Run the RAILS_ENV=staging rake setting_for_shoppable_once
+Run the RAILS_ENV=staging rake add_shoppable_merchants
+Run the RAILS_ENV=staging rake import_shoppable_products
+
+----------------
+RAILS_ENV=production rake db:migrate
+RAILS_ENV=production rake new_client_for_web
+RAILS_ENV=production rake setting_for_shoppable_once
+RAILS_ENV=production rake add_shoppable_merchants
+--
+RAILS_ENV=production rake import_shoppable_products
+
+
+pg_dump --host primpdb.cckcmddnrliy.us-east-1.rds.amazonaws.com --port 5432 --username "primp" --format custom --blobs --verbose --file "primp_12172015_blobmode.dump" "primplive"
+
+
+
+PrimpAPP-R2
+
+pkill -f puma
+
+RAILS_ENV=production bundle exec puma -e production -t 5:16 -w 2 -p 8080 -d  >> /tmp/serverReset.log 2>&1
+
+netstat -tnlp
+
+/etc/init.d/nginx restart
+
+
+get power primpers from live
+ User.where(:power_primper=>true).all.map{|user| ["http://www.prettyinmypocket.com/web/profile" + user.to_param,user.get_metadata('blog_url'),user.get_metadata('blog_title'),user.email,user.login]}
+
+==================================================================================================================
+******************************************************************************************************************
+Little Steps
+******************************************************************************************************************
+==================================================================================================================  
+ putty: 66main/66main
+  cd /var/www/html/Otherpy/
+   rvm use ruby-1.9.3-p194@ot
+    
+   rails s -p 4006 
+
+==================================================================================================================
+******************************************************************************************************************
+Leaguer
+******************************************************************************************************************
+==================================================================================================================  
+
+66main/66main
+cd /var/www/html/SportsOnRails-master
+rvm use ruby-1.8.7-p352@leaguer
+ruby script/server -p 3011
+johntest@leaguer.org/ test1234
+
+==================================================================================================================
+******************************************************************************************************************
+Leaguer- Local VAGRANT
+******************************************************************************************************************
+==================================================================================================================  
+cd /vagrant/SportsOnRails/
+ rvm use ruby-2.0.0-p481@lgr 
+ 
+
+Rails 2 - Live
+========================
+http://softball.sordemo.com/  - 
+admin@leaguer.org/leaguer123
+________________________
+Rails 3 - Live
+========================
+http://softball.leaguerdemo.com/  - 
+admin@leaguer.org/test1234
+________________________
+Rails 2- Local
+========================
+http://softball.lvh.me/
+admin@leaguer.org/test1234
+________________________  
+Rails 3 - Live
+========================
+http://softball.lvh.me:3001
+admin@leaguer.org/test1234
+________________________  
+Rails 3 - Local
+========================
+http://softball.lth.me:3001
+admin@leaguer.org/test1234
+________________________
+
+
+Putty - live 
+leaguerdemo.com
+select .ppk file
+root
+cd /var/www/html/SportsOnRails
+
+To restart in live server
+/etc/init.d/httpd restart
+ 
+Note: changed the  host file to run in softball.lvh.me  here is the command
+________________________
+cat /etc/hosts          |
+nano /etc/hosts         |
+sudo nano /etc/hosts    |
+restart the vagrant     |
+________________________|
+Also change the host file in system 32/ drivers/ lib/host file
+
+
+To view the log of sordemo
+login to sordemo.com + SSH
+carmenb@sordemo.com/ robotwar
+
+cd /var/www/vhosts/sor/current/log
+
+
+
+database of leaguer demo
+----------------------------------
+http://52.6.155.139/index.php
+username: admin
+password: LegD#guer*!2
+
+To view the log
+==========================
+User: root
+Password: C6scz7Ak6poD
+162.209.4.99 application server
+
+tail -f  /var/log/httpd/access_log
+
+JenKins
+http://162.209.1.20:8080/job/SportOnRails/
+Username : admin
+Password : L#eA22ad!m
+
+
+==================================================================================================================
+******************************************************************************************************************
+Leaguer-API
+
+******************************************************************************************************************
+==================================================================================================================
+User: root
+Password: C6scz7Ak6poD
+162.209.4.99 application server
+
+
+cd /var/www/SportsOnRails/
+rails s -e staging -p 3000 -d
+
+
+restore database:  
+--------------------
+		mysql -u [uname] -p [db_to_restore] < [backupfile.sql]
+----------------------------------------------------------------
+sportsware.us
+
+admin@leaguer.org/leaguer123
+
+https://softball.leaguerdemo.com/account/mypage
+
+http://162.209.4.99:3000/api/v1/account/login?email=admin@leaguer.org&password=leaguer123
+
+My schedule
+------------------------------
+http://162.209.4.99:3000/api/v1/myschedule/ZGY5MzUzY2UzZmEzYmFhMDI1YWFkMTQ1Mjk1YTJhMDk=/NDg=
+
+==================================================================================================================
+******************************************************************************************************************
+Wakeupsales - live
+******************************************************************************************************************
+==================================================================================================================  
+www.wakeupsales.com
+choose .ppk file from E:\Project Documents\Wakeupsales Documents
+ec2-user
+
+mysql -h wakeupsales.cecbncxwd0ul.us-east-1.rds.amazonaws.com -u admin -pwak32rt7bhi
+
+******************************************************************************************************
+To update vagrant
+--------------
+sudo apt-get update
+
+Import mysql 
+-------------------------
+mysql -u root -p sportsdev < sportsdev.sql
+==================================================================================================================
+******************************************************************************************************************
+4Beauty
+******************************************************************************************************************
+==================================================================================================================  
+cd /var/www/crm
+rvm use ruby-2.2.2@crm
+
+git push heroku development:master
+
+it@4beauty.net
+!4beauty!-CRM
+
+colleen@4beauty.net
+meowmeow80
+
+http://www.buttsbymendieta.com/
+
+mongodump --host candidate.12.mongolayer.com --port 10800 --db 4beauty-crm-prod -u andola-devuser -pandola123
