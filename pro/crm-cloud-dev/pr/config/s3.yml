@@ -1,0 +1,14 @@
+production:
+  #bucket: SalesCafe_Live
+  bucket: wakeupsales-staging-saas
+  access_key_id: xxxxxxx
+  secret_access_key: xxxxxxxxx
+  
+development:
+  bucket: wakeupsales_demo
+  access_key_id: xxxxxxxxx
+  secret_access_key: xxxxxxxx
+staging:
+  bucket: SalesCafe
+  access_key_id: xxxxxxxxxx
+  secret_access_key: xxxxxxxxxx
