@@ -1,0 +1,93 @@
+GIT - Workflow
+Vagrant
+Deployment tools
+Testing tools
+Development/Production mode
+Web Server - Niginx/Apache
+Application server - Puma/Passenger
+
+
+
+What are the Ruby version you are using? Ruby 2
+What is the Rails version you are using? Rails 3.2.19 and Rails 4
+Do you have knowledge on GIT? Rating
+Do you know about jQuery framework? Rating (AngularJS, BackboneJS, Nodejs)
+What is the deployment tool you are using? Capistrano or Jenkins
+Do you know Capistrano? conditional
+How you setup your development environment? Vagrant or VirtualBox
+Do you have knowledge on Vagrant or VirtualBox? Conditional
+Have you worked on Heroku platform?
+Do you have knowledge on rackbase server like PUMA or Passenger? Rating
+Have you worked on less, sass, HAML and HTML5?
+
+
+BLOG Application
+----------------------
+
+Rails 4
+Ruby 2.X
+Bootstrap 3.3.6 (theme: https://bootswatch.com/united/)
+
+
+Authentication:
+-------------------
+Login
+No signup
+Forgot password
+
+Admin Interface: 
+---------------------
+ >> User invite
+ >> Assign Role
+ >> Block/Unblock user(If blocked, unable to login)
+ >> User accept >> signup page >> directly login
+
+User Interface 
+-------------------------
+ >> Edit profile
+ >> profile pic upload
+ >> change password
+ >> CRUD of blog (title, description-text editor, image, category - tagging)
+ 
+ 
+Home page:
+Only active/published/approved articles will be displayed
+ 
+ 
+ Authentication: (Use devise authentication process)
+-------------------
+
+Login
+No signup link available for users
+Insert admin data to users table by running seed file
+Forgot password
+
+
+Admin Interface: 
+---------------------
+ >> Admin can invite User. An email will send to the user with sign-up link
+ >> Admin can assign Role to the invite user
+ >> Block/Unblock user(If blocked, unable to login)
+ >> User accept >> signup page >> directly login
+
+User Interface 
+-------------------------
+ >> Edit profile
+ >> profile pic upload
+ >> change password
+ >> CRUD of blog (title, description-text editor, image, category - tagging)
+ 
+ 
+Home page:
+
+Only active/published/approved blogs will be displayed
+Comment block for each blog and only registered users can give comment to the blogs
+On home page Blog will display as below format
+  Title of the blog
+  Only 100 characters length of Descriptions should display.
+  Blog detail page should display like below
+  Blog name,date,author name,blog cover image,desription and comment details
+ 
+ 
+ 
+ 
